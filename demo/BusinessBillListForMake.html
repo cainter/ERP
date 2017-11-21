@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>要制作的业务单 | 管理易-广告加工制作管理软件 企业版 9.28 | 易凯软件</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div>
+			<!-- 页面主框架 -->
+
+			<div id="ListContainer" class="Container">
+				<!-- 主体容器 -->
+
+				<!-- 标题栏 -->
+				<div class="Heading BillIcon">
+					<div class="HeadingContent">
+						<h1>要制作的业务单</h1>
+						<div class="pull-right">
+							<input type="text" class="form-control TextBox" maxlength="50" name="bill_code" id="bill_code" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_bill_code&#39;);" value="" placeholder="请输入业务单号">
+							<a type="button" class="buttom btn btn-default" href="#">查询</a>
+							<a type="button" class="buttom btn btn-default" href="#">开工</a>
+							<a type="button" class="buttom btn btn-default" href="#">取消开工</a>
+							<a type="button" class="buttom btn btn-default" href="#">打印</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- 主内容 -->
+				<div class="Content">
+					
+					<div class="center-block"></div>
+
+					<!-- 上栏 分页、操作等 -->
+					<div class="TopToolBar">
+						<table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+							<tbody>
+								<tr>
+									<td>
+										选择：
+										<a href="javascript:showList(&#39;EXAMINE_TIME&#39;);">按审核时间降序</a>
+										<a href="javascript:showList(&#39;ORDER_DATE&#39;);">按订货日期升序</a>
+										<a href="javascript:showList(&#39;DELIVER_DATE&#39;);">按交货日期升序</a>
+										<a href="javascript:showList(&#39;UN_MAKE&#39;);">未开工</a>
+										<a href="javascript:showList(&#39;MAKE&#39;);">已开工</a>
+										<a href="javascript:showList(&#39;URG&#39;);">加急单</a>
+
+										<br> 制作单数：0
+										<span>面积合计：0.00平方米</span>
+										<span>长度合计：0.00米&nbsp;0.00公分</span>
+										<span>成品数量合计：0</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<table data-toggle="table" data-click-to-select="true">
+						<thead>
+							<tr>
+								<th data-field="state" data-checkbox="true"></th>
+								<th>单号</th>
+								<th>订货日期</th>
+								<th>订货单位</th>
+								<th>摘要</th>
+								<th>金额</th>
+								<th>调账</th>
+								<th>交货日期</th>
+								<th>最近回款日期</th>
+								<th>跟单员</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="bs-checkbox "></td>
+								<td>老客户</td>
+								<td>郑州中力国标标识</td>
+								<td>国际标识</td>
+								<td>2017-09-12</td>
+								<td>8774566</td>
+								<td>河南省郑州市</td>
+								<td>付款方式</td>
+								<td>默认工作中心</td>
+								<td>默认工作中心</td>
+								<td>默认工作中心</td>
+								<td>
+									<a href="#">结清</a>
+									<a href="#">查看</a>
+									<br />
+									<a href="#">单据跟踪</a>
+									<br />
+									<a href="#">打印小票</a>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="14">
+									<div class="pull-right">
+										<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+										第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 共1页
+										<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+
+					<!-- 上栏 分页、操作等 -->
+					<div class="TopToolBar">
+						<table class="ListNoteInfo">
+							<tbody>
+								<tr>
+									<td>
+										选择：
+										<a href="javascript:showList(&#39;EXAMINE_TIME&#39;);">按审核时间降序</a>
+										<a href="javascript:showList(&#39;ORDER_DATE&#39;);">按订货日期升序</a>
+										<a href="javascript:showList(&#39;DELIVER_DATE&#39;);">按交货日期升序</a>
+										<a href="javascript:showList(&#39;UN_MAKE&#39;);">未开工</a>
+										<a href="javascript:showList(&#39;MAKE&#39;);">已开工</a>
+										<a href="javascript:showList(&#39;URG&#39;);">加急单</a>
+
+										<br> 制作单数：0
+										<span>面积合计：0.00平方米</span>
+										<span>长度合计：0.00米&nbsp;0.00公分</span>
+										<span>成品数量合计：0</span>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="table-list">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<th width="36"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+									<th width="145">单号</th>
+									<th width="110">订货日期</th>
+									<th width="200">订货单位</th>
+									<th width="230">摘要</th>
+									<th width="110">交货日期</th>
+									<th width="110">审核时间</th>
+									<th width="95">跟单员</th>
+									<th width="130">开工状态</th>
+									<th width="160">工作中心</th>
+									<th width="260">操作</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="296"></td>
+									<td>单号</td>
+									<td>订货日期</td>
+									<td>订货单位</td>
+									<td>摘要</td>
+									<td>交货日期</td>
+									<td>审核时间</td>
+									<td>跟单员</td>
+									<td>开工状态</td>
+									<td>工作中心</td>
+									<td>操作</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+					<div class="table-bot clearfix">
+						<div class="pull-right">
+							<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+							<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+							第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 共1页
+							<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+							<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

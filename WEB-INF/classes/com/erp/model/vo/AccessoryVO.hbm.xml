@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.AccessoryVO" table="accessory">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="agentType" type="string">
+			<column name="agent_type" length="30" not-null="true" />
+		</property>
+		<property name="agentId" type="long">
+			<column name="agent_id" not-null="true" />
+		</property>
+		<property name="fileName" type="string">
+			<column name="file_name" length="200" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="100" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" not-null="true" />
+		</property>
+		<property name="tmpCode" type="string">
+			<column name="tmp_code" length="100" />
+		</property>
+		<property name="sourceName" type="string">
+			<column name="source_name" length="100" not-null="true" />
+		</property>
+		<property name="customPath" type="string">
+			<column name="custom_path" length="200" />
+		</property>
+		<property name="extId" type="long">
+			<column name="ext_id" not-null="true" />
+		</property>
+		<property name="accType" type="string">
+			<column name="acc_type" length="30" />
+		</property>
+    </class>
+</hibernate-mapping>

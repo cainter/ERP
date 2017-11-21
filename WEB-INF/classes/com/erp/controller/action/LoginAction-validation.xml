@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+<!--  
+手机号：
+[^1[34578]\d{9}$]
+-->
+	<field name="loginVTO.userName" >
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message key="login.user.not.empty" />	
+		</field-validator>
+	</field>	
+	<field name="loginVTO.passWord" >
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message key="login.password.error.empty" />	
+		</field-validator>		
+		<field-validator type="regex">
+			<param name="regex">
+				<![CDATA[^[a-zA-Z0-9]{5,15}$]]>
+			</param>
+			<message key="login.password.error.format"/>	
+		</field-validator>
+	</field>
+
+</validators>

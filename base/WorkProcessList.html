@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0058)http://115.28.87.22:8888/base/WorkProcessList.html?wc_id=1 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>工序 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doNew(){
+		var url="../base/WorkProcessNew.html?wc_id=1";
+		ShowIframeNoScroll("工序",url,360,320,"refreshWin()");
+	}
+	function refreshWin(){
+		window.location.reload(true);
+	}
+	function doEdit(id){
+		var url="../base/WorkProcessEdit.html?id="+id;
+		ShowIframeNoScroll("工序",url,360,320,"refreshWin()");
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',340,80,"doDelAct("+id+")");
+	}
+	function doDelAct(id){
+		if(popRetVal!=null){
+			window.location="../base/WorkProcessDelete.html?id="+id+"&from_url="+encodeURIComponent(window.location);
+		}
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doPause(id,flag){
+		window.location="../base/WorkProcessPause.html?id="+id+"&flag="+flag+"&from_url="+encodeURIComponent(window.location);
+	}
+	function doSearch(){
+		var showPaus="";
+		if(document.getElementById("show_paus").checked){
+			showPaus="Y";
+		}
+		window.location="../base/WorkProcessList.html?wc_id=1&show_paus="+showPaus;
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:460px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>工序</h2>
+      <p>设置默认工作中心的工序，每道工序对应一个部门</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+	    <div class="add_content"> 	
+	    	 <div align="right">
+	    	 	<input type="checkbox" id="show_paus" onclick="doSearch();">显示已停用工序
+	    	 	<input type="button" id="newButton" class="buttom search-add" value=" 新 增" onclick="doNew();">
+	    	 </div>
+	     </div>
+		 
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	     <div class="table-list">
+	        <table width="100%">
+	          	<tbody><tr>
+	          		<th width="10%">序号</th>
+					<th width="24%">名称</th>
+					<th width="20%">所在部门</th>
+					<th width="16%">计件单价</th>
+					<th width="10%">状态</th>
+					<th width="20%">操作</th>
+				</tr>
+				
+				<tr>
+					<td>0</td>
+					<td>铝合金下料</td>
+					<td>标识加工车间</td>
+					<td>0</td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;1&#39;);">编辑</a>
+						
+						
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td>1</td>
+					<td>下料</td>
+					<td>标识加工车间</td>
+					<td>20</td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;55&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;55&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;55&#39;);">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>2</td>
+					<td>喷漆</td>
+					<td>标识加工车间</td>
+					<td>20</td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;56&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;56&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;56&#39;);">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>3</td>
+					<td>打印</td>
+					<td>标识加工车间</td>
+					<td>10</td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;57&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;57&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;57&#39;);">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>4</td>
+					<td>组装</td>
+					<td>标识加工车间</td>
+					<td>15</td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;58&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;58&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;58&#39;);">删除</a>
+					</td>
+				</tr>
+				
+			</tbody></table>
+		   </div>  
+	   </div>  
+  </div>
+  <div class="blank12">
+</div>
+
+</div><div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://115.28.87.22:8888/base/WorkProcessList.html?wc_id=1#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://115.28.87.22:8888/base/WorkProcessList.html?wc_id=1#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://115.28.87.22:8888/base/WorkProcessList.html?wc_id=1#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./工序 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/yun6.html" style="border: none; display: none; height: 84px; width: 100%; z-index: 2147483645; background: transparent;"></iframe></body></html>

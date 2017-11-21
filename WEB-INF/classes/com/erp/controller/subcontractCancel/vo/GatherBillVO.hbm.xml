@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.subcontractCancel.vo.GatherBillVO" table="gather_bill">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="billCode" type="string">
+			<column name="bill_code" length="30" not-null="true" />
+		</property>
+		<property name="gatherDate" type="timestamp">
+			<column name="gather_date" />
+		</property>
+		<property name="cooperBillId" type="long">
+			<column name="cooper_bill_id" not-null="true" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="examinerId" type="long">
+			<column name="examiner_id" not-null="true" />
+		</property>
+		<property name="examinerName" type="string">
+			<column name="examiner_name" length="30" />
+		</property>
+		<property name="examined" type="string">
+			<column name="examined" length="1" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" />
+		</property>
+		<property name="disableManId" type="long">
+			<column name="disable_man_id" not-null="true" />
+		</property>
+		<property name="updateTime" type="timestamp">
+			<column name="update_time" not-null="true" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="200" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="200" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" />
+		</property>
+		<property name="examineTime" type="timestamp">
+			<column name="examine_time" />
+		</property>
+		<property name="linkman" type="string">
+			<column name="linkman" length="30" />
+		</property>
+		<property name="phone" type="string">
+			<column name="phone" length="80" />
+		</property>
+    </class>
+</hibernate-mapping>

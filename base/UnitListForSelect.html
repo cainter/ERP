@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0052)http://115.28.87.22:8888/base/UnitListForSelect.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>选择计量单位 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script language="javascript">
+	function doSelect(index){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=null;
+		if ( ob_arr.length>=index ){
+			arr = new Array(ob_arr[index-1].value,ob_arr[index-1].getAttribute("unit_name"));
+		}
+		if (arr != null){
+			parent.popRetVal=arr;
+			parent.ClosePop();
+		}
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=null;
+		if ( ob_arr.length>=it.getAttribute("index") ){
+			arr = new Array(ob_arr[it.getAttribute("index")-1].value,ob_arr[it.getAttribute("index")-1].getAttribute("unit_name"));
+		}
+		if(arr==null){
+			return;
+		}
+		parent.popRetVal=arr;
+		parent.ClosePop();
+	}
+	function doInit(){
+		Window_Onload();
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="doInit();" class="sheet">
+<div class="sheet-main" style="width:255px">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>选择计量单位</h2>
+      <p>鼠标双击可以选中计量单位</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+      <div class="table-list">
+        <table width="100%">      
+ 					<tbody><tr>
+					<th width="14"></th>
+					<th width="70%">名称</th>
+					<th width="30%">操作</th>
+				</tr>
+				
+					
+					
+					<tr class="query_list_data_trSelected" index="1" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="1" unit_name="平方米"></td>
+						<td>平方米</td>
+						<td>
+							<a href="javascript:doSelect(&#39;1&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="2" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="2" unit_name="米"></td>
+						<td>米</td>
+						<td>
+							<a href="javascript:doSelect(&#39;2&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="3" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="4" unit_name="张"></td>
+						<td>张</td>
+						<td>
+							<a href="javascript:doSelect(&#39;3&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="4" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="5" unit_name="支"></td>
+						<td>支</td>
+						<td>
+							<a href="javascript:doSelect(&#39;4&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="5" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="6" unit_name="个"></td>
+						<td>个</td>
+						<td>
+							<a href="javascript:doSelect(&#39;5&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="6" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="7" unit_name="套"></td>
+						<td>套</td>
+						<td>
+							<a href="javascript:doSelect(&#39;6&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="7" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="8" unit_name="块"></td>
+						<td>块</td>
+						<td>
+							<a href="javascript:doSelect(&#39;7&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="8" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="9" unit_name="条"></td>
+						<td>条</td>
+						<td>
+							<a href="javascript:doSelect(&#39;8&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="9" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="10" unit_name="根"></td>
+						<td>根</td>
+						<td>
+							<a href="javascript:doSelect(&#39;9&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="10" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="11" unit_name="盘"></td>
+						<td>盘</td>
+						<td>
+							<a href="javascript:doSelect(&#39;10&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="11" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="12" unit_name="袋"></td>
+						<td>袋</td>
+						<td>
+							<a href="javascript:doSelect(&#39;11&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="12" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="13" unit_name="卷"></td>
+						<td>卷</td>
+						<td>
+							<a href="javascript:doSelect(&#39;12&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="13" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="14" unit_name="把"></td>
+						<td>把</td>
+						<td>
+							<a href="javascript:doSelect(&#39;13&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="14" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="15" unit_name="KG"></td>
+						<td>KG</td>
+						<td>
+							<a href="javascript:doSelect(&#39;14&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="15" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="16" unit_name="适量"></td>
+						<td>适量</td>
+						<td>
+							<a href="javascript:doSelect(&#39;15&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="16" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="17" unit_name="包"></td>
+						<td>包</td>
+						<td>
+							<a href="javascript:doSelect(&#39;16&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="17" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="18" unit_name="件"></td>
+						<td>件</td>
+						<td>
+							<a href="javascript:doSelect(&#39;17&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="18" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="19" unit_name="台"></td>
+						<td>台</td>
+						<td>
+							<a href="javascript:doSelect(&#39;18&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="19" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="20" unit_name="盒"></td>
+						<td>盒</td>
+						<td>
+							<a href="javascript:doSelect(&#39;19&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="20" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="21" unit_name="桶"></td>
+						<td>桶</td>
+						<td>
+							<a href="javascript:doSelect(&#39;20&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="21" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="22" unit_name="罐"></td>
+						<td>罐</td>
+						<td>
+							<a href="javascript:doSelect(&#39;21&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="22" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="23" unit_name="瓶"></td>
+						<td>瓶</td>
+						<td>
+							<a href="javascript:doSelect(&#39;22&#39;);">选择</a>
+						</td>
+					</tr>
+				
+			</tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>

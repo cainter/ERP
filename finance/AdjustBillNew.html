@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div>
+			<form name="frm" method="post">
+				<div class="Container">
+					<div class="Contnet Paper">
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>调账单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+											<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput('adjustDateStr');" id="adjustBill.billCode" name="adjustBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span id="calPosi"></span>
+											<span class="MustInput">*</span>调账日期：
+											<input type="text" class="tbBillDate_sim TextBox " maxlength="15" id="adjustDateStr" name="adjustDateStr" value="2017-11-05">
+											<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById('adjustDateStr'),'yyyy-mm-dd',document.getElementById('calPosi'));">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- 单 头信息 -->
+						<table class="BillHeadInfo" style="width: 80%;">
+							<tbody>
+								<tr>
+									<td width="33%">
+										<span class="MustInput">*</span>调账单位：
+
+										<input class="TextBox readonly" style="width:150px" readonly="readonly" type="text" id="clientName" name="clientName" value="格力电器">
+										<img class="imgIconButton" src="/images/make-a.gif" onclick="selectClient();">
+										<input type="hidden" id="adjustBill.clientId" name="adjustBill.clientId" value="757">
+									</td>
+									<td width="33%" class="tc">
+										<span class="MustInput">*</span>调账金额：
+										<input type="text" class="tbHead3 TextBox" maxlength="10" id="costStr" name="costStr" value="15621041.00" onchange="autoAssign();">
+									</td>
+									<td width="33%" class="tr">
+										调账类型： 应收款减少
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="BillDetails" style="width: 90%;">
+							<table data-toggle="table" data-click-to-select="true">
+								<thead>
+									<tr>
+										<th data-field="state" data-checkbox="true"></th>
+										<th>单号</th>
+										<th>日期</th>
+										<th>摘要</th>
+										<th>金额（元）</th>
+										<th>余额（元）</th>
+										<th>本次调账</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="bs-checkbox "></td>
+										<td>K(1)2017060010</td>
+										<td>2017-06-27</td>
+										<td>郑州建美标识</td>
+										<td>标牌 门店自提</td>
+										<td>2017-07-09</td>
+										<td>张永灿</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="table-bot" style="margin:15px 0;text-align: center;">
+							<a type="button" class="buttom btn btn-default" href="#">汇总到调账金额</a>
+						</div>
+
+						<!-- 附加信息 -->
+						<div class="TopBottom_Border">
+							<table width="100%" class="BillElseInfo" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th width="84px"><span class="MustInput">*</span>经办人：</th>
+										<td width="200px">
+
+											<input type="text" class="tbInfo1 TextBox readonly" readonly="true" id="adjustBill.managerName" name="adjustBill.managerName" value="管理员">
+											<img src="/images/make-a.gif" class="imgIconButton" onclick="selectStaffer();">
+											<input type="hidden" id="adjustBill.managerId" name="adjustBill.managerId" value="-1">
+										</td>
+										<th width="84px"><span class="MustInput">*</span>部门：</th>
+										<td width="273px">
+											<select id="adjustBill.departmentId" name="adjustBill.departmentId" class="ddlInfo3_long" style="background:#f6f6f6;">
+												<option value="0">==请选择==</option>
+
+												<option value="1">易凯管理员</option>
+												<option value="50">&nbsp;|--1</option>
+												<option value="13">总经办</option>
+												<option value="22">&nbsp;|--财务</option>
+												<option value="14">新异店</option>
+												<option value="15">&nbsp;|--客服</option>
+												<option value="23">&nbsp;|--设计</option>
+												<option value="24">&nbsp;|--业务</option>
+												<option value="16">业务来源</option>
+												<option value="17">标识加工车间</option>
+												<option value="21">合作伙伴</option>
+												<option value="32" selected="">标识汇运营部</option>
+												<option value="33">财务部</option>
+												<option value="35">新异标识标牌有限公司</option>
+												<option value="36">&nbsp;|--物流部</option>
+												<option value="41">&nbsp;|--销售部</option>
+												<option value="42">&nbsp;|--业务部</option>
+												<option value="43">&nbsp;|--设计部</option>
+												<option value="44">&nbsp;|--安装部</option>
+												<option value="45">&nbsp;|--外协(东厂)</option>
+												<option value="46">&nbsp;|--财务部</option>
+												<option value="48">&nbsp;|--门市部</option>
+												<option value="49">&nbsp;|--加工车间</option>
+												<option value="37">&nbsp;&nbsp;|--标牌部</option>
+												<option value="38">&nbsp;&nbsp;|--标识部</option>
+												<option value="39">&nbsp;&nbsp;|--型材加工部</option>
+												<option value="40">&nbsp;&nbsp;|--字加工部</option>
+											</select>
+										</td>
+										<th width="84px"></th>
+										<td width="179px"></td>
+									</tr>
+									<tr>
+										<th>摘要：</th>
+										<td colspan="5">
+											<textarea class="TextBox" name="adjustBill.description" id="adjustBill.description" style="width:764px;height:40px"></textarea>
+										</td>
+									</tr>
+									<tr>
+										<th>备注：</th>
+										<td colspan="5">
+											<textarea class="TextBox" name="adjustBill.mark" id="adjustBill.mark" style="width:764px;height:40px"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="BillNotes">
+							<span>开单人：杨海波 </span>
+							<span>审核人：</span>
+							<span>单据帐套：网络公司</span>
+						</div>
+					</div>
+
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取消</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

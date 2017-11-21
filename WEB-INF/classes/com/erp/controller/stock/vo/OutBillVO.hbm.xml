@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.stock.vo.OutBillVO" table="out_bill">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="billCode" type="string">
+			<column name="bill_code" length="30" not-null="true" />
+		</property>
+		<property name="outDate" type="timestamp">
+			<column name="out_date" not-null="true" />
+		</property>
+		<property name="outTypeId" type="long">
+			<column name="out_type_id" not-null="true" />
+		</property>
+		<property name="storehouseId" type="long">
+			<column name="storehouse_id" not-null="true" />
+		</property>
+		<property name="requirerType" type="string">
+			<column name="requirer_type" not-null="true" length="30" />
+		</property>
+		<property name="requirerId" type="long">
+			<column name="requirer_id" not-null="true" />
+		</property>
+		<property name="managerId" type="long">
+			<column name="manager_id" not-null="true" />
+		</property>
+		<property name="managerName" type="string">
+			<column name="manager_name" length="30" />
+		</property>
+		<property name="businessBillCode" type="string">
+			<column name="business_bill_code" length="30" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="200" />
+		</property>
+		<property name="examinerId" type="long">
+			<column name="examiner_id" not-null="true" />
+		</property>
+		<property name="examinerName" type="string">
+			<column name="examiner_name" length="30" />
+		</property>
+		<property name="examined" type="string">
+			<column name="examined" length="1" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" />
+		</property>
+		<property name="disableManId" type="long">
+			<column name="disable_man_id" not-null="true" />
+		</property>
+		<property name="updateTime" type="timestamp">
+			<column name="update_time" not-null="true" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" />
+		</property>
+		<property name="examineTime" type="timestamp">
+			<column name="examine_time" />
+		</property>
+    </class>
+</hibernate-mapping>

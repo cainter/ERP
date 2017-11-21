@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://115.28.87.22:8888/base/WorkCenterNew.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>工作中心 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script language="javascript">
+	function doSave(){
+		document.getElementById("buttonDiv").style.display="none";
+		document.getElementById("waitDiv").style.display="";
+		frm.submit();
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function showMe(){
+		showFormErrorMsg();
+		document.getElementById("wcName").focus();
+	}
+	function changeStatus(){
+		if(document.getElementById("r_status1").checked){
+			document.getElementById("status").value="Y";
+		}else{
+			document.getElementById("status").value="N";
+		}
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="showMe();" class="sheet modal-dialog" style=" padding-top:5px;">
+<div class="sheet-main" id="bodyDiv" style="width:290px;">
+	<form name="frm" method="post">
+	  <div class="sheet-list" style="width:100%">
+	    <div class="modal-main search-business">
+	    	<div style="width:100%;">
+				
+				
+				
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<h3>新增工作中心</h3>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table> 
+				<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a">
+					<tbody><tr>
+				      	<th><span class="MustInput">*</span>名称：</th>
+				      	
+				      	<td>
+				      		<input type="text" maxlength="15" onkeyup="goNextInput(&#39;mark&#39;);" id="wcName" name="wcName" value="">						
+					          <script language="javascript">
+					          	setFormErrorMsg('',2,'wcName');
+					          </script>
+			     		</td>
+			     		
+					</tr>
+					<tr>
+				      	<th>描述：</th>
+				      	
+				      	<td>
+				      		<input type="text" maxlength="50" id="mark" name="mark" value="">						
+					          <script language="javascript">
+					          	setFormErrorMsg('',3,'mark');
+					          </script>
+			     		</td>
+			     		
+					</tr>
+					<tr>
+				      	<th><span class="MustInput">*</span>仓库：</th>
+				      	
+				      	<td>
+				      		<select id="storehouseId" name="storehouseId" style="width:142px">
+								<option value="0">==请选择==</option>
+								
+									<option value="1">标识加工仓库</option>
+								
+									<option value="2">中力门店仓库</option>
+								
+									<option value="3">车间型材仓库</option>
+								
+									<option value="4">车间耗材仓库</option>
+								
+									<option value="5">车间工具仓库</option>
+								
+									<option value="6">你好，仓库</option>
+								
+				  			</select>
+					          <script language="javascript">
+					          	setFormErrorMsg('',4);
+					          </script>
+				     	</td>
+				     	
+					</tr>
+					<tr>
+				      	<th><span class="MustInput">*</span>状态：</th>
+				      	<td>
+				      		<input type="radio" name="r_status" id="r_status1" onclick="changeStatus();" checked="">正常
+							<input type="radio" name="r_status" id="r_status2" onclick="changeStatus();">停用
+				  			
+				  			<input type="hidden" name="status" id="status" value="Y">
+				  			
+				     	</td>
+					</tr>
+				</tbody></table>
+			</div>
+	  	</div>
+	  </div>
+		<div class="modal-buttom" id="buttonDiv">
+			<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave();">
+			<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+			<input type="hidden" name="flag" id="flag" value="1">		
+		</div>
+		<div class="modal-buttom" id="waitDiv" style="display:none">
+			<span style="color:#ffffff">请稍候...</span>
+		</div>
+	</form>
+</div>	
+
+</body></html>

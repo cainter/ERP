@@ -1,0 +1,955 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0061)http://115.28.87.22:8888/base/MakeTypeListForMultiSelect.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>选择项目类型 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function doMutiSelect(){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		for (i=0;i<ob_arr.length;i++){
+			if ((ob_arr[i].checked == true)){
+				arr.push(new Array(ob_arr[i].getAttribute("m_id"),ob_arr[i].getAttribute("m_nam"),ob_arr[i].getAttribute("wc_id"),ob_arr[i].getAttribute("wc_nam"),ob_arr[i].getAttribute("m_unit")));
+			}
+		}
+		if(arr.length>0){
+			parent.popRetVal=arr;
+			parent.ClosePop();
+		}else{
+			ShowAlert('提示框','请选择项目类型！',200,100);
+			return;
+		}
+	}
+	function selectMakeType(index){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		if ( ob_arr.length>=index ){
+			var obj=ob_arr[index-1];
+			arr[0]=new Array(obj.getAttribute("m_id"),obj.getAttribute("m_nam"),obj.getAttribute("wc_id"),obj.getAttribute("wc_nam"),obj.getAttribute("m_unit"));
+			parent.popRetVal=arr;
+		}
+		parent.ClosePop();
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		if(ob_arr.length>=it.getAttribute("index")){
+			var obj=ob_arr[it.getAttribute("index")-1];
+			arr[0]=new Array(obj.getAttribute("m_id"),obj.getAttribute("m_nam"),obj.getAttribute("wc_id"),obj.getAttribute("wc_nam"),obj.getAttribute("m_unit"));
+			parent.popRetVal=arr;
+		}
+		parent.ClosePop();
+	}
+	function checkSearchKey(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doSearch(){
+		var searchKey=encodeURIComponent(document.getElementById("search_key").value.trim());
+		window.location="../base/MakeTypeListForMultiSelect.html?search_key="+searchKey;
+	}
+	function doInit(){
+		
+	}
+</script>
+</head>
+<body onload="doInit();" class="sheet">
+<div class="sheet-main" id="bodyDiv" style="width:312px;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>选择项目类型</h2>
+      <p>选择要复制哪些项目类型的标准价格</p>
+    </div>
+  </div>
+  <div class="content">		
+	<div align="right">
+		<input type="text" class="TextBox" id="search_key" name="search_key" onkeyup="checkSearchKey();" style="width:72px" value="">
+		<input type="button" class="buttom search-but" value=" 查 询" onclick="doSearch();">
+		<input type="button" class="buttom search-select" value=" 选 择" onclick="doMutiSelect();">
+	 </div>
+  </div>
+  
+	<div class="table-list">
+		<table width="100%">
+			<tbody><tr>
+				<th width="14"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+				<th width="20%">序号</th>
+				<th width="60%">项目类型</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="1" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="10" m_nam="标牌" m_unit="块" wc_id="9" wc_nam="标识加工工厂">
+	          	</td>
+	          	<td style="text-align:left">1</td>
+				<td>标牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;1&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="2" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="11" m_nam="标识" m_unit="个" wc_id="9" wc_nam="标识加工工厂">
+	          	</td>
+	          	<td style="text-align:left">2</td>
+				<td>标识</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;2&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="3" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="109" m_nam="标识标牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2</td>
+				<td>标识标牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;3&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="4" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="110" m_nam="指示牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2.1</td>
+				<td>指示牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;4&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="5" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="111" m_nam="警示牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2.2</td>
+				<td>警示牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;5&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="6" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="112" m_nam="桌牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2.3</td>
+				<td>桌牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;6&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_trOver" index="7" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="113" m_nam="立牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2.4</td>
+				<td>立牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;7&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="8" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="114" m_nam="展示牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2.5</td>
+				<td>展示牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;8&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="9" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="115" m_nam="户外标识" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">2.6</td>
+				<td>户外标识</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;9&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="10" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="116" m_nam="广告字" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">3</td>
+				<td>广告字</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;10&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="11" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="117" m_nam="不发光立体字" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">3.1</td>
+				<td>不发光立体字</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;11&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="12" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="118" m_nam="背光立体字" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">3.2</td>
+				<td>背光立体字</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;12&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="13" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="119" m_nam="发光立体字" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">3.3</td>
+				<td>发光立体字</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;13&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="14" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="120" m_nam="光树脂发光立体字" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">3.4</td>
+				<td>光树脂发光立体字</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;14&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="15" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="121" m_nam="立体发光立体字" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">3.5</td>
+				<td>立体发光立体字</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;15&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="16" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="13" m_nam="型材销售" m_unit="" wc_id="10" wc_nam="型材仓库">
+	          	</td>
+	          	<td style="text-align:left">4</td>
+				<td>型材销售</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;16&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="17" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="17" m_nam="画框型材" m_unit="" wc_id="4" wc_nam="型材仓库">
+	          	</td>
+	          	<td style="text-align:left">4.1</td>
+				<td>画框型材</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;17&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="18" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="122" m_nam="吸塑灯箱" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">4.1</td>
+				<td>吸塑灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;18&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="19" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="123" m_nam="超薄灯箱" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">4.2</td>
+				<td>超薄灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;19&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="20" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="18" m_nam="画框配件" m_unit="" wc_id="4" wc_nam="型材仓库">
+	          	</td>
+	          	<td style="text-align:left">4.2</td>
+				<td>画框配件</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;20&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="21" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="124" m_nam="落地式灯箱" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">4.3</td>
+				<td>落地式灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;21&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="22" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="125" m_nam="软膜灯箱" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">4.4</td>
+				<td>软膜灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;22&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="23" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="126" m_nam="动态灯箱" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">4.5</td>
+				<td>动态灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;23&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="24" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="127" m_nam="LED灯箱" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">4.6</td>
+				<td>LED灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;24&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="25" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="34" m_nam="灯箱" m_unit="" wc_id="9" wc_nam="标识加工工厂">
+	          	</td>
+	          	<td style="text-align:left">5</td>
+				<td>灯箱</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;25&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="26" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="128" m_nam="门头店招" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">5</td>
+				<td>门头店招</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;26&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="27" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="129" m_nam="彩条店招" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">5.1</td>
+				<td>彩条店招</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;27&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="28" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="130" m_nam="模组店招" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">5.2</td>
+				<td>模组店招</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;28&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="29" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="131" m_nam="拉布内光店招" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">5.3</td>
+				<td>拉布内光店招</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;29&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="30" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="132" m_nam="异形店招" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">5.4</td>
+				<td>异形店招</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;30&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="31" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="97" m_nam="标牌配件" m_unit="" wc_id="10" wc_nam="型材仓库">
+	          	</td>
+	          	<td style="text-align:left">6</td>
+				<td>标牌配件</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;31&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="32" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="98" m_nam="东厂" m_unit="" wc_id="0" wc_nam="">
+	          	</td>
+	          	<td style="text-align:left">6</td>
+				<td>东厂</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;32&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="33" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="133" m_nam="快展器材" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">6</td>
+				<td>快展器材</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;33&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="34" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="134" m_nam="快展背景墙" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">6.1</td>
+				<td>快展背景墙</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;34&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="35" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="135" m_nam="X展架" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">6.2</td>
+				<td>X展架</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;35&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="36" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="136" m_nam="易拉宝" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">6.3</td>
+				<td>易拉宝</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;36&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="37" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="137" m_nam="注水旗杆" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">6.4</td>
+				<td>注水旗杆</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;37&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="38" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="138" m_nam="快展套装" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">6.5</td>
+				<td>快展套装</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;38&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="39" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="99" m_nam="成品标牌" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7</td>
+				<td>成品标牌</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;39&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="40" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="139" m_nam="展柜展架" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7</td>
+				<td>展柜展架</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;40&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="41" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="140" m_nam="靠墙柜" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.1</td>
+				<td>靠墙柜</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;41&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="42" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="141" m_nam="中岛柜" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.2</td>
+				<td>中岛柜</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;42&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="43" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="142" m_nam="平柜" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.3</td>
+				<td>平柜</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;43&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="44" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="143" m_nam="收银台" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.4</td>
+				<td>收银台</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;44&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="45" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="144" m_nam="挂架" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.5</td>
+				<td>挂架</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;45&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="46" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="145" m_nam="端架" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.6</td>
+				<td>端架</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;46&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="47" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="146" m_nam="地台" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">7.7</td>
+				<td>地台</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;47&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="48" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="147" m_nam="印刷" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">8</td>
+				<td>印刷</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;48&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="49" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="148" m_nam="名片" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">8.1</td>
+				<td>名片</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;49&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="50" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="149" m_nam="宣传单" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">8.2</td>
+				<td>宣传单</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;50&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="51" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="150" m_nam="画册" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">8.3</td>
+				<td>画册</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;51&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="52" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="151" m_nam="手提袋" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">8.4</td>
+				<td>手提袋</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;52&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="53" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="152" m_nam="台挂历" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">8.5</td>
+				<td>台挂历</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;53&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="54" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="153" m_nam="促销用品" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9</td>
+				<td>促销用品</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;54&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="55" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="154" m_nam="吊旗" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9.1</td>
+				<td>吊旗</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;55&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="56" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="155" m_nam="太阳伞" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9.2</td>
+				<td>太阳伞</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;56&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="57" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="156" m_nam="条幅横幅" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9.3</td>
+				<td>条幅横幅</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;57&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="58" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="157" m_nam="挂墙展板" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9.4</td>
+				<td>挂墙展板</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;58&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="59" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="158" m_nam="拱门气球" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9.5</td>
+				<td>拱门气球</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;59&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="60" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="159" m_nam="礼品" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">9.6</td>
+				<td>礼品</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;60&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="61" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="103" m_nam="喷绘" m_unit="张" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">10</td>
+				<td>喷绘</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;61&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="62" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="104" m_nam="挂画" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">10.1</td>
+				<td>挂画</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;62&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="63" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="105" m_nam="灯箱画片" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">10.2</td>
+				<td>灯箱画片</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;63&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="64" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="106" m_nam="高精图像片" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">10.3</td>
+				<td>高精图像片</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;64&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="65" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="107" m_nam="户外彩喷" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">10.4</td>
+				<td>户外彩喷</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;65&#39;);">选择</a>
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="66" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" ondblclick="javascript:DoubleClick(this)" onmouseover="javascript:mouseover(this)" onclick="javascript:ClickCheck(this,true)">
+				<td>
+	            	<input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" m_id="108" m_nam="车身彩绘" m_unit="" wc_id="1" wc_nam="默认工作中心">
+	          	</td>
+	          	<td style="text-align:left">10.5</td>
+				<td>车身彩绘</td>
+				<td>
+					<a href="javascript:selectMakeType(&#39;66&#39;);">选择</a>
+				</td>
+			</tr>
+			
+		</tbody></table> 
+	  </div>	
+</div>	
+
+</body></html>

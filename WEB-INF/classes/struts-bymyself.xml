@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+    <package name="struts-bymyself" extends="struts2">
+    	
+    	<interceptors>
+    	<interceptor-stack name="defaultStack">
+    		<interceptor-ref name="defaultStack">
+    			   <param name="modelDriven.refreshModelBeforeResult">true</param>
+    		</interceptor-ref>
+    	</interceptor-stack>
+    	</interceptors>
+    	
+    <default-interceptor-ref name="defaultStack">
+    
+    </default-interceptor-ref>
+    
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		
+	
+		
+		<!-- 退款单作废 -->
+		<action  name="tuikuancanleling_*" method="{1}" class="com.erp.controller.action.PurchaseCancelAction">
+				<result name="listtuikuan">WEB-INF/view/tuikuancancel/listUI.jsp </result>
+				<result name="listdetail">WEB-INF/view/tuikuancancel/listdetail.jsp</result>
+				<result name="tuiguanlian">WEB-INF/view/tuikuancancel/guanlianUI.jsp</result>
+				<result name="tolist" type="chain">tuikuancanleling_listtuikuan</result>
+		</action>
+		
+		<!-- 采购单作废 -->
+		<action  name="purchasecanleling_*" method="{1}" class="com.erp.controller.action.PurchaseCancelAction">
+				<result name="listUI">WEB-INF/view/purchasecancel/listUI.jsp </result>
+				<result name="listdetail">WEB-INF/view/purchasecancel/listdetail.jsp</result>
+				<result name="guanlian">WEB-INF/view/purchasecancel/guanlianUI.jsp</result>
+				<result name="tolist" type="chain">purchasecanleling_list</result>
+		</action>
+		
+		
+		
+		<!-- 要制作的业务单 -->
+		
+		<action name="makebill_*" class="com.erp.controller.action.MakeBillAction" method="{1}">
+				<result name="listUI">WEB-INF/view/make/listUI.jsp</result>
+		</action>
+		
+		<!-- 供应商管理 -->
+		<action name="gongyingshang_*" class="com.erp.controller.action.GongyingshangAction" method="{1}">
+			<result name="listUI">/WEB-INF/view/gongyingshang/listUI.jsp</result>
+			<result name="caigouUI">WEB-INF/view/gongyingshang/caigou.jsp</result>
+			<result name="payhistory">WEB-INF/view/gongyingshang/payhistory.jsp</result>
+			<result name="adjusthistory">WEB-INF/view/gongyingshang/adjusthistory.jsp</result>
+			<result name="editGongyingshang">/WEB-INF/view/gongyingshang/EditAddUI.jsp</result>
+			<result name="tolistUI" type="redirectAction">gongyingshang_listUI</result>
+			<result name="fujian">WEB-INF/view/gongyingshang/fujian.jsp</result>
+			<result name="tofujian" type="chain">gongyingshang_fujian</result>
+			<result name="dengjiUI">/WEB-INF/view/gongyingshang/AddUI2.jsp</result>
+		</action>
+		
+ 		<action name="business_*" class="com.erp.controller.action.BusinessBillAction" method="{1}">
+ 			<result name="toListUI">/WEB-INF/view/kehuyewu-yewudan/listUI.jsp</result>
+ 			<result name="toEditAddUI">/WEB-INF/view/kehuyewu-yewudan/EditAddUI.jsp</result>
+ 			<result name="toUpdateUI" type="chain">business_updateUI</result>
+ 			<result name="toYewudanUI">/WEB-INF/view/kehuyewu-yewudan/yewudan.jsp</result>
+ 			<result name="toZhizuodanUI">/WEB-INF/view/kehuyewu-yewudan/zhizuodan.jsp</result>
+ 			<result name="toXiaoshoudanUI">/WEB-INF/view/kehuyewu-yewudan/xiaoshoudan.jsp</result>
+ 			<result name="toXiaoshoujuUI">/WEB-INF/view/kehuyewu-yewudan/shoujudan.jsp</result>
+ 			<result name="toXiaopiaoUI">/WEB-INF/view/kehuyewu-yewudan/xiaopiao.jsp</result>
+ 			<result name="listUI" type="redirectAction">business_listUI</result>
+ 			<result name="search">/WEB-INF/view/kehuyewu-yewudan/listUI.jsp</result>
+ 		</action>
+		
+		<!-- 外协  收货对账 -->
+		<action name="reciveingcheck_*" class="com.erp.controller.action.ReciveringCheckAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+            <result name="tofirstlistSelectUI">/WEB-INF/view/waixie-shouhuoduizhang/firstlistSelectUI.jsp</result>
+            <result name="toListUI">/WEB-INF/view/waixie-shouhuoduizhang/toListUI.jsp</result>
+            
+            
+		</action>
+		
+		
+		<!-- 财务，银行账户 -->
+		<action name="moneybill_*" class="com.erp.controller.action.MoneyBillAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			
+			<result name="toListUI">/WEB-INF/view/money/listUI.jsp</result>
+			<result name="toEditAndUI">/WEB-INF/view/money/EditAddUI.jsp</result>
+			<result name="toList" type="redirect">moneybill_BankAccountUI</result>
+		</action>
+		
+		<!-- 收入类型 -->
+		<action name="incometype_*" class="com.erp.controller.action.incomeTypeAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			
+			<result name="toListUI">/WEB-INF/view/money/incomelistUI.jsp</result>
+			<result name="toEditAndUI">/WEB-INF/view/money/incomeEditAddUI.jsp</result>
+			<result name="toList" type="redirect">incometype_IncomeTypeUI</result>
+		</action>
+		<!--费用类型-->
+			<action name="feetype_*" class="com.erp.controller.action.feeTypeAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			
+			<result name="toListUI">/WEB-INF/view/money/feelistUI.jsp</result>
+			<result name="toEditAndUI">/WEB-INF/view/money/feeEditAddUI.jsp</result>
+			<result name="toList" type="redirect">feetype_FeeTypeUI</result>
+		</action>
+		
+		<!-- 地区管理 -->
+		<action name="place_*" class="com.erp.controller.action.PlaceShowAction" method="{1}">
+			<result name="toEditAddUI">/WEB-INF/view/place/editaddUI.jsp</result>
+			<result name="toListUI">/WEB-INF/view/place/listUI.jsp</result>
+			<result name="toList" type="redirect">place_listUI?id=${id}</result>
+			<result name="getTop" type="redirect">place_getTop?id=${id}</result>
+		</action>
+		
+		<!-- 外协反审核单 -->
+		<action name="CooperAgaincheck_*" class="com.erp.controller.action.CooperBillAction" method="{1}">
+			<result name="toEditAddUI">/WEB-INF/view/waixie/editaddUI.jsp</result>
+			<result name="toListUI">/WEB-INF/view/waixie/listUI.jsp</result>
+			<result name="toListUIDetail">/WEB-INF/view/waixie/listUIDetail.jsp</result>
+			<result name="toList" type="redirect">CooperAgaincheck_listUI?isCheck=${isCheck}</result>
+			<result name="toDetailUI">/WEB-INF/view/waixie/listUIDetailforSource.jsp</result>
+		</action>
+		
+		
+    </package>
+</struts>

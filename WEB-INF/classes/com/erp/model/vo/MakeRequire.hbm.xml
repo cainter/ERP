@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.MakeRequire" table="make_require">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="requireContent" type="string">
+			<column name="require_content" length="200" not-null="true" />
+		</property>
+		<property name="sequenceCode" type="int">
+			<column name="sequence_code" length="4" not-null="true" />
+		</property>
+		<property name="code" type="string">
+			<column name="code" length="100" />
+		</property>
+		<property name="price" type="java.lang.Double">
+			<column name="price"/>
+		</property>
+    </class>
+</hibernate-mapping>

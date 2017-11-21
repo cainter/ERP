@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://115.28.87.22:8888/finance/ReceiveBillNew.html?alert_type=SHOW -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+
+	</head>
+
+	<body>
+		<div>
+			<form name="frm" method="post" enctype="multipart/form-data">
+				<div class="Container">
+					<div class="Contnet Paper">
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>收款单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+											<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput('adjustDateStr');" id="adjustBill.billCode" name="adjustBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span id="calPosi"></span>
+											<span class="MustInput">*</span>调账日期：
+											<input type="text" class="tbBillDate_sim TextBox " maxlength="15" id="adjustDateStr" name="adjustDateStr" value="2017-11-05">
+											<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById('adjustDateStr'),'yyyy-mm-dd',document.getElementById('calPosi'));">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+
+						<!-- 单 头信息 -->
+							<table class="BillHeadInfo" style="width: 80%;">
+								<tbody>
+									<tr>
+										<td width="33%">
+											<span class="MustInput">*</span>付款单位：
+											<input class="TextBox readonly" style="width:150px" readonly="readonly" type="text" id="clientName" name="clientName" value="">
+											<img class="imgIconButton" src="../images/make-a.gif" onclick="selectClient();">
+										</td>
+
+										<td width="33%" class="tc">
+											<span class="MustInput">*</span>收款账户：
+											<select class="ddlInfo3_long" id="receiveBill.bankAccountId" name="receiveBill.bankAccountId">
+
+												<option value="10">建行(秦朝阳)</option>
+
+												<option value="12">黄秀娟(长通物流(6116))</option>
+
+												<option value="9">工行(黄秀娟)</option>
+
+												<option value="8">交行(秦朝阳)</option>
+
+												<option value="13">黄秀娟(创新物流(5165))</option>
+
+												<option value="14">黄秀娟(豫鑫物流（73035）)</option>
+
+												<option value="4">农行(黄秀娟)</option>
+
+												<option value="15">黄秀娟(微信15225099188)</option>
+
+												<option value="11">中行(秦朝阳)</option>
+
+												<option value="7"> 浦发(公司一般户)</option>
+
+												<option value="2">中行(公司基本户)</option>
+
+												<option value="1">现金(会计)</option>
+
+												<option value="5">浦发(POS机刷卡)</option>
+
+												<option value="6">淘宝 黄秀娟(支付宝 15225099188)</option>
+
+												<option value="16">浦发(黄秀娟)</option>
+
+												<option value="17">秦朝阳(微信13608675408)</option>
+
+											</select>
+										</td>
+
+										<td width="33%" class="tr">
+											<span class="MustInput">*</span>收款金额：
+
+											<input type="text" class="tbHead3 TextBox" maxlength="10" id="costStr" name="costStr" value="" onchange="autoAssign();">
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+						<!-- 明细 -->
+						
+						<div class="BillDetails" style="width: 90%;">
+							<table data-toggle="table" data-click-to-select="true">
+								<thead>
+									<tr>
+										<th data-field="state" data-checkbox="true"></th>
+										<th>业务单号</th>
+										<th>订货日期</th>
+										<th>联系人</th>
+										<th>摘要</th>
+										<th>金额（元）</th>
+										<th>余额（元）</th>
+										<th>本次收款</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="bs-checkbox "></td>
+										<td>K(1)2017060010</td>
+										<td>2017-06-27</td>
+										<td>郑州建美标识</td>
+										<td>标牌 门店自提</td>
+										<td>2017-07-09</td>
+										<td>张永灿</td>
+										<td>张永灿</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="table-bot" style="margin:15px 0;text-align: center;">
+							<a type="button" class="buttom btn btn-default" href="#">汇总到收款金额</a>
+						</div>
+
+						<!-- 附加信息 -->
+						<div class="TopBottom_Border">
+							<table class="BillElseInfo" cellspacing="0" cellpadding="0" style="position:relative;">
+								<!-- ie6要在这里加position:relative下面的附件div才不会错位 -->
+								<tbody>
+									<tr>
+										<th width="84px"><span class="MustInput">*</span>经办人：</th>
+										<td width="200px">
+											<input type="text" class="tbInfo1 TextBox readonly" readonly="true" id="receiveBill.managerName" name="receiveBill.managerName" value="标识汇" title="选择经办人，用于计算该经办人的收欠费产值">
+											<img src="../images/make-a.gif" class="imgIconButton" onclick="selectStaffer();" title="选择经办人，用于计算该经办人的收欠费产值">
+											<input type="hidden" id="receiveBill.managerId" name="receiveBill.managerId" value="65">
+										</td>
+										<th width="84px"><span class="MustInput">*</span>部门：</th>
+
+										<td width="273px">
+											<select id="receiveBill.departmentId" name="receiveBill.departmentId" class="ddlInfo3_long" style="background:#f6f6f6;">
+												<option value="0">==请选择==</option>
+
+												<option value="1">易凯管理员</option>
+												<option value="13">总经办</option>
+												<option value="22">&nbsp;|--财务</option>
+												<option value="14">新异店</option>
+												<option value="15">&nbsp;|--客服</option>
+												<option value="23">&nbsp;|--设计</option>
+												<option value="24">&nbsp;|--业务</option>
+												<option value="16">业务来源</option>
+												<option value="17">标识加工车间</option>
+												<option value="21">合作伙伴</option>
+												<option value="32" selected="">标识汇运营部</option>
+												<option value="33">财务部</option>
+											</select>
+										</td>
+
+										<th width="84px"></th>
+										<td width="179px"></td>
+									</tr>
+									<tr>
+										<th>摘要：</th>
+
+										<td colspan="5">
+											<textarea class="TextBox" name="receiveBill.description" id="receiveBill.description" style="width:764px;height:40px"></textarea>
+										</td>
+
+									</tr>
+									<tr>
+										<th>备注：</th>
+										<td colspan="5">
+											<textarea class="TextBox" name="receiveBill.mark" id="receiveBill.mark" style="width:764px;height:40px"></textarea>
+										</td>
+									</tr>
+									<tr>
+										<th>上传凭证：</th>
+										<td colspan="5">
+											<div style="position:relative; width:480px; height:28px; overflow:hidden; float:left;">
+												<input type="text" class="TextBox readonly" readonly="readonly" style="width:470px;" name="tmp_att" id="tmp_att">
+											</div>
+											<div style="position:relative;width:40px;height:28px;overflow:hidden;float:left;">
+												<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;">
+													<img class="make-a" src="../images/make-a.gif">
+												</div>
+												<input type="file" name="attach_file" id="attach_file" onchange="document.getElementById(&#39;tmp_att&#39;).value=this.value" style="position:absolute;top:0px;right:0px;cursor:pointer;opacity:0;filter:alpha(opacity:0);z-index:99;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>&nbsp;</th>
+										<td colspan="5">
+											<input type="checkbox" id="clos_busi_cb" onclick="changeClosBusi();"> 同时结清已收齐款的业务单
+											<input type="hidden" name="receiveBill.closBusi" id="receiveBill.closBusi" value="N">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="BillNotes">
+							<span>开单人：标识汇 </span>
+							<span>审核人：</span>
+							<span>单据帐套：新异</span>
+						</div>
+					</div>
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存打小票</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取消</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

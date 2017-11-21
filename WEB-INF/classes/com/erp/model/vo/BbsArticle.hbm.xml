@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.BbsArticle" table="bbs_article">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="columnId" type="long">
+			<column name="column_id" not-null="true" />
+		</property>
+		<property name="parentId" type="long">
+			<column name="parent_id" not-null="true" />
+		</property>
+		<property name="title" type="string">
+			<column name="title" length="100" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="60000" not-null="true" />
+		</property>
+		<property name="viewCount" type="int">
+			<column name="view_count" not-null="true" />
+		</property>
+		<property name="replyCount" type="int">
+			<column name="reply_count" not-null="true" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" not-null="true" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" not-null="true" />
+		</property>
+		<property name="replierId" type="long">
+			<column name="replier_id" not-null="true" />
+		</property>
+		<property name="replierName" type="string">
+			<column name="replier_name" length="30" not-null="false" />
+		</property>
+		<property name="lastTime" type="timestamp">
+			<column name="last_time" not-null="false" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="hasAttach" type="string">
+			<column name="has_attach" length="1" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

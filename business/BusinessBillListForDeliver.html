@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+	作者：offline
+	描述：送货
+-->
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>送货 | 管理易-广告加工制作管理软件 企业版 9.28 | 易凯软件</title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet">
+		<div class="sheet-main">
+			<div class="sheet-top">
+				<div class="content">
+					<h2>送货</h2>
+					<div class="pull-right">
+						<select name="ts_id" id="ts_id">
+							<option value="0">==请选择账套==</option>
+
+							<option value="1" selected="">新异</option>
+
+							<option value="2">网络公司</option>
+
+						</select>
+						<select name="type" id="type">
+							<option value="">==全部==</option>
+							<option value="UN_DELIVER">全部未送货(不包括已部分送货的单)</option>
+							<option value="UN_DELI_COMP" selected="">完工未送货</option>
+							<option value="UN_DELI_TIMEOUT">超期未送货</option>
+							<option value="UN_DELI_TIMEOUT_UN_COMP">未完工且超期未送货</option>
+							<option value="UN_DELI_TIMEOUT_COMP">已完工但超期未送货</option>
+							<option value="PART_DELI">部分送货</option>
+						</select>
+						<select name="order_by" id="order_by">
+							<option value="">==排序==</option>
+							<option value="EXAM_DATE">按审核日期</option>
+							<option value="CREA_DATE">按开单日期</option>
+							<option value="ORDE_DATE">按订货日期</option>
+							<option value="DELI_DATE">按交货日期</option>
+						</select>
+						<input type="text" class="TextBox" id="search_key" name="search_key" onkeyup="checkSearchKey();" style="width:80px" value="" title="以客户名称、客户拼音字头、摘要、业务单号、电话进行模糊查询">
+						<a type="button" class="buttom btn btn-default" href="#">查询</a>
+						<a type="button" class="buttom btn btn-default" href="#">送货</a>
+						<a type="button" class="buttom btn btn-default" href="#">短信</a>
+					</div>
+				</div>
+			</div>
+			<div class="sheet-list">
+				<div class="search-business">
+					<div class="cue-info">
+						选择：
+						<a href="javascript:showList(&#39;&#39;);">全部</a>
+						<a href="javascript:showList(&#39;UN_DELI_COMP&#39;);">完工未送货</a>
+						<a href="javascript:showList(&#39;UN_DELI_TIMEOUT_COMP&#39;);">已完工且超期未送货</a>
+						<a href="javascript:showList(&#39;UN_DELI_TIMEOUT&#39;);">超期未送货</a>
+						<a href="javascript:showList(&#39;UN_DELI_TIMEOUT_UN_COMP&#39;);">未完工且超期未送货</a>
+						<a href="javascript:showList(&#39;PART_DELI&#39;);">部分送货</a>
+					</div>
+					<table data-toggle="table" data-click-to-select="true">
+						<thead>
+							<tr>
+								<th data-field="state" data-checkbox="true"></th>
+								<th>单号</th>
+								<th>订货日期</th>
+								<th>订货单位</th>
+								<th>电话</th>
+								<th>摘要</th>
+								<th>交货日期</th>
+								<th>欠款</th>
+								<th>提货要求</th>
+								<th>安装要求</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="bs-checkbox "></td>
+								<td>E(2)2017100008</td>
+								<td>2017-10-09</td>
+								<td>格力企业</td>
+								<td>18838988602</td>
+								<td>需求摘要</td>
+								<td>2017-09-22 09:07</td>
+								<td>9500</td>
+								<td>提货要求</td>
+								<td>安装要求</td>
+								<td>已完工</td>
+								<td>
+									<a href="#">送货</a>
+									<a href="#">查看</a>
+									<a href="#">发短信</a>
+									<a href="#">打印标签</a>
+									<a href="#">打印制作单</a>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="14">
+									<div class="pull-right">
+										<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+										第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 共1页
+										<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+					<!-- 底栏 分页、操作等 -->
+					<div class="BottomToolBar ClearFix">
+						<div class="pull-right">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">返回主菜单</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+
+	</body>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0074)http://115.28.87.22:8888/base/EstablishmentMoveForm..?est_type=PROVIDER -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>供应商移交 | 管理易-广告加工制作管理软件 企业版 9.28 | 易凯软件</title>
+	<script src="../js/minierp.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../css/base.css">
+	<script src="../js/popup_ext.js"></script>
+	<script language="javascript">
+		function doOk() {
+			var fromId = document.getElementById("from_id").value;
+			if (fromId == null || fromId == '' || fromId == "0") {
+				ShowAlert('提示框', '请选择要转出的业务员', 200, 100);
+				return;
+			}
+			var toId = document.getElementById("to_id").value;
+			if (toId == null || toId == '' || toId == "0") {
+				ShowAlert('提示框', '请选择要转入的业务员', 200, 100);
+				return;
+			}
+			ShowConfirm('确认框', '确定进行移交吗？', 340, 80, "doOkCallBack(" + fromId + "," + toId + ")", 340, 220);
+		}
+		function doOkCallBack(fromId, toId) {
+			if (popRetVal != null) {
+				window.location = "./EstablishmentMove..?est_type=PROVIDER&from_mng_id=" + fromId + "&to_mng_id=" + toId;
+			}
+		}
+		function doCancel() {
+			parent.ClosePop();
+		}
+		function selectFromManager() {
+			var url = "./StafferMainForSelect.html";
+			ShowIframe("选择员工", url, 800, 500, "selectFromManagerCallBack()", 340, 220);
+		}
+		function selectFromManagerCallBack() {
+			if (popRetVal != null) {
+				var arr = popRetVal.split(";");
+				document.getElementById("from_id").value = arr[0];
+				document.getElementById("from_name").value = arr[1];
+			}
+		}
+		function selectToManager() {
+			var url = "./StafferMainForSelect.html";
+			ShowIframe("选择员工", url, 800, 500, "selectToManagerCallBack()", 340, 220);
+		}
+		function selectToManagerCallBack() {
+			if (popRetVal != null) {
+				var arr = popRetVal.split(";");
+				document.getElementById("to_id").value = arr[0];
+				document.getElementById("to_name").value = arr[1];
+			}
+		}
+		function doInit() {
+			showFormErrorMsg();
+		}
+
+	</script>
+</head>
+
+<body oncontextmenu="return false" onload="doInit();" class="sheet modal-dialog" style="padding-top:10px;text-align:left;">
+	<div class="sheet-main" id="bodyDiv" style="width:315px;">
+		<div class="sheet-list" style="width:100%">
+			<div class="modal-main search-business">
+				<div style="width:100%;">
+
+
+
+					<script language="javascript">
+						var formErrorIndex = 0;
+						var formErrorMsg = "";
+						var formErrorObjId = "";
+						function setFormErrorMsg(msg, index, objId) {
+							if (formErrorIndex == 0 || formErrorIndex > index) {
+								if (msg != null && msg != "") {
+									formErrorIndex = index;
+									formErrorMsg = msg;
+									formErrorObjId = objId;
+								}
+							}
+						}
+						function showFormErrorMsg() {
+							if (formErrorIndex != 0) {
+								document.getElementById("errorMsgTr").style.display = "";
+								document.getElementById("errorMsgDiv").innerHTML = formErrorMsg;
+								if (formErrorObjId != null && formErrorObjId != "") {
+									document.getElementById(formErrorObjId).focus();
+								}
+							}
+						}
+						function goNextInput(objId) {
+							var obj = null;
+							if (objId != null && objId != '') {
+								obj = document.getElementById(objId);
+							}
+							if (window.event.keyCode == 13) {
+								if (obj != null) {
+									obj.focus();
+								} else if (window.doSave) {
+									doSave();
+								}
+							}
+						}
+
+					</script>
+					<h3>供应商移交</h3>
+					<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+						<tbody>
+							<tr id="errorMsgTr" style="display:none">
+								<td colspan="2">
+									<div class="msg-error" id="errorMsgDiv">
+
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a">
+						<tbody>
+							<tr>
+								<th>从：</th>
+								<td>
+									<input class="TextBox readonly" style="width:140px" readonly="true" type="text" name="from_name" id="from_name" value="">
+									<input type="hidden" name="from_id" id="from_id" value="">
+									<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectFromManager();">
+								</td>
+							</tr>
+							<tr>
+								<th>转给：</th>
+								<td>
+									<input class="TextBox readonly" style="width:140px" readonly="true" type="text" name="to_name" id="to_name" value="">
+									<input type="hidden" name="to_id" id="to_id" value="">
+									<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectToManager();">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="modal-buttom">
+			<input type="button" class="buttom-a" value=" 确 定 " onclick="doOk();">
+			<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+		</div>
+	</div>
+
+	<audio controls="controls" style="display: none;"></audio>
+</body>
+<style type="text/css">
+	#yddContainer {
+		display: block;
+		font-family: Microsoft YaHei;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		top: -4px;
+		left: -4px;
+		font-size: 12px;
+		border: 1px solid
+	}
+
+	#yddTop {
+		display: block;
+		height: 22px
+	}
+
+	#yddTopBorderlr {
+		display: block;
+		position: static;
+		height: 17px;
+		padding: 2px 28px;
+		line-height: 17px;
+		font-size: 12px;
+		color: #5079bb;
+		font-weight: bold;
+		border-style: none solid;
+		border-width: 1px
+	}
+
+	#yddTopBorderlr .ydd-sp {
+		position: absolute;
+		top: 2px;
+		height: 0;
+		overflow: hidden
+	}
+
+	.ydd-icon {
+		left: 5px;
+		width: 17px;
+		padding: 0px 0px 0px 0px;
+		padding-top: 17px;
+		background-position: -16px -44px
+	}
+
+	.ydd-close {
+		right: 5px;
+		width: 16px;
+		padding-top: 16px;
+		background-position: left -44px
+	}
+
+	#yddKeyTitle {
+		float: left;
+		text-decoration: none
+	}
+
+	#yddMiddle {
+		display: block;
+		margin-bottom: 10px
+	}
+
+	.ydd-tabs {
+		display: block;
+		margin: 5px 0;
+		padding: 0 5px;
+		height: 18px;
+		border-bottom: 1px solid
+	}
+
+	.ydd-tab {
+		display: block;
+		float: left;
+		height: 18px;
+		margin: 0 5px -1px 0;
+		padding: 0 4px;
+		line-height: 18px;
+		border: 1px solid;
+		border-bottom: none
+	}
+
+	.ydd-trans-container {
+		display: block;
+		line-height: 160%
+	}
+
+	.ydd-trans-container a {
+		text-decoration: none;
+	}
+
+	#yddBottom {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 22px;
+		line-height: 22px;
+		overflow: hidden;
+		background-position: left -22px
+	}
+
+	.ydd-padding010 {
+		padding: 0 10px
+	}
+
+	#yddWrapper {
+		color: #252525;
+		z-index: 10001;
+		background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+	}
+
+	#yddContainer {
+		background: #fff;
+		border-color: #4b7598
+	}
+
+	#yddTopBorderlr {
+		border-color: #f0f8fc
+	}
+
+	#yddWrapper .ydd-sp {
+		background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+	}
+
+	#yddWrapper a,
+	#yddWrapper a:hover,
+	#yddWrapper a:visited {
+		color: #50799b
+	}
+
+	#yddWrapper .ydd-tabs {
+		color: #959595
+	}
+
+	.ydd-tabs,
+	.ydd-tab {
+		background: #fff;
+		border-color: #d5e7f3
+	}
+
+	#yddBottom {
+		color: #363636
+	}
+
+	#yddWrapper {
+		min-width: 250px;
+		max-width: 400px;
+	}
+</style>
+
+</html>

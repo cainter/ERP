@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)http://115.28.87.22:8888/Desktop.html?type=MSG -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>桌面 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/MessageDialogQQ.js"></script>
+<script language="javascript">
+	function showBbsTopic(topicId,columnId){
+		var defaultUrl="../../bbs/BbsReplyList.html?topic_id="+topicId+"&column_id="+columnId;
+		var url="../../bbs/Main.html?default_id="+columnId+"&default_url="+encodeURIComponent(defaultUrl);
+		showWin(1024,600,url);
+	}
+	function showMessageInfo(id){
+		var defaultUrl="../../message/MessageInfo.html?id="+id;
+		var url="../../message/Main.html?default_url="+encodeURIComponent(defaultUrl);
+		showWin(1024,600,url);
+	}
+	function showComm(id){
+		parent.setIframeDisplay("none");
+		var url="../../base/EstablishmentCommunicateEdit.html?id="+id;
+		parent.ShowIframe("日程",url,980,440,"refreshDesktopWin()");//refreshDesktopWin是父窗口的
+	}
+	function refreshWin(){
+		window.location.reload(true);
+	}
+	function doCommNew(){
+		parent.setIframeDisplay("none");
+		var url="/erp-demo/base/EstablishmentCommunicateNew.html";
+		console.log(parent);
+		parent.ShowIframe("日程",url,980,440,"refreshDesktopWin()");//refreshDesktopWin是父窗口的
+	}
+</script>
+</head>
+<body style="background:#EBFAFF;" scroll="no">
+<div class="news-info">
+	<br>
+	<div class="news-info-main">
+		<div class="title">
+			<a href="javascript:showWin(1024,600,&#39;../../bbs/Main.html&#39;);">更多...</a>
+			<a href="javascript:refreshWin();"><img src="../../images/refresh.gif" border="0"></a>
+			<h3>公告<span style="font-weight:normal;font-size:12px;color:#777;" id="testSpan"> 最近一周</span></h3>
+		</div>
+		<marquee scrollamount="2" direction="up" height="450" width="100%" onmouseout="this.start();" onmouseover="this.stop();">
+		<ul>
+			
+			<li>
+				<h4>
+					<a href="javascript:showBbsTopic(&#39;6&#39;,&#39;1&#39;);">123</a>
+					
+				</h4>
+				<p>试试公告。</p>
+				
+				<span>分类：内部公告 | 发布者：邵丽萍 | 时间：2017-06-29</span>
+			</li>
+			
+		</ul>
+		</marquee>
+	</div>
+	<div class="news-info-main">
+		<div class="title">
+			<a href="javascript:showWin(1024,600,&#39;../../message/Main.html&#39;);">更多...</a>
+			<a>&nbsp;&nbsp;</a>
+			<a href="javascript:showWin(1024,600,&#39;../../message/Main.html?default_url=MessageNew.html&#39;);">发消息</a>
+			<a href="javascript:refreshWin();"><img src="../../images/refresh.gif" border="0"></a>
+			<h3>最新消息</h3>
+		</div>
+		<marquee scrollamount="2" direction="up" height="200" width="100%" onmouseout="this.start();" onmouseover="this.stop();">
+		<ul>
+			
+		</ul>
+		</marquee>
+		<div class="title" title="">
+			<a href="javascript:showWin(1024,600,&#39;../../base/EstablishmentCommunicateSearchResult.html&#39;);">更多...</a>
+			<a>&nbsp;&nbsp;</a>
+			<a href="javascript:doCommNew();">新增日程</a>
+			<!--<a href="../../base/EstablishmentCommunicateNew.html">新增日程</a>-->
+			<a href="javascript:refreshWin();"><img src="../../images/refresh.gif" border="0"></a>
+			<h3>待办事宜<span style="font-weight:normal;font-size:12px;color:#777;"> 未完成的任务，红色表示他人分派</span></h3>
+		</div>
+		<ul>
+			
+		</ul>
+	</div>
+</div>
+
+<div id="message" style="z-index:100;position:absolute;bottom:0;display:none;right:0;">
+	<div id="backimage" style="background:url(/images/tips_bg.jpg);width:256px;height:184px;">
+	    <div style="width:100%;height:25px;overflow:hidden;" id="messageTool">
+	        <div style="padding:3px 0 0 30px;width:100px;line-height:20px;text-align:center;overflow:hidden;position:absolute;font-size:14px;" id="msgtitle">您有新消息</div>
+	        	<span id="message_close" style="right:10px;width:16px;text-align:center;cursor:pointer;position:absolute;">&nbsp;</span>
+	        <div style="clear:both;"></div>
+	    </div>
+	    <div id="message_content" style="margin:0 5px 0 5px;padding:10px 0 10px 5px;width:239px;height:100px;text-align:left;overflow:auto; scrollbar-face-color: #F8EAE9;scrollbar-shadow-color:#EF8883; scrollbar-highlight-color:#EF8883; scrollbar-3dlight-color: #EF8883;scrollbar-darkshadow-color: #EF8883;scrollbar-track-color:#AB423D; scrollbar-arrow-color: #AB423D;">
+	    	<table width="100%">
+	    		<tbody id="msgTbl">
+		        </tbody>
+		    </table>
+	    </div>
+	    <div style="padding:14px 10px 0px 0px;text-align:right;FONT-SIZE: 12px;">
+	    	<a href="http://115.28.87.22:8888/Desktop.html?type=MSG#" onclick="setAllMsgRead();" style="color:#003399;text-decoration:none;" hidefocus="false">全部设为已读</a>
+	    	&nbsp;&nbsp;
+	    	<a href="http://115.28.87.22:8888/Desktop.html?type=MSG#" onclick="showAllMsg();" style="color:#003399;text-decoration:none;" hidefocus="false">查看</a>
+	    </div>
+	    <div id="soundObj" style="display:none"></div>
+    </div>
+</div>
+<script language="javascript">
+	var maxMsgId=0;
+	var interval=1;
+	if(interval<=0){
+		interval=1;
+	}
+	function checkMsg(){
+		$.post("/LeftMessage.html",{},function(data,status){
+			parseMsgData(data,status);
+		});
+		setTimeout("checkMsg()",1000*60*interval);
+	}
+	function parseMsgData(data,status){
+		if(status=="success"){
+			var obj=$.parseJSON(data);
+			if(obj.status=="OK"){
+				var divObj=document.getElementById("message");
+      			var tblObj=document.getElementById("msgTbl");
+      			//先清除(不能用判断增量然后insert,因为无法知道中间的某一条是否在其他地方被读了)
+      			var len=tblObj.rows.length;
+      			try{
+      				for(var i=0;i<len;i++){
+      					tblObj.deleteRow(0);
+      				}
+  				}catch(ex){}
+  				
+  				var playSound=false;
+  				if(obj.items.length>0){
+  					$.each(obj.items,function(index,item){
+	      				if(index==0 && maxMsgId<item.id-0){
+	      					playSound=true;
+	      					maxMsgId=item.id-0;
+	      				}
+	      				
+	      				var tr=tblObj.insertRow(index);
+	      				tr.setAttribute("index",item.id);
+	      				var td=document.createElement("td");
+	      				td.style.height="20px";
+						td.style.fontSize="12px";
+	      				td.innerHTML="<FONT color=#ff0000>["+item.sender+"]</FONT>：<FONT color=#ff0000><A href='#' onClick='showPopMsg("+item.id+");' style='color:#003399;text-decoration:none;' hidefocus=false>"+item.title+"</A></FONT>";
+	      				tr.appendChild(td);
+  					});
+  					
+  					if(divObj.style.display=="none"){
+	      				playSound=true;
+	      				$("#message").Show(256,184);//这个高度要跟底图匹配
+	      			}
+	      			if(playSound){
+	      				document.getElementById("soundObj").innerHTML="<embed src='/images/msg.wav' autostart='true' hidden='true' loop='false'>";
+	      				playSound=false;
+	      			}
+  				}else{
+  					if(divObj.style.display!="none"){
+      					$("#message_close").click();
+      				}
+  				}
+			}
+		}
+	}
+	function showPopMsg(id){
+		var tblObj=document.getElementById("msgTbl");
+		try{
+			for(var i=0;i<tblObj.rows.length;i++){
+				if(tblObj.rows[i].getAttribute("index")==id){
+					tblObj.deleteRow(i);
+					break;
+				}
+			}
+		}catch(ex){}
+		if(tblObj.rows.length==0){
+			$("#message_close").click();
+		}
+		showMessageInfo(id);
+	}
+	function setAllMsgRead(){
+		var tblObj=document.getElementById("msgTbl");
+		var len=tblObj.rows.length;
+		try{
+			for(var i=0;i<len;i++){
+				tblObj.deleteRow(0);
+			}
+		}catch(ex){}
+		
+		$("#message_close").click();
+		$.post("/MessageReadFlagUpdate.html",{},function(data,status){
+			
+		});
+	}
+	function showAllMsg(){
+		$("#message_close").click();
+<<<<<<< HEAD
+		showWin(1024,600,'/message/Main.html');
+=======
+		showWin(1024,600,'../../message/Main.html');
+>>>>>>> 93b2baa938d3dc7535ff744d2580658be47f71ba
+	}
+	
+	$(document).ready(function() {
+		checkMsg();
+	});
+</script>
+
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

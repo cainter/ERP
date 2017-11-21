@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.customerBusiness.vo.EstablishmentContactVO" table="establishment_contact">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="contactName" type="string">
+			<column name="contact_name" length="30" not-null="true" />
+		</property>
+		<property name="sex" type="string">
+			<column name="sex" length="10" not-null="true" />
+		</property>
+		<property name="estId" type="long">
+			<column name="est_id" not-null="true" />
+		</property>
+		<property name="possie" type="string">
+			<column name="possie" length="30" />
+		</property>
+		<property name="mobile" type="string">
+			<column name="mobile" length="30" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="50" />
+		</property>
+		<property name="phone" type="string">
+			<column name="phone" length="30" />
+		</property>
+		<property name="im" type="string">
+			<column name="im" length="50" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="200" />
+		</property>
+		<property name="isMain" type="string">
+			<column name="is_main" length="1" />
+		</property>
+		<property name="tmpCode" type="string">
+			<column name="tmp_code" length="100" />
+		</property>
+    </class>
+</hibernate-mapping>

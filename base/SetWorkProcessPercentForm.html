@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://115.28.87.22:8888/base/SetWorkProcessPercentForm.ihtm?wc_id=1 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>工序占比 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script language="javascript">
+	function doSave(){
+		document.getElementById("buttonDiv").style.display="none";
+		document.getElementById("waitDiv").style.display="";
+		frm.submit();
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function showMe(){
+		showFormErrorMsg();
+	
+		
+		document.getElementById("percent_1").focus();
+		
+	}
+	function checkInput(nextId){
+		if(window.event.keyCode==13){
+			if(document.getElementById("percent_"+nextId)!=null){
+				document.getElementById("percent_"+nextId).focus();
+			}else{
+				doSave();
+			}
+		}
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="showMe();" class="sheet modal-dialog" style=" padding-top:15px;">
+<div class="sheet-main" id="bodyDiv" style="width:380px;">
+	<form name="frm" method="post" action="http://115.28.87.22:8888/base/SetWorkProcessPercent.html">
+	  <div class="sheet-list" style="width:100%">
+	    <div class="modal-main search-business">
+	    	<div style="width:100%;">
+				
+				
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<h3>默认工作中心</h3>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table> 
+				<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-0">
+					<colgroup>
+	        			<col width="25%">
+	        			<col width="25%">
+	        			<col width="25%">
+	        			<col width="25%">
+	    			</colgroup>
+					
+					
+					
+					<tbody><tr>
+				      	<th>工序名称：</th>
+				      	<td>铝合金下料</td>
+				      	<th>工序占比：</th>
+				      	<td>
+				      		<input type="text" class="TextBox" maxlength="6" style="width:40px" id="percent_1" name="percent_1" value="1.0000" onkeyup="checkInput(55);">						
+				     	</td>
+					</tr>
+					
+					
+					
+					<tr>
+				      	<th>工序名称：</th>
+				      	<td>下料</td>
+				      	<th>工序占比：</th>
+				      	<td>
+				      		<input type="text" class="TextBox" maxlength="6" style="width:40px" id="percent_55" name="percent_55" value="0.0000" onkeyup="checkInput(56);">						
+				     	</td>
+					</tr>
+					
+					
+					
+					<tr>
+				      	<th>工序名称：</th>
+				      	<td>喷漆</td>
+				      	<th>工序占比：</th>
+				      	<td>
+				      		<input type="text" class="TextBox" maxlength="6" style="width:40px" id="percent_56" name="percent_56" value="0.0000" onkeyup="checkInput(57);">						
+				     	</td>
+					</tr>
+					
+					
+					
+					<tr>
+				      	<th>工序名称：</th>
+				      	<td>打印</td>
+				      	<th>工序占比：</th>
+				      	<td>
+				      		<input type="text" class="TextBox" maxlength="6" style="width:40px" id="percent_57" name="percent_57" value="0.0000" onkeyup="checkInput(58);">						
+				     	</td>
+					</tr>
+					
+					
+					
+					<tr>
+				      	<th>工序名称：</th>
+				      	<td>组装</td>
+				      	<th>工序占比：</th>
+				      	<td>
+				      		<input type="text" class="TextBox" maxlength="6" style="width:40px" id="percent_58" name="percent_58" value="0.0000" onkeyup="checkInput(0);">						
+				     	</td>
+					</tr>
+					
+					<tr>
+						<th colspan="4" class="give"><div align="center"><br>工序占比：该工序在工作中心所占的产值比例</div></th>
+					</tr>
+				</tbody></table>
+			</div>
+	  	</div>
+	  </div>
+		<div class="modal-buttom" id="buttonDiv">
+			<input type="button" class="buttom-a" value="保 存" onclick="doSave();">
+			<input type="button" class="buttom-a" value="取 消" onclick="doCancel();">
+			<input type="hidden" id="wc_id" name="wc_id" value="1">
+		</div>
+		<div class="modal-buttom" id="waitDiv" style="display:none">
+			<span style="color:#ffffff">请稍候...</span>
+		</div>
+	</form>
+</div>		
+
+</body></html>

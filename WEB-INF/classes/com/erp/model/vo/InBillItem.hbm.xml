@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.InBillItem" table="in_bill_item">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="billId" type="long">
+			<column name="bill_id" not-null="true" />
+		</property>
+		<property name="productId" type="long">
+			<column name="product_id" not-null="true" />
+		</property>
+		<property name="amount" type="big_decimal">
+			<column name="amount" length="2" not-null="true" />
+		</property>
+		<property name="unitPrice" type="big_decimal">
+			<column name="unit_price" length="4" not-null="true" />
+		</property>
+		<property name="cost" type="big_decimal">
+			<column name="cost" length="2" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="400" />
+		</property>
+    </class>
+</hibernate-mapping>

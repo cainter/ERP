@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)http://115.28.87.22:8888/Desktop.html?type=FLOW -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>桌面 | 管理易-广告加工制作管理软件 企业版 9.28 | 易凯软件</title>
+	<script src="../js/minierp.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../css/base.css">
+	<style type="text/css">
+		style3 {
+			color: #0000CC
+		}
+
+		.STYLE1 {
+			color: #154F8E;
+			font-size: 12px;
+		}
+
+		body {
+			background: #EAFAFF;
+		}
+	</style>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/MessageDialogQQ.js"></script>
+	<script language="javascript">
+		function showPurAccountDialog() {
+			parent.setIframeDisplay("none");
+			var url = "../base/EstablishmentListForSelect.html?type=PROVIDER&show_all=S&order_type=BUS_TIME";
+			parent.ShowIframeNoScroll("选择供应商", url, 900, 500, "showPurAccountDialogCallBack()"); //showPurAccountDialogCallBack是父窗口的
+		}
+
+		function showBusinessBillDialog() {
+			parent.setIframeDisplay("none");
+			var url =
+				"../base/EstablishmentListForSelect.html?type=CLIENT&ts_id=DF_TS_ID&order_type=BUS_TIME&oper_type=RE_ORDER";
+			parent.ShowIframe("选择客户", url, 900, 500, "showBusinessBillDialogCallBack()"); //showBusinessBillDialogCallBack是父窗口的
+		}
+
+		function showBusAccountDialog() {
+			parent.setIframeDisplay("none");
+			var url = "../base/EstablishmentListForSelect.html?type=CLIENT&show_all=S&order_type=BUS_TIME";
+			parent.ShowIframeNoScroll("选择客户", url, 900, 500, "showBusAccountDialogCallBack()"); //showBusAccountDialogCallBack是父窗口的
+		}
+
+		function showCooAccountDialog() {
+			parent.setIframeDisplay("none");
+			var url = "../base/EstablishmentListForSelect.html?type=COOPERATOR&show_all=S&order_type=BUS_TIME";
+			parent.ShowIframeNoScroll("选择外协商", url, 900, 500, "showCooAccountDialogCallBack()"); //showCooAccountDialogCallBack是父窗口的
+		}
+
+		function showAdjustBillDialog() {
+			parent.setIframeDisplay("none");
+			var url = "../finance/AdjustTypeSelect.html";
+			parent.ShowIframeNoScroll("选择调帐类型", url, 240, 380, "showAdjustBillDialogCallBack()"); //showAdjustBillDialogCallBack是父窗口的
+		}
+
+		function showMessageInfo(id) {
+			var defaultUrl = "../message/MessageInfo.html?id=" + id;
+			var url = "../message/Main.html?default_url=" + encodeURIComponent(defaultUrl);
+			showWin(1024, 600, url);
+		}
+
+		function showBusinessFileDialog() {
+			parent.setIframeDisplay("none");
+			if (window.applicationCache) { //html5
+				parent.ShowIframe("传图下单", "../business/BusinessFileUpload.html", 560, 340, "showBusinessFileDialogCallBack()");
+			} else {
+				parent.ShowIframe("传图下单", "../business/BusinessFileForm.html", 560, 340, "showBusinessFileDialogCallBack()");
+			}
+		}
+	</script>
+</head>
+
+
+
+<body scroll="no">
+
+	<div class="main">
+		<div style="height:500px;">
+			<div class="blank24">&nbsp;</div>
+			<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td width="100%" height="300" align="left">
+
+							<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tbody>
+									<tr>
+										<td width="8%" align="center">&nbsp;</td>
+										<td width="6%" align="center">&nbsp;</td>
+										<td width="7%" align="center">&nbsp;</td>
+										<td width="6%" align="center">&nbsp;</td>
+										<td width="7%" align="center">&nbsp;</td>
+										<td width="6%" align="center">&nbsp;</td>
+										<td width="7%" align="center">
+
+											<a href="javascript:showWin(1024,600,&#39;../purchase/PurchaseBillNew.html?type=BUY&amp;&amp;alert_type=FORM&#39;);"><img src="../images/pur1.gif" border="0" title="收到供应商送货，在这里录入采购单，增加库存，同时作为与供应商结算的凭证"></a>
+
+
+										</td>
+										<td width="6%" align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td width="7%" align="center">
+
+											<a href="javascript:showPurAccountDialog();"><img src="../images/pur2.gif" border="0" title="查询指定期间与供应商的交易明细，打印或导出对账单"></a>
+
+
+										</td>
+										<td width="6%" align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td width="7%" align="center">
+
+											<a href="javascript:showWin(1024,600,&#39;../finance/PayBillNew.html?alert_type=SHOW&amp;pay_type=PURCHASE&#39;);"><img src="../images/fin5.gif" border="0" title="支付给供应商款项后，在这里登记付款信息，核销采购单应付款"></a>
+
+
+										</td>
+										<td width="6%" align="center">&nbsp;</td>
+										<td width="7%" align="center">&nbsp;</td>
+										<td width="6%" align="center">&nbsp;</td>
+										<td width="8%" align="center">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="6">&nbsp;</td>
+										<td align="center"><img src="../images/bus004.gif" height="30"></td>
+										<td colspan="8">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="6">&nbsp;</td>
+										<td align="center">
+
+											<a href="javascript:showWin(900,600,&#39;../storehouse/StockSearch.html&#39;);"><img src="../images/stock3.gif" border="0" title="查询当前库存"></a>
+
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+
+											<a href="javascript:showWin(1024,600,&#39;../storehouse/OutBillNew.html?alert_type=FORM&#39;);"><img src="../images/stock1.gif" border="0" title="用于内部物料的出库登记，如果是需要与供应商结算，使用采购退货单"></a>
+
+
+										</td>
+										<td colspan="6">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="8">&nbsp;</td>
+										<td align="center"><img src="../images/bus004.gif" height="30"></td>
+										<td colspan="6">&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="center">
+											<a href="javascript:showBusinessBillDialog();"><img src="../images/bus2.gif" border="0" title="录入业务单，作为与客户交易的凭证"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(900,600,&#39;../business/BusinessBillListForExamine.html&#39;);"><img src="../images/bus4.gif" border="0" title="在这里审核与修改业务单，审核通过的业务单才能进入下一个环节，如果希望直接跳过本环节，请可以在系统配置中把业务单设置为自动审核。"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../make/BusinessBillListForMake.html&#39;);"><img src="../images/fac1.gif" border="0" title="查看哪些业务单需要制作"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../make/BusinessBillListForOutput.html&#39;);"><img src="../images/fac2.gif" border="0" title="登记每位制作人的产量"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../business/BusinessBillListForComplete.html&#39;);"><img src="../images/fac5.gif" border="0" title="将已经制作完成的项目设置为已完工状态，方便门市部了解制作进度"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../business/BusinessBillListForDeliver.html&#39;);"><img src="../images/fac4.gif" border="0" title="根据业务单的交货日期、完工状态、送货状态进行分类查询，生成送货单。"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showBusAccountDialog();"><img src="../images/pur2.gif" border="0" title="在这里打印业务对账单，与月结客户对账，作为向客户收款的依据。"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../finance/ReceiveBillNew.html?alert_type=SHOW&#39;);"><img src="../images/fin4.gif" border="0" title="当收到客户款项后，就在这里进行回款登记，冲销业务单。"></a>
+
+										</td>
+									</tr>
+									<tr>
+										<td align="center">&nbsp;</td>
+										<td colspan="3">&nbsp;</td>
+										<td align="center"><img src="../images/bus004.gif" height="30"></td>
+										<td colspan="3">&nbsp;</td>
+										<td align="center"><img src="../images/bus002.gif" height="30"></td>
+										<td colspan="5">&nbsp;</td>
+										<td align="center"><img src="../images/bus004.gif" height="30"></td>
+									</tr>
+									<tr>
+										<td align="center">&nbsp;</td>
+										<td colspan="3">&nbsp;</td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../cooper/BusinessBillListForCooper.html&#39;);"><img src="../images/coo7.gif" border="0" title="查看哪些业务单需要外协"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(900,600,&#39;../cooper/CooperBillListForGather.html&#39;);"><img src="../images/coo1.gif" border="0" title="当收到外协商完成的项目，将外协单标记为已收货状态"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../cooper/BusinessBillListForCooComp.html&#39;);"><img src="../images/coo4.gif" border="0" title="标记业务单已经完成外协"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showCooAccountDialog();"><img src="../images/pur2.gif" border="0" title="查询指定期间与外协商的交易明细，打印或导出对账单"></a>
+
+										</td>
+										<td align="center"><img src="../images/bus001.gif" width="30"></td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;/finance/PayBillNew.html?alert_type=SHOW&amp;pay_type=COOPER&#39;);"><img src="../images/coo3.gif" border="0" title="支付给外协商款项后，在这里登记付款信息，核销外协单应付款"></a>
+
+										</td>
+										<td>&nbsp;</td>
+										<td align="center">
+											<a href="javascript:showWin(1024,600,&#39;../business/BusinessBillListForClose.html&#39;);"><img src="../images/bus10.gif" border="0" title="在这里将已收完款的业务单设置为结清状态，结清后的业务单不能做任何改动。"></a>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" valign="top">
+							<br><br>
+							<table width="679" height="59" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tbody>
+									<tr>
+										<td width="1%" align="left" valign="top"><img src="../images/bus005.gif" width="8" height="19"></td>
+										<td width="98%" height="19" background="../images/bus006.gif">&nbsp;</td>
+										<td width="1%" align="left" valign="top"><img src="../images/bus010.gif" width="8" height="19"></td>
+									</tr>
+									<tr>
+										<td width="1%" align="left" valign="top" background="../images/bus007.gif">&nbsp;</td>
+										<td height="21" valign="top" bgcolor="#D2E9F7">
+											<table width="101%" border="0" cellspacing="0" cellpadding="0">
+												<tbody>
+													<tr>
+														<th width="4%" height="21" scope="row">&nbsp;</th>
+														<th width="3%" scope="row">
+															<div align="left"><img src="../images/ico-setup.gif" title=""></div>
+														</th>
+														<td width="11%">
+															<span class="STYLE1">
+						            	<a href="javascript:showWin(1024,420,&#39;../finance/FeeBillNew.html?alert_type=SHOW&#39;);">费用单</a>
+							    		
+										</span>
+														</td>
+														<td width="2%"><img src="../images/a38.gif" title="" width="13" height="10"></td>
+														<td width="3%"><img src="../images/ico-setup.gif" title="" align="right"></td>
+														<td width="11%">
+															<span class="STYLE1">
+						            	<a href="javascript:showWin(1024,420,&#39;../finance/IncomeBillNew.html?alert_type=SHOW&#39;);">其他收入单</a>
+
+
+										
+						            	</span>
+														</td>
+														<td width="2%"><img src="../images/a38.gif" width="13" height="10"></td>
+														<td width="3%"><img src="../images/ico-setup.gif" title="" align="right"></td>
+														<td width="11%">
+															<span class="STYLE1">
+										<a href="javascript:showAdjustBillDialog();">调账单</a>						            	
+																												            		
+						            	</span>
+
+						            </td>
+						            <td width="2%"><img src="../images/a38.gif" title="" width="13" height="10"></td>
+						            <td width="3%"><img src="../images/ico-setup.gif" title="" align="right"></td>
+						            <td width="11%">
+						            	<span class="STYLE1">
+						            	<a href="javascript:showWin(1024,420,&#39;../finance/TransferBillNew.html?alert_type=SHOW&#39;);">转账取款单</a>
+						            	
+						            	</span>
+						            </td>
+						            <td width="2%"><img src="../images/a38.gif" title="" width="13" height="10"></td>
+						            <td width="3%"><img src="../images/ico-setup.gif" title="" align="right"></td>
+						            <td width="11%">
+						            	<span class="STYLE1">
+						            	<a href="javascript:showWin(1024,420,&#39;../finance/LoanBillNew.html?alert_type=SHOW&amp;bill_type=IN&#39;);">资金借入单</a>	
+										
+						            	</span>
+						            </td>
+						            <td width="2%"><img src="../images/a38.gif" title="" width="13" height="10"></td>
+						            <td width="3%"><img src="../images/ico-setup.gif" title="" align="right"></td>
+						            <td width="12%">
+						            	<span class="STYLE1">
+						            	<a href="javascript:showWin(1024,420,&#39;../finance/LoanBillNew.html?alert_type=SHOW&amp;bill_type=OUT&#39;);">资金借出单</a>	
+
+										
+						            	</span>
+														</td>
+														<td width="1%">&nbsp;</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td valign="bottom" background="../images/bus011.gif">&nbsp;</td>
+									</tr>
+									<tr>
+										<td width="1%" align="left" valign="top"><img src="../images/bus008.gif" width="8" height="19"></td>
+										<td height="19" align="left" valign="top" background="../images/bus009.gif">&nbsp;</td>
+										<td align="left" valign="top"><img src="../images/bus012.gif" width="8" height="19"></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="message" style="z-index:100;position:absolute;bottom:0;display:none;right:0;">
+		<div id="backimage" style="background:url(/images/tips_bg.jpg);width:256px;height:184px;">
+			<div style="width:100%;height:25px;overflow:hidden;" id="messageTool">
+				<div style="padding:3px 0 0 30px;width:100px;line-height:20px;text-align:center;overflow:hidden;position:absolute;font-size:14px;"
+				    id="msgtitle">您有新消息</div>
+				<span id="message_close" style="right:10px;width:16px;text-align:center;cursor:pointer;position:absolute;">&nbsp;</span>
+				<div style="clear:both;"></div>
+			</div>
+			<div id="message_content" style="margin:0 5px 0 5px;padding:10px 0 10px 5px;width:239px;height:100px;text-align:left;overflow:auto; scrollbar-face-color: #F8EAE9;scrollbar-shadow-color:#EF8883; scrollbar-highlight-color:#EF8883; scrollbar-3dlight-color: #EF8883;scrollbar-darkshadow-color: #EF8883;scrollbar-track-color:#AB423D; scrollbar-arrow-color: #AB423D;">
+				<table width="100%">
+					<tbody id="msgTbl">
+					</tbody>
+				</table>
+			</div>
+			<div style="padding:14px 10px 0px 0px;text-align:right;FONT-SIZE: 12px;">
+				<a href="http://115.28.87.22:8888/Desktop.html?type=FLOW#" onclick="setAllMsgRead();" style="color:#003399;text-decoration:none;"
+				    hidefocus="false">全部设为已读</a> &nbsp;&nbsp;
+				<a href="http://115.28.87.22:8888/Desktop.html?type=FLOW#" onclick="showAllMsg();" style="color:#003399;text-decoration:none;"
+				    hidefocus="false">查看</a>
+			</div>
+			<div id="soundObj" style="display:none"></div>
+		</div>
+	</div>
+	<script language="javascript">
+		var maxMsgId = 0;
+		var interval = 1;
+		if (interval <= 0) {
+			interval = 1;
+		}
+
+		function checkMsg() {
+			$.post("/LeftMessage.html", {}, function (data, status) {
+				parseMsgData(data, status);
+			});
+			setTimeout("checkMsg()", 1000 * 60 * interval);
+		}
+
+		function parseMsgData(data, status) {
+			if (status == "success") {
+				var obj = $.parseJSON(data);
+				if (obj.status == "OK") {
+					var divObj = document.getElementById("message");
+					var tblObj = document.getElementById("msgTbl");
+					//先清除(不能用判断增量然后insert,因为无法知道中间的某一条是否在其他地方被读了)
+					var len = tblObj.rows.length;
+					try {
+						for (var i = 0; i < len; i++) {
+							tblObj.deleteRow(0);
+						}
+					} catch (ex) {}
+
+					var playSound = false;
+					if (obj.items.length > 0) {
+						$.each(obj.items, function (index, item) {
+							if (index == 0 && maxMsgId < item.id - 0) {
+								playSound = true;
+								maxMsgId = item.id - 0;
+							}
+
+							var tr = tblObj.insertRow(index);
+							tr.setAttribute("index", item.id);
+							var td = document.createElement("td");
+							td.style.height = "20px";
+							td.style.fontSize = "12px";
+							td.innerHTML = "<FONT color=#ff0000>[" + item.sender +
+								"]</FONT>：<FONT color=#ff0000><A href='#' onClick='showPopMsg(" + item.id +
+								");' style='color:#003399;text-decoration:none;' hidefocus=false>" + item.title + "</A></FONT>";
+							tr.appendChild(td);
+						});
+
+						if (divObj.style.display == "none") {
+							playSound = true;
+							$("#message").Show(256, 184); //这个高度要跟底图匹配
+						}
+						if (playSound) {
+							document.getElementById("soundObj").innerHTML =
+								"<embed src='/images/msg.wav' autostart='true' hidden='true' loop='false'>";
+							playSound = false;
+						}
+					} else {
+						if (divObj.style.display != "none") {
+							$("#message_close").click();
+						}
+					}
+				}
+			}
+		}
+
+		function showPopMsg(id) {
+			var tblObj = document.getElementById("msgTbl");
+			try {
+				for (var i = 0; i < tblObj.rows.length; i++) {
+					if (tblObj.rows[i].getAttribute("index") == id) {
+						tblObj.deleteRow(i);
+						break;
+					}
+				}
+			} catch (ex) {}
+			if (tblObj.rows.length == 0) {
+				$("#message_close").click();
+			}
+			showMessageInfo(id);
+		}
+
+		function setAllMsgRead() {
+			var tblObj = document.getElementById("msgTbl");
+			var len = tblObj.rows.length;
+			try {
+				for (var i = 0; i < len; i++) {
+					tblObj.deleteRow(0);
+				}
+			} catch (ex) {}
+
+			$("#message_close").click();
+			$.post("/MessageReadFlagUpdate.html", {}, function (data, status) {
+
+			});
+		}
+
+		function showAllMsg() {
+			$("#message_close").click();
+			showWin(1024, 600, '../message/Main.html');
+		}
+
+		$(document).ready(function () {
+			checkMsg();
+		});
+	</script>
+
+</body>
+
+</html>

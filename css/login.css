@@ -1,0 +1,115 @@
+
+body,ul,a,div,p,li,h1,h2,h3,h4,table,tr,td,th,dl,dd,dt{
+	padding:0; margin:0;
+}
+a{
+	text-decoration:none; color:black;
+}
+li{
+	list-style: none;
+}
+/*总体设置*/
+._wrap{
+	min-width:900px;
+}
+/*顶部*/
+._top{
+	height:80px; max-width: 1300px; min-width:900px; position:relative; margin:auto;
+}
+._top img{
+	position:absolute; top:20px; left:200px;
+}
+._top ._right_item{
+	position:absolute; top:30px; right:20px;
+}
+._right_item li{
+	float:left; margin-left:20px;
+}
+/*头部*/
+._header{
+	height:400px; min-width:900px; position:relative;
+	background:url('../img/login_top_bg.png') no-repeat; background-size:100% 400px;
+}
+/*头部-注册框*/
+._register_box{
+	width:260px; height:300px; background-color:white; position:absolute;
+	top:56px; right:300px; padding-left:10px; padding-right: 10px; 
+	border-radius:5px; box-shadow:5px 5px 10px dodgerblue;
+}
+._register_box ._item{
+ 	margin-top:10px;
+ }
+._register_box ._bottom_item{
+	font-size:12px; text-align: left; line-height:24px;
+}
+._register_box ._bottom_item a{
+	color:#6f8a9f;
+}
+/*头部-登录框*/
+._login_box{
+	display: none;
+	width:260px; height:220px; background-color:white; position:absolute; 
+	border-radius:5px; box-shadow:5px 5px 10px dodgerblue;
+	top:56px; right:300px; padding-left:10px; padding-right: 10px;
+}
+._login_box ._warning{
+	color:red; padding-top:10px; padding-left:4px; font-size: 12px;
+}
+._login_box ._item{
+	margin-top:10px;
+}
+._login_box button{
+	margin-top:10px;
+}
+/*中间内容-总体设置*/
+._content{
+	max-width:1300px; min-width:900px; height:240px; min-height: 240px;
+	margin:auto;
+}
+/*中间内容-图标*/
+._list{
+	height:160px; padding-top:20px; padding-left:395px; background-color: #fbfbfb;
+}
+._list li{
+	height:120px; width:80px; 
+	float:left; padding:0; margin-left:30px;
+	list-style:none;
+}
+._list li:hover{
+	color:red; cursor:pointer;
+}
+._list li img{
+	width:80px; height:80px;
+}
+._list li a{
+	float:left;
+	margin-top:10px; margin-left:10px;
+	font-style:normal; color:black; font-size:14px; text-decoration:none;
+}
+._list li a:hover{
+	color:red;
+}
+/*中间内容-相关链接*/
+._about{
+	padding-left:160px; position:relative;
+}
+._help{
+	margin-top:40px; width:580px; height:80px; margin-left:180px;
+}
+._help li{
+	float:left; margin-left:8px; padding-right:4px; border-right:1px solid #808080;
+}
+._help li a{
+	color:#808080;
+}
+._help p{
+	padding-top:4px; color:#808080;
+}
+/*中间内容-相关链接-二维码*/
+._two_code1{
+	position:absolute; padding-left:10px; padding-top:10px; top:0px; right:120px;
+	width:120px; height:120px; 
+}
+._two_code2{
+	position:absolute; padding-left:10px; padding-top:10px; width:120px; height:120px; top:0px; right:250px;
+}

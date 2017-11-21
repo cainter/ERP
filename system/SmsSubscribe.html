@@ -1,0 +1,580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)http://115.28.87.22:8888/sms/SmsSubscribe.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>消息提醒设置 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<style>
+	.chit-cau li{padding:6px 0; border-bottom:1px solid #eee;}
+	.chit-cau li table{margin-left:24px;}
+	.chit-cau li th,.chit-cau li td{ padding:3px 0; vertical-align:top;} 
+	.chit-cau li th{ width:60px; color:#666; text-align:right; padding-right:10px;}
+</style>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doSave(){
+		document.getElementById("buttonDiv").style.display="none";
+		document.getElementById("waitDiv").style.display="";
+		var num=13;
+		var hasError="0";
+		for(var i=0;i<num;i++){
+			var cc=document.getElementById("cycle"+i);
+			if(cc!=null){
+				if(cc.value=="" || isNaN(cc.value)){
+					hasError="1";
+					break;
+				}else if(Number(cc.value)<1){
+					hasError="1";
+					break;
+				}
+			}
+		}
+		if(hasError=="1"){
+			ShowAlert('提示框','提醒间隔只能输入大于0的整数！',200,100);
+			document.getElementById("buttonDiv").style.display="";
+			document.getElementById("waitDiv").style.display="none";
+		}else{
+			frm.submit();
+		}
+	}
+	function doCancel(){
+		window.close();
+	}
+	function showDetail(stafferId,stafferName,year,month){
+		var url="/sms/SmsHistoryDetail.ihtm?staffer_id="+stafferId+"&staffer_name="+encodeURIComponent(stafferName)+"&year="+year+"&month="+month;
+		showWin(900,500,url);
+	}
+	function showReceiver(alertId){
+		var url="/sms/SmsReceiverList.ihtm?alert_id="+alertId;
+		showWin(300,400,url);
+	}
+	function doInit(){
+	}
+</script>
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
+<body class="sheet modal-dialog" onload="doInit();" style="padding-top:10px;text-align:center;">
+<div class="sheet-main" id="bodyDiv" style="width:480px;text-align:left;margin:auto;">
+	<form name="frm" method="post">
+	  <div class="sheet-list">
+		    <div class="modal-main search-business" style="+zoom:1">
+		    	<div style="width:100%;">
+					
+					
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<h3>消息提醒设置</h3>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table>
+					
+					<ul class="chit-cau">
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status2" value="1">
+								<strong>每日营业简报</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th>发送时间：</th>
+									<td>
+										
+											<select id="pt_hour0" name="pt_hour2">
+												<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
+											</select>
+											:
+											<select id="pt_minute" name="pt_minute2">
+												<option value="00" selected="">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option>
+											</select>
+										
+										
+										
+											<span><a href="javascript:showReceiver(2);">设置接收人员...</a></span>
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>每天只发送一次</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>XX月XX日：接单（XXX笔/XXX元），接单未审核（XXX笔/XXX元），收入（销售XXX/其他XXX），支出（采购XXX/外协XXX/费用XXX）</td>
+								</tr>
+								
+								
+								<!--
+								<tr>
+									<td colspan="2">
+										<input type="checkbox" name="sms_flag2" id="sms_flag" value="1" >
+										发手机短信（如果选中，除了发系统消息外，还会发手机短信通知）
+									</td>
+								</tr>
+								-->
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status3" value="1">
+								<strong>每日超期提醒</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th>发送时间：</th>
+									<td>
+										
+											<select id="pt_hour1" name="pt_hour3">
+												<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
+											</select>
+											:
+											<select id="pt_minute" name="pt_minute3">
+												<option value="00" selected="">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option>
+											</select>
+										
+										
+										
+											<span><a href="javascript:showReceiver(3);">设置接收人员...</a></span>
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>每天只发送一次</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>截止XX月XX日：超期未完工XX笔，超期未送货XX笔</td>
+								</tr>
+								
+								
+								<!--
+								<tr>
+									<td colspan="2">
+										<input type="checkbox" name="sms_flag3" id="sms_flag" value="1" >
+										发手机短信（如果选中，除了发系统消息外，还会发手机短信通知）
+									</td>
+								</tr>
+								-->
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status13" value="1">
+								<strong>财务单据审核提醒</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th>提醒间隔：</th>
+									<td>
+										
+										
+											<input type="text" class="TextBox" style="width:30px" id="cycle2" name="cycle13" value="5">分钟
+										
+										
+											<span><a href="javascript:showReceiver(13);">设置接收人员...</a></span>
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>在指定间隔时间，如果有新的财务单据（收款单、付款单、费用单、其他收入单、调账单、转账取款单、资金借入单、资金借出单）需要审核，系统自动发消息提醒指定接收人员。已发提醒的单据不再提醒。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>XXX：有XX张新收款单、XX张付款单、….等待你审核</td>
+								</tr>
+								
+								
+								<!--
+								<tr>
+									<td colspan="2">
+										<input type="checkbox" name="sms_flag13" id="sms_flag2" value="1" >
+										发手机短信（如果选中，除了发系统消息外，还会发手机短信通知）
+									</td>
+								</tr>
+								-->
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status5" value="1">
+								<strong>业务单审核提醒</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th>提醒间隔：</th>
+									<td>
+										
+										
+											<input type="text" class="TextBox" style="width:30px" id="cycle3" name="cycle5" value="5">分钟
+										
+										
+											<span><a href="javascript:showReceiver(5);">设置接收人员...</a></span>
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>在指定间隔时间，如果有新业务单需要审核，系统自动发消息提醒指定接收人员。已发提醒的业务单不再提醒。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>XXX：有XX张新业务单等待你审核</td>
+								</tr>
+								
+								
+								<!--
+								<tr>
+									<td colspan="2">
+										<input type="checkbox" name="sms_flag5" id="sms_flag3" value="1" >
+										发手机短信（如果选中，除了发系统消息外，还会发手机短信通知）
+									</td>
+								</tr>
+								-->
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status8" value="1">
+								<strong>业务单制作提醒</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th>提醒间隔：</th>
+									<td>
+										
+										
+											<input type="text" class="TextBox" style="width:30px" id="cycle4" name="cycle8" value="5">分钟
+										
+										
+											<span><a href="javascript:showReceiver(8);">设置接收人员...</a></span>
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>在指定间隔时间，如果有新业务单通过审核，系统自动发消息提醒指定接收人员。已发提醒的业务单不再提醒。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>XXX：有XX张新业务单需要制作</td>
+								</tr>
+								
+								
+								<!--
+								<tr>
+									<td colspan="2">
+										<input type="checkbox" name="sms_flag8" id="sms_flag4" value="1" >
+										发手机短信（如果选中，除了发系统消息外，还会发手机短信通知）
+									</td>
+								</tr>
+								-->
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status9" value="1">
+								<strong>业务单开工提醒</strong>
+							</p>
+							<table>
+								
+								
+								<tbody><tr>
+									<th>说明：</th>
+									<td>业务单标记为已开工，系统自动发消息通知第一道工序所在部门的全体人员。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>｛XXX客户｝｛XXX单号｝交货日期YYYY-MM-DD已开工</td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status10" value="1">
+								<strong>工序完工提醒</strong>
+							</p>
+							<table>
+								
+								
+								<tbody><tr>
+									<th>说明：</th>
+									<td>工序标记为工序完工，系统自动消息通知下道工序所在部门的全体人员。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>｛XXX客户｝｛XXX单号｝｛XX项目类型｝在｛工序｝工序已完工</td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status11" value="1">
+								<strong>工序退回提醒</strong>
+							</p>
+							<table>
+								
+								
+								<tbody><tr>
+									<th>说明：</th>
+									<td>下道工序退回时，系统自动发消息通知上一道工序所在部门的全体人员。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>｛XXX客户｝｛XXX单号｝｛XX项目类型｝从｛工序｝工序退回</td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input checked="" type="checkbox" name="status12" value="1">
+								<strong>业务单完工提醒</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th></th>
+									<td>
+										
+										
+										
+											<span><a href="javascript:showReceiver(12);">设置接收人员...</a></span>
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>业务单完工，系统自动发消息通知跟单人与指定接收人员。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>｛XXX客户｝｛XXX单号｝交货日期YYYY-MM-DD已完工</td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input type="checkbox" name="status15" value="1">
+								<strong>业务单下单成功通知客户</strong>
+							</p>
+							<table>
+								
+								
+								<tbody><tr>
+									<th>说明：</th>
+									<td>设置业务单审核通过时，系统自动发手机短信通知该业务单的联系人，如果业务单上没有填写手机号码，该短信不会发送。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>｛业务单摘要｝的业务单已下单成功，我司已安排车间制作，单号为：｛业务单号｝。<br><input type="text" class="TextBox" style="width:300px" maxlength="50" id="custom_txt9" name="custom_txt15" value="请牢记您的订单号以备后续查询！谢谢合作！"></td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input type="checkbox" name="status7" value="1">
+								<strong>业务单完工通知客户</strong>
+							</p>
+							<table>
+								
+								
+								<tbody><tr>
+									<th>说明：</th>
+									<td>设置业务单完工时，系统自动发手机短信通知该业务单的联系人，如果业务单上没有填写手机号码，该短信不会发送。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>您在｛业务单日期时间｝下的订单｛业务单号｝（｛摘要｝）已经完工，谢谢合作！<br><input type="text" class="TextBox" style="width:300px" maxlength="50" id="custom_txt10" name="custom_txt7" value=""></td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input type="checkbox" name="status14" value="1">
+								<strong>送货通知客户</strong>
+							</p>
+							<table>
+								
+								
+								<tbody><tr>
+									<th>说明：</th>
+									<td>设置送货单审核通过时，系统自动发送短信通知该送货单的联系人。如果送货单上没有填写手机号码，该短信不会发送；30分钟内同个客户的送货短信只发一条。</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>您订单号为｛业务单号｝（业务单.摘要）的订单已经出库，正在送货途中，敬请耐心等待，谢谢合作！<br><input type="text" class="TextBox" style="width:300px" maxlength="50" id="custom_txt11" name="custom_txt14" value=""></td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+						<li>
+							<p>
+								<input type="checkbox" name="status1" value="1">
+								<strong>客户超过信用额度</strong>
+							</p>
+							<table>
+								
+								<tbody><tr>
+									<th>发送时间：</th>
+									<td>
+										
+											<select id="pt_hour12" name="pt_hour1">
+												<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
+											</select>
+											:
+											<select id="pt_minute" name="pt_minute1">
+												<option value="00" selected="">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option>
+											</select>
+										
+										
+										
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<th>说明：</th>
+									<td>如果客户信用额度不为0，应收款&gt;信用额度，则自动生成手机短信提醒客户，已发提醒的客户7天内不再提醒，请在系统配置上设置好企业简称作为短信签名档</td>
+								</tr>
+								
+								
+								<tr>
+									<th>内容：</th>
+									<td>感谢XXX对我司的大力支持，贵单位的应付款项已达XXX元。<br><input type="text" class="TextBox" style="width:300px" maxlength="50" id="custom_txt" name="custom_txt1" value="请安排结账，谢谢！"></td>
+								</tr>
+								
+								
+							</tbody></table>
+						</li>
+						
+					</ul>
+				</div>
+		    </div>
+	   </div>
+		<div class="modal-buttom" id="buttonDiv">
+			<input type="button" class="buttom" value=" 保 存 " onclick="doSave();">
+			<input type="button" class="buttom" value=" 取 消 " onclick="doCancel();">
+		    <input type="hidden" id="flag" name="flag" value="1">
+		</div>	
+		<div class="modal-buttom" id="waitDiv" style="display:none">
+			<span style="color:#ffffff">请稍候...</span>
+		</div>
+	 </form> 
+</div>
+
+</body></html>

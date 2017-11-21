@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.statistic.vo.PurchaseBillVO" table="purchase_bill">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="billCode" type="string">
+			<column name="bill_code" length="30" not-null="true" />
+		</property>
+		<property name="billType" type="string">
+			<column name="bill_type" length="30" not-null="true" />
+		</property>
+		<property name="purchaseDate" type="timestamp">
+			<column name="purchase_date" not-null="true" />
+		</property>
+		<property name="storehouseId" type="long">
+			<column name="storehouse_id" not-null="true" />
+		</property>
+		<property name="providerId" type="long">
+			<column name="provider_id" not-null="true" />
+		</property>
+		<property name="managerId" type="long">
+			<column name="manager_id" not-null="true" />
+		</property>
+		<property name="managerName" type="string">
+			<column name="manager_name" length="30" />
+		</property>
+		<property name="contractCode" type="string">
+			<column name="contract_code" length="100" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="4000" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="500" />
+		</property>
+		<property name="bankAccountId" type="long">
+			<column name="bank_account_id" not-null="true" />
+		</property>
+		<property name="imprest" type="big_decimal">
+			<column name="imprest" length="2" not-null="true" />
+		</property>
+		<property name="cost" type="big_decimal">
+			<column name="cost" length="2" not-null="true" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="updateTime" type="timestamp">
+			<column name="update_time" not-null="true" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" />
+		</property>
+		<property name="attachFile" type="string">
+			<column name="attach_file" length="200" />
+		</property>
+    </class>
+</hibernate-mapping>

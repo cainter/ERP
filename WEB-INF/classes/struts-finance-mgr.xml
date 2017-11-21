@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="struts-finance" extends="struts2" namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<!-- 账务 -->
+    	<action name="ReceiveBill_*" class="com.erp.controller.finance.action.ReceiveBillAction" method="{1}"> 
+    	  <result name="toReceiveBillNew">/WEB-INF/view/finance/ReceiveBillNew.jsp</result>
+    	  <result name="toNoReceiveBillList">/WEB-INF/view/finance/ReceiveBillListForExamine.jsp</result>
+    	  <result name="toCanReceiveBillList">/WEB-INF/view/finance/ReceiveBillListForUnExamine.jsp</result>
+    	  <result name="toReceiveBillResult">/WEB-INF/view/finance/ReceiveBillSearchResult.jsp</result>
+    	</action>
+    	<!-- 其他收入 -->
+    	<action name="InComeBill_*" class="com.erp.controller.finance.action.InComeBillAction" method="{1}">
+    		<result name="toNewInComeBill">/WEB-INF/view/finance/IncomeBillNew.jsp</result>
+    		<result name="toIncomeBillListForExamine">/WEB-INF/view/finance/IncomeBillListForExamine.jsp</result>
+    		<result name="toUnIncomeBillListForExamine">/WEB-INF/view/finance/UnIncomeBillListForExamine.jsp</result>
+    		<result name="toIncomeBillSearchResult">/WEB-INF/view/finance/IncomeBillSearchResult.jsp</result>
+    	</action>
+    	<!-- 资金借入单一览表 -->
+    	<action name="inDetail_*" class="com.erp.controller.finance.action.InDetailAction" method="{1}">
+    	  <result name="toLoanBillResult">/WEB-INF/view/finance/LoanBillSearchResult.jsp</result>
+    	</action>
+    	<!-- 资金借入单审核 -->
+    	<action name="inExamine_*" class="com.erp.controller.finance.action.InExamineAction" method="{1}">
+    	  <result name="toInExamineResult">/WEB-INF/view/finance/LoanBillListForExamine.jsp</result>
+    	</action>
+    	<!-- 资金借入单反审核 -->
+    	<action name="inUnExamine_*" class="com.erp.controller.finance.action.InUnExamineAction" method="{1}">
+    	  <result name="toInUnExamineResult">/WEB-INF/view/finance/LoanBillListForExamine.jsp</result>
+    	</action>
+    	<!-- 资金借出单一览表 -->
+    	<action name="outDetail_*" class="com.erp.controller.finance.action.OutDetailAction" method="{1}">
+    	  <result name="toOutBillResult">/WEB-INF/view/finance/LoanBillOutSearchResult.jsp</result>
+    	</action>
+    	<!-- 资金借出单审核 -->
+        <action name="outExamine_*" class="com.erp.controller.finance.action.OutExamineAction" method="{1}">
+    	  <result name="toOutExamineResult">/WEB-INF/view/finance/LoanBillOutListForExamine.jsp</result>
+    	</action>
+    	<!-- 资金借出单反审核 -->
+    	<action name="outUnExamine_*" class="com.erp.controller.finance.action.OutUnExamineAction" method="{1}">
+    	  <result name="toOutUnExamineResult">/WEB-INF/view/finance/LoanBillOutListForUnExamine.jsp</result>
+    	</action>
+    	<!-- 资金借入单 -->
+    	<action name="inLoanBill_*" class="com.erp.controller.finance.action.LoanBillInNewAction" method="{1}">
+    	<result name="toInLoanBill">/WEB-INF/view/finance/LoanBillInNew.jsp</result>
+    	</action>
+    	<!-- 资金借出单 -->
+    	<action name="outLoanBill_*" class="com.erp.controller.finance.action.LoanBillOutNewAction" method="{1}">
+    	<result name="toOutLoanBill">/WEB-INF/view/finance/LoanBillOutNew.jsp</result>
+    	</action>
+    </package>
+</struts>

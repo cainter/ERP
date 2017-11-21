@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.subcontractCancel.vo.CooperBillExtVO" table="cooper_bill_ext">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="examinerId" type="long">
+			<column name="examiner_id" not-null="true" />
+		</property>
+		<property name="examinerName" type="string">
+			<column name="examiner_name" length="30" />
+		</property>
+		<property name="examined" type="string">
+			<column name="examined" length="1" />
+		</property>
+		<property name="examineTime" type="timestamp">
+			<column name="examine_time" />
+		</property>
+		<property name="gathered" type="string">
+			<column name="gathered" length="1" />
+		</property>
+		<property name="paied" type="string">
+			<column name="paied" length="1" />
+		</property>
+		<property name="payCost" type="big_decimal">
+			<column name="pay_cost" length="2" not-null="true" />
+		</property>
+		<property name="paiedCost" type="big_decimal">
+			<column name="paied_cost" length="2" not-null="true" />
+		</property>
+		<property name="adjustCost" type="big_decimal">
+			<column name="adjust_cost" length="2" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" />
+		</property>
+		<property name="disableManId" type="long">
+			<column name="disable_man_id" not-null="true" />
+		</property>
+		<property name="hasPay" type="string">
+			<column name="has_pay" length="1" />
+		</property>
+		<property name="hasAdjust" type="string">
+			<column name="has_adjust" length="1" />
+		</property>
+		<property name="hasGather" type="string">
+			<column name="has_gather" length="1" />
+		</property>
+		<property name="smsTime" type="timestamp">
+			<column name="sms_time" />
+		</property>
+    </class>
+</hibernate-mapping>

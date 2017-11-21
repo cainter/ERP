@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="struts-byfu" extends="struts2">
+    <default-interceptor-ref name="defaultStack"></default-interceptor-ref>
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<!-- 导入客户期初欠款 -->
+		<action name="qichuqiankuan_*" method="{1}" class="com.erp.controller.action.QichuqiankuanAction">
+		<result name="DaoRu">WEB-INF/view/qichuqiankuan/qichuqiankuan.jsp</result>
+		</action>
+		<!-- 导入客户外协欠款 -->
+		<action name="waixieqichuqiankuan_*" method="{1}" class="com.erp.controller.action.waixieqichuqiankuanAction">
+		<result name="DaoRu">WEB-INF/view/waixieqiankuan/waixieqichuqiankuan.jsp</result>
+		</action>
+		<!-- 产量登记 -->
+		<action name="chanLiangRegister_*" method="{1}" class="com.erp.controller.action.chanLiangRegisterAction">
+		<result name="listUI">WEB-INF/view/zhizuo/chanliangdengji.jsp</result>
+		<result name="toBiaoPaiDengJi">WEB-INF/view/zhizuo/biaopaiDengji.jsp</result>
+		<result name="toBiaoShi">WEB-INF/view/zhizuo/biaoshiDengji.jsp</result>
+		<result name="lvCaiJiaGong">WEB-INF/view/zhizuo/lvcaiJiagong.jsp</result>
+		<result name="xingCaiXiaoShou">WEB-INF/view/zhizuo/xingcaixiaoshou.jsp</result>
+		</action>
+		
+		
+		<!-- 产量计件明细表 -->
+		<action  name="ouputDetail_*"  class="com.erp.controller.action.OuputDetailAction" method="{1}">
+				<result name="listUI">WEB-INF/view/zhizuo/chanliangjijianmingxibiao.jsp</result>
+				<result name="toListUI" type="chain">ouputDetail_listUI</result>
+				
+		</action>
+		<!-- 采购对账 -->
+		<action name="caigouduizhang_*" class="com.erp.controller.action.caigouduizhangAction" method="{1}">
+		<result name="toList">WEB-INF/view/caigoucaigou/caigouduizhang.jsp</result>
+		<result name="xuanze"></result>
+		</action>
+		<!-- 采购明细表 -->
+		<action name="caigoumingxi_*" class="com.erp.controller.action.caigoumingxiAction" method="{1}">
+		<result name="toList">WEB-INF/view/caigoucaigou/caigoumingxibiao.jsp</result>
+		</action>
+		<!-- 供应商采购汇总表 -->
+	    <action name="caigouhuizongbiao_*" class="com.erp.controller.action.EstcaigouhuizhongbiaoAction" method="{1}">
+	    <result name="toList">WEB-INF/view/caigoucaigou/gongyingshangcaigouhuizongbiao.jsp</result>
+	    </action>
+		<!-- 采购单一览表 -->
+		<action name="caigoudanyilanbiao_*" class="com.erp.controller.action.CaigoudanyilanbiaoAction" method="{1}">
+		<result name="toCaigoudanyilanbiao">WEB-INF/view/caigoucaigou/caigoudanyilanbiao/caigoudanyilanbiao.jsp</result>
+		</action>
+		<!-- 退货单一览表 -->
+		<action name="tuihuodanyilanbiao_*" class="com.erp.controller.action.tuihuodanyilanbiaoAction" method="{1}">
+		<result name="toTuihuodanyilanbiao">WEB-INF/view/caigoutuihuo/tuihuodanyilanbiao/tuohuodanyilanbiao.jsp</result>
+		</action>
+		<!-- 退货单一览表审核——退货单审核 -->
+		<action name="tuihuobiaoshenhe_*" class="com.erp.controller.action.TuihuobiaoshenheAction" method="{1}">
+		<result name="toTuihuobiaoshenhe">WEB-INF/view/caigoutuihuo/tuihuobiaoshenhe/tuihuodanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">tuihuodanyilanbiao_findAll</result>
+		<result name="tuichu" type="redirect">tuihuodanyilanbiao_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoutuihuo/tuihuobiaoshenhe/chakan.jsp</result>
+		</action>
+		
+		<!-- 退货单一览表反审核——退货单反审核 -->
+		<action name="tuihuobiaofanshenhe_*" class="com.erp.controller.action.tuihuobiaofanshenheAction" method="{1}">
+		<result name="toTuihuobiaofanshenhe">WEB-INF/view/caigoutuihuo/tuihuodanfanshenhe/tuihuodanfanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">tuihuodanyilanbiao_findAll</result>
+		<result name="tuichu" type="redirect">tuihuodanyilanbiao_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoutuihuo/tuihuobiaofanshenhe/chakan.jsp</result>
+		</action>
+		<!-- 采购单一览表审核_采购单审核 --> 
+		<action name="caigoubiaoshenhe_*" class="com.erp.controller.action.caigoubiaoshenheAction" method="{1}">
+		<result name="toCaigoudanshenhe">WEB-INF/view/caigoucaigou/caigoubiaoshenhe/caigoudanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">caigoudanyilanbiao_findAll</result>
+		<result name="tuichu" type="redirect">caigoudanyilanbiao_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoucaigou/caigoubiaoshenhe/chakan.jsp</result>
+		</action>
+	<!-- 采购单一览表反审核_采购单反审核 --> 
+		<action name="caigoubiaofanshenhe_*" class="com.erp.controller.action.caigoubiaofanshenheAction" method="{1}">
+		<result name="toCaigoudanshenhe">WEB-INF/view/caigoucaigou/caigoudanfanshenhe/caigoudanfanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">caigoudanyilanbiao_findAll</result>
+	<result name="tuichu" type="redirect">caigoudanyilanbiao_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoucaigou/caigoubiaofanshenhe/chakan.jsp</result>
+		</action>
+		<!-- 采购单审核 -->
+		<action name="caigoudanshenhe_*" class="com.erp.controller.action.caigoudanshenheAction" method="{1}">
+		<result name="toCaigoudanshenhe">WEB-INF/view/caigoucaigou/caigoudanshenhe/caigoudanshenhe.jsp</result>
+		<result name="toFindAlll" type="redirect">caigoudanshenhe_findAll</result>
+			<result name="tuichu" type="redirect">caigoudanshenhe_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoucaigou/caigoudanshenhe/chakan.jsp</result>
+		</action>
+		<!-- 退货单审核 -->
+		<action name="tuihuodanshenhe_*" class="com.erp.controller.action.tuihuodanshenheAction" method="{1}">
+		<result name="toTuihuodanshenhe">WEB-INF/view/caigoutuihuo/tuihuodanshenhe/tuihuodanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">tuihuodanshenhe_findAll</result>
+			<result name="tuichu" type="redirect">tuihuodanshenhe_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoutuihuo/tuihuodanshenhe/chakan.jsp</result>
+		</action>
+		<!-- 采购单入库 -->
+		<action name="caigoudanruku_*" class="com.erp.controller.action.caigoudanrukuAction" method="{1}">
+		<result name="toRuku">WEB-INF/view/caigoucaigou/caigoudanruku/ruku.jsp</result>
+			<result name="tuichu" type="redirect">caigoudanyilanbiao_findAll</result>
+			<result name="toFindAll" type="redirect">caigoudanyilanbiao_findAll</result>
+		</action>
+		<!-- 退货单出库 -->
+		<action name="tuihuodanchuku_*" class="com.erp.controller.action.tuihuodanchukuAction" method="{1}">
+		<result name="toChuku">WEB-INF/view/caigoutuihuo/tuihuodanchuku/chuku.jsp</result>
+			<result name="tuichu" type="redirect">tuihuodanyilanbiao_findAll</result>
+		<result name="toFindAll" type="redirect">tuihuodanyilanbiao_findAll</result>
+		</action>
+		<!-- 采购单取消入库 -->
+		<action name="caigoudanfanruku_*" class="com.erp.controller.action.caigoudanfanrukuAction" method="{1}">
+		<result name="toFanRuku">WEB-INF/view/caigoucaigou/caigoudanfanruku/fanruku.jsp</result>
+	<result name="tuichu" type="redirect">caigoudanyilanbiao_findAll</result>
+			<result name="toFindAll" type="redirect">caigoudanyilanbiao_findAll</result>
+		</action>
+		<!-- 退货单取消出库 -->
+		<action name="tuihuodanfanchuku_*" class="com.erp.controller.action.tuihuodanfanchukuAction" method="{1}">
+		<result name="toFanchuku">WEB-INF/view/caigoutuihuo/tuihuodanfanchuku/fanchuku.jsp</result>
+			<result name="tuichu" type="redirect">tuihuodanyilanbiao_findAll</result>
+		<result name="toFindAll" type="redirect">tuihuodanyilanbiao_findAll</result>
+		</action>
+		<!-- 采购单反审核 -->
+		<action name="caigoudanfanshenhe_*" class="com.erp.controller.action.caigoudanfanshenheAction" method="{1}">
+		<result name="toCaigoudanshenhe">WEB-INF/view/caigoucaigou/caigoudanfanshenhe/caigoudanfanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">caigoudanfanshenhe_findAll</result>
+			<result name="tuichu" type="redirect">caigoudanfanshenhe_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoucaigou/caigoudanfanshenhe/chakan.jsp</result>
+		</action>
+		<!-- 退货单反审核 -->
+		<action name="tuihuodanfanshenhe_*" class="com.erp.controller.action.tuihuodanfanshenheAction" method="{1}">
+		<result name="toTuihuodanfanshenhe">WEB-INF/view/caigoutuihuo/tuihuodanfanshenhe/tuihuodanfanshenhe.jsp</result>
+		<result name="toFindAll" type="redirect">tuihuodanfanshenhe_findAll</result>
+		<result name="tuichu" type="redirect">tuihuodanfanshenhe_findAll</result>
+		<result name="toChakan">WEB-INF/view/caigoutuihuo/tuihuodanfanshenhe/chakan.jsp</result>
+		</action>
+		<!-- 付款单 -->
+		<action name="fukuandan_*" class="com.erp.controller.action.FukuandanAction" method="{1}">
+		<result name="toSelectUI">WEB-INF/view/fukuandan/Select.jsp</result>
+		<result name="towaixiefukuandan">WEB-INF/view/fukuandan/fukuandan.jsp</result>
+		<result name="toCaigoufukuan">WEB-INF/view/fukuandan/caigoufukuandan.jsp</result>
+		<result name="toWaixie" type="redirect">fukuandan_waixiefindAll</result>
+		<result name="toCaigou" type="redirect">fukuandan_caigouFindAll</result>
+		</action>
+		<!--费用单一览表  -->
+		<action name="feiyongdanyidan_*" class="com.erp.controller.action.feiyongdanyidanTableAction" method="{1}">
+			<result name="listui">/WEB-INF/view/feiyongdanyilanbiao/listui.jsp</result>
+		</action>
+		
+		<!-- 价格手册 -->
+			<action name="estprice_*" class="com.erp.controller.action.EstPriceAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			    <result name="input">/WEB-INF/view/estPrice/listUI.jsp</result>                   
+			<result name="toListUI">/WEB-INF/view/estPrice/listUI.jsp</result>
+			<result name="toEditAndUI">/WEB-INF/view/estPrice/EditAddUI.jsp</result>
+			<result name="toList" type="redirect">estprice_EstPriceUI</result>
+		</action>
+	<!-- 外协对账 -->
+	<action name="establishment_*" class="com.erp.controller.action.EstablishmentAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			<result name="tofirstlistSelectUI">/WEB-INF/view/establishment/firstlistSelectUI.jsp</result>
+			  <result name="toListUI">WEB-INF/view/establishment/toListUI.jsp</result>
+		</action>
+		<!-- 消息 -->
+		<action name="messageSendAndReceive_*" class="com.erp.controller.action.messageSendAndReceiveAction" method="{1}" >
+		<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+	    <result name="{1}">/WEB-INF/view/neibuxiaoxi/{1}.jsp</result>
+		<result name="toWriteMessageUI">/WEB-INF/view/neibuxiaoxi/writeMessage.jsp</result>
+		<result name="toFaJianXiang">WEB-INF/view/neibuxiaoxi/FaJianXiang.jsp</result>
+		<result name="toShouJianXiang">/WEB-INF/view/neibuxiaoxi/ShouJianXiang.jsp</result>
+		<result name="toIndex">/WEB-INF/view/neibuxiaoxi/main.jsp</result>
+		<result name="toFaJianXiangUI" type="redirect">messageSendAndReceive_findAllMessageVOsAndSendDeleteIsN</result>
+		<result name="toShouJianXiangUI" type="redirect">messageSendAndReceive_findAllMessageVOsAndReceiverDeleteIsN</result>
+		<result name="toReplyUI">/WEB-INF/view/neibuxiaoxi/ReplyUI.jsp</result>
+		</action>
+		<!-- 付款单一览表 -->
+			<action name="paybill_*" class="com.erp.controller.action.PayBillAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			<result name="toListUI">/WEB-INF/view/paybill/listUI.jsp</result>
+		</action>
+		
+		<!-- 费用单审核1-->
+			<action name="feebillshenhe_*" class="com.erp.controller.action.FeeBillAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			<result name="toListUI">/WEB-INF/view/feebill/listUI.jsp</result>
+			<result name="toChaZhao">/WEB-INF/view/feebill/chakan.jsp</result>
+			<result name="toFindAll"  type="redirect">feebillshenhe_findAll</result>
+		</action>
+		<!-- 费用单反审核-->
+			<action name="feebillfanshenhe_*" class="com.erp.controller.action.FeeBillFanshenheAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			<result name="toListUI">/WEB-INF/view/feebillFanshenhe/listUI.jsp</result>
+			<result name="toChaZhao">/WEB-INF/view/feebillFanshenhe/chakan.jsp</result>
+			<result name="toFindAll"  type="redirect">feebillfanshenhe_findAll</result>
+		</action>
+		<!-- 付款单审核 -->
+			<action name="paybillshenhe_*" class="com.erp.controller.action.FukuandanshenheAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			<result name="toListUI">WEB-INF/view/fukuandanshenhe/listUI.jsp</result>
+			<result name="toChaZhao">/WEB-INF/view/fukuandanshenhe/chakan.jsp</result>
+			
+			<result name="tuichu">feebillshenhe_findAll</result>
+			<result name="toFindAll"  type="redirect">paybillshenhe_findAll</result>
+		</action>
+		<!-- 付款单反审核 -->
+			<action name="paybillfanshenhe_*" class="com.erp.controller.action.FukuandanfanshenheAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+			<result name="toListUI">WEB-INF/view/fukuandanfanshenhe/listUI.jsp</result>
+			<result name="toChaZhao">/WEB-INF/view/fukuandanfanshenhe/chakan.jsp</result>
+			
+			<result name="tuichu">feebillshenhe_findAll</result>
+			<result name="toFindAll"  type="redirect">paybillfanshenhe_findAll</result>
+		</action>
+		<!--费用明细一览表 -->
+		<action name="feiyongmingxiTable_*" class="com.erp.controller.action.FeeBillFanshenheAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+		<result name="tolistUI">WEB-INF/view/feiyongmingxiyilanbiao/listUI.jsp</result>
+		</action>
+		<!--我的费用单 -->
+		<action name="wodefeiyongdan_*" class="com.erp.controller.action.WodefeiyongdanAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+              <param name="modelDriven.refreshModelBeforeResult">true</param>
+            </interceptor-ref>
+		<result name="toListUI">WEB-INF/view/feebillFanshenhe/listUI.jsp</result>
+		</action>
+		
+    </package>
+</struts>

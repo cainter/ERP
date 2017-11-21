@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet modal-dialog">
+		<div class="sheet-main" id="tblUpload">
+			<form name="frm" method="post" enctype="multipart/form-data" action="http://115.28.87.22:8888/FileUpload.html">
+				<div class="sheet-list" style="width:100%">
+					<div class="modal-main search-business">
+						<div style="width:100%;">
+
+							<script language="javascript">
+								var formErrorIndex = 0;
+								var formErrorMsg = "";
+								var formErrorObjId = "";
+
+								function setFormErrorMsg(msg, index, objId) {
+									if(formErrorIndex == 0 || formErrorIndex > index) {
+										if(msg != null && msg != "") {
+											formErrorIndex = index;
+											formErrorMsg = msg;
+											formErrorObjId = objId;
+										}
+									}
+								}
+
+								function showFormErrorMsg() {
+									if(formErrorIndex != 0) {
+										document.getElementById("errorMsgTr").style.display = "";
+										document.getElementById("errorMsgDiv").innerHTML = formErrorMsg;
+										if(formErrorObjId != null && formErrorObjId != "") {
+											document.getElementById(formErrorObjId).focus();
+										}
+									}
+								}
+
+								function goNextInput(objId) {
+									var obj = null;
+									if(objId != null && objId != '') {
+										obj = document.getElementById(objId);
+									}
+									if(window.event.keyCode == 13) {
+										if(obj != null) {
+											obj.focus();
+										} else if(window.doSave) {
+											doSave();
+										}
+									}
+								}
+							</script>
+							<h3>导入客户期初欠款</h3>
+							<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+								<tbody>
+									<tr id="errorMsgTr" style="display:none">
+										<td colspan="2">
+											<div class="msg-error" id="errorMsgDiv">
+
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="blank12"></div>
+							<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a">
+								<tbody>
+									<tr>
+										<th>文件名称：</th>
+										<td>
+											<input type="file" id="accessory_file" name="accessory_file" style="width:220px" class="">
+											<input type="hidden" id="from_url" name="from_url" value="../base/StafImpoForm.html">
+										</td>
+									</tr>
+									<tr>
+										<th class="give">导入说明：</th>
+										<td class="give">上传的文件必须是Excel文件 &nbsp;&nbsp;&nbsp;
+											<a href="http://115.28.87.22:8888/upload/StafferTemplate.xls">下载模板文件</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom">
+					
+					<input type="button" class="buttom-a" value=" 导 入" onclick="doSave();">
+					<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+				</div>
+			</form>
+		</div>
+		<iframe name="postframe" height="0" width="100%" frameborder="0" scrolling="no" style="display:none" id="postframe" src="./uploading.html"></iframe>
+
+	</body>
+
+	</html>

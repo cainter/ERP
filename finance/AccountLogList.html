@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0090)http://115.28.87.22:8888/finance/AccountLogList.html?start_date=2017-7-9&end_date=2017-7-9 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>现金日志 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function doShow(billType,billId){
+		var url="";
+		var h=0;
+		var w=1024;
+		if(billType=="BUSINESS_BILL"){
+			url="/business/BusinessBillEdit.html?id="+billId;
+			h=600;
+			w=1280;
+		}else if(billType=="RECEIVE_BILL"){
+			url="/finance/ReceiveBillEdit.html?id="+billId;
+			h=500;
+		}else if(billType=="PURCHASE_BILL"){
+			url="/purchase/PurchaseBillEdit.html?id="+billId;
+			h=500;
+		}else if(billType=="PAY_BILL"){
+			url="/finance/PayBillEdit.html?id="+billId;
+			h=500;
+		}else if(billType=="FEE_BILL"){
+			url="/finance/FeeBillEdit.html?id="+billId;
+			h=420;
+		}else if(billType=="INCOME_BILL"){
+			url="/finance/IncomeBillEdit.html?id="+billId;
+			h=420;
+		}else if(billType=="TRANSFER_BILL"){
+			url="/finance/TransferBillEdit.html?id="+billId;
+			h=420;
+		}else if(billType=="COOPER_BILL"){
+			url="/cooper/CooperBillEdit.html?id="+billId;
+			h=500;
+			w=1280;
+		}else if(billType=="LOAN_BILL"){
+			url="/finance/LoanBillEdit.html?id="+billId;
+			h=420;
+		}else{
+			return;
+		}
+		ShowIframe("查看",url,w,h,"",900,600);
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		Window_Onload();
+	}
+	function doSearch(){
+		var startDate=document.getElementById("start_date").value;
+		var endDate=document.getElementById("end_date").value;
+		var baId=document.getElementById("ba_id").value;
+		if(startDate!=null && startDate!=''){
+			var arr=startDate.split("-");
+			if(arr.length==null || arr.length!=3){
+				ShowAlert('提示框','开始日期格式不正确',200,100);
+				return;
+			}else if(isNaN(arr[0]) || isNaN(arr[1]) || isNaN(arr[2])){
+				ShowAlert('提示框','开始日期格式不正确',200,100);
+				return;
+			}
+		}else{
+			ShowAlert('提示框','请选择开始日期',200,100);
+			return;
+		}
+		if(endDate!=null && endDate!=''){
+			var arr=endDate.split("-");
+			if(arr.length==null || arr.length!=3){
+				aShowAlert('提示框','结束日期格式不正确',200,100);
+				return;
+			}else if(isNaN(arr[0]) || isNaN(arr[1]) || isNaN(arr[2])){
+				ShowAlert('提示框','结束日期格式不正确',200,100);
+				return;
+			}
+		}else{
+			ShowAlert('提示框','请选择结束日期',200,100);
+			return;
+		}
+		/**
+		if(baId==null || baId=="" || baId=="0"){
+			ShowAlert('提示框','请选择账户',200,100);
+			return;
+		}
+		**/
+		window.location="/finance/AccountLogList.html?ba_id="+baId+"&start_date="+startDate+"&end_date="+endDate;
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="/finance/AccountLogList.html?content_type=EXCEL&"+str;
+	}
+	function getSearchCondition(){
+		var startDate="2017-7-9";
+		var endDate="2017-7-9";
+		var baId="";
+		var str="ba_id="+baId+"&start_date="+startDate+"&end_date="+endDate;
+		return str;
+	}
+</script>
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
+<body onload="doInit();" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:860px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>现金日志</h2>
+      <p>查看现金的操作日志</p>
+    </div>
+  </div>
+	  <div class="sheet-list">
+	    <div class="search-business">
+	      <div class="content">
+              <div align="right">
+              	日期：<input type="text" class="TextBox Datetime" maxlength="15" id="start_date" name="start_date" value="2017-7-9">
+				<img src="../images/calendar.gif" style="cursor:pointer" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,this);">
+				至<input type="text" class="TextBox Datetime" maxlength="15" id="end_date" name="end_date" value="2017-7-9">
+				<img src="../images/calendar.gif" style="cursor:pointer" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this);">
+				
+				<select name="ba_id" id="ba_id" style="width:200px">
+					<option value="">==请选择银行账户==</option>
+					
+						<option value="10">建行(秦朝阳)</option>
+					
+						<option value="11">中行(秦朝阳)</option>
+					
+						<option value="13">黄秀娟(创新物流(5165))</option>
+					
+						<option value="9">工行(黄秀娟)</option>
+					
+						<option value="8">交行(秦朝阳)</option>
+					
+						<option value="12">黄秀娟(长通物流(6116))</option>
+					
+						<option value="14">黄秀娟(豫鑫物流（73035）)</option>
+					
+						<option value="15">黄秀娟(微信15225099188)</option>
+					
+						<option value="4">农行(黄秀娟)</option>
+					
+						<option value="7"> 浦发(公司一般户)</option>
+					
+						<option value="2">中行(公司基本户)</option>
+					
+						<option value="1">现金(会计)</option>
+					
+						<option value="5">浦发(POS机刷卡)</option>
+					
+						<option value="6">淘宝 黄秀娟(支付宝 15225099188)</option>
+					
+						<option value="16">浦发(黄秀娟)</option>
+					
+						<option value="17">秦朝阳(微信13608675408)</option>
+					
+						<option value="18">现金(黄秀娟)</option>
+					
+	  			</select>
+				<input type="button" value=" 查 询" onclick="doSearch();" class="buttom search-but">
+				<input type="button" class="buttom search-out" value=" 导 出 " onclick="doDownload();">
+			   </div>
+	      </div>
+	      <div class="cue-info">
+	      	<span>收入合计：0 元</span>
+			<span>支出合计：0 元</span>
+			<span>增加额：0 元</span>
+	      </div>
+	      <div class="table-list">
+	        <table width="100%">
+				<tbody><tr>
+					<th width="10%">记账日期</th>
+					<th width="10%">单据日期</th>
+					<th width="14%">单号</th>
+					<th width="8%">类型</th>
+					<th width="14%">摘要</th>
+					<th width="10%">收入</th>
+					<th width="10%">支出</th>
+					<th width="12%">账户余额</th>
+					<th width="12%">账户</th>
+				</tr>
+				
+			</tbody></table>
+	      </div>     
+	    </div>
+	  </div>
+	<div class="blank12"></div>
+</div>
+
+</body></html>

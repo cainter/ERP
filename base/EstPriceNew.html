@@ -1,0 +1,618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0088)http://115.28.87.22:8888/base/EstPriceNew.html?est_type=CLIENT&price_type=EST&est_id=757 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>项目价格 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script src="../js/jquery.js"></script>
+<script language="javascript">
+	function doSave(){
+		document.getElementById("buttonDiv").style.display="none";
+		document.getElementById("waitDiv").style.display="";
+		frm.submit();
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function mtAddOnClick(){
+		selectMakeType(this.getAttribute("index"));
+	}
+	function proAddOnClick(){
+		selectProduct(this.getAttribute("index"));
+	}
+	function reqAddOnClick(){
+	   selectMakeRequire(this.getAttribute("index"));
+	}
+	function unitAddOnClick(){
+	   selectUnit(this.getAttribute("index"));
+	}
+	function doAddPrice(){
+		var url="../base/MakeTypeListForMultiSelect.html";
+		ShowIframe("选择项目类型",url,360,500,"doAddPriceCallBack()");
+	}
+	function doAddPriceCallBack(){
+		if(popRetVal!=null){
+			for(i=0;i<popRetVal.length;i++){
+				var newIndex=doItemAdd();
+				document.getElementById("mt_id_"+newIndex).value=popRetVal[i][0];
+				document.getElementById("mt_name_"+newIndex).value=popRetVal[i][1];
+			}
+		}
+	}
+	function elementOnChnage(){
+		checkItemChange(this.getAttribute("index"));
+	}
+	function pnOnChange(){
+		doProNameChange(this.getAttribute("index"));
+	}
+	function doItemAdd(defVals){
+		var tbl=document.getElementById("itemRowTbl");
+		var itemNum=document.getElementById("item_num").value-0;
+
+		var tr=document.createElement("tr");
+		tr.setAttribute("id","itemTr"+itemNum);
+		
+		var td;
+		var input;
+		var busiProd="SELECT";
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="74px";
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","mt_name_"+itemNum);
+		input.setAttribute("id","mt_name_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[0]);
+		}
+		input.setAttribute("readOnly",true);
+		input.setAttribute("className","TextBox readonly");
+		input.setAttribute("class","TextBox readonly");
+		td.appendChild(input);
+		
+		input=document.createElement("input");
+		input.setAttribute("type","hidden");
+		input.setAttribute("name","mt_id_"+itemNum);
+		input.setAttribute("id","mt_id_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[1]);
+		}else{
+			input.setAttribute("value","0");
+		}
+		td.appendChild(input);
+		
+		td.appendChild(document.createTextNode(" "));
+		input=document.createElement("img");
+		input.setAttribute("src","/images/icon_add.gif");
+		input.setAttribute("index",itemNum);
+		input.style.cursor="pointer";
+		input.onclick=mtAddOnClick;
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="74px";
+		input.setAttribute("maxLength","100");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","pro_name_"+itemNum);
+		input.setAttribute("id","pro_name_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[3]);
+		}
+		if(busiProd=="SELECT"){
+			input.setAttribute("className","TextBox readonly");
+			input.setAttribute("class","TextBox readonly");
+			input.setAttribute("readOnly",true);
+		}else{
+			input.setAttribute("className","TextBox");
+			input.setAttribute("class","TextBox");
+		}
+		input.onchange=pnOnChange;
+		td.appendChild(input);
+		
+		td.appendChild(document.createTextNode(" "));
+		input=document.createElement("img");
+		input.setAttribute("src","/images/icon_add.gif");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("title","价格只与项目类型相关，材质可以直接录入，也可以选择库存材料");
+		input.style.cursor="pointer";
+		input.onclick=proAddOnClick;
+		td.appendChild(input);
+		
+		input=document.createElement("span");
+		input.setAttribute("id","proFlagSpan_"+itemNum);
+		input.setAttribute("className","MustInput");
+		input.setAttribute("class","MustInput");
+		input.appendChild(document.createTextNode("*"));
+		if(defVals==null || defVals[2]=="0"){
+			input.style.display="none";
+		}
+		td.appendChild(input);
+		
+		input=document.createElement("input");
+		input.setAttribute("type","hidden");
+		input.setAttribute("name","pro_id_"+itemNum);
+		input.setAttribute("id","pro_id_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[2]);
+		}else{
+			input.setAttribute("value","0");
+		}
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="36px";
+		input.setAttribute("maxLength","10");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","length_"+itemNum);
+		input.setAttribute("id","length_"+itemNum);
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		if(defVals!=null){
+			input.setAttribute("value",defVals[8]);
+		}
+		input.onchange=elementOnChnage;
+		td.appendChild(input);
+		td.appendChild(document.createTextNode(" x "));
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="36px";
+		input.setAttribute("maxLength","10");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","width_"+itemNum);
+		input.setAttribute("id","width_"+itemNum);
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		if(defVals!=null){
+			input.setAttribute("value",defVals[9]);
+		}
+		input.onchange=elementOnChnage;
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="88px";
+		input.setAttribute("maxLength","50");
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","specification_"+itemNum);
+		input.setAttribute("id","specification_"+itemNum);
+		if(defVals!=null){
+			input.value=defVals[10];
+		}
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="40px";
+		input.setAttribute("maxLength","10");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","unit_"+itemNum);
+		input.setAttribute("id","unit_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[5]);
+		}
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		td.appendChild(input);
+		
+		td.appendChild(document.createTextNode(" "));
+		input=document.createElement("img");
+		input.setAttribute("src","/images/icon_add.gif");
+		input.setAttribute("index",itemNum);
+		input.style.cursor="pointer";
+		input.onclick=unitAddOnClick;
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.cssText="text-align:right";//chrome中这句需要放在设置input.style.width的前面,否则width无效
+		input.style.width="50px";
+		input.setAttribute("maxLength","10");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","price_"+itemNum);
+		input.setAttribute("id","price_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[6]);
+		}else{
+			input.setAttribute("value","");
+		}
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("textarea");
+		input.style.width="100px";
+		input.style.height="60px";
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","mk_req_"+itemNum);
+		input.setAttribute("id","mk_req_"+itemNum);
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		if(defVals!=null){
+			input.setAttribute("value",defVals[4]);
+		}
+		td.appendChild(input);
+		
+		td.appendChild(document.createTextNode(" "));
+		input=document.createElement("img");
+		input.setAttribute("src","/images/icon_add.gif");
+		input.setAttribute("index",itemNum);
+		input.style.cursor="pointer";
+		input.onclick=reqAddOnClick;
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		input=document.createElement("input");
+		input.setAttribute("type","text");
+		input.style.width="88px";
+		input.setAttribute("maxLength","100");
+		input.setAttribute("index",itemNum);
+		input.setAttribute("name","mark_"+itemNum);
+		input.setAttribute("id","mark_"+itemNum);
+		if(defVals!=null){
+			input.setAttribute("value",defVals[7]);
+		}
+		input.setAttribute("className","TextBox");
+		input.setAttribute("class","TextBox");
+		td.appendChild(input);
+		tr.appendChild(td);
+		
+		td=document.createElement("td");
+		var delLink=document.createElement("a");
+		delLink.setAttribute("href","javascript:doItemDelete("+itemNum+");");
+		delLink.appendChild(document.createTextNode("删除"));
+		td.appendChild(delLink);
+		td.appendChild(document.createTextNode(" "));
+		var copyLink=document.createElement("a");
+		copyLink.setAttribute("href","javascript:doItemCopy("+itemNum+");");
+		copyLink.appendChild(document.createTextNode("复制"));
+		td.appendChild(copyLink);
+		
+		input=document.createElement("input");
+		input.setAttribute("type","hidden");
+		input.setAttribute("name","status_"+itemNum);
+		input.setAttribute("id","status_"+itemNum);
+		input.setAttribute("value","NEW");
+		td.appendChild(input);
+		tr.appendChild(td);
+
+		tbl.appendChild(tr);
+		document.getElementById("item_num").value=itemNum+1;
+		return itemNum;//当前行的index
+	}
+	function doItemDelete(index){
+		ShowConfirm('确认框','确定删除吗？',340,80,"doItemDelAct("+index+")");
+	}
+	function doItemDelAct(index){
+		if(popRetVal!=null){
+			document.getElementById("itemTr"+index).style.display="none";
+			document.getElementById("status_"+index).value="DELETE";
+		}
+	}
+	function doItemCopy(index){
+	   var defVals=new Array();
+	   defVals[0]=document.getElementById("mt_name_"+index).value
+	   defVals[1]=document.getElementById("mt_id_"+index).value;
+	   defVals[2]=document.getElementById("pro_id_"+index).value;
+	   defVals[3]=document.getElementById("pro_name_"+index).value;
+	   defVals[4]=document.getElementById("mk_req_"+index).value;
+	   defVals[5]=document.getElementById("unit_"+index).value;
+	   defVals[6]=document.getElementById("price_"+index).value;
+	   defVals[7]=document.getElementById("mark_"+index).value;
+	   defVals[8]=document.getElementById("length_"+index).value;
+	   defVals[9]=document.getElementById("width_"+index).value;
+	   defVals[10]=document.getElementById("specification_"+index).value;
+	   doItemAdd(defVals);
+	}
+	function selectProduct(index){
+		var url="../base/ProductMainForSelect.html";
+		ShowIframe("选择材料",url,900,500,"selectProductCallBack("+index+")");
+	}
+	function selectProductCallBack(index){
+		if(popRetVal!=null){
+			document.getElementById("pro_id_"+index).value=popRetVal[0];
+			document.getElementById("pro_name_"+index).value=popRetVal[2];
+			document.getElementById("unit_"+index).value=popRetVal[3];
+			document.getElementById("proFlagSpan_"+index).style.display="";
+		}
+	}
+	function selectMakeRequire(index){
+		var url="../base/MakeRequireListForSelect.html";
+		ShowIframe("选择制作要求",url,900,500,"selectMakeRequireCallBack("+index+")");
+	}
+	function selectMakeRequireCallBack(index){
+		if(popRetVal!=null){
+			var theValue="";
+			for(i=0;i<popRetVal.length;i++){
+				if(theValue!=null && theValue!=""){
+					theValue=theValue+";";
+				}
+				theValue=theValue+popRetVal[i][0];
+			}
+			document.getElementById("mk_req_"+index).value=theValue;
+		}
+	}
+	function selectUnit(index){
+		var url="../base/UnitListForSelect.html";
+		ShowIframe("选择单位",url,300,400,"selectUnitCallBack("+index+")");
+	}
+	function selectUnitCallBack(index){
+		if(popRetVal!=null){
+			document.getElementById("unit_"+index).value=popRetVal[1];
+		}
+	}
+	function selectMakeType(index){
+		var url="../base/MakeTypeListForSelect.html";
+		ShowIframe("选择项目类型",url,310,500,"selectMakeTypeCallBack("+index+")");
+	}
+	function selectMakeTypeCallBack(index){
+		if(popRetVal!=null){
+			document.getElementById("mt_id_"+index).value=popRetVal[0];
+			document.getElementById("mt_name_"+index).value=popRetVal[1];
+		}
+	}
+	
+	function doSelectEstPrice(priceType){
+		if(priceType=="EST"){
+			var url="../base/EstablishmentListForSelect.html?type=CLIENT";
+			ShowIframe("选择客户",url,900,500,"doSelectEstPriceEstExt()");
+		}else{
+			var url="../base/MakeTypeListForMultiSelect.html";
+			ShowIframe("选择项目类型",url,360,500,"doSelectEstPriceStaExt()");
+		}
+	}
+	function doSelectEstPriceEstExt(){
+		if(popRetVal!=null){
+			document.getElementById("LoadProcess").style.top=getTopPos(document.getElementById("addLink"))+50+"px";
+			document.getElementById("LoadProcess").style.left=getleftPos(document.getElementById("addLink"))+100+"px";
+			$("#LoadProcess").show();
+			
+			var estId=popRetVal[0];
+			var estType="CLIENT";
+			$.post("../base/GetEstPricList.html",{est_type:estType,price_type:"EST",est_id:estId},function(data,status){
+				parsePriceData(data,status);
+			});
+		}
+	}
+	
+	function doSelectEstPriceStaExt(){
+		if(popRetVal!=null){
+			var str="";
+			for(i=0;i<popRetVal.length;i++){
+				if(str!=""){
+					str=str+";";
+				}
+				str=str+popRetVal[i][0];
+			}
+			if(str!=""){
+				var estType="CLIENT";
+				
+				if(estType=="CLIENT"){
+					var url="../base/PriceGuideListForSelect.html";
+					ShowIframe("选择价格手册",url,600,400,"doSelectClientStaExtCb('"+str+"')");
+				}else{
+					document.getElementById("LoadProcess").style.top=getTopPos(document.getElementById("addLink"))+50+"px";
+					document.getElementById("LoadProcess").style.left=getleftPos(document.getElementById("addLink"))+100+"px";
+					$("#LoadProcess").show();
+					$.post("../base/GetEstPricList.html",{est_type:estType,price_type:"STA",mt_id:str},function(data,status){
+						parsePriceData(data,status);
+					});
+				}
+			}
+		}
+	}
+	function doSelectClientSta(){
+		var url="../base/MakeTypeListForMultiSelect.html";
+		ShowIframe("选择项目类型",url,360,500,"doSelectClientStaExt()");
+	}
+	function doSelectClientStaExt(){
+		if(popRetVal!=null){
+			var str="";
+			for(i=0;i<popRetVal.length;i++){
+				if(str!=""){
+					str=str+";";
+				}
+				str=str+popRetVal[i][0];
+			}
+			if(str!=""){
+				var url="../base/PriceGuideListForSelect.html";
+				ShowIframe("选择价格手册",url,600,400,"doSelectClientStaExtCb('"+str+"')");
+			}
+		}
+	}
+	function doSelectClientStaExtCb(mtIdStr){
+		if(popRetVal!=null){
+			var pgId=popRetVal[0];
+			
+			document.getElementById("LoadProcess").style.top=getTopPos(document.getElementById("addLink"))+50+"px";
+			document.getElementById("LoadProcess").style.left=getleftPos(document.getElementById("addLink"))+100+"px";
+			$("#LoadProcess").show();
+			$.post("../base/GetEstPricList.html",{est_type:"CLIENT",price_type:"STA",mt_id:mtIdStr,pg_id:pgId},function(data,status){
+				parsePriceData(data,status);
+			});
+		}
+	}
+	function parsePriceData(data,status){
+		if(status=="success"){
+			var obj=$.parseJSON(data);
+			if(obj.status=="ERROR"){
+				$("#LoadProcess").hide();
+				ShowAlert('提示框',obj.errMsg,200,100);
+			}else{
+				$.each(obj.items,function(index,item){
+					var newIndex=doItemAdd();
+					$("#mt_id_"+newIndex).val(item.mtId);
+					$("#mt_name_"+newIndex).val(item.mtName);
+					$("#pro_id_"+newIndex).val(item.proId);
+					$("#pro_name_"+newIndex).val(item.proName);
+					$("#mk_req_"+newIndex).val(item.requ);
+					$("#unit_"+newIndex).val(item.unit);
+					$("#price_"+newIndex).val(item.pric);
+					$("#mark_"+newIndex).val(item.mark);
+					$("#length_"+newIndex).val(item.leng);
+					$("#width_"+newIndex).val(item.widt);
+					$("#specification_"+newIndex).val(item.spec);
+					
+					if(item.proId!='0'){
+						document.getElementById("proFlagSpan_"+newIndex).style.display="";
+					}
+				});
+				$("#LoadProcess").hide();
+			}
+		}else{
+			$("#LoadProcess").hide();
+			ShowAlert('提示框','系统错误：'+status,200,100);
+		}
+	}
+	function checkItemChange(index){
+		var lengthStr=document.getElementById("length_"+index).value;
+		var widthStr=document.getElementById("width_"+index).value;
+		if(lengthStr!="" && widthStr!="" && !isNaN(lengthStr) && !isNaN(widthStr)){
+			document.getElementById("specification_"+index).value=lengthStr+"m x "+widthStr+"m高";
+		}
+	}
+	function doInit(){
+		showFormErrorMsg();
+	}
+	function doProNameChange(index){
+		document.getElementById("pro_id_"+index).value="0";
+		document.getElementById("proFlagSpan_"+index).style.display="none";
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="doInit();" class="sheet modal-dialog" style=" padding-top:10px;">
+<div class="sheet-main" id="bodyDiv" style="width:980px;">
+<form name="frm" method="post">
+  <div class="sheet-list" style="width:100%">
+    <div class="modal-main search-business">
+    	<div style="width:100%;">
+			
+			
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<h3>格力电器</h3>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table> 
+			<div class="table-list">
+				<input type="hidden" id="item_num" name="item_num" value="0">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" id="itemTbl">
+					<tbody id="itemRowTbl">
+					<tr>
+						<th width="12%">项目类型</th>
+						<th width="12%">材质</th>
+						<th width="12%">宽x高</th>
+						<th width="11%">规格</th>
+						<th width="9%">单位</th>
+						<th width="8%">单价(元)</th>
+						<th width="17%">制作要求</th>
+						<th width="11%">备注</th>
+						<th width="8%">操作</th>
+					</tr>
+					
+					</tbody>
+				</table>
+				<div class="table-bot">
+					<a href="javascript:doAddPrice();" id="addLink">增加项目价格</a>
+					
+						&nbsp;&nbsp;
+						<a href="javascript:doSelectEstPrice(&#39;STA&#39;);">复制标准价格</a>
+						&nbsp;&nbsp;
+						<a href="javascript:doSelectEstPrice(&#39;EST&#39;);">复制其他客户价格</a>
+					
+					
+				</div>					      
+				
+				
+					<script language="javascript">
+		          	setFormErrorMsg('',1);
+					</script>
+				
+			</div>
+	     </div>
+	   </div>
+    </div>
+	<div class="modal-buttom" id="buttonDiv">
+		<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave();">
+		<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+	</div>
+	<div class="modal-buttom" id="waitDiv" style="display:none">
+		<span style="color:#ffffff">请稍候...</span>
+	</div>
+</form>
+</div>
+
+<div id="LoadProcess" style="position:absolute; left:50%;top:50%; width:200px; height:100px; margin-top:-50px;margin-left:-100px;z-index:1; border:solid #000 5px;background-color:White;display:none">
+	<table border="0" align="center" style="height:100%;">
+		<tbody><tr>
+			<td style="valign:middle">
+				<img src="../images/loading.gif">
+				请稍候...
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</body></html>

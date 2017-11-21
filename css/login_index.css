@@ -1,0 +1,95 @@
+
+body,ul,a,div,p,li,h1,h2,h3,h4,table,tr,td,th,dl,dd,dt{
+	padding:0; margin:0;
+}
+a{
+	text-decoration:none; color:black;
+}
+li{
+	list-style: none;
+}
+/*总体设置*/
+._wrap{
+	min-width:900px;
+}
+/*头部*/
+._header{
+	height:300px; min-width:900px; 
+	background:url('../img/login_top_bg.png') no-repeat; background-size:100% 300px;
+}
+/*中间内容-总体设置*/
+._content{
+	max-width:1300px; min-width:900px; height:300px; min-height: 300px;
+	margin:auto;
+}
+/*中间内容-图标*/
+._list{
+	height:160px; padding-top:20px; padding-left:195px; background-color: #fbfbfb;
+}
+._list li{
+	height:120px; width:80px; 
+	float:left; padding:0; margin-left:30px;
+	list-style:none;
+}
+._list li:hover{
+	color:red; cursor:pointer;
+}
+._list li img{
+	width:80px; height:80px;
+}
+._list li a{
+	float:left;
+	margin-top:10px; margin-left:10px;
+	font-style:normal; color:black; font-size:14px; text-decoration:none;
+}
+._list li a:hover{
+	color:red;
+}
+/*中间内容-相关链接*/
+._about{
+	padding-left:160px;
+}
+._about dl{
+	height:80px; width:100px; 
+	margin-left:40px; margin-top:20px; text-align:center;
+	float:left;
+}
+/*中间内容-相关链接-二维码*/
+._two_code{
+	float:right; margin-right:120px; margin-top:10px; padding-left:10px; padding-top:10px;
+	width:120px; height:120px; 
+}
+/*底部*/
+._footer{
+	min-height:140px; background-color:#333333; color:#808080;
+}
+._footer_wrap{
+	max-width:1300px; min-width:900px;  margin:auto; min-height:140px; position:relative; border:1px solid #333333;
+}
+._logo{
+	float:left; margin-top:40px;
+}
+._help{
+	margin-top:40px; width:580px; height:80px; margin-left:180px;
+}
+._help li{
+	float:left; margin-left:10px; padding-right:4px; border-right:1px solid #808080;
+}
+._help li a{
+	color:#808080;
+}
+._help p{
+	
+}
+._connect{
+	position:absolute; width:400px; right:10px; top:60px; height:40px;
+}
+._connect li{
+	float:left; font-size:12px; width:120px; margin-left:10px;
+}
+._connect li img{
+	float:left;
+}
+._connect li span{
+	float:left; margin-left:10px;
+}

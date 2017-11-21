@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<!-- 沟通  通讯录 我的通讯录	公司内部通讯录-->
+    <package name="struts-phone" extends="struts2"  namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+    	<action name="phone_*" class="com.erp.controller.phone.action.PhoneAction" method="{1}"> 
+    	  <!-- 我的通讯录 -->
+    	  <result name="toPhoneBookList">/WEB-INF/view/phone/PhoneBookList.jsp</result>
+    	  <!-- 公司内部通讯录 -->
+    	  <result name="toInnerPbMain">/WEB-INF/view/phone/InnerPbMain.jsp</result>
+    	  <!-- 公司内部通讯录 加载左边部分-->
+    	  <result name="toDepartmentListForInnerPb">/WEB-INF/view/phone/DepartmentListForInnerPb.jsp</result>
+    	  <!-- 公司内部通讯录 加载右边部分-->
+    	  <result name="toInnerPbList">/WEB-INF/view/phone/InnerPbList.jsp</result>
+    	  <!-- 我的通讯录 进入新增-->
+    	  <result name="toPhoneBookNew">/WEB-INF/view/phone/PhoneBookNew.jsp</result>
+    	  <!-- 我的通讯录 进入编辑页面-->
+    	  <result name="toPhoneBookEdit">/WEB-INF/view/phone/PhoneBookEdit.jsp</result>
+    	  <!-- 我的通讯录 保存联系人-->
+    	  <result name="savePhoneBook">/WEB-INF/view/phone/PhoneBookList.jsp</result>
+    	  <!-- 我的通讯录 修改联系人-->
+    	  <result name="updatePhoneBook">/WEB-INF/view/phone/PhoneBookList.jsp</result>
+    	  
+    	</action>
+    </package>
+</struts>

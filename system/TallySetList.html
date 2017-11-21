@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body oncontextmenu="return false" class="sheet">
+		<div class="sheet-main">
+			<div class="sheet-top">
+
+				<div class="content">
+					<h2>帐套管理</h2>
+					<div class="pull-right">
+						<div class="layui-form" style=" display: inline-block;">
+							<div class="layui-inline">
+								<label class="layui-form-min">
+										<a href="http://www.ekingcn.com/school/spjt_1656_181.html" target="_blank">如何应用多帐套实现分店分公司独立核算管理<img src="../images/play_button.gif"></a>
+									</label>
+							</div>
+							<a type="button " class="layui-btn " href="javascript:doNew();">新 增</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sheet-list">
+				<div class="search-business">
+					<div class="blank24"></div>
+					<div class="table-list">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<th width="50%">名称</th>
+									<th width="15%">状态</th>
+									<th width="35%">操作</th>
+								</tr>
+
+								<tr>
+									<td>新异</td>
+									<td>
+										正常
+
+									</td>
+									<td>
+										<a href="javascript:doEdit('1');">编辑</a>
+										<a href="javascript:doPause(&#39;1&#39;,&#39;P&#39;);">停用</a>
+
+									</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+<script src="../js/jquery-3.0.0.min.js"></script>
+		<script src="../layui/layui.all.js "></script>
+	<script>
+
+		function doEdit(id) {
+			layer.open({
+						type: 2,
+						title: false,
+						content: './TallySetEdit.html',
+						area: ['460px', '153px'],
+						shadeClose: true,
+						closeBtn: 0, //关闭按钮
+						resize: false, //是否允许拉伸
+						scrollbar: false, //是否允许浏览器出现滚动条
+						moveOut: true
+					});
+		}
+		function doNew() {
+			layer.open({
+						type: 2,
+						title: false,
+						content: './TallySetNew.html',
+						area: ['460px', '153px'],
+						shadeClose: true,
+						closeBtn: 0, //关闭按钮
+						resize: false, //是否允许拉伸
+						scrollbar: false, //是否允许浏览器出现滚动条
+						moveOut: true
+					});
+		}
+	</script>
+	</body>
+
+</html>

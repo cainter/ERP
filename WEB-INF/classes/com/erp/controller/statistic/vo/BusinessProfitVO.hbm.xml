@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.statistic.vo.BusinessProfitVO" table="business_profit">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="bbCode" type="string">
+			<column name="bb_code" length="30" not-null="true" />
+		</property>
+		<property name="materialCost" type="big_decimal">
+			<column name="material_cost" length="2" not-null="true" />
+		</property>
+		<property name="cooperCost" type="big_decimal">
+			<column name="cooper_cost" length="2" not-null="true" />
+		</property>
+		<property name="feeCost" type="big_decimal">
+			<column name="fee_cost" length="2" not-null="true" />
+		</property>
+		<property name="profitCost" type="big_decimal">
+			<column name="profit_cost" length="2" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

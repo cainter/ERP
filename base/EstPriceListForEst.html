@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0080)http://115.28.87.22:8888/base/EstPriceListForEst.html?est_type=CLIENT&est_id=757 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>项目价格目录 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doNew(priceType){
+		var url="../base/EstPriceNew.html?est_type=CLIENT&price_type=EST&est_id=757";
+		ShowIframe("项目价格",url,1024,400,"refreshWin()",900,600);
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location.reload(true);
+		}
+	}
+	function doEdit(id){
+		var url="../base/EstPriceEdit.html?id="+id;
+		ShowIframeNoScroll("项目价格",url,400,500,"refreshWin()",900,600);
+	}
+	function doSearch(){
+		var mtId=document.getElementById("mt_id").value;
+		var proName=document.getElementById("pro_name").value.trim();
+		if(proName=="以材质名称或材质的拼音字头进行模糊查询"){
+			proName="";
+		}else{
+			proName=encodeURIComponent(proName);
+		}
+		window.location="../base/EstPriceListForEst.html?est_type=CLIENT&est_id=757&mt_id="+mtId+"&pro_name="+proName;
+	}
+	function doGo(pageIndex){
+		var proName=encodeURIComponent("");
+		window.location="../base/EstPriceListForEst.html?est_type=CLIENT&mt_id=0&est_id=757&pro_name="+proName+"&current_page="+pageIndex;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function doDownload(){
+		var proName=encodeURIComponent("");
+		window.location="../base/EstPriceListForEst.html?est_type=CLIENT&mt_id=0&est_id=757&pro_name="+proName+"&content_type=EXCEL";
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var str="";
+		if(ob_arr.length>=it.getAttribute("index")){
+			str=ob_arr[it.getAttribute("index")-1].value;
+		}
+		if(str==""){
+			return;
+		}
+		doEdit(str);
+	}
+	function checkProName(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function proNameFocus(){
+		if(document.getElementById("pro_name").value=="以材质名称或材质的拼音字头进行模糊查询"){
+			document.getElementById("pro_name").value="";
+		}
+	}
+	function proNameBlur(){
+		if(document.getElementById("pro_name").value==""){
+			document.getElementById("pro_name").value="以材质名称或材质的拼音字头进行模糊查询";
+		}
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',340,80,"doDelAct('"+id+"')");
+	}
+	function doDelAct(id){
+		if(popRetVal!=null){
+			window.location="../base/EstPriceDelete.html?est_type=CLIENT&id="+id+"&from_url="+encodeURIComponent(window.location);
+		}
+	}
+	function doInit(){
+		document.getElementById("pro_name").focus();
+	}
+	function getMultiId(){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var str="";
+		for (i=0;i<ob_arr.length;i++){
+			if ((ob_arr[i].checked == true)){
+				if(str!=""){
+					str=str+";";
+				}
+				str = str+ob_arr[i].value;
+			}
+		}
+		return str;
+	}
+	function doMultiDelete(){
+		var str=getMultiId();
+		if(str==""){
+			ShowAlert('提示框','请选择要删除的记录!',200,100);
+		}else{
+			doDelete(str);
+		}
+	}
+	function doImpo(){
+		var estType="CLIENT";
+		var epType="";
+		if(estType=='CLIENT'){
+			epType="CLIE";
+		}else if(estType=='COOPERATOR'){
+			epType="COOP";
+		}
+		var formUrl="../base/EstPricImpoForm.html?est_id=757&type="+epType;
+		var targetUrl="../base/EstPricImpo.html?est_id=757&type="+epType;
+		ShowIframe("导入Excel",formUrl,560,300,"doImpoCallBack('"+targetUrl+"')");
+	}
+	function doImpoCallBack(targetUrl){
+		if(popRetVal){
+			document.getElementById("LoadProcess").style.top=(document.body.clientHeight/2-50)+"px";
+			document.getElementById("LoadProcess").style.left=(document.body.clientWidth/2-100)+"px";
+			document.getElementById("LoadProcess").style.display="";
+			var fileName = popRetVal;
+			var url;
+			if(targetUrl.indexOf("?")==-1){
+				url=targetUrl+"?file_name=" + encodeURIComponent(fileName);
+			}else{
+				url=targetUrl+"&file_name=" + encodeURIComponent(fileName);
+			}
+			var xmlHttp=createXMLHttpRequest();
+			xmlHttp.open("GET", url, true);
+			xmlHttp.onreadystatechange = function(){
+				if (xmlHttp.readyState == 4) {
+		      		if (xmlHttp.status == 200) {
+			      		document.getElementById("LoadProcess").style.display="none";
+			      		ShowIframe("导入Excel","/ImpoSuccess.html",560,300,"doImpoCallBackExt()");
+		      		}
+		      	}
+		    };
+		    xmlHttp.send(null);
+		}
+	}
+	function doImpoCallBackExt(){
+		window.location.reload(true);
+	}
+</script>
+</head>
+<body class="sheet" style="padding-top:10px;text-align:center;" onload="doInit();">
+<div class="sheet-main" style="width:860px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>格力电器</h2>
+      <p>项目价格目录</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+		 <div class="content">
+	        <table width="748">
+	          <tbody>
+	            <tr>
+	              <td align="right">
+	              	<select name="mt_id" id="mt_id" style="width: 200px; visibility: visible;" onchange="doSearch();">
+						<option value="0">请选择项目类型</option>
+						
+<option value="10">标牌</option>
+<option value="11">标识</option>
+<option value="109">标识标牌</option>
+<option value="110">&nbsp;|--指示牌</option>
+<option value="111">&nbsp;|--警示牌</option>
+<option value="112">&nbsp;|--桌牌</option>
+<option value="113">&nbsp;|--立牌</option>
+<option value="114">&nbsp;|--展示牌</option>
+<option value="115">&nbsp;|--户外标识</option>
+<option value="116">广告字</option>
+<option value="117">&nbsp;|--不发光立体字</option>
+<option value="118">&nbsp;|--背光立体字</option>
+<option value="119">&nbsp;|--发光立体字</option>
+<option value="120">&nbsp;|--光树脂发光立体字</option>
+<option value="121">&nbsp;|--立体发光立体字</option>
+<option value="13">型材销售</option>
+<option value="17">&nbsp;|--画框型材</option>
+<option value="18">&nbsp;|--画框配件</option>
+<option value="34">灯箱</option>
+<option value="122">&nbsp;|--吸塑灯箱</option>
+<option value="123">&nbsp;|--超薄灯箱</option>
+<option value="124">&nbsp;|--落地式灯箱</option>
+<option value="125">&nbsp;|--软膜灯箱</option>
+<option value="126">&nbsp;|--动态灯箱</option>
+<option value="127">&nbsp;|--LED灯箱</option>
+<option value="128">门头店招</option>
+<option value="129">&nbsp;|--彩条店招</option>
+<option value="130">&nbsp;|--模组店招</option>
+<option value="131">&nbsp;|--拉布内光店招</option>
+<option value="132">&nbsp;|--异形店招</option>
+<option value="97">标牌配件</option>
+<option value="98">东厂</option>
+<option value="133">快展器材</option>
+<option value="134">&nbsp;|--快展背景墙</option>
+<option value="135">&nbsp;|--X展架</option>
+<option value="136">&nbsp;|--易拉宝</option>
+<option value="137">&nbsp;|--注水旗杆</option>
+<option value="138">&nbsp;|--快展套装</option>
+<option value="99">成品标牌</option>
+<option value="139">展柜展架</option>
+<option value="140">&nbsp;|--靠墙柜</option>
+<option value="141">&nbsp;|--中岛柜</option>
+<option value="142">&nbsp;|--平柜</option>
+<option value="143">&nbsp;|--收银台</option>
+<option value="144">&nbsp;|--挂架</option>
+<option value="145">&nbsp;|--端架</option>
+<option value="146">&nbsp;|--地台</option>
+<option value="147">印刷</option>
+<option value="148">&nbsp;|--名片</option>
+<option value="149">&nbsp;|--宣传单</option>
+<option value="150">&nbsp;|--画册</option>
+<option value="151">&nbsp;|--手提袋</option>
+<option value="152">&nbsp;|--台挂历</option>
+<option value="153">促销用品</option>
+<option value="154">&nbsp;|--吊旗</option>
+<option value="155">&nbsp;|--太阳伞</option>
+<option value="156">&nbsp;|--条幅横幅</option>
+<option value="157">&nbsp;|--挂墙展板</option>
+<option value="158">&nbsp;|--拱门气球</option>
+<option value="159">&nbsp;|--礼品</option>
+<option value="103">喷绘</option>
+<option value="104">&nbsp;|--挂画</option>
+<option value="105">&nbsp;|--灯箱画片</option>
+<option value="106">&nbsp;|--高精图像片</option>
+<option value="107">&nbsp;|--户外彩喷</option>
+<option value="108">&nbsp;|--车身彩绘</option>
+				  	</select>
+		            <input type="text" class="TextBox" id="pro_name" name="pro_name" onkeyup="checkProName();" onfocus="proNameFocus();" onblur="proNameBlur();" style="width:100px" value="以材质名称或材质的拼音字头进行模糊查询" title="以材质名称或材质的拼音字头进行模糊查询">
+		            <input type="button" class="buttom search-but" value=" 查 询" onclick="doSearch();">
+					
+						<input type="button" value=" 删 除" class="buttom search-remo" onclick="javascript:doMultiDelete();">
+						<input type="button" value=" 导 出" class="buttom search-out" onclick="doDownload();">
+						<input type="button" value=" 导 入" class="buttom search-out" onclick="doImpo();">
+					  	<input type="button" value=" 新 增" class="buttom search-add" onclick="doNew();">
+					
+				  </td>
+	            </tr>    
+	           </tbody>      
+	        </table>
+	      </div>
+		 
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	     <div class="table-list">
+	        <table width="100%">
+	          <tbody><tr>
+	          	<th width="14"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+				<th width="12%">项目类型</th>
+				<th width="14%">材质</th>
+				<th width="14%">规格</th>
+				<th width="10%">单位</th>
+				<th width="10%">单价</th>
+				<th width="16%">制作要求</th>
+				
+					<th width="12%">备注</th>
+					<th width="12%">操作</th>
+				
+				
+			 </tr>
+			
+			
+			
+			<tr class="query_list_data_trSelected" index="1" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="252"></td>
+				<td>不发光立体字</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>13</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;252&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;252&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="2" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="253"></td>
+				<td>背光立体字</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>14</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;253&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;253&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="3" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="244"></td>
+				<td>标识标牌</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>5</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;244&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;244&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="4" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="259"></td>
+				<td>超薄灯箱</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>20</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;259&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;259&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="5" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="243"></td>
+				<td>车身彩绘</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>10</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;243&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;243&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="6" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="265"></td>
+				<td>彩条店招</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>26</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;265&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;265&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="7" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="289"></td>
+				<td>促销用品</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>50</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;289&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;289&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="8" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="281"></td>
+				<td>端架</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>42</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;281&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;281&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr1" index="9" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="290"></td>
+				<td>吊旗</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>51</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;290&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;290&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+			
+			
+			<tr class="query_list_data_tr2" index="10" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+				<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="282"></td>
+				<td>地台</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>43</td>
+				<td></td>
+				<td></td>
+				
+					<td>
+						
+						<a href="javascript:doEdit(&#39;282&#39;);">编辑</a>
+						<a href="javascript:doDelete(&#39;282&#39;);">删除</a>
+					</td>
+				
+			</tr>
+			
+		</tbody></table>
+			
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共6页
+		
+        <a style="cursor:pointer" onclick="javascript:doGo(&quot;2&quot;);"><img src="../images/but003.gif"></a>
+        <a style="cursor:pointer" onclick="javascript:doGo(&quot;6&quot;);"><img src="../images/but004.gif"></a>
+		
+		
+    </div>
+     </div>  
+   </div>  
+  </div>
+<div class="blank12">
+</div>
+
+<div id="LoadProcess" style="position:absolute; left:50%;top:50%; width:200px; height:100px; margin-top:-50px;margin-left:-100px;z-index:1; border:solid #000 5px;background-color:White;display:none">
+	<table border="0" align="center" style="height:100%;">
+		<tbody><tr>
+			<td style="valign:middle">
+				<img src="../images/loading.gif">
+				请稍候...
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div><span id="dialogCase"><div id="dialogBoxBG" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 534px; z-index: 10001; opacity: 0.4; background-color: rgb(0, 0, 0); display: none;"></div><div id="dialogBox" style="border: 1px solid rgb(230, 239, 248); z-index: 10003; position: absolute; width: 400px; left: 444px; top: 42px; display: none;"><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF"><tbody><tr height="24" id="dialogBoxTitleTr" bgcolor="#E6EFF8"><td><table style="-moz-user-select:none;height:24px;" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="6" height="24"></td><td id="dialogBoxTitle" style="color: rgb(0, 0, 0); font-size: 14px; font-weight: bold; text-align: left; cursor: move;">项目价格&nbsp;</td><td id="dialogClose" width="20" align="right" valign="middle"><img id="dialogBoxClose" src="../images/dialogclose.gif" border="0" align="absmiddle" style="cursor:pointer;" title="关闭"></td><td width="6"></td></tr></tbody></table></td></tr><tr id="dialogTr" style="height:500px" valign="top"><td id="dialogBody" style="position:relative;"></td></tr></tbody></table></div><div id="dialogBoxShadow" style="z-index: 10001; position: absolute; background: rgb(0, 0, 0); opacity: 0.2; top: 46px; left: 448px; width: 402px; height: 526px; display: none;"></div></span></body></html>

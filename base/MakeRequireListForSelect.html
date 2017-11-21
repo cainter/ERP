@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0059)http://115.28.87.22:8888/base/MakeRequireListForSelect.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>选择制作要求 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	
+	function doSelect(index){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		if ( ob_arr.length>=index ){
+			arr[0]=new Array(ob_arr[index-1].value);
+			parent.popRetVal=arr;
+		}
+		parent.ClosePop();
+	}
+	
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		if(ob_arr.length>=it.getAttribute("index")){
+			arr[0]=new Array(ob_arr[it.getAttribute("index")-1].value);
+			parent.popRetVal=arr;
+		}
+		parent.ClosePop();
+	}
+	function doMutiSelect(){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		for (i=0;i<ob_arr.length;i++){
+			if ((ob_arr[i].checked == true)){
+				arr.push(new Array(ob_arr[i].value,"1"));
+			}
+		}
+		if(arr.length>0){
+			parent.popRetVal=arr;
+			parent.ClosePop();
+		}else{
+			ShowAlert('提示框','请选择制作要求！',200,100);
+			return;
+		}
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function doInit(){
+		//Window_Onload();
+		document.getElementById("search_key").focus();
+	}
+	function checkSearchKey(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doSearch(){
+		var searchKey=encodeURIComponent(document.getElementById("search_key").value.trim());
+		window.location="../base/MakeRequireListForSelect.html?search_key="+searchKey;
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="doInit();" class="sheet">
+<div class="sheet-main" style="width:856px">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>选择制作要求</h2>
+      <p>鼠标双击可以选中记录</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+    	<div class="content">
+	        <table width="100%">
+	          <tbody>
+	            <tr>
+	              <td align="right">
+	              	<input type="text" class="TextBox" id="search_key" name="search_key" onkeyup="checkSearchKey();" value="" title="可以根据编号、制作要求进行模糊查询">
+					<input type="button" class="buttom search-but" value=" 查 询" onclick="doSearch();" title="可以根据编号、制作要求进行模糊查询">
+					<input type="button" class="buttom search-select" value=" 选 择" onclick="doMutiSelect();">
+				  </td>
+	            </tr>    
+	           </tbody>      
+	        </table>
+	      </div>
+	     <div class="table-list">
+	        <table width="100%">
+	        	<tbody><tr>
+					<th width="14"></th>
+					<th width="15%">编号</th>
+					<th width="75%">制作要求</th>
+					<th width="10%">操作</th>
+				</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="1" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="按图纸施工、颜色按样品"></td>
+						<td></td>
+						<td>按图纸施工、颜色按样品</td>
+						<td>
+							<a href="javascript:doSelect(&#39;1&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="2" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="按图纸施工"></td>
+						<td></td>
+						<td>按图纸施工</td>
+						<td>
+							<a href="javascript:doSelect(&#39;2&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="3" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="烤漆、丝印"></td>
+						<td></td>
+						<td>烤漆、丝印</td>
+						<td>
+							<a href="javascript:doSelect(&#39;3&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_trOver" index="4" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="烤漆、平板打印"></td>
+						<td></td>
+						<td>烤漆、平板打印</td>
+						<td>
+							<a href="javascript:doSelect(&#39;4&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr1" index="5" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="下料、组装"></td>
+						<td></td>
+						<td>下料、组装</td>
+						<td>
+							<a href="javascript:doSelect(&#39;5&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="6" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="带门市"></td>
+						<td></td>
+						<td>带门市</td>
+						<td>
+							<a href="javascript:doSelect(&#39;6&#39;);">选择</a>
+						</td>
+					</tr>
+				
+			</tbody></table>
+	     </div>  
+	   </div>  
+  </div>
+ 	<div class="blank12">
+</div>
+
+</div></body></html>

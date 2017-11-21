@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="struts-accounts" extends="struts2">
+   		<!-- 账务 作废  guo -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+    	<action name="Accounts_*" class="com.erp.controller.accounts.action.AccountsAction" method="{1}"> 
+    	  <!-- 调账单作废 -->
+    	  <result name="toAdjustBillListForCancel">/WEB-INF/view/accounts/AdjustBillListForCancel.jsp</result>
+    	  <result name="toSelectAdjustBillListForCancel">/WEB-INF/view/accounts/AdjustBillListForCancel.jsp</result>
+    	  <result name="toDisabledAdjustBill">/WEB-INF/view/accounts/AdjustBillListForCancel.jsp</result>
+    	  <result name="disabledAdjustBill">/WEB-INF/view/accounts/AdjustBillListForCancel.jsp</result>
+    	  <result name="disabledAllAdjustBill">/WEB-INF/view/accounts/AdjustBillListForCancel.jsp</result>
+    	  <!-- 费用单作废 -->
+    	  <result name="toFeeBillListForCancel">/WEB-INF/view/accounts/FeeBillListForCancel.jsp</result>
+    	  <result name="toSelectFeeBillListForCancel">/WEB-INF/view/accounts/FeeBillListForCancel.jsp</result>
+    	  <result name="toDisabledFeeBill">/WEB-INF/view/accounts/FeeBillListForCancel.jsp</result>
+    	  <result name="disabledFeeBill">/WEB-INF/view/accounts/FeeBillListForCancel.jsp</result>
+    	  <result name="disabledAllFeeBill">/WEB-INF/view/accounts/FeeBillListForCancel.jsp</result>
+    	  <!-- 其他收入 -->
+    	  <result name="toIncomeBillListForCancel">/WEB-INF/view/accounts/IncomeBillListForCancel.jsp</result>
+    	  <result name="toSelectIncomeBillListForCancel">/WEB-INF/view/accounts/IncomeBillListForCancel.jsp</result>
+    	  <result name="toDisabledIncomeBill">/WEB-INF/view/accounts/IncomeBillListForCancel.jsp</result>
+    	  <result name="disabledIcomeBill">/WEB-INF/view/accounts/IncomeBillListForCancel.jsp</result>
+    	  <result name="disabledAllInncomeBill">/WEB-INF/view/accounts/IncomeBillListForCancel.jsp</result>
+    	  <!-- 资金借入 -->
+    	  <result name="toInLoanBillListForCancel">/WEB-INF/view/accounts/LoanBillListForCancel.jsp</result>
+    	  <result name="toSelectInLoanBillListForCancel">/WEB-INF/view/accounts/LoanBillListForCancel.jsp</result>
+    	  <result name="toDisabledInLoanBill">/WEB-INF/view/accounts/LoanBillListForCancel.jsp</result>
+    	  <result name="disabledInLoanBill">/WEB-INF/view/accounts/LoanBillListForCancel.jsp</result>
+    	  <result name="disabledAllInLoanBill">/WEB-INF/view/accounts/LoanBillListForCancel.jsp</result>
+    	  <!-- 资金借出 -->
+    	  <result name="toLoanBillOutListForCancel">/WEB-INF/view/accounts/LoanBillOutListForCancel.jsp</result>
+    	  <result name="toSelectInOutLoanBillListForCancel">/WEB-INF/view/accounts/LoanBillOutListForCancel.jsp</result>
+    	  <result name="toDisabledOutLoanBill">/WEB-INF/view/accounts/LoanBillOutListForCancel.jsp</result>
+    	  <result name="disabledOutLoanBill">/WEB-INF/view/accounts/LoanBillOutListForCancel.jsp</result>
+    	  <result name="disabledAllOutLoanBill">/WEB-INF/view/accounts/LoanBillOutListForCancel.jsp</result>
+    	  <!-- 付款单作废 -->
+    	  <result name="toPayBillListForCancel">/WEB-INF/view/accounts/PayBillListForCancel.jsp</result>
+    	  <result name="toSelectPayBillListForCancel">/WEB-INF/view/accounts/PayBillListForCancel.jsp</result>
+    	  <result name="toDisabledPayBill">/WEB-INF/view/accounts/PayBillListForCancel.jsp</result>
+    	  <result name="disabledPayBill">/WEB-INF/view/accounts/PayBillListForCancel.jsp</result>
+    	  <result name="disabledAllPayBill">/WEB-INF/view/accounts/PayBillListForCancel.jsp</result>
+    	  <!-- 收款单作废 -->
+    	  <result name="toReceiveBillListForCancel">/WEB-INF/view/accounts/ReceiveBillListForCancel.jsp</result>
+    	  <result name="toSelectReceiveBillListForCancel">/WEB-INF/view/accounts/ReceiveBillListForCancel.jsp</result>
+    	  <result name="toDisabledReceiveBill">/WEB-INF/view/accounts/ReceiveBillListForCancel.jsp</result>
+    	  <result name="disabledReceiveBill">/WEB-INF/view/accounts/ReceiveBillListForCancel.jsp</result>
+    	  <result name="disabledAllReceiveBill">/WEB-INF/view/accounts/ReceiveBillListForCancel.jsp</result>
+    	  <!-- 转账取款作废 -->
+    	  <result name="toTransferBillListForCancel">/WEB-INF/view/accounts/TransferBillListForCancel.jsp</result>
+    	  <result name="toSelectTransferBillListForCancel">/WEB-INF/view/accounts/TransferBillListForCancel.jsp</result>
+    	  <result name="toDisabledTransferBill">/WEB-INF/view/accounts/TransferBillListForCancel.jsp</result>
+    	  <result name="disabledTransferBill">/WEB-INF/view/accounts/TransferBillListForCancel.jsp</result>
+    	  <result name="disabledAllTransferBill">/WEB-INF/view/accounts/TransferBillListForCancel.jsp</result>
+    	</action>
+    </package>
+</struts>

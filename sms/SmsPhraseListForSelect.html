@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0057)http://115.28.87.22:8888/base/SmsPhraseListForSelect.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>选择常用短语 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="./minierp.js.下载"></script>
+
+<link rel="stylesheet" type="text/css" href="./base.css">
+<script src="./popup_ext.js.下载"></script>
+<script language="javascript">
+	function doNew(){
+		var url="/base/SmsPhraseNew.ihtm";
+		ShowIframeNoScroll("常用短语",url,500,300,"refreshWin()");
+	}
+	function refreshWin(){
+		window.location=window.location;
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',230,80,"doDelAct("+id+")");
+	}
+	function doDelAct(id){
+		if(popRetVal!=null){
+			window.location="/base/SmsPhraseDelete.ihtm?id="+id+"&from_url="+encodeURIComponent(window.location);
+		}
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function doSelect(index){
+		var arr=new Array(document.getElementById("li_"+index).getAttribute("content"));
+		parent.popRetVal=arr;
+		parent.ClosePop();
+	}
+	
+	function DoubleClick(it){
+		var arr=new Array(it.getAttribute("content"));
+		parent.popRetVal=arr;
+		parent.ClosePop();
+	}
+	function showMe(){
+
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet modal-dialog" onload="showMe();">
+<div class="sheet-main" style="width:274px;">
+  <div class="sheet-top">
+    <div class="content chit">
+      <h2>选择常用短语</h2>
+      <p>鼠标双击可以选中记录</p>
+    </div>
+  </div>
+  <div class="sheet-list" style="width:100%">
+    <div class="search-business chit-common">
+    	
+		<div class="chit-common-info">
+			<div class="chit-content" style="-webkit-overflow-scrolling:touch">
+				<ul>
+					
+				</ul>
+				
+				<input name="增加" type="button" value="增加" class="buttom" onclick="doNew();" style="float:right;">
+			</div>
+		</div>
+	</div>
+  </div>
+</div>		
+
+
+<span id="dialogCase"><div id="dialogBoxBG" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 620px; z-index: 10001; opacity: 0.4; background-color: rgb(0, 0, 0);"></div><div id="dialogBox" style="border: 1px solid rgb(230, 239, 248); z-index: 10003; position: absolute; width: 500px; left: 404px; top: 147px;"><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF"><tbody><tr height="24" id="dialogBoxTitleTr" bgcolor="#E6EFF8"><td><table style="-moz-user-select:none;height:24px;" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="6" height="24"></td><td id="dialogBoxTitle" style="color: rgb(0, 0, 0); font-size: 14px; font-weight: bold; text-align: left; cursor: move;">常用短语&nbsp;</td><td id="dialogClose" width="20" align="right" valign="middle"><img id="dialogBoxClose" src="./dialogclose.gif" border="0" align="absmiddle" style="cursor:pointer;" title="关闭"></td><td width="6"></td></tr></tbody></table></td></tr><tr id="dialogTr" style="height:300px" valign="top"><td id="dialogBody" style="position:relative;"><iframe width="100%" style="height:300px" name="ifr_popup0" id="ifr_popup0" src="./SmsPhraseNew.html" frameborder="0" scrolling="no"></iframe><div id="iframeBG" style="position:absolute;top:0px;left:0px;width:1px;height:1px;z-index:10005;filter: alpha(opacity=00);opacity:0.00;background-color:#ffffff;"><div></div></div></td></tr></tbody></table></div><div id="dialogBoxShadow" style="z-index: 10001; position: absolute; background: rgb(0, 0, 0); opacity: 0.2; top: 151px; left: 408px; width: 502px; height: 326px;"></div></span></body></html>

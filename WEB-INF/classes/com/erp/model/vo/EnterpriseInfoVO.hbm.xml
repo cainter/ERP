@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.EnterpriseInfoVO" table="enterprise_info">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="image" type="string">
+			<column name="image" length="100" />
+		</property>
+		<property name="slogan" type="string">
+			<column name="slogan" length="100" />
+		</property>
+		<property name="linkman" type="string">
+			<column name="linkman" length="30" />
+		</property>
+		<property name="phone" type="string">
+			<column name="phone" length="50" />
+		</property>
+		<property name="fax" type="string">
+			<column name="fax" length="50" />
+		</property>
+		<property name="address" type="string">
+			<column name="address" length="100" />
+		</property>
+		<property name="postcode" type="string">
+			<column name="postcode" length="20" />
+		</property>
+		<property name="bankName" type="string">
+			<column name="bank_name" length="50" />
+		</property>
+		<property name="bankAccount" type="string">
+			<column name="bank_account" length="50" />
+		</property>
+		<property name="loginLimit" type="int">
+			<column name="login_limit" length="4" not-null="true" />
+		</property>
+		<property name="lockHour" type="int">
+			<column name="lock_hour" length="4" not-null="true" />
+		</property>
+		<property name="pageSize" type="int">
+			<column name="page_size" length="4" not-null="true" />
+		</property>
+		<property name="printFoot" type="string">
+			<column name="print_foot" length="400" />
+		</property>
+		<property name="busiAutoExamine" type="string">
+			<column name="busi_auto_examine" length="1" />
+		</property>
+		<property name="bbPriceType" type="string">
+			<column name="bb_price_type" length="50" />
+		</property>
+		<property name="uploadPort" type="int">
+			<column name="upload_port" length="4" not-null="true" />
+		</property>
+		<property name="dbBackupFolder" type="string">
+			<column name="db_backup_folder" length="100" />
+		</property>
+		<property name="shortName" type="string">
+			<column name="short_name" length="20" />
+		</property>
+		<property name="smsCode" type="string">
+			<column name="sms_code" length="100" />
+		</property>
+		<property name="smsPwd" type="string">
+			<column name="sms_pwd" length="50" />
+		</property>
+		<property name="smsKey" type="string">
+			<column name="sms_key" length="50" />
+		</property>
+		<property name="dbAb" type="string">
+			<column name="db_ab" length="1" />
+		</property>
+		<property name="dbAbHour" type="int">
+			<column name="db_ab_hour" length="2" not-null="true" />
+		</property>
+		<property name="dbAbMinute" type="int">
+			<column name="db_ab_minute" length="2" not-null="true" />
+		</property>
+		<property name="lastDbAb" type="string">
+			<column name="last_db_ab" length="10" />
+		</property>
+		<property name="doPrint" type="string">
+			<column name="do_print" length="20" />
+		</property>
+		<property name="printWidth" type="string">
+			<column name="print_width" length="20" />
+		</property>
+		<property name="bbPrintImage" type="string">
+			<column name="bb_print_image" length="1" />
+		</property>
+		<property name="mbPrintImage" type="string">
+			<column name="mb_print_image" length="1" />
+		</property>
+		<property name="setuPrintImage" type="string">
+			<column name="setu_print_image" length="1" />
+		</property>
+		<property name="busiCooComp" type="string">
+			<column name="busi_coo_comp" length="1" />
+		</property>
+		<property name="baseTs" type="string">
+			<column name="base_ts" length="1" />
+		</property>
+		<property name="selectContact" type="string">
+			<column name="select_contact" length="20" />
+		</property>
+		<property name="workCenter" type="string">
+			<column name="work_center" length="1" />
+		</property>
+		<property name="smsClientType" type="string">
+			<column name="sms_client_type" length="30" />
+		</property>
+		<property name="dbAdel" type="string">
+			<column name="db_adel" length="1" />
+		</property>
+		<property name="loginImage" type="string">
+			<column name="login_image" length="100" />
+		</property>
+		<property name="msgInterval" type="int">
+		    <column name="msg_interval" length="2"></column>
+		</property>
+		<property name="busiOv" type="big_decimal">
+		    <column name="busi_ov" length="4" not-null="true"></column>
+		</property>
+		<property name="receOv" type="big_decimal">
+		    <column name="rece_ov" length="4" not-null="true"></column>
+		</property>
+		<property name="makeOv" type="big_decimal">
+		    <column name="make_ov" length="4" not-null="true"></column>
+		</property>
+		<property name="follOv" type="big_decimal">
+		    <column name="foll_ov" length="4" not-null="true"></column>
+		</property>
+		<property name="setuOv" type="big_decimal">
+		    <column name="setu_ov" length="4" not-null="true"></column>
+		</property>
+		<property name="comDesi" type="big_decimal">
+		    <column name="com_desi" length="4" not-null="true"></column>
+		</property>
+		<property name="cliDesi" type="big_decimal">
+		    <column name="cli_desi" length="4" not-null="true"></column>
+		</property>
+		<property name="busiModi" type="string">
+			<column name="busi_modi" length="1" />
+		</property>
+		<property name="coopModi" type="string">
+			<column name="coop_modi" length="1" />
+		</property>
+		<property name="bankTs" type="string">
+			<column name="bank_ts" length="1" not-null="true" />
+		</property>
+		<property name="storTs" type="string">
+			<column name="stor_ts" length="1" not-null="true" />
+		</property>
+		<property name="earlDataDays" type="int">
+			<column name="earl_data_days" length="4" not-null="true" />
+		</property>
+		<property name="busiLengType" type="string">
+			<column name="busi_leng_type" length="20" not-null="true" />
+		</property>
+		<property name="busiComp" type="string">
+			<column name="busi_comp" length="20" not-null="true" />
+		</property>
+		<property name="busiUplo" type="string">
+			<column name="busi_uplo" length="20" not-null="true" />
+		</property>
+		<property name="deskType" type="string">
+			<column name="desk_type" length="20" not-null="true" />
+		</property>
+		<property name="deliAutoComp" type="string">
+			<column name="deli_auto_comp" length="1" not-null="true" />
+		</property>
+		<property name="bankPr" type="string">
+			<column name="bank_pr" length="1" not-null="true" />
+		</property>
+		<property name="lengType" type="string">
+			<column name="leng_type" length="10" not-null="true" />
+		</property>
+		<property name="areaType" type="string">
+			<column name="area_type" length="10" not-null="true" />
+		</property>
+		<property name="busiProd" type="string">
+			<column name="busi_prod" length="10" not-null="true" />
+		</property>
+		<property name="busiBc" type="string">
+			<column name="busi_bc" length="1" not-null="true" />
+		</property>
+		<property name="deliBc" type="string">
+			<column name="deli_bc" length="1" not-null="true" />
+		</property>
+		<property name="makeBc" type="string">
+			<column name="make_bc" length="1" not-null="true" />
+		</property>
+		<property name="setuBc" type="string">
+			<column name="setu_bc" length="1" not-null="true" />
+		</property>
+		<property name="busiMng" type="string">
+			<column name="busi_mng" length="20" not-null="true" />
+		</property>
+		<property name="busiFoll" type="string">
+			<column name="busi_foll" length="20" not-null="true" />
+		</property>
+		<property name="busiDesi" type="string">
+			<column name="busi_desi" length="20" not-null="true" />
+		</property>
+		<property name="outBusi" type="string">
+			<column name="out_busi" length="20" not-null="true" />
+		</property>
+		<property name="feeBusi" type="string">
+			<column name="fee_busi" length="20" not-null="true" />
+		</property>
+		<property name="purcStoc" type="string">
+			<column name="purc_stoc" length="1" not-null="true" />
+		</property>
+		<property name="qq" type="string">
+			<column name="qq" length="50" />
+		</property>
+		<property name="busiClos" type="string">
+			<column name="busi_clos" length="20" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

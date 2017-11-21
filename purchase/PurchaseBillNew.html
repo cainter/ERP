@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div>
+			<form name="frm" method="post" enctype="multipart/form-data">
+				<div class="Container">
+					<div class="Contnet Paper">
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>新增采购单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+											<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput(&#39;purchaseDateStr&#39;);" id="purchaseBill.billCode" name="purchaseBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>采购日期：
+
+											<input type="text" class="tbBillDate TextBox " maxlength="15" id="purchaseDateStr" name="purchaseDateStr" value="2017-07-08">
+											<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;purchaseDateStr&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;purchaseDateStr&#39;));">
+											<select id="purchaseDateHourSelect" class="ddlDateHour" onchange="changeTimeSelect(this,&#39;purchaseDateHour&#39;);">
+												<option value="00" selected="">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select>
+											<select id="purchaseDateMinuteSelect" class="ddlDateMinute" onchange="changeTimeSelect(this,&#39;purchaseDateMinute&#39;);">
+												<option value="00" selected="">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="36">36</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="39">39</option>
+												<option value="40">40</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="50">50</option>
+												<option value="51">51</option>
+												<option value="52">52</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="56">56</option>
+												<option value="57">57</option>
+												<option value="58">58</option>
+												<option value="59">59</option>
+											</select>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 单 头信息 -->
+						<table class="BillHeadInfo" style="width: 80%;">
+							<tbody>
+								<tr>
+									<td width="33%">
+										<span class="MustInput">*</span>供应商：
+										<input class="TextBox readonly" style="width:160px" readonly="readonly" type="text" id="providerName" name="providerName" value="">
+										<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectProvider();">
+
+									</td>
+									<td width="33%" class="tc">
+										<span class="MustInput">*</span>采购仓库：
+										<select class="ddlInfo3_long" id="purchaseBill.storehouseId" name="purchaseBill.storehouseId">
+											<option value="0">==请选择==</option>
+
+											<option value="1">标识加工仓库</option>
+
+											<option value="2">中力门店仓库</option>
+
+											<option value="3">车间型材仓库</option>
+
+											<option value="4">车间耗材仓库</option>
+
+											<option value="5">车间工具仓库</option>
+
+										</select>
+
+									</td>
+									<td width="33%" class="tr">
+										订单合同号：
+										<input type="text" class="tbHead3 TextBox" maxlength="50" id="purchaseBill.contractCode" name="purchaseBill.contractCode" value="">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="BillDetails" style="width: 90%;">
+							<table data-toggle="table" data-click-to-select="true">
+								<thead>
+									<tr>
+										<th>材料编号</th>
+										<th>品名规格</th>
+										<th>单位</th>
+										<th>数量</th>
+										<th>单价（元）</th>
+										<th>金额（元）</th>
+										<th>备注</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="table-bot" style="margin:15px auto;width: 90%;">
+							请输入条形码：
+							<input type="text" class="TextBox" style="width:120px" id="pro_code" name="pro_code" onkeyup="checkProCode();" title="材料编号作为材料的条形码，可以在这里直接扫描出入库">
+							<input type="button" style="font-size:12px;" value="加入" onclick="addProCode();">
+							<a href="javascript:doMultiSelect();">增加采购明细</a>
+							<span id="hiSpan"><a href="javascript:doItemSelect(&#39;BUY&#39;);">选择交易历史</a></span>
+							<span style="color:#aaa">（点击这里添加采购的材料）</span>
+							<a id="uplo_link" href="javascript:doUpload();">从Excel导入</a>
+						</div>
+
+						<!-- 附加信息 -->
+						<div class="TopBottom_Border">
+							<table class="BillElseInfo" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th width="84px">预付款：</th>
+
+										<td width="200px">
+											<input type="text" class="tbInfo1 TextBox " maxlength="10" id="imprestStr" name="imprestStr" value="0">
+										</td>
+
+										<th width="84px">付款账户：</th>
+
+										<td width="273px">
+											<select id="purchaseBill.bankAccountId" name="purchaseBill.bankAccountId" class="ddlInfo3_long">
+
+												<option value="10">建行(秦朝阳)</option>
+
+												<option value="12">黄秀娟(长通物流(6116))</option>
+
+												<option value="9">工行(黄秀娟)</option>
+
+												<option value="8">交行(秦朝阳)</option>
+
+												<option value="13">黄秀娟(创新物流(5165))</option>
+
+												<option value="14">黄秀娟(豫鑫物流（73035）)</option>
+
+												<option value="4">农行(黄秀娟)</option>
+
+												<option value="15">黄秀娟(微信15225099188)</option>
+
+												<option value="11">中行(秦朝阳)</option>
+
+												<option value="7"> 浦发(公司一般户)</option>
+
+												<option value="2">中行(公司基本户)</option>
+
+												<option value="1">现金(会计)</option>
+
+												<option value="5">浦发(POS机刷卡)</option>
+
+												<option value="6">淘宝 黄秀娟(支付宝 15225099188)</option>
+
+												<option value="16">浦发(黄秀娟)</option>
+
+												<option value="17">秦朝阳(微信13608675408)</option>
+
+											</select>
+										</td>
+
+										<th width="84px">金额合计：</th>
+
+										<td width="179px">
+											<input type="text" class="tbInfo3 TextBox readonly" readonly="readonly" maxlength="10" name="purchaseBill.cost" id="purchaseBill.cost" value="0">
+										</td>
+
+									</tr>
+									<tr>
+										<th><span class="MustInput">*</span>经办人：</th>
+										<td>
+
+											<input type="text" class="tbInfo1 TextBox readonly" readonly="true" id="purchaseBill.managerName" name="purchaseBill.managerName" value="标识汇">
+											<img src="../images/make-a.gif" class="imgIconButton" onclick="selectManager();">
+
+											<input type="hidden" id="purchaseBill.managerId" name="purchaseBill.managerId" value="65">
+
+										</td>
+										<th>&nbsp;</th>
+										<td>&nbsp;</td>
+										<th>&nbsp;</th>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<th>摘要：</th>
+
+										<td colspan="5">
+											<textarea class="TextBox" name="purchaseBill.content" id="purchaseBill.content" style="width:764px;height:40px"></textarea>
+										</td>
+
+									</tr>
+									<tr>
+										<th>备注：</th>
+
+										<td colspan="5">
+											<textarea class="TextBox" name="purchaseBill.mark" id="purchaseBill.mark" style="width:764px;height:40px"></textarea>
+										</td>
+
+									</tr>
+									<tr>
+										<th>上传凭证：</th>
+										<td colspan="5">
+											<div style="position:relative; width:480px; height:28px; overflow:hidden; float:left;">
+												<input type="text" class="TextBox readonly" readonly="readonly" style="width:470px;" name="tmp_att" id="tmp_att">
+											</div>
+											<div style="position:relative;width:40px;height:28px;overflow:hidden;float:left;">
+												<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;">
+													<img class="make-a" src="../images/make-a.gif">
+												</div>
+												<input type="file" name="attach_file" id="attach_file" onchange="document.getElementById(&#39;tmp_att&#39;).value=this.value" style="position:absolute;top:0px;right:0px;cursor:pointer;opacity:0;filter:alpha(opacity:0);z-index:99;">
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br>
+						<div class="BillNotes">
+							<span>开单人：标识汇 2017-07-08 17:06</span>
+							<span>审核人：</span>
+							<span>单据帐套：新异</span>
+
+						</div>
+
+					</div>
+
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保 存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并复制</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取 消</a>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

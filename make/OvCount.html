@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://115.28.87.22:8888/make/OvCount.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>产值统计表 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function createPageParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("end_date").value);
+		str=str+"&sta_name="+encodeURIComponent(document.getElementById("sta_name").value);
+		str=str+"&dep_id="+document.getElementById("dep_id").value;
+		str=str+"&ts_id="+document.getElementById("ts_id").value;
+		
+		return str;
+	}
+	
+	function createProgramParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("hid_start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("hid_end_date").value);
+		str=str+"&sta_name="+encodeURIComponent(document.getElementById("hid_sta_name").value);
+		str=str+"&dep_id=";
+		str=str+"&ts_id=1";
+		
+		return str;
+	}
+
+	function doSearch(){
+		var str;
+		if(IsAdvSearch){//高级
+			str="search_type=1";
+			if(document.getElementById("cb_date").checked){
+				if(!checkDateStr(document.getElementById("start_date").value,"开始日期")){
+					return;
+				}
+				if(!checkDateStr(document.getElementById("end_date").value,"结束日期")){
+					return;
+				}
+				str=str+"&cb_date=1";
+			}
+			if(document.getElementById("cb_dep").checked){
+				var depId=document.getElementById("dep_id").value;
+				if(depId==null || depId=="" || depId=="0"){
+					ShowAlert('提示框','请选择部门',200,100);
+					return;
+				}
+				str=str+"&cb_dep=1";
+			}
+			if(document.getElementById("cb_sta").checked){
+				var staName=document.getElementById("sta_name").value.trim();
+				if(staName==null || staName==""){
+					ShowAlert('提示框','请输入员工姓名',200,100);
+					return;
+				}
+				str=str+"&cb_sta=1";
+			}
+			if(document.getElementById("cb_ts").checked){
+				var tsId=document.getElementById("ts_id").value;
+				if(tsId==null || tsId=="" || tsId=="0"){
+					ShowAlert('提示框','请选择帐套',200,100);
+					return;
+				}
+				str=str+"&cb_ts=1";
+			}
+		}else{//快速
+			str="search_type=2";
+			if(!checkDateStr(document.getElementById("start_date").value,"开始日期")){
+				return;
+			}
+			if(!checkDateStr(document.getElementById("end_date").value,"结束日期")){
+				return;
+			}
+		}
+		var paraStr=createPageParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		window.location="/make/OvCount.ihtm?"+str;
+	}
+	function doGo(pageIndex){
+		var str=getSearchCondition();
+		str=str+"&current_page="+pageIndex;
+		window.location="/make/OvCount.ihtm?"+str;
+	}
+	function getSearchCondition(){
+		var searchType="1";
+		var str="search_type="+searchType;
+		if(searchType=="1"){//高级
+			str=str+"&cb_date=1";
+			
+			
+			str=str+"&cb_ts=1";
+		}else{//快速
+			
+		}
+		
+		var paraStr=createProgramParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		
+		return str;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function DoubleClick(it){
+		
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="/make/OvCount.ihtm?content_type=EXCEL&"+str;
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		//Window_Onload();
+	}
+	function checkInput(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doAutoCheck(objId){
+		document.getElementById(objId).checked=true;
+	}
+	function selectStafferName(objId,checkObjId){
+		var url="/base/StafferMainForSelect.ihtm";
+		var cb="selectStafferNameCallBack('"+objId+"','"+checkObjId+"')";
+		ShowIframe("选择员工",url,800,500,cb,900,600);
+	}
+	function selectStafferNameCallBack(objId,checkObjId){
+		if(popRetVal!=null){
+			var arr=popRetVal.split(";");
+			document.getElementById(objId).value=arr[1];
+			doAutoCheck(checkObjId);
+		}
+	}
+	function setDate(type){
+		var d=new Date();
+		var startStr="";
+		var endStr="";
+		if(type=="CURRENT_MONTH"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-01";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="PREVIEW_MONTH"){
+			d=new Date(d.getFullYear(),d.getMonth(),1);
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-1";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="TODAY"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="YESTERDAY"){
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}
+		document.getElementById("start_date").value=startStr;
+		document.getElementById("end_date").value=endStr;
+		doAutoCheck("cb_date");
+	}
+	function showDetail(staId,staName,type){
+		var str="search_type=1";
+		str=str+"&cb_date=1&start_date=2017-07-01&end_date=2017-07-09";
+		
+		str=str+"&cb_ts=1&ts_id=1";
+		if(staId!=0){
+			str=str+"&cb_sta=1&sta_id="+staId+"&sta_name="+encodeURIComponent(staName);
+		}
+		var url="";
+		if(type=='MNG'){
+			url="OvBusinessList.ihtm?"+str;
+			showWin(900,600,url);
+		}else if(type=='FOL'){
+			url="OvFollowList.ihtm?"+str;
+			showWin(900,600,url);
+		}else if(type=='DES'){
+			url="OvDesignList.ihtm?"+str;
+			showWin(900,600,url);
+		}else if(type=='MAK'){
+			url="OvMakeList.ihtm?"+str;
+			showWin(1024,600,url);
+		}else if(type=='REC'){
+			url="OvReceiveList.ihtm?"+str;
+			showWin(900,600,url);
+		}else if(type=='SET'){
+			url="OvSetuList.ihtm?"+str;
+			showWin(1024,600,url);
+		}else if(type=='BILL'){
+			url="/make/OvBillSearchResult.ihtm?cb_exa=1&exa=Y&"+str;
+			showWin(900,600,url);
+		}else if(type=='SAL'){
+			url="OvSaleList.ihtm?"+str;
+			showWin(900,600,url);
+		}
+	}
+</script>
+</head>
+<body oncontextmenu="return false">
+<div class="Wrap"><!-- 页面主框架 -->
+    
+	<div id="ListContainer" class="Container" style="width: 984px;"><!-- 主体容器 -->
+	    
+	    <!-- 标题栏 -->
+	    <div class="Heading BillIcon">
+	        <div class="HeadingContent">
+	            <h1>产值统计表</h1>
+	            <span class="Note">统计指定期间员工的产值，按产值从大到小排列</span>
+	        </div>
+	    </div>
+	
+		<!-- 主内容 -->
+		<div class="Content">
+	        <!-- 筛选控件栏 -->
+	        <div class="FilterBar ClearFix">
+	            <div class="SearchIcon"></div>
+	            <span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_date" id="cb_date" checked="true" style="visibility:hidden;">
+	            			日期
+	            		</th>
+	            		<td width="360px">
+	            			<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_date&#39;);" id="start_date" name="start_date" value="2017-07-01">
+							<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_date\&#39;)&#39;);">
+							<input type="hidden" id="hid_start_date" value="2017-07-01">
+				            	至
+							<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" id="end_date" name="end_date" value="2017-07-09">
+							<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_date\&#39;)&#39;);">
+							<input type="hidden" id="hid_end_date" value="2017-07-09">
+							<a href="javascript:setDate(&#39;CURRENT_MONTH&#39;);">本月</a>
+							<a href="javascript:setDate(&#39;TODAY&#39;);">今天</a>
+							<a href="javascript:setDate(&#39;YESTERDAY&#39;);">昨天</a>
+							<a href="javascript:setDate(&#39;PREVIEW_MONTH&#39;);">上月</a>
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+	            <span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+	            	<input type="button" value=" 查 询" onclick="doSearch();" class="buttom search-but" id="sSearchButton" name="sSearchButton">
+					<input type="button" value=" 导 出" onclick="doDownload();" class="buttom search-out" id="sDownloadButton" name="sDownloadButton">
+	            </span>
+				<div id="dvMoreOptionBox" class="MoreOptionBox" style="display:none;">
+					<table class="MoreOption" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<th class="c1" width="80px">
+			        			<input type="checkbox" name="cb_dep" id="cb_dep">
+			        			部门
+			        		</th>
+			        		<td class="c3" width="180px">
+			        			<select id="dep_id" name="dep_id" onfocus="doAutoCheck(&#39;cb_dep&#39;);">
+									<option value="0">==请选择==</option>
+	  								
+<option value="1">易凯管理员</option>
+<option value="13">总经办</option>
+<option value="22">&nbsp;|--财务</option>
+<option value="14">新异店</option>
+<option value="15">&nbsp;|--客服</option>
+<option value="23">&nbsp;|--设计</option>
+<option value="24">&nbsp;|--业务</option>
+<option value="16">业务来源</option>
+<option value="17">标识加工车间</option>
+<option value="21">合作伙伴</option>
+<option value="32">标识汇运营部</option>
+<option value="33">财务部</option>
+	  							</select>
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_sta" id="cb_sta">
+			        			员工
+			        		</th>
+			        		<td class="c3">
+			        			<input type="text" class="TextBox" maxlength="15" name="sta_name" id="sta_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_sta&#39;);" value="">
+								<img class="imgIconButton" src="../images/make-a.gif" onclick="selectStafferName(&#39;sta_name&#39;,&#39;cb_sta&#39;);">
+								<input type="hidden" id="hid_sta_name" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_ts" id="cb_ts" checked="true">
+			        			账套
+			        		</th>
+			        		<td class="c3">
+			        			<select name="ts_id" id="ts_id" onfocus="doAutoCheck(&#39;cb_ts&#39;);">
+					  				<option value="0">==请选择账套==</option>
+					  				
+					  				<option value="1" selected="">新异</option>
+					  				
+					  				<option value="2">网络公司</option>
+					  				
+				  				</select>
+			    			</td>
+			    		</tr>
+			    	</tbody></table>
+			    	
+					<div class="OptionOrderBy">
+	                    <span class="fr"><a href="javascript:;" id="lnkHiddenOption">隐藏查询选项</a></span>
+	                </div>
+				</div>
+			</div>
+			
+			<!-- 提示信息显示栏 -->
+	        <div class="MsgBar">
+	            
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	        </div>
+	        
+		    <div class="table-list">
+		        <table width="100%">
+		          	<tbody><tr>
+						<th width="4%" rowspan="2">序号</th>
+						<th width="8%" rowspan="2">部门</th>
+						<th width="7%" rowspan="2">姓名</th>
+						<th width="7%" rowspan="2">职位</th>
+						<th width="66%" colspan="8">当期产值</th>
+						<th width="8%" rowspan="2">营销产值</th>
+				  	</tr>
+				 	<tr>
+						<th width="8%">接单</th>
+						<th width="8%">跟单</th>
+						<th width="8%">设计</th>
+						<th width="8%">制作</th>
+						<th width="8%">收欠费</th>
+						<th width="8%">安装</th>
+						<th width="8%">其他产值</th>
+						<th width="10%">合计</th>
+				  	</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr1" index="1" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>1</td>
+						<td>
+							业务来源
+							<input type="radio" name="query_checkbox" value="17" style="display:none">
+						</td>
+						<td>伏龙</td>
+						<td>经理</td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;MNG&#39;);">744.10</a></td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;FOL&#39;);">692.70</a></td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;DES&#39;);">1783.15</a></td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;REC&#39;);">112.40</a></td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;BILL&#39;);"></a></td>
+						<td>3332.35</td>
+						<td><a href="javascript:showDetail(17,&#39;伏龙&#39;,&#39;SAL&#39;);">7441.00</a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr2" index="2" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>2</td>
+						<td>
+							业务来源
+							<input type="radio" name="query_checkbox" value="16" style="display:none">
+						</td>
+						<td>黄秀娟</td>
+						<td></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;MNG&#39;);">824.60</a></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;FOL&#39;);"></a></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;DES&#39;);">824.60</a></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;REC&#39;);">312.10</a></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;BILL&#39;);"></a></td>
+						<td>1961.30</td>
+						<td><a href="javascript:showDetail(16,&#39;黄秀娟&#39;,&#39;SAL&#39;);">8246.00</a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr1" index="3" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>3</td>
+						<td>
+							业务来源
+							<input type="radio" name="query_checkbox" value="46" style="display:none">
+						</td>
+						<td>张永灿</td>
+						<td></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;MNG&#39;);">432.00</a></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;FOL&#39;);">96.90</a></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;DES&#39;);">577.35</a></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;REC&#39;);">225.00</a></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;BILL&#39;);"></a></td>
+						<td>1331.25</td>
+						<td><a href="javascript:showDetail(46,&#39;张永灿&#39;,&#39;SAL&#39;);">3560.00</a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr2" index="4" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>4</td>
+						<td>
+							业务来源
+							<input type="radio" name="query_checkbox" value="43" style="display:none">
+						</td>
+						<td>邵丽萍</td>
+						<td>会计</td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;MNG&#39;);">170.00</a></td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;FOL&#39;);">115.70</a></td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;DES&#39;);">343.55</a></td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;REC&#39;);">26.30</a></td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;BILL&#39;);"></a></td>
+						<td>655.55</td>
+						<td><a href="javascript:showDetail(43,&#39;邵丽萍&#39;,&#39;SAL&#39;);">274.00</a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr1" index="5" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>5</td>
+						<td>
+							业务来源
+							<input type="radio" name="query_checkbox" value="45" style="display:none">
+						</td>
+						<td>韩柯洋</td>
+						<td></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;MNG&#39;);">238.30</a></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;FOL&#39;);"></a></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;DES&#39;);">238.30</a></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;REC&#39;);"></a></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;BILL&#39;);"></a></td>
+						<td>476.60</td>
+						<td><a href="javascript:showDetail(45,&#39;韩柯洋&#39;,&#39;SAL&#39;);">2383.00</a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr2" index="6" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>6</td>
+						<td>
+							客服
+							<input type="radio" name="query_checkbox" value="26" style="display:none">
+						</td>
+						<td>温艳丽</td>
+						<td>客服</td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;MNG&#39;);"></a></td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;FOL&#39;);"></a></td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;DES&#39;);"></a></td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;REC&#39;);">239.90</a></td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;BILL&#39;);"></a></td>
+						<td>239.90</td>
+						<td><a href="javascript:showDetail(26,&#39;温艳丽&#39;,&#39;SAL&#39;);"></a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr1" index="7" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>7</td>
+						<td>
+							易凯管理员
+							<input type="radio" name="query_checkbox" value="-1" style="display:none">
+						</td>
+						<td>管理员</td>
+						<td></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;MNG&#39;);"></a></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;FOL&#39;);"></a></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;DES&#39;);"></a></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;REC&#39;);">46.50</a></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;BILL&#39;);"></a></td>
+						<td>46.50</td>
+						<td><a href="javascript:showDetail(-1,&#39;管理员&#39;,&#39;SAL&#39;);"></a></td>
+					</tr>
+				  	
+					
+					
+					<tr class="query_list_data_tr2" index="8" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td>8</td>
+						<td>
+							标识加工车间
+							<input type="radio" name="query_checkbox" value="34" style="display:none">
+						</td>
+						<td>贾文博</td>
+						<td>打印  组装</td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;MNG&#39;);"></a></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;FOL&#39;);"></a></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;DES&#39;);"></a></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;MAK&#39;);"></a></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;REC&#39;);"></a></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;SET&#39;);"></a></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;BILL&#39;);"></a></td>
+						<td></td>
+						<td><a href="javascript:showDetail(34,&#39;贾文博&#39;,&#39;SAL&#39;);">760.00</a></td>
+					</tr>
+				  	
+				  	<tr>
+						<th colspan="4">合计</th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;MNG&#39;);">2409.00</a></th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;FOL&#39;);">905.30</a></th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;DES&#39;);">3766.95</a></th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;MAK&#39;);"></a></th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;REC&#39;);">962.20</a></th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;SET&#39;);"></a></th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;BILL&#39;);"></a></th>
+						<th>8043.45</th>
+						<th><a href="javascript:showDetail(0,&#39;&#39;,&#39;SAL&#39;);">22664.00</a></th>
+				  	</tr>
+				</tbody></table>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function ChangeWindowSize( container, maxWidth ){
+	    setTimeout( function(){
+	        var w1 = document.documentElement.clientWidth-40;
+	        if( w1>maxWidth ) w1 = maxWidth;
+	        else if( w1<970 ) w1 = 960;
+	        container.style.width = w1+'px';
+	    }, 300 );
+	}
+	var IsAdvSearch = false;
+	(function(){
+		doInit();
+	    var ListContainer = document.getElementById('ListContainer');
+	    ChangeWindowSize( ListContainer, 2020 );    // 超过 1280 的最大 1260 ，不全部铺满
+	
+	    var lnkMoreOption   = document.getElementById('lnkMoreOption');
+	    var lnkHiddenOption = document.getElementById('lnkHiddenOption');
+	    lnkMoreOption.onclick = function(){
+	    	IsAdvSearch = true;
+	        document.getElementById('dvMoreOptionBox').style.display = 'block';
+	        document.getElementById('cb_date').style.visibility = 'visible';
+	        this.style.visibility = 'hidden';
+	    };
+	    lnkHiddenOption.onclick = function(){
+	    	IsAdvSearch = false;
+	        document.getElementById('dvMoreOptionBox').style.display = 'none';
+	        document.getElementById('cb_date').style.visibility = 'hidden';
+	        lnkMoreOption.style.visibility = 'visible';
+	    };
+	})();
+</script>
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

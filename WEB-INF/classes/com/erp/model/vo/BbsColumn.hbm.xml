@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.BbsColumn" table="bbs_column">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="columnName" type="string">
+			<column name="column_name" length="50" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="100" />
+		</property>
+		<property name="sequenceCode" type="int">
+			<column name="sequence_code" length="4" not-null="true" />
+		</property>
+		<property name="lastTopicId" type="long">
+			<column name="last_topic_id" not-null="true" />
+		</property>
+		<property name="lastTopicTitle" type="string">
+			<column name="last_topic_title" length="100" />
+		</property>
+		<property name="lastTopicAuthorId" type="long">
+			<column name="last_topic_author_id" not-null="true" />
+		</property>
+		<property name="lastTopicAuthorName" type="string">
+			<column name="last_topic_author_name" length="30" />
+		</property>
+		<property name="lastTopicTime" type="timestamp">
+			<column name="last_topic_time" />
+		</property>
+    </class>
+</hibernate-mapping>

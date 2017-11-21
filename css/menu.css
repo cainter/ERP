@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+body{
+	background-color:#535353;
+}
+.list_dl{
+	width:200px;
+	color:#ffffff;
+	padding-left:20px;
+	padding-right:20px;
+}
+.list_dl *{
+	padding:0px;
+	margin:0px;
+}
+.list_dt{
+	padding-top:20px;
+	padding-bottom:10px;
+	padding-left:20px;
+	font-size:18px;
+	border-bottom:1px inherit #e5e5e5;
+}
+.list_dt:hover{
+	cursor:pointer;
+}
+.list_dd{
+	font-size:16px;
+	padding-left:40px;
+	display:none;
+}
+.list_dd li{
+	padding-top:10px;
+	list-style: none;
+}
+.list_dd li a{
+	font-size:16px;
+	font-style:normal;
+	font-weight:normal;
+	color:#ffffff;
+	text-decoration:none;
+}

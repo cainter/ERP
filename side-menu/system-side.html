@@ -1,0 +1,139 @@
+<!--系统管理侧边栏-->
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>配置<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="javascript:showWin(['1200px', '620px'],'system/EnterpriseInfoEdit.html');">系统配置</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['520px', '640px'],'sms/SmsSubscribe.html');">消息提醒设置</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>账户<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="javascript:showWin(['600px', '530px'],'system/UserList.html');">用户权限</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>规则<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="javascript:showWin(['910px', '530px'],'system/CodeRuleMain.html');">主数据编号规则</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['910px', '530px'],'system/CodeRuleMain.html');">单据编号与打印说明</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>历史<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="javascript:showWin(['900px', '600px'],'system/CancelLogList.html');">单据作废历史</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['1024px', '600px'],'business/BusinessLogList.html');">业务单改单历史</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['1024px', '600px'],'base/EstablishmentLogSearchResult.html');">客户修改历史</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['900px', '600px'],'sms/SmsHistoryList.html');">短信消费历史</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['900px', '600px'],'system/SystemLogList.html');">登录历史</a>
+		</li>
+		<li>
+			<a href="#">现金日志</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>导入<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">导入客户</a>
+		</li>
+		<li>
+			<a href="#">导入外协商</a>
+		</li>
+		<li>
+			<a href="#">导入供应商</a>
+		</li>
+		<li>
+			<a href="#">导入员工</a>
+		</li>
+		<li>
+			<a href="#">导入材料</a>
+		</li>
+		<li>
+			<a href="#">导入项目类型</a>
+		</li>
+		<li>
+			<a href="#">导入业务项目价格</a>
+		</li>
+		<li>
+			<a href="#">导入外协项目价格</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>期初<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li><!--javascript:doImpo("/base/EstBegiImpoForm.ihtm?type=CLIE","/base/EstBegiImpo.ihtm?type=CLIE");-->
+			<a href="#">导入客户期初欠款</a>
+		</li>
+		<li><!--javascript:doImpo("/base/EstBegiImpoForm.ihtm?type=COOP","/base/EstBegiImpo.ihtm?type=COOP");-->
+			<a href="#">导入外协商期初欠款</a>
+		</li>
+		<li><!--javascript:doImpo("/base/EstBegiImpoForm.ihtm?type=PROV","/base/EstBegiImpo.ihtm?type=PROV");-->
+			<a href="#">导入供应商期初欠款</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>其他<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="javascript:showWin(['900px', '550px'],'system/DbBackupList.html');">数据库备份</a>
+		</li>
+		<li>
+			<a href="javascript:showWin(['470px', '300px'],'system/TallySetList.html');">账套管理</a>
+		</li>
+	</ul>
+</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

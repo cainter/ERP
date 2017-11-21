@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.accounts.vo.BankAccountDetailVO" table="bank_account_detail">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="costDate" type="timestamp">
+			<column name="cost_date" />
+		</property>
+		<property name="bankAccountId" type="long">
+			<column name="bank_account_id" not-null="true" />
+		</property>
+		<property name="cost" type="big_decimal">
+			<column name="cost" length="2" not-null="true" />
+		</property>
+		<property name="costType" type="string">
+			<column name="cost_type" length="30" not-null="true" />
+		</property>
+		<property name="billCode" type="string">
+			<column name="bill_code" length="30" not-null="true" />
+		</property>
+		<property name="billType" type="string">
+			<column name="bill_type" length="30" not-null="true" />
+		</property>
+		<property name="rcType" type="string">
+			<column name="rc_type" length="30" not-null="true" />
+		</property>
+		<property name="managerName" type="string">
+			<column name="manager_name" length="30" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="600" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+		<property name="billId" type="long">
+			<column name="bill_id" not-null="true" />
+		</property>
+		<property name="extBillType" type="string">
+			<column name="ext_bill_type" length="30" />
+		</property>
+		<property name="financeType" type="string">
+			<column name="finance_type" length="30" />
+		</property>
+		<property name="operType" type="string">
+			<column name="oper_type" length="30" not-null="true" />
+		</property>
+		<property name="baCost" type="big_decimal">
+			<column name="ba_cost" length="2" not-null="true" />
+		</property>
+		<property name="billDate" type="timestamp">
+			<column name="bill_date" not-null="true" />
+		</property>
+		<property name="logData" type="string">
+			<column name="log_data" length="1" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

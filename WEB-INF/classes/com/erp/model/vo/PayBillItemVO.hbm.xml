@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.PayBillItemVO" table="pay_bill_item">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="billId" type="long">
+			<column name="bill_id" not-null="true" />
+		</property>
+		<property name="purchaseBillId" type="long">
+			<column name="purchase_bill_id" not-null="true" />
+		</property>
+		<property name="purchaseBillCode" type="string">
+			<column name="purchase_bill_code" length="30" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="400" />
+		</property>
+		<property name="purchaseDate" type="date">
+			<column name="purchase_date" />
+		</property>
+		<property name="totalCost" type="big_decimal">
+			<column name="total_cost" length="2" not-null="true" />
+		</property>
+		<property name="remainCost" type="big_decimal">
+			<column name="remain_cost" length="2" not-null="true" />
+		</property>
+		<property name="thisCost" type="big_decimal">
+			<column name="this_cost" length="2" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

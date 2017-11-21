@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.CooperBillItemVO" table="cooper_bill_item">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="makeRequire" type="string">
+			<column name="make_require" length="1000" />
+		</property>
+		<property name="billId" type="long">
+			<column name="bill_id" not-null="true" />
+		</property>
+		<property name="amount" type="big_decimal">
+			<column name="amount" length="4" not-null="true" />
+		</property>
+		<property name="gatheredAmount" type="big_decimal">
+			<column name="gathered_amount" length="4" not-null="true" />
+		</property>
+		<property name="unitPrice" type="big_decimal">
+			<column name="unit_price" length="8" not-null="true" />
+		</property>
+		<property name="cost" type="big_decimal">
+			<column name="cost" length="2" not-null="true" />
+		</property>
+		<property name="makeTypeId" type="long">
+			<column name="make_type_id" not-null="true" />
+		</property>
+		<property name="length" type="big_decimal">
+			<column name="length" length="3" not-null="true" />
+		</property>
+		<property name="width" type="big_decimal">
+			<column name="width" length="3" not-null="true" />
+		</property>
+		<property name="squareNum" type="big_decimal">
+			<column name="square_num" length="3" not-null="true" />
+		</property>
+		<property name="specification" type="string">
+			<column name="specification" length="500" />
+		</property>
+		<property name="finishedContent" type="string">
+			<column name="finished_content" length="10000" />
+		</property>
+		<property name="unit" type="string">
+			<column name="unit" length="30" />
+		</property>
+		<property name="priceType" type="string">
+			<column name="price_type" length="30" not-null="true" />
+		</property>
+		<property name="bbItemId" type="long">
+			<column name="bb_item_id" not-null="true" />
+		</property>
+		<property name="bbCode" type="string">
+			<column name="bb_code" length="30" />
+		</property>
+		<property name="proId" type="long">
+			<column name="pro_id" not-null="true" />
+		</property>
+		<property name="proName" type="string">
+			<column name="pro_name" length="200" />
+		</property>
+		<property name="lengType" type="string">
+			<column name="leng_type" length="10" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

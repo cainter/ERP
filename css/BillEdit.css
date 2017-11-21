@@ -1,0 +1,297 @@
+/*-------------------------- 基础通用的 -----------------------------------------*/
+body { margin:0; padding:0; font:12px/1.5 tahoma,arial,'bitstream vera sans',helvetica,sans-serif; color: #444; }
+form { margin:0; padding:0; }
+/*ul, li,dl, dt, form, span, td, th,p {margin: 0px auto;padding: 0px auto; }*/
+li,ul { list-style-type:none; display:inline; margin:0; padding:0; }
+img { border:none;vertical-align:middle; padding:0px; margin:0px;}
+dl, dt, p, h2, h3, h4, h5, pre { margin:0; padding:0; }
+p { text-indent:2em; }
+input, select, textarea { margin:0; padding:0; }
+input{ padding:0 1px; }
+textarea { resize:none; }
+
+ul.list, ul.list li{ list-style-type: disc; display: block; list-style-position: outside; margin-left: 10px; }
+
+.clr{ clear:both; }
+.fl{ float:left; }
+.fr{ float:right; }
+.tl{ text-align:left; }
+.tr{ text-align:right; }
+table td.tl, table th.tl { text-align:left; }
+table td.tc, table th.tc { text-align:center; }
+table td.tr, table th.tr { text-align:right; }
+table td.vt, table th.vt { vertical-align:top; }
+table td.vm, table th.vm { vertical-align:middle; }
+table td.vb, table th.vb { vertical-align:bottom; }
+
+a:link, a:visited{ color:#0272d2; text-decoration:none; }
+a:hover{ color:#ff7f0d; text-decoration: underline; }
+
+a.detail, a.detail:visited, a.detail:active{ color:#666; text-decoration:none; }
+a.detail:hover{ color:green !important; border-bottom:1px dotted green; text-decoration:none; cursor:help; }
+
+a.boxButton { display:block; padding:2px; border:green 1px solid; color:green; background:#f6f6f6; text-align:center; }
+a.boxButton:hover { color:white; background:green; text-decoration:none; }
+a.boxButton.disabled  { border:#666 1px solid; color:#666; background:#ddd; }
+a.boxButton.disabled:hover { border:#666 1px solid; color:#666; background:#ddd; }
+
+div.watermark { position:relative; display:inline-block; }
+label.watermark { position:absolute; top:3px; left:4px; color:#8B9096; cursor:text;
+        width:90%; height:80%; white-space:nowrap; overflow:hidden; }
+label.watermark.focus { color:#ccc; }
+
+/* 下拉弹窗面版 */
+.PopupPanel { position:absolute; }
+.PopupPanel .FrameBox { background:white; border: 1px solid #02f; }  /* 7f9db9 */
+.PopupPanel .Shadow1 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.3; filter:alpha(opacity=30); line-height:1px; font-size:1px; height:1px; margin:0 1px; }
+.PopupPanel .Shadow2 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.15; filter:alpha(opacity=15); line-height:1px; font-size:1px; height:1px; margin:0 2px; }
+
+/* 标准清理浮动 模版 */
+.ClearFix:after { visibility:hidden;  display:block; font-size:0; content:" "; clear:both; height:0; }    
+.ClearFix { zoom:1; }
+
+
+
+/*
+页面布局 HTML 结构:
+
+<body><div class="Wrap">                .Wrap                       页面主框架
+
+<div class="Header">...</div>               .Header                 页眉
+
+<div class="Container">                     .Container              主容器
+
+    <div class="Heading">...</div>              .Heading            内容头
+
+    <div class="Contnet">                       .Contnet            主内容
+        <div class="Paper">                         <.Paper>                <内容纸面>
+            <div class="SheetHeading"></div>            <.SheetHeading>     <单-头>
+            <table class="Sheet">                       <.Sheet>            <单-主体>
+                <tbody class="SheetHead"></div>             <.SheetHead>    <单-头信息>
+                <tbody class="SheetTitle"></div>            <.SheetTitle>   <单-表头>
+                <tbody class="SheetRow"></div>              <.SheetRow> [n] <单-表明细>
+                <tbody class="SheetFoot"></div>             <.SheetFoot>    <单-表结尾>
+            </table>
+        </div>
+    </div>
+
+    <div class="SideBar">                       .SideBar [n]        边栏
+        <div class="SidePanel"></div>               .SidePanel [n]  边栏块
+    </div>
+
+    <div class="FloatingBar">...</div>          .FloatingBar            浮动栏
+    
+    <div class="HeadEditBar">...</div>          .HeadEditBar            头信息-编辑栏
+    <div class="RowEditBar">...</div>           .RowEditBar             表行-编辑栏
+    <div class="NewRowEditBar">...</div>        .NewRowEditBar          新建行-编辑栏
+
+</div>
+
+<div class="Footer">...</div>               .Footer                 页脚
+
+<div class="RecycleBin">...</div>           <.RecycleBin>           <作废篓>
+
+<script type="text/javascript"></script>                            JS 代码
+
+</div></body>
+
+/**/
+
+
+/*-------------------------- 主框架 -----------------------------------------*/
+html { overflow-x:auto; overflow-y:scroll; }
+body { background:#8cc2e5; }
+
+.Wrap .Container { width:970px; margin:10px auto; text-align:left; position:relative; }
+.Wrap1280 .Container { width:1226px; margin:10px auto; text-align:left; position:relative; }
+
+/*.Container .Heading {}
+.Container .Heading a { color:Green; }
+.Container .Heading a.obcode span.obcode { font: normal bold 14pt/1 "宋体"; }*/
+
+.Wrap .Contnet.Paper { margin-bottom:10px; padding:16px 32px 16px; border:1px solid #5399d0; position:relative;
+    background:#fff url(../images/business-soo-bg.gif) repeat-x ; /*color:#333; box-shadow: 0 0 6px #888; -moz-box-shadow: 0 0 6px #888; */ }
+.Wrap1280 .Contnet.Paper { margin-bottom:10px; padding:16px 32px 16px; border:1px solid #5399d0; position:relative;
+    background:#fff url(../images/business-soo-bg.gif) repeat-x ; /*color:#333; box-shadow: 0 0 6px #888; -moz-box-shadow: 0 0 6px #888; */ }
+
+.Wrap .Footer { text-align:center; }
+.Wrap1280 .Footer { text-align:center; }
+
+.Wrap .Footer .Button { width:80px; height:24px; }
+.Wrap1280 .Footer .Button { width:80px; height:24px; }
+
+p { text-indent:0; }
+table th { font-weight:normal; text-align:center; }
+table center { position:relative; text-align:left; }
+
+/*-------------------------- 主内容-表 -----------------------------------------*/
+
+/* 标题信息 */
+.BillHeading { border:0; }
+.BillHeading .CorpLogo { width:150px; padding:6px 0; color:White;
+    font:normal normal 18pt/1 arial; letter-spacing:0pt; text-align:center; }
+.CorpLogo img {height:60px;}
+.BillHeading h1 { font: normal normal 18pt/1 "微软雅黑","黑体"; letter-spacing:4pt; text-align:center; }
+
+/* 头信息 */
+table.BillHeadInfo { border-collapse:collapse; }
+table.BillHeadInfo td { padding:1px 0px; border:0; }
+table.BillHeadInfo th { text-align:right; }
+.codeTd { height:30px; }
+
+/* 附加信息 */
+table.BillElseInfo { border-collapse:collapse; }
+table.BillElseInfo td { padding:4px 0px; border:0; }
+table.BillElseInfo th { text-align:right; }
+
+/* 附件信息 */
+table.BillAttachments { border-collapse:collapse; width:100%; }
+
+
+.TopBottom_Border {
+	padding: 6px 0;
+	border-top-width: 1px;
+	border-right-width: 0;
+	border-bottom-width: 0px;
+	border-left-width: 0;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #5299cf;
+	border-right-color: #5299cf;
+	border-bottom-color: #5299cf;
+	border-left-color: #5299cf;
+}
+.Divider { border-top:1px solid #5299cf; height:1px; line-height:1px; width:624px; }
+.Divider1280 { border-top:1px solid #5299cf; height:1px; line-height:1px; width:796px; }
+
+/* 控件 */
+.imgIconButton { cursor:pointer; margin-left:3px; }  /* img */
+
+.TextBox { border:#bbb solid 1px; padding:2px 1px; outline:0; }
+.TextBox.readonly { background:#F7F7F7; color:#000000;}/*只读框*/
+.TextBox.Focus,
+.TextBox:focus,
+.TextBox:active,
+.TextBox.readonly.Focus { border-color:#5399d0 !important; }
+
+.TextBox.disabled { background:#f6f6f6; color:#777; border:#ddd solid 1px; }
+.TextBox.disabled:focus { border-color:#ddd !important; }
+
+select { border:#bbb solid 1px; outline:0; }
+select:focus { border-color:#5399d0 !important; }
+
+    /* 标题 控件 */
+    .tbBillCode  { width:104px; }
+    .tbBillDate { width:70px; }
+    .ddlDateHour { width:50px; }
+    .ddlDateMinute { width:50px; }
+    /* 头信息 控件 */
+    .tbHead1  { width:130px; }     .lbClientNote { color:#999; }
+    .tbHead2_1     { width:104px; }
+    .tbHead2_1_short{ width:60px; }
+    .tbHead2_2       { width:104px; }
+    .tbHead3	{ width:104px; }
+    /* 附加信息 控件 */
+    .tbInfo1  { width:130px; }
+    .ddlInfo1 { width:136px; }
+    .tbInfo2    { width:256px; }
+    .tbInfo3 { width:80px; }
+    .ddlInfo3    { width:86px; }
+    .ddlInfo3_long{ width:170px; }
+
+	/* 简单表单控件 */
+	.tbBillDate_sim { width:76px; }
+	.tbInfo_sim  { width:160px; }
+	.ddlInfo_sim { width:166px; }
+	
+/* 明细表 */
+.BillDetails { border-collapse:collapse; }
+.BillDetails th { padding:2px 0px; border:1; border:#bbb 1px solid; background:url(../images/table-list-bg.gif) repeat-x; }/*修改*/
+.BillDetails td { padding:2px 3px; border:1; border:#bbb 1px solid; height:30px;line-height:20px; text-align:center;vertical-align:top;}
+.BillDetails td .TextBox { border:0px solid white; padding: 1px; }
+
+.BillDetails td textarea { overflow:auto; resize:none; }
+
+.BillDetails td.PosHook { padding:0; }
+.BillDetails td.PosHook center { padding:2px 4px; }
+
+    /* 普通行 hover */
+    .BillDetails tr td { background:#FFFFFF; } /* bfd3e0 */
+    .BillDetails tr:hover td { background:#bfd3ef; }   /* faf2c8 */
+    /* 新建行 hover */
+    .BillDetails tr.NewRow td { background:#999999; }   /* dcf5dc */
+    .BillDetails tr.NewRow:hover td { background:#999999; }   /* bbfabb */
+    /* 激活编辑行 */
+    .BillDetails tr.Acitved td,
+    .BillDetails tr.Acitved:hover td { background:#999999; }   /* c8e6fa */
+    /* 激活编辑行 - 扩展功能 */
+    .BillDetails .ExtraPanel { display:none; position:absolute; right:-28px; top:-1px; width:28px; height:46px;
+        background:#c8e6fa; border:1px solid #bfd3e0; border-width:1px 0; text-align:center; line-height:1.4; }
+    .BillDetails tr.Acitved.NewRow .ExtraPanel { display:none; }
+    .BillDetails tr.Acitved .ExtraPanel { display:block; }
+
+    .BillDetails .lnkSelect { display:none; }
+    .BillDetails tr.NewRow .lnkSelect { display:inline; }
+    
+    .BillDetails .ExtraLnk { display:none; }
+    .BillDetails tr.NewRow .ExtraLnk { display:inline; }
+    
+    /* 明细表内 控件 */
+    .tbMakeType { width:68px; color:black !important; margin-right:6px; }
+    .tbContent  { width:100px; height:38px; }
+    .tbProName  { width:104px; }
+    
+    .BillDetails tr center { position:static; }
+    .BillDetails tr.Acitved center { position:relative; }
+    .BillDetails .tbMakeReq.Focus { height:80px; position:absolute; z-index:5; }
+    
+    .tbMakeReq  { width:128px; height:38px; }
+    
+    .tbLength   { width:40px; }
+    .tbSpec     { width:96px; }
+    .tbAmount   { width:40px; margin-right:2px; }
+    .tbUnits    { width:16px; }
+    
+    .spPrcAmount{}
+    .spPrcUnits {}
+    .tbUnitPrice{ width:38px; }
+    .tbPrice    { width:54px; color:black !important;  }
+    .ddlWorkCenter { width:82px; border:1px solid white; }
+    .ckOutsource{}
+    
+    /* 明细表内 计价模式 控件 */
+    .sltPrcMode { float:left; margin:4px 0 0 10px; }
+    .sltPrcMode a { display:inline-block; width:13px; height:13px;  margin:0; outline:none;
+                    background:url(../images/btnPMode.gif) no-repeat; }
+    .sltPrcMode a:hover { background-position-x: -13px; }
+    .sltPrcMode a.Now   { background-position-x: -26px; }
+    .sltPrcMode a.PM0 { background-position-y: 0; }
+    .sltPrcMode a.PM1 { background-position-y: -13px; }
+    .sltPrcMode a.PM2 { background-position-y: -26px; }
+
+
+/* 下拉弹窗面版 */
+.PopupPanel { position:absolute; }
+.PopupPanel .FrameBox { background:white; border: 1px solid #02f; }  /* 7f9db9 */
+.PopupPanel .Shadow1 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.3; filter:alpha(opacity=30); line-height:1px; font-size:1px; height:1px; margin:0 1px; }
+.PopupPanel .Shadow2 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.15; filter:alpha(opacity=15); line-height:1px; font-size:1px; height:1px; margin:0 2px; }
+
+/* 必填 */
+.MustInput {color:red;margin-right:2px}
+
+.BillNotes {color:#999}
+.BillNotes span {margin-right:10px}
+
+.msg-error{font-size: 9pt;margin:10px 20px;padding:10px;border:1px solid #dd3c10;background:#ffebe8;_zoom:1;}
+.buttom-a{border:none; background:url(../images/buttom-a.gif); width:80px; height:21px; font-size:12px; line-height:21px; cursor:pointer;}
+
+.DragOver{
+	border:2px dashed #555;
+	border-radius:7px;
+	cursor:default;
+	border-color:#f00;
+	border-style:solid;
+	box-shadow:inset 0 3px 4px #888;
+}

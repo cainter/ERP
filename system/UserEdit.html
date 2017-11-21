@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body scroll="no" onload="showMe();" class="sheet modal-dialog">
+		<div class="sheet-main" id="bodyDiv">
+			<form class="layui-form" name="frm" method="post">
+				<div class="sheet-list">
+					<div class="modal-main search-business" style="+zoom:1">
+						<div style="width:100%;">
+
+							<script language="javascript">
+								var formErrorIndex = 0;
+								var formErrorMsg = "";
+								var formErrorObjId = "";
+
+								function setFormErrorMsg(msg, index, objId) {
+									if(formErrorIndex == 0 || formErrorIndex > index) {
+										if(msg != null && msg != "") {
+											formErrorIndex = index;
+											formErrorMsg = msg;
+											formErrorObjId = objId;
+										}
+									}
+								}
+
+								function showFormErrorMsg() {
+									if(formErrorIndex != 0) {
+										document.getElementById("errorMsgTr").style.display = "";
+										document.getElementById("errorMsgDiv").innerHTML = formErrorMsg;
+										if(formErrorObjId != null && formErrorObjId != "") {
+											document.getElementById(formErrorObjId).focus();
+										}
+									}
+								}
+
+								function goNextInput(objId) {
+									var obj = null;
+									if(objId != null && objId != '') {
+										obj = document.getElementById(objId);
+									}
+									if(window.event.keyCode == 13) {
+										if(obj != null) {
+											obj.focus();
+										} else if(window.doSave) {
+											doSave();
+										}
+									}
+								}
+							</script>
+							<h3>新增用户</h3>
+							<div class="blank24"></div>
+							<div style="margin: 0 auto; width: 405px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>登录帐号：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" type="text" maxlength="15" onkeyup="goNextInput(&#39;currentPassword&#39;);" id="user.userName" name="user.userName" value="">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>密码：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" type="text" maxlength="15" id="currentPassword" name="currentPassword" value="">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>职员：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" readonly placeholder="" type="text" maxlength="15" id="stafferName" name="stafferName" value="">
+
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">状态：</label>
+									<div class="layui-input-inline">
+										<input type="radio" name="enabledRadio" value="0" title="正常" checked="">
+										<input type="radio" name="enabledRadio" value="1" title="停用">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">设置有效期：</label>
+									<div class="layui-input-inline">
+										<input type="radio" name="validityRadio" onclick="changeUseValidity();" value="0" title="是" checked="">
+										<input type="radio" name="validityRadio" onclick="changeUseValidity();" value="1" title="否">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">有效期至：</label>
+									<div class="layui-input-inline">
+										<input type="text" class="layui-input" placeholder="yyyy-MM-dd" maxlength="15" onkeyup="goNextInput();" id="validityStr" name="validityStr" value="">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">使用时间控制：</label>
+									<div class="layui-input-inline">
+										<input type="radio" name="tlRadio" onclick="changeTl();" value="0" title="是">
+										<input type="radio" name="tlRadio" onclick="changeTl();" value="1" title="否" checked="">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">使用时间范围：</label>
+									<div class="layui-input-inline" style="width: 55px;" >
+										<select id="user.tlStartHour" name="user.tlStartHour" >
+									        <option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08" selected="">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+									      </select>
+									</div>
+									<div class="layui-input-inline" style="width: 55px; display: inline-block;" >
+										<select id="user.tlStartMinute" name="user.tlStartMinute" disabled="true">
+										<option value="00" selected="">00</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+										<option value="32">32</option>
+										<option value="33">33</option>
+										<option value="34">34</option>
+										<option value="35">35</option>
+										<option value="36">36</option>
+										<option value="37">37</option>
+										<option value="38">38</option>
+										<option value="39">39</option>
+										<option value="40">40</option>
+										<option value="41">41</option>
+										<option value="42">42</option>
+										<option value="43">43</option>
+										<option value="44">44</option>
+										<option value="45">45</option>
+										<option value="46">46</option>
+										<option value="47">47</option>
+										<option value="48">48</option>
+										<option value="49">49</option>
+										<option value="50">50</option>
+										<option value="51">51</option>
+										<option value="52">52</option>
+										<option value="53">53</option>
+										<option value="54">54</option>
+										<option value="55">55</option>
+										<option value="56">56</option>
+										<option value="57">57</option>
+										<option value="58">58</option>
+										<option value="59">59</option>
+									</select>
+									</div>
+									<div class="layui-form-mid">-</div>
+									<div class="layui-input-inline" style="width: 55px; display: inline-block;" >
+										<select id="user.tlEndHour" name="user.tlEndHour" disabled="true">
+										<option value="00">00</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19" selected="">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+									</select>
+									</div>
+									<div class="layui-input-inline" style="width: 55px; display: inline-block;" >
+										<select id="user.tlEndMinute" name="user.tlEndMinute" disabled="true">
+										<option value="00" selected="">00</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+										<option value="32">32</option>
+										<option value="33">33</option>
+										<option value="34">34</option>
+										<option value="35">35</option>
+										<option value="36">36</option>
+										<option value="37">37</option>
+										<option value="38">38</option>
+										<option value="39">39</option>
+										<option value="40">40</option>
+										<option value="41">41</option>
+										<option value="42">42</option>
+										<option value="43">43</option>
+										<option value="44">44</option>
+										<option value="45">45</option>
+										<option value="46">46</option>
+										<option value="47">47</option>
+										<option value="48">48</option>
+										<option value="49">49</option>
+										<option value="50">50</option>
+										<option value="51">51</option>
+										<option value="52">52</option>
+										<option value="53">53</option>
+										<option value="54">54</option>
+										<option value="55">55</option>
+										<option value="56">56</option>
+										<option value="57">57</option>
+										<option value="58">58</option>
+										<option value="59">59</option>
+									</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">允许外网访问：</label>
+									<div class="layui-input-inline">
+										<input type="radio" name="aiRadio" onclick="changeAi();" value="0" title="是" checked="">
+										<input type="radio" name="aiRadio" onclick="changeAi();" value="1" title="否">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">使用手机APP：</label>
+									<div class="layui-input-inline">
+										<input type="radio" name="appRadio" onclick="changeApp();" value="0" title="是" checked="">
+										<input type="radio" name="appRadio" onclick="changeApp();" value="1" title="否">
+									</div>
+								</div>
+							</div>
+							</tbody>
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom" id="buttonDiv">
+					<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave(&#39;0&#39;);">
+					<input type="button" class="buttom-a" value="保存并新增" onclick="doSave(&#39;1&#39;);">
+					<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+					<input type="hidden" name="continue_flag" id="continue_flag" value="0">
+				</div>
+				<div class="modal-buttom" id="waitDiv" style="display:none">
+					<span style="color:#ffffff">请稍候...</span>
+				</div>
+			</form>
+		</div>
+		
+		<script src="../layui/layui.all.js"></script>
+		<script>
+			layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				//常规用法
+				laydate.render({
+					elem: '#validityStr'
+				});
+			});
+		</script>
+	</body>
+
+</html>

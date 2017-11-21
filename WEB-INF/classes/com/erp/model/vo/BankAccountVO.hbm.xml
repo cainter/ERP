@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.BankAccountVO" table="bank_account">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="accountCode" type="string">
+			<column name="account_code" length="50" />
+		</property>
+		<property name="accountName" type="string">
+			<column name="account_name" length="30" />
+		</property>
+		<property name="bankName" type="string">
+			<column name="bank_name" length="100" not-null="true" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+		<property name="currentCost" type="big_decimal">
+			<column name="current_cost" length="2" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="isTmp" type="string">
+			<column name="is_tmp" length="1" not-null="true" />
+		</property>
+		<property name="sequenceCode" type="int">
+			<column name="sequence_code" length="4" not-null="true" />
+		</property>
+		<property name="status" type="string">
+			<column name="status" length="1" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

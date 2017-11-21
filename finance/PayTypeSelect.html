@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet modal-dialog">
+		<div class="sheet-main" id="bodyDiv">
+			<form name="frm" method="post">
+				<div class="sheet-list" style="width:100%">
+					<div class="modal-main search-business">
+						<div style="width:100%;">
+
+							<h3>请选择付款类型</h3>
+							<div class="blank12"></div>
+							<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-0" style="width:100%">
+								<tbody>
+									<tr>
+										<td align="center" ondblclick="document.getElementById(&#39;pay_type0&#39;).checked=&#39;true&#39;;doSelect();">
+											<input type="radio" name="pay_type" id="pay_type0">采购付款
+										</td>
+									</tr>
+									<tr>
+										<td align="center" ondblclick="document.getElementById(&#39;pay_type1&#39;).checked=&#39;true&#39;;doSelect();">
+											<input type="radio" name="pay_type" id="pay_type1" checked="true">外协付款<br>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom">
+					<input type="button" class="buttom-a" value="确定" onclick="doSelect();" id="okButton">
+					<input type="button" class="buttom-a" value="取消" onclick="doCancel();">
+				</div>
+			</form>
+		</div>
+
+	</body>
+
+</html>

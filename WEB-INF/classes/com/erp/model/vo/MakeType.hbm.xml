@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.MakeType" table="make_type">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<property name="typeName" type="string">
+			<column name="type_name" length="30" not-null="true" />
+		</property>
+		<property name="tnSpell" type="string">
+			<column name="tn_spell" length="30" />
+		</property>
+		<property name="parentId" type="long">
+			<column name="parent_id" not-null="true" />
+		</property>
+		<property name="parentIdStr" type="string">
+			<column name="parent_id_str" length="200" />
+		</property>
+		<property name="workCenterId" type="long">
+			<column name="work_center_id" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="unit" type="string">
+		   <column name="unit" length="30" />
+		</property>
+		<property name="type" type="int">
+		   <column name="type" length="1" not-null="true" />
+		</property>
+		<property name="sequCode" type="string">
+			<column name="sequ_code" length="50" />
+		</property>
+		<property name="autoStoc" type="string">
+			<column name="auto_stoc" length="1" not-null="true" />
+		</property>
+		<property name="lossRate" type="big_decimal">
+			<column name="loss_rate" length="2" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

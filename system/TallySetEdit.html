@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+
+		<script language="javascript">
+			function doSave() {
+				document.getElementById("buttonDiv").style.display = "none";
+				document.getElementById("waitDiv").style.display = "";
+				frm.submit();
+			}
+
+			function doCancel() {
+				parent.ClosePop();
+			}
+
+			function showMe() {
+				showFormErrorMsg();
+			}
+
+			function doCheck() {
+				var tsName = $("#title").val();
+				var expId = "1";
+				if(tsName != "") {
+					$.post("../system/CheckTs.html", {
+						ts_name: tsName,
+						exp_id: expId
+					}, function(data, status) {
+						parseCheckData(data, status);
+					});
+				}
+			}
+
+			function parseCheckData(data, status) {
+				if(status == "success") {
+					var obj = $.parseJSON(data);
+					if(obj.status == "ERROR") {
+						ShowAlert('提示框', obj.errMsg, 200, 100);
+					} else if(obj.status == "EXIST") {
+						ShowConfirm('确认框', '名称已经存在，恢复帐套吗？', 340, 80, "doCheckCallBack()");
+					} else {
+						ShowAlert('提示框', '没有存在此名称的帐套', 200, 100);
+					}
+				} else {
+					ShowAlert('提示框', '系统错误：' + status, 200, 100);
+				}
+			}
+
+			function doCheckCallBack() {
+				if(popRetVal != null) {
+					var tsName = $("#title").val();
+					$.post("../system/RecoverTs.html", {
+						ts_name: tsName
+					}, function(data, status) {
+						parseRecoverData(data, status);
+					});
+				}
+			}
+
+			function parseRecoverData(data, status) {
+				if(status == "success") {
+					var obj = $.parseJSON(data);
+					if(obj.status == "ERROR") {
+						ShowAlert('提示框', obj.errMsg, 200, 100);
+					} else {
+						//ie有时候会报个莫名其妙的错误(jquery.js里),设置个timeout看看有没有效果
+						setTimeout(function() {
+							parent.popRetVal = "OK";
+							parent.ClosePop();
+						}, 500);
+					}
+				} else {
+					ShowAlert('提示框', '系统错误：' + status, 200, 100);
+				}
+			}
+		</script>
+	</head>
+
+	<body oncontextmenu="return false" scroll="no" onload="showMe();" class="sheet modal-dialog">
+		<div class="sheet-main" id="bodyDiv">
+			<form name="frm" method="post">
+				<div class="sheet-list">
+					<div class="modal-main search-business" style="+zoom:1">
+						<div style="width:100%;">
+
+							<script language="javascript">
+								var formErrorIndex = 0;
+								var formErrorMsg = "";
+								var formErrorObjId = "";
+
+								function setFormErrorMsg(msg, index, objId) {
+									if(formErrorIndex == 0 || formErrorIndex > index) {
+										if(msg != null && msg != "") {
+											formErrorIndex = index;
+											formErrorMsg = msg;
+											formErrorObjId = objId;
+										}
+									}
+								}
+
+								function showFormErrorMsg() {
+									if(formErrorIndex != 0) {
+										document.getElementById("errorMsgTr").style.display = "";
+										document.getElementById("errorMsgDiv").innerHTML = formErrorMsg;
+										if(formErrorObjId != null && formErrorObjId != "") {
+											document.getElementById(formErrorObjId).focus();
+										}
+									}
+								}
+
+								function goNextInput(objId) {
+									var obj = null;
+									if(objId != null && objId != '') {
+										obj = document.getElementById(objId);
+									}
+									if(window.event.keyCode == 13) {
+										if(obj != null) {
+											obj.focus();
+										} else if(window.doSave) {
+											doSave();
+										}
+									}
+								}
+							</script>
+							<h3>编辑帐套</h3>
+							<div class="blank24"></div>
+							<div style="margin: 0 auto; width: 405px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>账套名称：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" type="text" maxlength="15" id="title" name="title" value="">
+									</div>
+									<div class="layui-form-mid"><a href="" style="cursor:pointer;" onclick="doCheck();" title="查出哪些是重名的，已删除的重名帐套可以在这里恢复">选择</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom" id="buttonDiv">
+					<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave();">
+					<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+					<input type="hidden" name="flag" id="flag" value="1">
+				</div>
+				<div class="modal-buttom" id="waitDiv" style="display:none">
+					<span style="color:#ffffff">请稍候...</span>
+				</div>
+			</form>
+		</div>
+
+	</body>
+
+</html>

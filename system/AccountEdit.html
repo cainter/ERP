@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body oncontextmenu="return false" scroll="no" onload="showMe();" class="sheet">
+		<div class="sheet-main" id="bodyDiv">
+			<form class="layui-form" name="frm" method="post">
+
+				<div class="sheet-list">
+					<div class="modal-main search-business">
+						<div style="width:100%;">
+
+							<script language="javascript">
+								var formErrorIndex = 0;
+								var formErrorMsg = "";
+								var formErrorObjId = "";
+
+								function setFormErrorMsg(msg, index, objId) {
+									if(formErrorIndex == 0 || formErrorIndex > index) {
+										if(msg != null && msg != "") {
+											formErrorIndex = index;
+											formErrorMsg = msg;
+											formErrorObjId = objId;
+										}
+									}
+								}
+
+								function showFormErrorMsg() {
+									if(formErrorIndex != 0) {
+										document.getElementById("errorMsgTr").style.display = "";
+										document.getElementById("errorMsgDiv").innerHTML = formErrorMsg;
+										if(formErrorObjId != null && formErrorObjId != "") {
+											document.getElementById(formErrorObjId).focus();
+										}
+									}
+								}
+
+								function goNextInput(objId) {
+									var obj = null;
+									if(objId != null && objId != '') {
+										obj = document.getElementById(objId);
+									}
+									if(window.event.keyCode == 13) {
+										if(obj != null) {
+											obj.focus();
+										} else if(window.doSave) {
+											doSave();
+										}
+									}
+								}
+							</script>
+							<h3>修改密码</h3>
+							<div class="blank24"></div>
+							<div style="margin: 0 auto; width: 330px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label">登录帐号：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" readonly type="text" maxlength="15" onkeyup="goNextInput(&#39;oldPassword&#39;);" id="user.userName" name="user.userName" value="user">
+										<!--<input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input" readonly>-->
+									</div>
+									<!--<div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>-->
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>原密码：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" type="password" maxlength="15" onkeyup="goNextInput(&#39;currentPassword&#39;);" id="oldPassword" name="oldPassword" value="">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>新密码第1次：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" type="password" maxlength="15" onkeyup="goNextInput(&#39;confirmPassword&#39;);" id="currentPassword" name="currentPassword" value="">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"><span class="MustInput">*</span>新密码第2次：</label>
+									<div class="layui-input-inline">
+										<input class="layui-input" placeholder="" type="password" maxlength="15" onkeyup="goNextInput(&#39;&#39;);" id="confirmPassword" name="confirmPassword" value="">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom" id="buttonDiv">
+					<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave();">
+					<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+				</div>
+				<div class="modal-buttom" id="waitDiv" style="display:none">
+					<span style="color:#ffffff">请稍候...</span>
+				</div>
+			</form>
+		</div>
+
+		<audio controls="controls" style="display: none;"></audio>
+
+		<script src="../layui/layui.all.js"></script>
+	</body>
+
+</html>

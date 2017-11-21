@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div class="Wrap">
+			<!-- 页面主框架 -->
+
+			<div id="ListContainer" class="Container">
+				<!-- 主体容器 -->
+
+				<!-- 标题栏 -->
+				<div class="Heading BillIcon">
+					<div class="HeadingContent">
+						<h1>单据作废历史</h1>
+						<div class="pull-right">
+
+							<div class="layui-form" style=" display: inline-block;">
+								<div class="layui-inline">
+									<label class="layui-form-label">作废日期</label>
+									<div class="layui-input-inline">
+										<input style="width: 85px; " type="text " class="layui-input" id="test1" placeholder="yyyy-MM-dd ">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-mid" style="margin-right: 5px;">至</div>
+									<div class="layui-input-inline ">
+										<input style="width: 85px; " type="text " class="layui-input" id="test1-1" placeholder="yyyy-MM-dd ">
+									</div>
+								</div>
+
+								<a href="javascript:; " id="lnkMoreOption ">更多查询选项</a>
+								<a type="button " class="layui-btn " id="sSearchButton " name="sSearchButton " href="doSearch(); ">查 询</a>
+								<a type="button " class="layui-btn " id="sDownloadButton " name="sDownloadButton " href="doDownload(); ">导 出</a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 主内容 -->
+				<div class="Content ">
+
+					<div class="blank24"></div>
+					<div class="table-list">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<th width="110">类型</th>
+									<th width="110">单号</th>
+									<th width="110">单据日期</th>
+									<th width="110">作废时间</th>
+									<th width="110">操作人</th>
+									<th width="110">账号</th>
+									<th width="110">部门</th>
+									<th width="110">作废原因</th>
+								</tr>
+								<tr>
+									<td>类型</td>
+									<td>单号</td>
+									<td>单据日期</td>
+									<td>作废时间</td>
+									<td>操作人</td>
+									<td>账号</td>
+									<td>部门</td>
+									<td>作废原因</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+					<div class="table-bot clearfix">
+						<div class="pull-right">
+							<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+							<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+							第 
+							<div class="layui-input-inline">
+								<input class="layui-input" style="width:30px" placeholder="" type="text" maxlength="15" onkeydown="javascript:doJump(this.value);" id="confirmPassword" name="pageNumber" value="1">
+							</div>
+							<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+							<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="../layui/layui.all.js "></script>
+		<script>
+			layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				//常规用法
+				laydate.render({
+					elem: '#test1'
+				});
+
+				laydate.render({
+					elem: '#test1-1'
+				});
+			});
+		</script>
+	</body>
+
+</html>

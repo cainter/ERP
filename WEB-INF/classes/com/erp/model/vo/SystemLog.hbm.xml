@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.SystemLog" table="system_log">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" not-null="true" />
+		</property>
+		<property name="userName" type="string">
+			<column name="user_name" length="30" />
+		</property>
+		<property name="depName" type="string">
+			<column name="dep_name" length="30" />
+		</property>
+		<property name="depId" type="long">
+			<column name="dep_id" not-null="true" />
+		</property>
+		<property name="actionCode" type="string">
+			<column name="action_code" length="30" />
+		</property>
+		<property name="status" type="string">
+			<column name="status" length="1" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="50" />
+		</property>
+		<property name="ip" type="string">
+			<column name="ip" length="50" />
+		</property>
+		<property name="logType" type="string">
+			<column name="log_type" length="30" />
+		</property>
+		<property name="relId" type="long">
+			<column name="rel_id" not-null="true" />
+		</property>
+		<property name="cancelReason" type="string">
+			<column name="cancel_reason" length="1000" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

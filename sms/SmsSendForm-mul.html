@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0056)http://115.28.87.22:8888/sms/SmsSendForm.ihtm?type=MULTI -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>短信群发 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function addReceiver(name,code){
+		var r=document.getElementById("receiver");
+		var v=r.value;
+		if(v==null || v==""){
+			r.value=code+"<"+name+">";
+		}else{
+			v=v+"\n"+code+"<"+name+">";
+			r.value=v;
+		}
+		r.scrollTop=r.scrollHeight;
+		
+		var num=Number(document.getElementById("receiverNumSpan").innerHTML)+1;
+		document.getElementById("receiverNumSpan").innerHTML=num;
+	}
+	function doSend(){
+		disabledButton(true);
+		var r=document.getElementById("receiver").value;
+		if(r==null || r==""){
+			ShowAlert('提示框','请输入接收人手机号码',200,100);
+			disabledButton(false);
+			return;
+		}
+		if(!checkContent()){
+			disabledButton(false);
+			return;
+		}
+		if(document.getElementById("planTimeCb").checked){
+			var pd=document.getElementById("planTimeDate").value;
+			if(pd==null || pd==""){
+				ShowAlert('提示框','请输入定时发送时间',200,100);
+				disabledButton(false);
+				return;
+			}else if(!checkDate(pd)){
+				ShowAlert('提示框','定时发送时间格式不正确，正确格式：2010-01-01',200,100);
+				disabledButton(false);
+				return;
+			}
+		}
+		if(!checkSign()){
+			disabledButton(false);
+			return;
+		}
+		checkBalance("doSendFun()","disabledButton(false);");
+	}
+	function checkSign(){
+		var signTxt=document.getElementById("sign").value;
+		if(!document.getElementById("signCb").checked || signTxt==null || signTxt.trim()==""){
+			ShowAlert('提示框','尊敬的客户：为规范企业短信应用，减少手机用户投诉，应运营商相关业务要求，所有移动106通道发出短信，必须在短信内容中体现发送企业签名！',300,200);
+			return false;
+		}else if(getSignLength()<2){
+			ShowAlert('提示框','短信签名不能少于两个汉字，请修改',200,100);
+			return false;
+		}else{
+			return true;
+		}
+	}
+	function getSignLength(){
+		var signTxt=document.getElementById("sign").value.trim();
+		var badChar ="ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+		badChar += "abcdefghijklmnopqrstuvwxyz"; 
+		badChar += "0123456789"; 
+		badChar += " "+"　";//半角与全角空格 
+		badChar += "`~!@#$%^&()-_=+]\\\\|:;\"\\\'<,>?/*.";
+		var len=0;
+		for(var i=0;i<signTxt.length;i++){ 
+			var c = signTxt.charAt(i);
+			if(badChar.indexOf(c) > -1){ 
+				len=len+1;
+			}else{
+				len=len+2;
+			}
+		}
+		return len/2;
+	}
+	function doSendFun(){
+		frm.submit();
+	}
+	
+	function getEstLinkman(estType,searchType,key){
+		var url="/sms/EstablishmentContactSelectForSms.ihtm?est_type="+estType+"&search_type="+searchType+"&key="+key;
+		ShowIframe("请稍候...",url,200,200,"getEstLinkmanCallBack()");
+	}
+	function getEstLinkmanCallBack(){
+		if(popRetVal!=null){
+			var i;
+			var v=document.getElementById("receiver").value;
+			for(i=0;i<popRetVal.length;i++){
+				if(v==null || v==""){
+					v=popRetVal[i][1]+"<"+popRetVal[i][0]+">";
+				}else{
+					v=v+"\n"+popRetVal[i][1]+"<"+popRetVal[i][0]+">";
+				}
+			}
+			document.getElementById("receiver").value=v;
+			document.getElementById("receiver").scrollTop=document.getElementById("receiver").scrollHeight;
+			
+			var num=Number(document.getElementById("receiverNumSpan").innerHTML)+popRetVal.length;
+			document.getElementById("receiverNumSpan").innerHTML=num;
+		}
+	}
+	function selectSmsPhrase(){
+		var url="/base/SmsPhraseListForSelect.ihtm";
+		ShowIframeNoScroll("选择常用短语",url,310,500,"selectSmsPhraseCallBack()",900,500);
+	}
+	function selectSmsPhraseCallBack(){
+		if(popRetVal!=null){
+			document.getElementById("content").value=popRetVal[0];
+			countCharNum();
+		}
+	}
+	function changePlanTimeCb(){
+		if(document.getElementById("planTimeCb").checked){
+			document.getElementById("planTimeButton").disabled=false;
+			document.getElementById("planTimeHour").disabled=false;
+			document.getElementById("planTimeMinute").disabled=false;
+			document.getElementById("planTimeDate").className="TextBox Datetime";
+			document.getElementById("planTimeDate").readOnly=false;//readOnly区分大小写
+		}else{
+			document.getElementById("planTimeButton").disabled=true;
+			document.getElementById("planTimeHour").disabled=true;
+			document.getElementById("planTimeMinute").disabled=true;
+			document.getElementById("planTimeDate").className="TextBox Datetime readonly";
+			document.getElementById("planTimeDate").readOnly=true;//readOnly区分大小写
+		}
+	}
+	function changeSignCb(){
+		if(document.getElementById("signCb").checked){
+			document.getElementById("sign").readOnly=false;
+			document.getElementById("sign").className="TextBox";
+		}else{
+			document.getElementById("sign").readOnly=true;
+			document.getElementById("sign").className="TextBox readonly";
+		}
+	}
+	function checkContent(){
+		var c=document.getElementById("content").value;
+		if(c==null || c==""){
+			ShowAlert('提示框','请输入短信内容',200,100);
+			return  false;
+		}
+		var s="";
+		var cAll=c;
+		if(document.getElementById("signCb").checked){
+			s=document.getElementById("sign").value;
+			if(s==null || s==""){
+				ShowAlert('提示框','请输入短信签名',200,100);
+				return false;
+			}
+			var smsSignFormat="【XXX】";
+			cAll=cAll+smsSignFormat.replace("XXX",s);
+		}
+		if(cAll.length>134){
+			ShowAlert('提示框','短信内容不能超过134个字符（包括短信签名）',200,100);
+			return false;
+		}
+		if(cAll.length>67){
+			var sCount=cAll.length/67;
+			var sCountInt=parseInt(sCount);
+			if(sCountInt<sCount){
+				sCountInt=sCountInt+1;
+			}
+			ShowConfirm('确认框','每条短信(含签名档)最多只能67个字，本次短信发送字数为"+cAll.length+"个，将自动拆分为"+sCountInt+"条短信发送。确定发送吗？',340,160,"checkContentCallBack()");
+		}
+		return true;
+	}
+	function checkContentCallBack(){
+		if(popRetVal!=null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	function doSendMe(){
+		disabledButton(true);
+		if(!checkContent()){
+			disabledButton(false);
+			return;
+		}
+		if(!checkSign()){
+			disabledButton(false);
+			return;
+		}
+		checkBalance("doSendMeFun();","disabledButton(false);");
+	}
+	function doSendMeFun(){
+		var c=document.getElementById("content").value;
+		var s="";
+		if(document.getElementById("signCb").checked){
+			s=document.getElementById("sign").value;
+		}
+		var xmlHttp=createXMLHttpRequest();
+		xmlHttp.open("GET", "/sms/SmsSendMyself.ihtm?content="+encodeURIComponent(c)+"&sign="+encodeURIComponent(s),true);
+		xmlHttp.onreadystatechange = function(){
+			if (xmlHttp.readyState == 4) {
+	      		if (xmlHttp.status == 200) {
+					var ret=xmlHttp.responseText;
+					var msg="";
+					if(ret=="NO_MOBILE"){
+						msg="对不起，您的员工资料还没有填写手机号码，请填写后重新登录管理易！";
+					}else{
+						msg="测试发给自己的短信已发送，请确认收到该短信再正式发送！";
+					}
+					ShowAlert('提示框',msg,200,100);
+					disabledButton(false);
+				}
+			}
+		};
+		xmlHttp.send(null);
+	}
+	function disabledButton(flag){
+		document.getElementById("testButton").disabled=flag;
+		document.getElementById("sendButton").disabled=flag;
+		document.getElementById("clearButton").disabled=flag;
+	}
+	
+	function doCancel(){
+		window.close();
+	}
+	function doStafferAll(){
+		var ob_arr = document.getElementsByName("stafferHid");
+		for (i=0;i<ob_arr.length;i++){
+			addReceiver(ob_arr[i].getAttribute("s_name"),ob_arr[i].getAttribute("s_phone"));
+		}
+	}
+	function countCharNum(){
+		var cont=document.getElementById("content").value;
+		if(cont!=null && !cont==""){
+			var sign=document.getElementById("sign").value;
+			if(sign!=null && !sign==""){
+				var smsSignFormat="【XXX】";
+				cont=cont+smsSignFormat.replace("XXX",sign);
+			}
+		}
+		document.getElementById("charNum").innerHTML="字数："+cont.length+"(含签名)";
+	}
+	function showMe(){
+		var w=915;
+		var normalHeiht=530;
+		var alertHeight=normalHeiht+40;
+		if(document.getElementById("errorMsgTd")!=null){
+			window.resizeTo(w,alertHeight);
+		}else{
+			window.resizeTo(w,normalHeiht);
+		}
+	}
+	function showBalance(){
+		var xmlHttp=createXMLHttpRequest();
+		xmlHttp.open("GET", "/sms/SmsGetBalance.ihtm",true);//true表示异步执行
+		xmlHttp.onreadystatechange = function(){
+			if (xmlHttp.readyState == 4) {
+	      		if (xmlHttp.status == 200) {
+					clearTimeout(clearTO);//下面定义的变量可以在这里用
+	      			if(xmlHttp.responseText=="ERROR"){
+	      				document.getElementById("balanceDiv").innerHTML="<span style='color:#ff0000'>无法连接到短信服务器，请稍候再连接！</span>";
+					}else if(xmlHttp.responseText=="NO_SMS"){
+						document.getElementById("balanceDiv").innerHTML="<span style='color:#ff0000'>短信未开通，请联系客服QQ 100763163开通！</span>";
+					}else{
+						var arr=xmlHttp.responseText.split(";");
+	      				document.getElementById("balanceDiv").innerHTML="剩余点数："+arr[0]+"点 可发短信："+arr[1]+"条 [提醒：晚上9点至上午8点请不要发送短信]";
+	      			}
+				}
+			}
+		};
+		var clearTO = setTimeout(function(){
+			xmlHttp.abort();
+			document.getElementById("balanceDiv").innerHTML="<span style='color:#ff0000'>无法连接到短信服务器，请稍候再连接！</span>";
+		},1000*20);
+		xmlHttp.send(null);
+	}
+	function checkBalance(funName,buttonFunName){
+		var xmlHttp=createXMLHttpRequest();
+		xmlHttp.open("GET", "/sms/SmsGetBalance.ihtm",true);//true表示异步执行
+		xmlHttp.onreadystatechange = function(){
+			if (xmlHttp.readyState == 4) {
+	      		if (xmlHttp.status == 200) {
+					clearTimeout(clearTO);//下面定义的变量可以在这里用
+	      			if(xmlHttp.responseText=="ERROR"){
+	      				ShowAlert('提示框','无法连接到短信服务器，请稍候再连接！',200,100);
+						if(buttonFunName!=null && buttonFunName!=""){
+							eval(buttonFunName);
+						}
+	      			}else if(xmlHttp.responseText=="NO_SMS"){
+						ShowAlert('提示框','短信未开通，请联系客服QQ 100763163开通！',200,100);
+						if(buttonFunName!=null && buttonFunName!=""){
+							eval(buttonFunName);
+						}
+	      			}else{
+						var arr=xmlHttp.responseText.split(";");
+						if(arr[1]=="0"){
+							ShowAlert('提示框','您的余额不足，请充值后再发送！',200,100);
+							if(buttonFunName!=null && buttonFunName!=""){
+								eval(buttonFunName);
+							}
+						}else{
+							eval(funName);
+						}
+	      			}
+				}
+			}
+		};
+		var clearTO = setTimeout(function(){
+			xmlHttp.abort();
+			ShowAlert('提示框','无法连接到短信服务器，请稍候再连接！',200,100);
+			if(buttonFunName!=null && buttonFunName!=""){
+				eval(buttonFunName);
+			}
+		},1000*20);
+		xmlHttp.send(null);
+	}
+	function countReceiver(){
+		var arr=document.getElementById("receiver").value.split("\n");
+		var num=0;
+		for(var i=0;i<arr.length;i++){
+			if(arr[i].trim()!=""){
+				num++;
+			}
+		}
+		document.getElementById("receiverNumSpan").innerHTML=num;
+	}
+	function clearReceiver(){
+		document.getElementById('receiver').value='';
+		document.getElementById("receiverNumSpan").innerHTML="0";
+	}
+	function doInit(){
+		showMe();
+		showBalance();
+		countCharNum();
+		countReceiver();
+		document.getElementById("content").focus();
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet modal-dialog" style="text-align:center;" onload="doInit();" scroll="no">
+<form name="frm" action="http://115.28.87.22:8888/sms/SmsSend.ihtm" method="post">
+<div class="sheet-main" style="width:870px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content chit">
+      <h2>短信群发</h2>
+	  <p></p><div id="balanceDiv"><span style="color:#ff0000">短信未开通，请联系客服QQ 100763163开通！</span></div><p></p>
+    </div>
+  </div>
+  
+  
+  
+  <div class="sheet-list">
+    <div class="modal-main search-business chit">
+	     <div class="chit-send-info">
+		 	<p class="chit-title">
+				<a href="javascript:doStafferAll();" style="float:right;">全部加入&gt;&gt;</a>
+				同事：
+			</p>
+			<div class="chit-box">
+				<table width="161">
+					
+					<tbody><tr onclick="addReceiver(&#39;伏龙&#39;,&#39;15238022122&#39;);" style="cursor: pointer;" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>伏龙</th><td>15238022122</td></tr>
+					<input type="hidden" id="stafferHid" name="stafferHid" s_name="伏龙" s_phone="15238022122">
+					
+					<tr onclick="addReceiver(&#39;管理员&#39;,&#39;13608675408&#39;);" style="cursor: pointer;" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>管理员</th><td>13608675408</td></tr>
+					<input type="hidden" id="stafferHid" name="stafferHid" s_name="管理员" s_phone="13608675408">
+					
+					<tr onclick="addReceiver(&#39;黄秀娟&#39;,&#39;15225099188&#39;);" style="cursor: pointer;" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>黄秀娟</th><td>15225099188</td></tr>
+					<input type="hidden" id="stafferHid" name="stafferHid" s_name="黄秀娟" s_phone="15225099188">
+					
+					<tr onclick="addReceiver(&#39;贾文博&#39;,&#39;13298340278&#39;);" style="cursor:pointer;" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>贾文博</th><td>13298340278</td></tr>
+					<input type="hidden" id="stafferHid" name="stafferHid" s_name="贾文博" s_phone="13298340278">
+					
+					<tr onclick="addReceiver(&#39;秦朝阳&#39;,&#39;13608675408&#39;);" style="cursor:pointer;" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>秦朝阳</th><td>13608675408</td></tr>
+					<input type="hidden" id="stafferHid" name="stafferHid" s_name="秦朝阳" s_phone="13608675408">
+					
+					<tr onclick="addReceiver(&#39;徐俊岩&#39;,&#39;13526751343&#39;);" style="cursor:pointer;" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>徐俊岩</th><td>13526751343</td></tr>
+					<input type="hidden" id="stafferHid" name="stafferHid" s_name="徐俊岩" s_phone="13526751343">
+					
+				</tbody></table>
+			</div>
+		 </div>
+		 
+		 <div class="chit-send-info">
+		 	<p class="chit-title">
+		 		往来单位：
+		 	</p>
+			<div class="chit-box">
+			<table width="161">
+				<tbody><tr style="cursor:pointer;" onclick="getEstLinkman(&#39;PROVIDER&#39;,&#39;ALL&#39;,&#39;&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>全部供应商</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;COOPERATOR&#39;,&#39;ALL&#39;,&#39;&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>全部外协商</th></tr>
+				<tr style="cursor: pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;ALL&#39;,&#39;&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>全部客户</th></tr>
+				
+				<tr style="cursor: pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;1&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--广告公司</th></tr>
+				
+				<tr style="cursor: pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;2&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--直接客户</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;3&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--标识汇</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;4&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--零售客户</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;5&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--装饰公司</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;6&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--市场同行</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;7&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--签约客户</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;TYPE&#39;,&#39;8&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--私企</th></tr>
+				
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;LEVEL&#39;,&#39;1&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--大客户</th></tr>
+				
+				<tr style="cursor: pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;LEVEL&#39;,&#39;2&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--老客户</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;LEVEL&#39;,&#39;3&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--新客户</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;LEVEL&#39;,&#39;4&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--零售客户</th></tr>
+				
+				<tr style="cursor: pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;LEVEL&#39;,&#39;5&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--重要客户</th></tr>
+				
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;UNABLED&#39;,&#39;&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--停用</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;COMM_TIME&#39;,&#39;7&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--7天未跟进</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;COMM_TIME&#39;,&#39;15&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--15天未跟进</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;COMM_TIME&#39;,&#39;30&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--30天未跟进</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;COMM_TIME&#39;,&#39;60&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--60天未跟进</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;NO_COMM&#39;,&#39;&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--无跟进</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;BUS_TIME&#39;,&#39;7&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--7天未交易</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;BUS_TIME&#39;,&#39;15&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--15天未交易</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;BUS_TIME&#39;,&#39;30&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--30天未交易</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;BUS_TIME&#39;,&#39;60&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--60天未交易</th></tr>
+				<tr style="cursor:pointer;" onclick="getEstLinkman(&#39;CLIENT&#39;,&#39;NO_BUS&#39;,&#39;&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#5399D0&#39;"><th>--无交易</th></tr>
+			</tbody></table>
+			</div>
+		 </div>
+		 
+		 <div class="chit-send-info2">
+		 	<div class="chit-box">
+				<div class="chit-box-info right">
+					<p>短信内容：</p>
+					<div class="dhit-send-txt">
+						<div class="txt-info">
+							<textarea name="content" id="content" class="TextBox" cols="" rows="" onkeyup="countCharNum();"></textarea>
+							<input type="button" value="选择短语" class="buttom" onclick="selectSmsPhrase();" style="float:right; ">
+							<span id="charNum">字数：0(含签名)</span>
+						</div>
+					</div>
+				</div>
+				<div class="chit-box-info left">
+					<p>接收人手机号码：合计<span id="receiverNumSpan">0</span>个</p>
+					<textarea name="receiver" id="receiver" class="TextBox" cols="" rows="" onchange="countReceiver();"></textarea>
+				</div>
+				<div style="padding:0 6px;">
+					<p>
+						<label for="ds">
+						<input type="checkbox" name="planTimeCb" id="planTimeCb" value="1" onclick="changePlanTimeCb();">
+						定时发送 时间：
+						</label>
+						<input type="text" maxlength="10" class="TextBox Datetime readonly" readonly="true" name="planTimeDate" id="planTimeDate" value="2017-07-08">
+						<img src="../images/but-calen.gif" id="planTimeButton" name="planTimeButton" style="cursor:pointer" disabled="true" onclick="displayCalendar(document.getElementById(&#39;planTimeDate&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;receiver&#39;));">
+						<select id="planTimeHour" name="planTimeHour" disabled="true">
+							<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16" selected="">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
+						</select>
+						<select id="planTimeMinute" name="planTimeMinute" disabled="true">
+							<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07" selected="">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option>
+						</select>
+					</p>
+					<p>
+						<label for="qm">
+						<input type="checkbox" name="signCb" id="signCb" value="1" onclick="changeSignCb();" checked="true" readonly="true">
+						短信带签名：
+						</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:70px" onkeyup="countCharNum();" class="TextBox" name="sign" id="sign" value=".新异标识">
+						<font color="#666666">说明：定时发送时间必须至少在当前时间30分钟后；为避免有敏感词而发送不成功，群发前请务必各发一条短信到移动号码、电信号码、联通号码，确认都可以收到之后再群发。</font>
+					</p>
+				</div>
+			</div>
+		 </div>
+		 
+	  </div>
+	  <div class="modal-buttom" id="buttonDiv">
+	  	<input type="button" class="buttom-a" id="testButton" value="测试发给自己" onclick="doSendMe();">
+		<input type="button" class="buttom-a" id="sendButton" value=" 发 送 " onclick="doSend();">
+		<input type="button" class="buttom-a" id="clearButton" value="清空接收人" onclick="clearReceiver();">
+		<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+		<input type="hidden" id="type" name="type" value="MULTI">
+	  </div>
+
+  </div>
+</div>
+</form>
+
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

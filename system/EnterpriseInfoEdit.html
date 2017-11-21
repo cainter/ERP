@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet">
+		<div class="sheet-main">
+			<form class="layui-form" name="frm" method="post" enctype="multipart/form-data">
+				<div class="sheet-list">
+					<div class="modal-main search-business">
+						<div class="blank24"></div>
+
+						<div class="layui-tab layui-tab-card">
+							<ul class="layui-tab-title">
+								<li class="layui-this">常规</li>
+								<li>打印</li>
+								<li>权限</li>
+								<li>流程</li>
+								<li>数据</li>
+							</ul>
+							<div class="layui-tab-content" style="height: 700px;">
+								<!--常规-->
+								<div class="layui-tab-item layui-show">
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>公司信息</legend>
+										<div class="layui-field-box">
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">企业名称：</label>
+														<div class="layui-form-mid">郑州市新异标识标牌有限公司</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">联系人：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="15" onkeyup="goNextInput(&#39;phone&#39;);" id="linkman" name="linkman" value="">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">联系电话：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="25" onkeyup="goNextInput(&#39;fax&#39;);" id="phone" name="phone" value="">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">传真：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="25" onkeyup="goNextInput(&#39;address&#39;);" id="fax" name="fax" value="">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">地址：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="50" onkeyup="goNextInput(&#39;postcode&#39;);" id="address" name="address" value="">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">邮编：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="10" onkeyup="goNextInput(&#39;qq&#39;);" id="postcode" name="postcode" value="">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">QQ：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="25" id="qq" name="qq" value="">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>系统参数</legend>
+										<div class="layui-field-box">
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">文件上传端口：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="4" onkeyup="goNextInput(&#39;loginLimit&#39;);" id="uploadPort" name="uploadPort" value="" title="默认是1500，建议不要修改，防火墙需要设置允许外部访问这个端口">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">登录尝试次数：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="1" onkeyup="goNextInput(&#39;lockHour&#39;);" id="loginLimit" name="loginLimit" value="" title="如果密码错误时，可以重复尝试多少次，一旦超过设定的次数，系统将自动锁定该用户账号，禁止该用户登录系统。">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">用户锁定时间：</label>
+														<div class="layui-input-inline" style="width: 50px;">
+															<input class="layui-input" placeholder="" type="text" maxlength="1" onkeyup="goNextInput(&#39;msgInterval&#39;);" id="lockHour" name="lockHour" value="">
+														</div>
+														<div class="layui-form-mid">小时</div>
+													</div>
+												</div>
+											</div>
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">消息刷新间隔：</label>
+														<div class="layui-input-inline" style="width: 50px;">
+															<input class="layui-input" placeholder="" type="text" maxlength="4" onkeyup="goNextInput(&#39;pageSize&#39;);" id="msgInterval" name="msgInterval" value="" title="系统根据这个设置，定时检查是否有新消息到来，有新消息会弹出窗口提醒">
+														</div>
+														<div class="layui-form-mid">分</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">记录显示行数：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="2" id="pageSize" name="pageSize" value="" title="用于定义记录进行分页，每一页的记录数。">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">业务单计价：</label>
+														<div class="layui-input-inline" style="width: 230px;" title="对于单一业务的广告公司，可以在系统配置上，设定业务单计价方式，例如专业喷绘写真公司，不要对“成品计价”与“长度计价”打勾，这样开单界面就只有平方计价的项目；而专业条幅公司，不要对“成品计价”与“平方计价”打勾，这样开单界面就只有长度计价的项目；标识工程公司，就只要选中“成品计价”就可以了。">
+															<input style="vertical-align: top;" type="checkbox" name="priceType1" id="priceType1" title="面积" lay-skin="primary" checked>
+															<input type="checkbox" name="priceType2" id="priceType2" title="长度" lay-skin="primary" checked>
+															<input type="checkbox" name="priceType3" id="priceType3" title="成品" lay-skin="primary" checked>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>数据备份</legend>
+										<div class="layui-field-box">
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">数据自动备份：</label>
+														<div class="layui-input-inline">
+															<input type="radio" name="r_dbAb" id="r_dbAb1" onclick="changeRadio(&#39;dbAb&#39;,&#39;Y&#39;);" value="0" title="是" checked>
+															<input type="radio" name="r_dbAb" id="r_dbAb1" onclick="changeRadio(&#39;dbAb&#39;,&#39;N&#39;);" value="1" title="否">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">自动备份时间：</label>
+														<div class="layui-input-inline" style="width: 55px;">
+															<select id="dbAbHour" name="dbAbHour">
+																<option value="00">00</option>
+																<option value="01">01</option>
+																<option value="02">02</option>
+																<option value="03">03</option>
+																<option value="04">04</option>
+																<option value="05">05</option>
+																<option value="06">06</option>
+																<option value="07">07</option>
+																<option value="08">08</option>
+																<option value="09">09</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+																<option value="13">13</option>
+																<option value="14">14</option>
+																<option value="15">15</option>
+																<option value="16">16</option>
+																<option value="17">17</option>
+																<option value="18" selected="">18</option>
+																<option value="19">19</option>
+																<option value="20">20</option>
+																<option value="21">21</option>
+																<option value="22">22</option>
+																<option value="23">23</option>
+															</select>
+														</div>
+														<div class="layui-form-mid">时</div>
+														<div class="layui-input-inline" style="width: 55px;">
+															<select id="dbAbMinute" name="dbAbMinute">
+																<option value="00" selected="">00</option>
+																<option value="10">10</option>
+																<option value="20">20</option>
+																<option value="30">30</option>
+																<option value="40">40</option>
+																<option value="50">50</option>
+															</select>
+														</div>
+														<div class="layui-form-mid">分</div>
+													</div>
+
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">数据备份目录：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" id="dbBackupFolder" name="dbBackupFolder" value="" title="如果指定了备份目录(可以指定到另一台电脑上，或者指定到U盘)，强烈建议您使用U盘，那么除了默认目录备份之外，还会在这个指定的备份目录下再备份一次！">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">备份自动删除：</label>
+														<div class="layui-input-inline">
+															<input type="radio" name="r_dbAdel" id="r_dbAdel1" onclick="changeRadio(&#39;dbAdel&#39;,&#39;Y&#39;);" value="0" title="2周前备份" checked>
+															<input type="radio" name="r_dbAdel" id="r_dbAdel2" onclick="changeRadio(&#39;dbAdel&#39;,&#39;N&#39;);" value="1" title="否">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>界面参数</legend>
+										<div class="layui-field-box">
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label"><span class="MustInput">*</span>企业简称：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="10" onkeyup="goNextInput(&#39;slogan&#39;);" id="shortName" name="shortName" value="" title="发送手机短信时，企业简称将作为签名档">
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">企业口号：</label>
+														<div class="layui-input-inline">
+															<input class="layui-input" placeholder="" type="text" maxlength="50" onkeyup="goNextInput(&#39;logo_image&#39;);" id="slogan" name="slogan" value="" title="用于描述企业的经营宗旨、质量目标、企业文化等，将出现在登录窗口上。">
+														</div>
+													</div>
+
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">登录页Logo：</label>
+														<div class="layui-input-inline" style="width:120px">
+															<input class="layui-input" placeholder="" type="file" onkeyup="goNextInput(&#39;login_logo&#39;);" name="logo_image" id="logo_image" value="">
+														</div>
+														<div class="layui-form-mid">
+															<a href="http://115.28.87.22:8888/upload/1_1456975049379.gif" target="_blank">查看</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="layui-row">
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">打印单Logo：</label>
+														<div class="layui-input-inline" style="width:120px">
+															<input class="layui-input" placeholder="" type="file" name="login_logo" id="login_logo" value="" title="企业Logo将出现在单据打印上，包括业务单、送货单、收款单等单据。">
+														</div>
+														<div class="layui-form-mid">
+															<a href="http://115.28.87.22:8888/upload/1_1456975049379login.gif" target="_blank">查看</a>
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-sm4">
+													<div class="layui-form-item">
+														<label class="layui-form-label">桌面显示：</label>
+														<div class="layui-input-inline" style="width: 230px;">
+															<input type="radio" name="r_deskType" id="deskType1" onclick="changeRadio(&#39;deskType&#39;,&#39;MSG&#39;);" value="0" title="公告消息">
+															<input type="radio" name="r_deskType" id="deskType2" onclick="changeRadio(&#39;deskType&#39;,&#39;FLOW&#39;);" value="1" title="业务流程图" checked>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<!--打印-->
+								<div class="layui-tab-item">
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>打印参数</legend>
+										<div class="layui-field-box">
+											<div class="layui-form-item">
+												<label class="layui-form-label">打印处理：</label>
+												<div class="layui-input-inline" style="width: 320px;">
+													<input type="radio" name="r_doPrint" id="r_doPrint1" value="0" title="直接打印">
+													<input type="radio" name="r_doPrint" id="r_doPrint2" value="1" title="打印预览">
+													<input type="radio" name="r_doPrint" id="r_doPrint3" value="2" title="选择打印机" checked>
+												</div>
+												<label class="layui-form-mid">打印预览用于打印调试，已经可以正常打印就不要选择打印预览；直接打印用于电脑只有一台打印机，且已调试正常；选择打印机用于电脑有多台打印机的情况。</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">打印宽度：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_printWidth" id="r_printWidth1" value="0" title="固定">
+													<input type="radio" name="r_printWidth" id="r_printWidth2" value="1" title="100%" checked>
+												</div>
+												<label class="layui-form-mid">如果页面左右还有较多空间，可以选择为100%，尽可能利用纸张宽度。</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单图片：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_bbpi" id="r_bbpi1" value="0" title="显示">
+													<input type="radio" name="r_bbpi" id="r_bbpi1" value="1" title="隐藏" checked>
+												</div>
+												<label class="layui-form-mid">上传业务单的图片，如果设置为显示，就会在业务单打印中显示</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">制作单图片：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_mbpi" id="r_mbpi1" value="0" title="显示">
+													<input type="radio" name="r_mbpi" id="r_mbpi2" value="1" title="隐藏" checked>
+												</div>
+												<label class="layui-form-mid">上传业务单的图片，如果设置为显示，就会在制作单打印中显示，图片选择的工作中心要与制作单所在的工作中心相同</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">安装单图片：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_stpi" id="r_stpi1" value="0" title="显示">
+													<input type="radio" name="r_stpi" id="r_stpi1" value="1" title="隐藏" checked>
+												</div>
+												<label class="layui-form-mid">上传安装单的小样图与完工效果图，如果设置为显示，就会在安装单打印中显示</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">安装单金额：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_stpc" id="r_stpc1" value="0" title="显示" checked>
+													<input type="radio" name="r_stpc" id="r_stpc2" value="1" title="隐藏">
+												</div>
+												<label class="layui-form-mid">如果设置为显示，安装单的金额就会在打印中显示</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单二维码：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_busiBc" id="r_busiBc1" value="0" title="显示" checked>
+													<input type="radio" name="r_busiBc" id="r_busiBc2" value="1" title="隐藏">
+												</div>
+												<label class="layui-form-mid">如果设置为显示，业务单打印时会显示业务单号的二维码</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">制作单二维码：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_makeBc" id="r_makeBc1" value="0" title="显示" checked>
+													<input type="radio" name="r_makeBc" id="r_makeBc2" value="1" title="隐藏">
+												</div>
+												<label class="layui-form-mid">如果设置为显示，制作单打印时会显示业务单号的二维码</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">送货单二维码：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_deliBc" id="r_deliBc1" value="0" title="显示" checked>
+													<input type="radio" name="r_deliBc" id="r_deliBc2" value="1" title="隐藏">
+												</div>
+												<label class="layui-form-mid">如果设置为显示，送货单打印时会显示送货单号的二维码</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">安装单二维码：</label>
+												<div class="layui-input-inline" style="width: 170px;">
+													<input type="radio" name="r_setuBc" id="r_setuBc1" value="0" title="显示" checked>
+													<input type="radio" name="r_setuBc" id="r_setuBc2" value="1" title="隐藏">
+												</div>
+												<label class="layui-form-mid">如果设置为显示，安装单打印时会显示安装单号的二维码</label>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<!--权限-->
+								<div class="layui-tab-item">
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>打印参数</legend>
+										<div class="layui-field-box">
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单联系人：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_selectContact" id="r_selectContact1" value="0" title="全部可选" checked>
+													<input type="radio" name="r_selectContact" id="r_selectContact1" value="1" title="自己客户可选">
+												</div>
+												<label class="layui-form-mid">如果设置自己客户可选，除非客户的经办人是自己，否则在业务单上不能查看到这个客户的联系人</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">工作中心：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_workCenter" id="r_workCenter1" value="0" title="区分权限" checked>
+													<input type="radio" name="r_workCenter" id="r_workCenter2" value="1" title="不区分权限">
+												</div>
+												<label class="layui-form-mid">如果设置为区分权限，必须进入“用户权限”为每个用户授权对哪个工作中心具备权限，否则在制作管理中将看不到制作单</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">银行账户：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_bapr" id="r_bapr1" value="0" title="区分权限" checked>
+													<input type="radio" name="r_bapr" id="r_bapr2" value="1" title="不区分权限">
+												</div>
+												<label class="layui-form-mid">如果设置为区分权限，必须进入“用户权限”为每个用户授权对哪个银行账户具备权限，否则在单据中无法看到与选择银行账户</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">银行账户：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_bankTs" id="r_bankTs1" value="0" title="分帐套" checked>
+													<input type="radio" name="r_bankTs" id="r_bankTs2" value="1" title="不分帐套">
+												</div>
+												<label class="layui-form-mid">如果设置为不分账套，所有账套可以共用相同的银行账户</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">仓库：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_storTs" id="r_storTs1" value="0" title="分帐套" checked>
+													<input type="radio" name="r_storTs" id="r_storTs2" value="1" title="不分帐套">
+												</div>
+												<label class="layui-form-mid">如果设置为不分账套，所有账套可以共用相同的仓库</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">往来单位：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_baseTs" id="r_baseTs1" value="0" title="分帐套" checked>
+													<input type="radio" name="r_baseTs" id="r_baseTs2" value="1" title="不分帐套">
+												</div>
+												<label class="layui-form-mid">如果设置为不分账套，所有账套可以共用客户、供应商、外协</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label" style="padding-left: 0;width: 115px;">禁止看N天前数据：</label>
+												<div class="layui-input-inline" style="width:50px">
+													<input class="layui-input" placeholder="" type="text" maxlength="4" name="earlDataDays" id="earlDataDays" value="">
+												</div>
+												<label class="layui-form-mid">天</label>
+												<label class="layui-form-mid">用于设置用户权限“禁止查看N天前的数据”，多少天就在这里定义</label>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<!--流程-->
+								<div class="layui-tab-item">
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>流程</legend>
+										<div class="layui-field-box">
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单审核：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiAutoExamine" id="r_busiAutoExamine1" value="0" title="自动审核" checked>
+													<input type="radio" name="r_busiAutoExamine" id="r_busiAutoExamine2" value="1" title="手工审核">
+												</div>
+												<label class="layui-form-mid">如果设置自动审核，业务单一保存就是已审核状态</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单送货：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_dac" id="r_dac1" value="0" title="自动完工" checked>
+													<input type="radio" name="r_dac" id="r_dac2" value="1" title="手动完工">
+												</div>
+												<label class="layui-form-mid">如果设置自动完工，业务单只要送完货，就自动标记业务单为已完工</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单结清：</label>
+												<div class="layui-input-inline" style="width: 260px;">
+													<input type="radio" name="r_busiClos" id="r_busiClos1" value="0" title="手动完工送货" checked>
+													<input type="radio" name="r_busiClos" id="r_busiClos2" value="1" title="自动完工送货">
+												</div>
+												<label class="layui-form-mid">如果设置为自动完工送货，只要业务单结清 ，就自动标记业务单为已完工已送货</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单外协：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiCooComp" id="r_busiCooComp1" value="0" title="自动完成" checked>
+													<input type="radio" name="r_busiCooComp" id="r_busiCooComp2" value="1" title="手工完成">
+												</div>
+												<label class="layui-form-mid">如果设置自动完成，业务单只要开了外协单，就自动标记业务单为外协已完工，不能再开外协单</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">采购单入库：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_purcStoc" id="r_purcStoc1" value="0" title="自动入库" checked>
+													<input type="radio" name="r_purcStoc" id="r_purcStoc2" value="1" title="手工入库">
+												</div>
+												<label class="layui-form-mid">如果设置自动入库，那么采购单审核通过后，自动生成入库记录，增加库存。</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单材质：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiProd" id="r_busiProd1" value="0" title="手工填写" checked>
+													<input type="radio" name="r_busiProd" id="r_busiProd2" value="1" title="从材料中选">
+												</div>
+												<label class="layui-form-mid">如果设置只能从材料中选，可以方便开出库单时，自动带出该业务单的材质</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">上传设计文件：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiUplo" id="r_busiUplo1" value="0" title="未审核" checked>
+													<input type="radio" name="r_busiUplo" id="r_busiUplo2" value="1" title="已审核未开工">
+												</div>
+												<label class="layui-form-mid">如果设置为已审核未开工，表示在这个状态下业务单可以上传设计文件；如果设置为未审核，就只有未审核的业务单才能上传设计文件</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单完工：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiComp" id="r_busiComp1" value="0" title="已开工" checked>
+													<input type="radio" name="r_busiComp" id="r_busiComp2" value="1" title="全部">
+												</div>
+												<label class="layui-form-mid">如果设置为已开工，只有已开工的业务单，才能进行完工操作，在“业务单完工”那里才看得到</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">业务单改单：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busi_modi" id="r_busi_modi1" value="0" title="有收款单不允许" checked>
+													<input type="radio" name="r_busi_modi" id="r_busi_modi2" value="1" title="允许">
+												</div>
+												<label class="layui-form-mid">如果设置为有收款单不允许，业务单一旦开了收款单，就不能再做修改</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">外协单改单：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_coop_modi" id="r_coop_modi1" value="0" title="有付款单不允许" checked>
+													<input type="radio" name="r_coop_modi" id="r_coop_modi2" value="1" title="允许">
+												</div>
+												<label class="layui-form-mid">如果设置为有付款单不允许，外协单一旦开了付款单，就不能再做修改</label>
+											</div>
+										</div>
+									</fieldset>
+									
+								</div>
+								<!--数据-->
+								<div class="layui-tab-item">
+									<fieldset class="layui-elem-field layui-field-title">
+										<legend>数据</legend>
+										<div class="layui-field-box">
+											<div class="layui-form-item">
+												<label class="layui-form-label">长度计价项目：</label>
+												<label class="layui-form-mid">以[</label>
+												<div class="layui-input-inline" style="width: 260px;">
+													<input type="radio" name="r_busiLengType" id="r_busiLengType1" value="0" title="最长边" checked>
+													<input type="radio" name="r_busiLengType" id="r_busiLengType2" value="1" title="宽">
+													<input type="radio" name="r_busiLengType" id="r_busiLengType3" value="2" title="高 ]计算">
+												</div>
+												<label class="layui-form-mid">设置业务单与外协单的长度计价项目的长度计算依据</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">长度计价单位：</label>
+												<div class="layui-input-inline" style="width: 140px;">
+													<input type="radio" name="r_lengType" id="r_lengType1" value="0" title="m" checked>
+													<input type="radio" name="r_lengType" id="r_lengType2" value="1" title="cm">
+												</div>
+												<label class="layui-form-mid">选择长度计价默认的单位，如果是公分，就选择cm</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">面积宽高单位：</label>
+												<div class="layui-input-inline" style="width: 140px;">
+													<input type="radio" name="r_areaType" id="r_areaType1" value="0" title="m" checked>
+													<input type="radio" name="r_areaType" id="r_areaType2" value="1" title="mm">
+												</div>
+												<label class="layui-form-mid">选择平方计价默认宽与高的单位</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label" style="padding-left: 0;width: 115px;">业务单业务员默认：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiMng" id="r_busiMng1" value="0" title="客户经办人" checked>
+													<input type="radio" name="r_busiMng" id="r_busiMng1" value="1" title="开单人">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label" style="padding-left: 0;width: 115px;">业务单跟单员默认：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiFoll" id="r_busiFoll1" value="0" title="客户经办人" checked>
+													<input type="radio" name="r_busiFoll" id="r_busiFoll2" value="1" title="开单人">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label" style="padding-left: 0;width: 115px;">业务单设计员默认：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_busiDesi" id="r_busiDesi1" value="0" title="客户经办人" checked>
+													<input type="radio" name="r_busiDesi" id="r_busiDesi2" value="1" title="开单人">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">产量登记：</label>
+												<div class="layui-input-inline" style="width: 230px;">
+													<input type="radio" name="r_outpType" id="r_outpType1" value="0" title="占比登记" checked>
+													<input type="radio" name="r_outpType" id="r_outpType2" value="1" title="完成量登记">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">出库选择业务单：</label>
+												<div class="layui-input-inline" style="width: 310px;">
+													<input type="radio" name="r_outBusi" id="r_outBusi1" value="0" title="当前账套的业务单" checked>
+													<input type="radio" name="r_outBusi" id="r_outBusi2" value="1" title="所有账套的业务单">
+												</div>
+												<label class="layui-form-mid">如果选择所有账套，就表示可以选择把出库成本计入到任何一个账套的业务单上</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">费用选择业务单：</label>
+												<div class="layui-input-inline" style="width: 310px;">
+													<input type="radio" name="r_feeBusi" id="r_feeBusi1" value="0" title="当前账套的业务单" checked>
+													<input type="radio" name="r_feeBusi" id="r_feeBusi2" value="1" title="所有账套的业务单">
+												</div>
+												<label class="layui-form-mid">如果选择所有账套，就表示可以选择把费用成本计入到任何一个账套的业务单上</label>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">已结清业务单：</label>
+												<div class="layui-input-inline" style="width: 280px;">
+													<input type="radio" name="r_busiProf" id="r_busiProf1" value="0" title="不允许登记成本" checked>
+													<input type="radio" name="r_busiProf" id="r_busiProf2" value="1" title="允许登记成本">
+												</div>
+												<label class="layui-form-mid">如果选择允许登记成本，那么出库单、费用单就可以选择已结清的业务单</label>
+											</div>
+										</div>
+											
+									</fieldset>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom" id="buttonDiv">
+					<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave();">
+					<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+				</div>
+			</form>
+		</div>
+
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<script src="../layui/layui.all.js"></script>
+	</body>
+
+</html>

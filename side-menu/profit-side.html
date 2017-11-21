@@ -1,0 +1,97 @@
+<!--产值管理侧边栏-->
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>岗位<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">接单产值明细</a>
+		</li>
+		<li>
+			<a href="#">跟单产值明细</a>
+		</li>
+		<li>
+			<a href="#">设计产值明细</a>
+		</li>
+		<li>
+			<a href="#">制作产值明细</a>
+		</li>
+		<li>
+			<a href="#">收欠费产值明细</a>
+		</li>
+		<li>
+			<a href="#">安装产值明细</a>
+		</li>
+		<li>
+			<a href="#">营销产值明细</a>
+		</li>
+		<li>
+			<a href="#">产值统计表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>产值<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">产值单</a>
+		</li>
+		<li>
+			<a href="#">审核</a>
+		</li>
+		<li>
+			<a href="#">反审核</a>
+		</li>
+		<li>
+			<a href="#">产值单一览表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>规则<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">业务单产值分配规则</a>
+		</li>
+		<li>
+			<a href="#">业务单特殊产值规则</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>作废<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">产值单作废</a>
+		</li>
+	</ul>
+</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

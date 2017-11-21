@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0065)http://115.28.87.22:8888/finance/ReceiveBillItemSearchResult.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>结欠回款明细表 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function showRecBill(id){
+		var url="../finance/ReceiveBillEdit.html?id="+id;
+		ShowIframe("收款单",url,1024,500,"refreshWin()");
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location.reload(true);
+		}
+	}
+	function showBusBill(id){
+		var url="../business/BusinessBillEdit.html?id="+id;
+		ShowIframe("业务单",url,1280,600,"refreshWin()",1024,600);
+	}
+	function doPrint(id){
+		showWin(900,600,"../finance/ReceiveBillPrint.html?id="+id);
+	}
+	function createPageParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("end_date").value);
+		
+		str=str+"&mng_name="+encodeURIComponent(document.getElementById("mng_name").value);
+		str=str+"&mng_id="+document.getElementById("mng_id").value;
+		str=str+"&foll_name="+encodeURIComponent(document.getElementById("foll_name").value);
+		str=str+"&desi_name="+encodeURIComponent(document.getElementById("desi_name").value);
+		str=str+"&intr_name="+encodeURIComponent(document.getElementById("intr_name").value);
+		str=str+"&est_id="+document.getElementById("est_id").value;
+		str=str+"&est_name="+encodeURIComponent(document.getElementById("est_name").value);
+		str=str+"&bb_code="+encodeURIComponent(document.getElementById("bb_code").value);
+		str=str+"&bb_start="+encodeURIComponent(document.getElementById("bb_start").value);
+		str=str+"&bb_end="+encodeURIComponent(document.getElementById("bb_end").value);
+		str=str+"&ba_id="+document.getElementById("ba_id").value;
+		str=str+"&ts_id="+document.getElementById("ts_id").value;
+		str=str+"&order_by="+document.getElementById("order_by").value;
+		str=str+"&order_sc="+document.getElementById("order_sc").value;
+		
+		var receType="A";
+		if(document.getElementById("receType1").checked){
+			receType="MONT";
+		}else if(document.getElementById("receType2").checked){
+			receType="HIST";
+		}
+		str=str+"&rece_type="+receType;
+		
+		return str;
+	}
+	
+	function createProgramParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("hid_start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("hid_end_date").value);
+		str=str+"&mng_name="+encodeURIComponent(document.getElementById("hid_mng_name").value);
+		str=str+"&mng_id=";
+		str=str+"&foll_name="+encodeURIComponent(document.getElementById("hid_foll_name").value);
+		str=str+"&desi_name="+encodeURIComponent(document.getElementById("hid_desi_name").value);
+		str=str+"&intr_name="+encodeURIComponent(document.getElementById("hid_intr_name").value);
+		str=str+"&est_id=";
+		str=str+"&est_name="+encodeURIComponent(document.getElementById("hid_est_name").value);
+		str=str+"&bb_code="+encodeURIComponent(document.getElementById("hid_bb_code").value);
+		str=str+"&bb_start="+encodeURIComponent(document.getElementById("hid_bb_start").value);
+		str=str+"&bb_end="+encodeURIComponent(document.getElementById("hid_bb_end").value);
+		str=str+"&ba_id=";
+		str=str+"&ts_id=1";
+		str=str+"&order_by=";
+		str=str+"&order_sc=";
+		str=str+"&rece_type=";
+		
+		return str;
+	}
+	function doSearch(){
+		var str;
+		if(IsAdvSearch){//高级
+			str="search_type=1";
+			if(document.getElementById("cb_rece_date").checked){
+				if(!checkDateStr(document.getElementById("start_date").value,"回款开始日期")){
+					return;
+				}
+				if(!checkDateStr(document.getElementById("end_date").value,"回款结束日期")){
+					return;
+				}
+				str=str+"&cb_rece_date=1";
+			}
+			if(document.getElementById("cb_rece_type").checked){
+				str=str+"&cb_rece_type=1";
+			}
+			if(document.getElementById("cb_est").checked){
+				var estId=document.getElementById("est_id").value;
+				if(estId==null || estId=="" || estId=="0"){
+					ShowAlert('提示框','请选择客户',200,100);
+					return;
+				}
+				str=str+"&cb_est=1";
+			}
+			if(document.getElementById("cb_bb_code").checked){
+				var bbCode=document.getElementById("bb_code").value.trim();
+				if(bbCode==null || bbCode==""){
+					ShowAlert('提示框','请输入业务单号',200,100);
+					return;
+				}
+				str=str+"&cb_bb_code=1";
+			}
+			if(document.getElementById("cb_bb_date").checked){
+				if(!checkDateStr(document.getElementById("bb_start").value,"订货开始日期")){
+					return;
+				}
+				if(!checkDateStr(document.getElementById("bb_end").value,"订货结束日期")){
+					return;
+				}
+				str=str+"&cb_bb_date=1";
+			}
+			if(document.getElementById("cb_mng").checked){
+				var mngName=document.getElementById("mng_name").value.trim();
+				if(mngName==null || mngName==""){
+					ShowAlert('提示框','请输入业务员姓名',200,100);
+					return;
+				}
+				str=str+"&cb_mng=1";
+			}
+			if(document.getElementById("cb_foll").checked){
+				var follName=document.getElementById("foll_name").value.trim();
+				if(follName==null || follName==""){
+					ShowAlert('提示框','请输入跟单人姓名',200,100);
+					return;
+				}
+				str=str+"&cb_foll=1";
+			}
+			if(document.getElementById("cb_desi").checked){
+				var desiName=document.getElementById("desi_name").value.trim();
+				if(desiName==null || desiName==""){
+					ShowAlert('提示框','请输入设计员姓名',200,100);
+					return;
+				}
+				str=str+"&cb_desi=1";
+			}
+			if(document.getElementById("cb_intr").checked){
+				var intrName=document.getElementById("intr_name").value.trim();
+				if(intrName==null || intrName==""){
+					ShowAlert('提示框','请输入业务来源',200,100);
+					return;
+				}
+				str=str+"&cb_intr=1";
+			}
+			if(document.getElementById("cb_ba").checked){
+				var baId=document.getElementById("ba_id").value;
+				if(baId==null || baId=="" || baId=="0"){
+					ShowAlert('提示框','请选择银行账户',200,100);
+					return;
+				}
+				str=str+"&cb_ba=1";
+			}
+			if(document.getElementById("cb_ts").checked){
+				var tsId=document.getElementById("ts_id").value;
+				if(tsId==null || tsId=="" || tsId=="0"){
+					ShowAlert('提示框','请选择帐套',200,100);
+					return;
+				}
+				str=str+"&cb_ts=1";
+			}
+			if(document.getElementById("cb_order").checked){
+				var orderBy=document.getElementById("order_by").value;
+				if(orderBy==null || orderBy==""){
+					ShowAlert('提示框','请选择排序类型',200,100);
+					return;
+				}
+				str=str+"&cb_order=1";
+			}
+		}else{//快速
+			str="search_type=2";
+			if(!checkDateStr(document.getElementById("start_date").value,"回款开始日期")){
+				return;
+			}
+			if(!checkDateStr(document.getElementById("end_date").value,"回款结束日期")){
+				return;
+			}
+		}
+		var paraStr=createPageParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		window.location="../finance/ReceiveBillItemSearchResult.html?"+str;
+	}
+	function doGo(pageIndex){
+		var str=getSearchCondition();
+		str=str+"&current_page="+pageIndex;
+		window.location="../finance/ReceiveBillItemSearchResult.html?"+str;
+	}
+	
+	function getSearchCondition(){
+		var searchType="1";
+		var str="search_type="+searchType;
+		if(searchType=="1"){//高级
+			str=str+"&cb_rece_date=1";
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			str=str+"&cb_ts=1";
+			
+		}else{//快速
+			
+		}
+		var paraStr=createProgramParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		return str;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function DoubleClick(it){
+		
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="../finance/ReceiveBillItemSearchResult.html?content_type=EXCEL&"+str;
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		Window_Onload();
+	}
+	function checkInput(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doAutoCheck(objId){
+		document.getElementById(objId).checked=true;
+	}
+	function selectManager(){
+		var url="../base/StafferMainForSelect.html";
+		ShowIframe("选择员工",url,800,500,"selectManagerCallBack()");
+	}
+	function selectManagerCallBack(){
+		if(popRetVal!=null){
+			var arr=popRetVal.split(";");
+			document.getElementById("mng_id").value=arr[0];
+			document.getElementById("mng_name").value=arr[1];
+			doAutoCheck("cb_mng");
+		}
+	}
+	function selectStafferName(objId,checkObjId){
+		var url="../base/StafferMainForSelect.html";
+		var cb="selectStafferNameCallBack('"+objId+"','"+checkObjId+"')";
+		ShowIframe("选择员工",url,800,500,cb);
+	}
+	function selectStafferNameCallBack(objId,checkObjId){
+		if(popRetVal!=null){
+			var arr=popRetVal.split(";");
+			document.getElementById(objId).value=arr[1];
+			doAutoCheck(checkObjId);
+		}
+	}
+	function selectEst(){
+		var url="../base/EstablishmentListForSelect.html?type=CLIENT";
+		ShowIframe("选择客户",url,900,500,"selectEstCallBack()");
+	}
+	function selectEstCallBack(){
+		if(popRetVal!=null){
+			document.getElementById("est_id").value=popRetVal[0];
+			document.getElementById("est_name").value=popRetVal[1];
+			doAutoCheck("cb_est");
+		}
+	}
+	function setDate(type,inputType){
+		var d=new Date();
+		var startStr="";
+		var endStr="";
+		if(type=="CURRENT_MONTH"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-01";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="PREVIEW_MONTH"){
+			d=new Date(d.getFullYear(),d.getMonth(),1);
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-1";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="TODAY"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="YESTERDAY"){
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}
+		if(inputType=='REC'){
+			document.getElementById("start_date").value=startStr;
+			document.getElementById("end_date").value=endStr;
+			doAutoCheck("cb_rece_date");
+		}else{
+			document.getElementById("bb_start").value=startStr;
+			document.getElementById("bb_end").value=endStr;
+			doAutoCheck("cb_bb_date");
+		}
+	}
+</script>
+</head>
+
+
+<body oncontextmenu="return false">
+<div class="Wrap"><!-- 页面主框架 -->
+    
+	<div id="ListContainer" class="Container" style="width: 1244px;"><!-- 主体容器 -->
+	    
+	    <!-- 标题栏 -->
+	    <div class="Heading BillIcon">
+	        <div class="HeadingContent">
+	            <h1>结欠回款明细表</h1>
+	            <span class="Note">查询指定期间结欠回款的业务单，当月回款指当月业务单产生的回款，历史回款指其他月份业务单产生的回款</span>
+	        </div>
+	    </div>
+	
+		<!-- 主内容 -->
+		<div class="Content">
+	        <!-- 筛选控件栏 -->
+	        <div class="FilterBar ClearFix">
+	            <div class="SearchIcon"></div>
+	            <span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_rece_date" id="cb_rece_date" checked="true" style="visibility:hidden;">
+	            			回款日期
+	            		</th>
+	            		<td width="360px">
+	            			<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_rece_date&#39;);" id="start_date" name="start_date" value="2017-07-09">
+			            	<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_rece_date\&#39;)&#39;);">
+			            	<input type="hidden" id="hid_start_date" value="2017-07-09">
+			            	至
+			            	<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_rece_date&#39;);" id="end_date" name="end_date" value="2017-07-09">
+			            	<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_rece_date\&#39;)&#39;);">
+			            	<input type="hidden" id="hid_end_date" value="2017-07-09">
+			            	<a href="javascript:setDate(&#39;CURRENT_MONTH&#39;,&#39;REC&#39;);">本月</a>
+							<a href="javascript:setDate(&#39;TODAY&#39;,&#39;REC&#39;);">今天</a>
+							<a href="javascript:setDate(&#39;YESTERDAY&#39;,&#39;REC&#39;);">昨天</a>
+							<a href="javascript:setDate(&#39;PREVIEW_MONTH&#39;,&#39;REC&#39;);">上月</a>
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+	            <span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+		  			<input type="button" value=" 查 询" onclick="doSearch();" class="buttom search-but" id="sSearchButton" name="sSearchButton">
+		  			<input type="button" value=" 导 出" onclick="doDownload();" class="buttom search-out" id="sDownloadButton" name="sDownloadButton">
+	            </span>
+				<div id="dvMoreOptionBox" class="MoreOptionBox" style="display:none;">
+					<table class="MoreOption" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<th class="c1" width="80px">
+			        			<input type="checkbox" name="cb_est" id="cb_est">
+			        			客户
+			        		</th>
+			        		<td class="c1" width="260px">
+			        			<input type="text" class="TextBox readonly" readonly="true" maxlength="15" name="est_name" id="est_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_est&#39;);" value="">
+								<img class="imgIconButton" src="../images/make-a.gif" onclick="selectEst();">
+								<input type="hidden" id="est_id" value="">
+								<input type="hidden" id="hid_est_name" value="">
+			    			</td>
+			    			<th class="c2" width="80px">
+			        			<input type="checkbox" name="cb_rece_type" id="cb_rece_type">
+	                        	结欠类型
+			        		</th>
+			        		<td class="c3" width="250px">
+			        			<input type="radio" name="receType" id="receType1" onclick="doAutoCheck(&#39;cb_rece_type&#39;);">当月回款
+								<input type="radio" name="receType" id="receType2" onclick="doAutoCheck(&#39;cb_rece_type&#39;);">历史回款
+								<input type="radio" name="receType" id="receType3" onclick="doAutoCheck(&#39;cb_rece_type&#39;);" checked="true">全部
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_bb_code" id="cb_bb_code">
+			        			业务单号
+			        		</th>
+			        		<td class="c1">
+			        			<input type="text" class="TextBox" maxlength="50" name="bb_code" id="bb_code" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_bb_code&#39;);" value="">
+								<input type="hidden" id="hid_bb_code" value="">
+			    			</td>
+			    			<th class="c2">
+			        			<input type="checkbox" name="cb_mng" id="cb_mng">
+			        			业务员
+			        		</th>
+			        		<td class="c3">
+			        			<input type="text" class="TextBox" maxlength="15" name="mng_name" id="mng_name" onkeyup="checkInput();" onchange="document.getElementById(&#39;mng_id&#39;).value=&#39;0&#39;;" onfocus="doAutoCheck(&#39;cb_mng&#39;);" value="">
+	                        	<img src="../images/make-a.gif" class="imgIconButton" onclick="selectManager();">
+								<input type="hidden" id="hid_mng_name" value="">
+								<input type="hidden" id="mng_id" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_bb_date" id="cb_bb_date">
+			        			订货日期
+			        		</th>
+			        		<td>
+			        			<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_bb_date&#39;);" id="bb_start" name="bb_start" value="">
+								<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;bb_start&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_bb_date\&#39;)&#39;);">
+								<input type="hidden" id="hid_bb_start" value="">
+					            	至
+								<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_bb_date&#39;);" id="bb_end" name="bb_end" value="">
+								<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;bb_end&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_bb_date\&#39;)&#39;);">
+								<input type="hidden" id="hid_bb_end" value="">
+			    			</td>
+			    			<th class="c2">
+			        			<input type="checkbox" name="cb_foll" id="cb_foll">
+			        			跟单员
+			        		</th>
+			    			<td class="c3">
+			        			<input type="text" class="TextBox" maxlength="15" name="foll_name" id="foll_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_foll&#39;);" value="">
+	                        	<img src="../images/make-a.gif" class="imgIconButton" onclick="selectStafferName(&#39;foll_name&#39;,&#39;cb_foll&#39;);">
+	                        	<input type="hidden" id="hid_foll_name" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_ba" id="cb_ba">
+			        			银行账户
+			        		</th>
+			    			<td class="c1">
+			        			<select name="ba_id" id="ba_id" onfocus="doAutoCheck(&#39;cb_ba&#39;);">
+					  				<option value="0">==请选择==</option>
+					  				
+					  				<option value="10">建行(秦朝阳)</option>
+					  				
+					  				<option value="12">黄秀娟(长通物流(6116))</option>
+					  				
+					  				<option value="9">工行(黄秀娟)</option>
+					  				
+					  				<option value="8">交行(秦朝阳)</option>
+					  				
+					  				<option value="13">黄秀娟(创新物流(5165))</option>
+					  				
+					  				<option value="14">黄秀娟(豫鑫物流（73035）)</option>
+					  				
+					  				<option value="4">农行(黄秀娟)</option>
+					  				
+					  				<option value="15">黄秀娟(微信15225099188)</option>
+					  				
+					  				<option value="11">中行(秦朝阳)</option>
+					  				
+					  				<option value="7"> 浦发(公司一般户)</option>
+					  				
+					  				<option value="2">中行(公司基本户)</option>
+					  				
+					  				<option value="1">现金(会计)</option>
+					  				
+					  				<option value="5">浦发(POS机刷卡)</option>
+					  				
+					  				<option value="6">淘宝 黄秀娟(支付宝 15225099188)</option>
+					  				
+					  				<option value="16">浦发(黄秀娟)</option>
+					  				
+					  				<option value="17">秦朝阳(微信13608675408)</option>
+					  				
+					  				<option value="18">现金(黄秀娟)</option>
+					  				
+				  				</select>
+			    			</td>
+			        		<th class="c2">
+			        			<input type="checkbox" name="cb_desi" id="cb_desi">
+			        			设计员
+			        		</th>
+			    			<td class="c3">
+			        			<input type="text" class="TextBox" maxlength="15" name="desi_name" id="desi_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_desi&#39;);" value="">
+	                        	<img src="../images/make-a.gif" class="imgIconButton" onclick="selectStafferName(&#39;desi_name&#39;,&#39;cb_desi&#39;);">
+	                        	<input type="hidden" id="hid_desi_name" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_ts" id="cb_ts" checked="true">
+	                        	账套
+			        		</th>
+			    			<td class="c1">
+			        			<select name="ts_id" id="ts_id" onfocus="doAutoCheck(&#39;cb_ts&#39;);">
+				    				<option value="0">==请选择账套==</option>
+				    				
+									<option value="1" selected="">新异</option>
+									<option value="2">网络公司</option>
+								</select>
+			        		</td>
+			        		<th class="c2">
+			        			<input type="checkbox" name="cb_intr" id="cb_intr">
+			        			业务来源
+			        		</th>
+			    			<td class="c3">
+			        			<input type="text" class="TextBox" maxlength="15" name="intr_name" id="intr_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_intr&#39;);" value="">
+	                        	<img src="../images/make-a.gif" class="imgIconButton" onclick="selectStafferName(&#39;intr_name&#39;,&#39;cb_intr&#39;);">
+	                        	<input type="hidden" id="hid_intr_name" value="">
+	                    	</td>
+			    		</tr>
+			    	</tbody></table>
+			    	
+			    	<div class="OptionOrderBy">
+	                	<input type="checkbox" name="cb_order" id="cb_order">
+	                    	排序类型
+	                    <select name="order_by" id="order_by" onfocus="doAutoCheck(&#39;cb_order&#39;);">
+	                        <option value="">==请选择==</option>
+					  		<option value="ORDER_DATE">订货日期</option>
+					  		<option value="EST_NAME">订货单位</option>
+					  		<option value="BB_CODE">业务单号</option>
+	                    </select>
+	                    <select name="order_sc" id="order_sc" onfocus="doAutoCheck(&#39;cb_order&#39;);">
+	                        <option value="ASC">升序</option>
+	                        <option value="DESC">降序</option>
+	                    </select>
+	                    <span class="fr"><a href="javascript:;" id="lnkHiddenOption">隐藏查询选项</a></span>
+	                </div>
+				</div>
+			</div>
+			
+			<!-- 提示信息显示栏 -->
+	        <div class="MsgBar">
+	            
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	        </div>
+	        
+	        <!-- 上栏 分页、操作等 -->
+			
+	        <div class="TopToolBar">
+	            <table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+	            	<tbody><tr>
+	                	<td>
+	            			结欠金额合计：0元（当月回款：0元  历史回款：0元）
+	            			数量：0笔
+	                	</td>
+	            	</tr>
+	            </tbody></table>
+			</div>
+			
+     	
+		    <div class="table-list">
+		        <table width="100%">
+		          	<tbody><tr>
+						<th width="9%">业务单号</th>
+						<th width="6%">订货日期</th>
+						<th width="9%">订货单位</th>
+						<th width="9%">摘要</th>
+						<th width="5%">业务员</th>
+						<th width="6%">跟单员</th>
+						<th width="6%">设计员</th>
+						<th width="6%">业务来源</th>
+						<th width="7%">银行账户</th>
+						<th width="6%">金额</th>
+						<th width="6%">本次收款</th>
+						<th width="6%">回款日期</th>
+						<th width="9%">收款单号</th>
+						<th width="5%">回款账期</th>
+						<th width="5%">毛利率</th>
+					</tr>
+					
+				</tbody></table>
+			</div>
+			
+			<!-- 底栏 分页、操作等 -->
+	        <div class="BottomToolBar ClearFix">
+			    	
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="0" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共0页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+	        </div>
+			
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function ChangeWindowSize( container, maxWidth ){
+	    setTimeout( function(){
+	        var w1 = document.documentElement.clientWidth-40;
+	        if( w1>maxWidth ) w1 = maxWidth;
+	        else if( w1<970 ) w1 = 960;
+	        container.style.width = w1+'px';
+	    }, 300 );
+	}
+	var IsAdvSearch = false;
+	(function(){
+		doInit();
+	    var ListContainer = document.getElementById('ListContainer');
+	    ChangeWindowSize( ListContainer, 2020 );    // 超过 1280 的最大 1260 ，不全部铺满
+	
+	    var lnkMoreOption   = document.getElementById('lnkMoreOption');
+	    var lnkHiddenOption = document.getElementById('lnkHiddenOption');
+	    lnkMoreOption.onclick = function(){
+	    	IsAdvSearch = true;
+	        document.getElementById('dvMoreOptionBox').style.display = 'block';
+	        document.getElementById('cb_rece_date').style.visibility = 'visible';
+	        this.style.visibility = 'hidden';
+	    };
+	    lnkHiddenOption.onclick = function(){
+	    	IsAdvSearch = false;
+	        document.getElementById('dvMoreOptionBox').style.display = 'none';
+	        document.getElementById('cb_rece_date').style.visibility = 'hidden';
+	        lnkMoreOption.style.visibility = 'visible';
+	    };
+	})();
+</script>
+</body></html>

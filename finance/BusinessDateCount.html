@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet">
+		<div class="sheet-main">
+			<div class="sheet-top">
+				<div class="content">
+					<h2>销售日报表</h2>
+					<div class="pull-right">
+										日期：
+										<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" id="start_date" name="start_date" value="2017-07-09">
+										<img src="../images/calendar.gif" style="cursor:pointer" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,this);"> 至
+										<input class="TextBox Datetime" type="text" maxlength="15" onkeyup="checkInput();" id="end_date" name="end_date" value="2017-07-09">
+										<img src="../images/calendar.gif" style="cursor:pointer" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this);">
+										<a href="javascript:setDate(&#39;CURRENT_MONTH&#39;);">本月</a>
+										<a href="javascript:setDate(&#39;TODAY&#39;);">今天</a>
+										<a href="javascript:setDate(&#39;YESTERDAY&#39;);">昨天</a>
+										<a href="javascript:setDate(&#39;PREVIEW_MONTH&#39;);">上月</a>
+										<select name="ts_id" id="ts_id">
+											<option value="0">==请选择帐套==</option>
+
+											<option value="1" selected="">新异</option>
+
+											<option value="2">网络公司</option>
+
+										</select>
+						<a type="button" class="buttom btn btn-default" href="#">查 询</a>
+						<a type="button" class="buttom btn btn-default" href="#">打 印</a>
+					</div>
+				</div>
+			</div>
+			<div class="sheet-list">
+				<div class="search-business">
+					<div class="blank24"></div>
+					
+					<table data-toggle="table" data-click-to-select="true">
+						<thead>
+							<tr>
+								<th>
+									<div align="left">&nbsp;&nbsp;合同金额：
+											<a href="javascript:showEstBusCount();">0</a>
+										</div>
+								</th>
+								<th>
+									<div align="left">&nbsp;&nbsp;回款金额：
+											<a href="javascript:showEstBackCount();">0</a>
+										</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div align="left">
+											&nbsp;&nbsp;------&nbsp;当期应收款：0
+											<br><br> &nbsp;&nbsp;------&nbsp;合同单数：0笔
+										</div>
+								</td>
+								<td>
+									<div align="left">
+											&nbsp;&nbsp;------&nbsp;预付金额：
+											<a href="javascript:showBackCostList(&#39;IMPREST&#39;);">0</a>
+											&nbsp;&nbsp;预付单数：
+											<a href="javascript:showBackCostList(&#39;IMPREST&#39;);">0</a>笔
+											<br><br> &nbsp;&nbsp;------&nbsp;结欠金额：
+											<a href="javascript:showRecItemList(&#39;&#39;);">0</a>
+											&nbsp;&nbsp;结欠单数：
+											<a href="javascript:showRecItemList(&#39;&#39;);">0</a>笔
+											<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------&nbsp;当月回款：
+											<a href="javascript:showRecItemList(&#39;MONT&#39;);">0</a>
+											<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------&nbsp;历史回款：
+											<a href="javascript:showRecItemList(&#39;HIST&#39;);">0</a>
+										</div>
+								</td>
+							</tr>
+							<tr>
+									<td colspan="2">
+										<div align="left">
+											<br><br>
+											<span class="give">注：1. 当期应收款：合同金额 + 调账金额 – 已收金额 2. 结欠金额：收到之前业务单的欠款 3. 结欠单数：结欠的业务单单数  4.  当月回款：当月业务单产生的回款  5. 历史回款：其他月份业务单产生的回款</span>
+										</div>
+									</td>
+								</tr>
+						</tbody>
+					</table>
+
+					<!-- 底栏 分页、操作等 -->
+					<div class="BottomToolBar ClearFix">
+						<div class="pull-right">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">返回主菜单</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<!--
+	作者：offline
+	描述：业务接单 新增业务单
+-->
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrapValidator.css" rel="stylesheet" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div class="header container-fluid">
+			<div class="row">
+				<div class="col-xs-4">
+					<div class="panel-logo pull-left">
+						<img src="../img/BIAO  SHI  HUI.png" />
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<h2>新增业务单</h2>
+				</div>
+				<div class="col-xs-4" style="text-align: right;">
+					<table border="0" cellspacing="1" cellpadding="1">
+						<tr>
+							<td>
+								<a style="font-size: 30px;" class="close" type="button" href="#"><span aria-hidden="true">&times;</span></a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								编号：<input type="" name="" id="" value="" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								订货日期：<input type="" name="" id="" value="" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="body">
+			<form id="form" action="" method="post">
+				<div class="row">
+					<div class="col-xs-3">
+						客户：
+						<input style="width: 120px;" type="text" name="" id="" value="" />
+					</div>
+					<div class="col-xs-3" style="text-align: center;">
+						联系人：
+						<input style="width: 120px;" type="text" name="" id="" value="" />
+					</div>
+					<div class="col-xs-3" style="text-align: center;">
+						电话：
+						<input style="width: 120px;" type="text" name="" id="" value="" />
+					</div>
+					<div class="col-xs-3" style="text-align: right;">
+						合同号：
+						<input style="width: 120px;" type="text" name="" id="" value="" />
+					</div>
+				</div>
+
+				<table class="table-list">
+					<tbody>
+						<tr>
+							<th>项目类型</th>
+							<th>内容</th>
+							<th>材质</th>
+							<th>宽x高</th>
+							<th>规格</th>
+							<th>制作要求</th>
+							<th>数量</th>
+							<th>平方数</th>
+							<th>元/平</th>
+							<th>金额</th>
+							<th>外协</th>
+							<th>安装</th>
+							<th>自制</th>
+							<th>操作</th>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<a href="#">删除</a>
+								<br />
+								<a href="#">复制</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				增加平方计价项目
+
+			</form>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrapValidator.js"></script>
+
+	</body>
+
+</html>
+
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+
+</head>
+
+<body>
+	<div>
+		<form name="frm" method="post">
+			<div class="Container">
+				<div class="Contnet Paper">
+					<div class="BillHeading">
+
+					</div>
+					<!--业务单 标题-->
+					<table class="BillHeading" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td width="387px;" rowspan="2">
+									<div class="CorpLogo"><img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/1_1456975049379login.gif"></div>
+								</td>
+								<td width="387px;" rowspan="2">
+									<h1>新增业务单</h1></td>
+								<td width="387px;" class="tr vb codeTd">
+									<span class="MustInput">*</span>编号：
+
+									<input type="text" class="tbBillCode TextBox readonly" readonly="readonly" maxlength="30" onkeyup="goNextInput(&#39;orderDateStr&#39;);" id="businessBill.billCode" name="businessBill.billCode" value="">
+
+								</td>
+							</tr>
+							<tr>
+								<td class="tr">
+									<span class="MustInput">*</span>订货日期：
+
+									<input type="text" class="tbBillDate TextBox " maxlength="15" onkeyup="goNextInput(&#39;businessBill.linkman&#39;);" id="orderDateStr" name="orderDateStr" value="2017-11-05">
+									<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;orderDateStr&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;orderDateStr&#39;));">
+									<select id="orderDateHourSelect" class="ddlDateHour" onchange="changeTimeSelect(this,&#39;orderDateHour&#39;);">
+										<option value="00">00</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15" selected="">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+									</select>
+									<select id="orderDateMinuteSelect" class="ddlDateMinute" onchange="changeTimeSelect(this,&#39;orderDateMinute&#39;);">
+										<option value="00">00</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10" selected="">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+										<option value="32">32</option>
+										<option value="33">33</option>
+										<option value="34">34</option>
+										<option value="35">35</option>
+										<option value="36">36</option>
+										<option value="37">37</option>
+										<option value="38">38</option>
+										<option value="39">39</option>
+										<option value="40">40</option>
+										<option value="41">41</option>
+										<option value="42">42</option>
+										<option value="43">43</option>
+										<option value="44">44</option>
+										<option value="45">45</option>
+										<option value="46">46</option>
+										<option value="47">47</option>
+										<option value="48">48</option>
+										<option value="49">49</option>
+										<option value="50">50</option>
+										<option value="51">51</option>
+										<option value="52">52</option>
+										<option value="53">53</option>
+										<option value="54">54</option>
+										<option value="55">55</option>
+										<option value="56">56</option>
+										<option value="57">57</option>
+										<option value="58">58</option>
+										<option value="59">59</option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<!-- 业务单 头信息 -->
+					<div class="BillHeadInfo">
+						<table class="BillHeadInfo" cellspacing="0" cellpadding="0">
+							<tbody>
+								<tr>
+									<td width="400px;">
+										<span class="MustInput">*</span>客户：
+
+										<input class="tbHead1 TextBox readonly" readonly="readonly" type="text" id="clientName" name="clientName" value="格力电器">
+
+										<img class="make-a" src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/make-a.gif" style="cursor:pointer;" onclick="selectClient();">
+										<input type="hidden" id="businessBill.clientId" name="businessBill.clientId" value="757">
+										<span id="spClientInfo" class="lbClientNote">大客户</span>
+									</td>
+									<td width="471px;">
+										联系人：
+										<input type="text" class="tbHead2_1_short TextBox " maxlength="15" onkeyup="goNextInput(&#39;businessBill.phone&#39;);" id="businessBill.linkman" name="businessBill.linkman" value="赵四">
+										<img class="make-a" src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/make-a.gif" style="cursor:pointer;" onclick="selectContact();">
+										<script language="javascript">
+											setFormErrorMsg('', 4, 'businessBill.linkman');
+										</script>
+
+										电话：
+
+										<input type="text" class="tbHead2_2 TextBox " maxlength="40" onkeyup="goNextInput(&#39;businessBill.contractCode&#39;);" id="businessBill.phone" name="businessBill.phone" value="15638922732">
+										<a href="javascript:addLinkman();" title="把联系人添加到客户档案">添加</a>
+
+									</td>
+									<td width="290px;" class="tr">
+										合同号：
+
+										<input type="text" class="tbHead3 TextBox " maxlength="50" onkeyup="goNextInput(&#39;businessBill.setupRequire&#39;);" id="businessBill.contractCode" name="businessBill.contractCode" value="">
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- 业务单 明细 -->
+
+					<div id="filedrag_area">
+						<table id="BillDetails" class="BillDetails" width="100%" cellspacing="0" cellpadding="0" border="1">
+							<tbody id="areaItemRowTbl">
+								<tr>
+									<th width="8%">项目类型</th>
+									<th width="19%">内容</th>
+									<th width="8%">材质</th>
+									<th width="10%">宽x高</th>
+									<th width="7%">规格</th>
+									<th width="11%">制作要求</th>
+									<th width="5%">数量</th>
+									<th width="6%">平方数</th>
+									<th width="5%">元/平</th>
+									<th width="5%">金额</th>
+									<th width="3%">外协</th>
+									<th width="3%">安装</th>
+									<th width="6%">自制</th>
+									<th width="4%">操作</th>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="table-bot">
+							<span id="areaTotalSpan" style="float:right;PADDING-RIGHT:10px;color:#aaa">
+				 	记录：0条&nbsp;
+					面积：0平方米&nbsp;
+					金额：0元
+				 </span>
+
+							<a href="javascript:doAreaItemAdd();">增加平方计价项目</a>
+							<span id="hiSpanArea"><a href="javascript:doItemSelect(&#39;AREA&#39;);">选择最近交易价格</a></span>
+							<a href="javascript:doPriceSelect(&#39;AREA&#39;,&#39;STA&#39;);">选择标准价格</a>
+							<span id="epSpanArea"><a href="javascript:doPriceSelect(&#39;AREA&#39;,&#39;EST&#39;);">选择客户价格</a></span>
+							<a id="uplo_area" href="javascript:doExceImpo(&#39;AREA&#39;);">从Excel导入</a>
+							<span title="自动读取图片尺寸、文件名，自动识别项目类型（喷绘、室内写真、户外写真、裱板、数码彩旗、弱溶剂、写真背板、旗帜、写真、UV打印），填写业务单">可直接拖动图片到这里 <img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/arrow_up.png" height="14px"></span>
+
+						</div>
+					</div>
+					<br>
+
+					<div id="filedrag_leng">
+						<table id="BillDetails" class="BillDetails" width="100%" cellspacing="0" cellpadding="0">
+							<tbody id="lengthItemRowTbl">
+								<tr>
+									<th width="8%">项目类型</th>
+									<th width="19%">内容</th>
+									<th width="8%">材质</th>
+									<th width="10%">宽x高</th>
+									<th width="7%">规格</th>
+									<th width="11%">制作要求</th>
+									<th width="5%">数量</th>
+									<th width="6%">总长度</th>
+									<th width="5%">单价</th>
+									<th width="5%">金额</th>
+									<th width="3%">外协</th>
+									<th width="3%">安装</th>
+									<th width="6%">自制</th>
+									<th width="4%">操作</th>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="table-bot">
+							<span id="lengTotalSpan" style="float:right;PADDING-RIGHT:10px;color:#aaa">
+				 	记录：0条&nbsp;
+					长度：0米&nbsp;0公分&nbsp;
+					金额：0元
+				</span>
+
+							<a href="javascript:doLengthItemAdd();">增加长度计价项目</a>
+							<span id="hiSpanLength"><a href="javascript:doItemSelect(&#39;LENGTH&#39;);">选择最近交易价格</a></span>
+							<a href="javascript:doPriceSelect(&#39;LENGTH&#39;,&#39;STA&#39;);">选择标准价格</a>
+							<span id="epSpanLength"><a href="javascript:doPriceSelect(&#39;LENGTH&#39;,&#39;EST&#39;);">选择客户价格</a></span>
+							<a id="uplo_leng" href="javascript:doExceImpo(&#39;LENGTH&#39;);">从Excel导入</a>
+							<span title="自动读取图片尺寸、文件名、自动识别项目类型（写真条幅、激光条幅、条幅、横幅），填写业务单">可直接拖动图片到这里 <img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/arrow_up.png" height="14px"></span>
+
+						</div>
+					</div>
+					<br>
+
+					<div id="filedrag_amou">
+						<table id="BillDetails" class="BillDetails" width="100%" cellspacing="0" cellpadding="0">
+							<tbody id="amountItemRowTbl">
+								<tr>
+									<th width="8%">项目类型</th>
+									<th width="19%">内容</th>
+									<th width="8%">材质</th>
+									<th width="10%">规格</th>
+									<th width="16%">制作要求</th>
+									<th width="7%">单位</th>
+									<th width="6%">数量</th>
+									<th width="5%">单价</th>
+									<th width="5%">金额</th>
+									<th width="3%">外协</th>
+									<th width="3%">安装</th>
+									<th width="6%">自制</th>
+									<th width="4%">操作</th>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="table-bot">
+							<span id="amountTotalSpan" style="float:right;PADDING-RIGHT:10px;color:#aaa">
+				 	记录：0条&nbsp;
+					数量：0&nbsp;
+					金额：0元
+				 </span>
+
+							<a href="javascript:doAmountItemAdd();">增加成品计价项目</a>
+							<span id="hiSpanAmount"><a href="javascript:doItemSelect(&#39;AMOUNT&#39;);">选择最近交易价格</a></span>
+							<a href="javascript:doPriceSelect(&#39;AMOUNT&#39;,&#39;STA&#39;);">选择标准价格</a>
+							<span id="epSpanAmount"><a href="javascript:doPriceSelect(&#39;AMOUNT&#39;,&#39;EST&#39;);">选择客户价格</a></span>
+							<a id="uplo_amou" href="javascript:doExceImpo(&#39;AMOUNT&#39;);">从Excel导入</a>
+							<span title="自动读取图片尺寸、文件名，填写业务单">可直接拖动图片到这里 <img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/arrow_up.png" height="14px"></span>
+
+						</div>
+					</div>
+					<br>
+
+					<!-- 业务单 附加信息 -->
+					<div class="TopBottom_Border">
+						<table class="BillElseInfo" cellspacing="0" cellpadding="0">
+							<tbody>
+								<tr>
+									<th width="84px">业务来源：</th>
+									<td width="286px">
+
+										<input type="text" class="tbInfo1 TextBox readonly" readonly="readOnly" id="businessBill.introducerName" name="businessBill.introducerName" value="" title="选择是由哪一个员工介绍过来的业务，用于给员工计算营销产值">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/make-a.gif" class="imgIconButton" onclick="selectStaffer(&#39;businessBill.introducerId&#39;,&#39;businessBill.introducerName&#39;);" title="选择是由哪一个员工介绍过来的业务，用于给员工计算营销产值">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/icon_del.gif" class="imgIconButton" onclick="doClear(&#39;businessBill.introducerId&#39;,&#39;businessBill.introducerName&#39;);">
+
+										<input type="hidden" id="businessBill.introducerId" name="businessBill.introducerId" value="0">
+
+									</td>
+									<th width="84px">安装要求：</th>
+									<td width="359px">
+
+										<input type="text" class="tbInfo2 TextBox " style="width:338px" maxlength="50" onkeyup="goNextInput(&#39;businessBill.ladingRequire&#39;);" id="businessBill.setupRequire" name="businessBill.setupRequire" value="">
+
+									</td>
+									<th width="84px">合计金额：</th>
+									<td width="265px">
+
+										<input type="text" class="tbInfo3 TextBox readonly" readonly="readonly" maxlength="10" name="costTotal" id="costTotal" value="0">
+
+									</td>
+								</tr>
+								<tr>
+									<th>部门：</th>
+
+									<td>
+										<select id="businessBill.departmentId" name="businessBill.departmentId" class="ddlInfo1">
+											<option value="0">==请选择==</option>
+
+											<option value="1">易凯管理员</option>
+											<option value="50">&nbsp;|--1</option>
+											<option value="13">总经办</option>
+											<option value="22">&nbsp;|--财务</option>
+											<option value="14">新异店</option>
+											<option value="15">&nbsp;|--客服</option>
+											<option value="23">&nbsp;|--设计</option>
+											<option value="24">&nbsp;|--业务</option>
+											<option value="16">业务来源</option>
+											<option value="17">标识加工车间</option>
+											<option value="21">合作伙伴</option>
+											<option value="32" selected="">标识汇运营部</option>
+											<option value="33">财务部</option>
+											<option value="35">新异标识标牌有限公司</option>
+											<option value="36">&nbsp;|--物流部</option>
+											<option value="41">&nbsp;|--销售部</option>
+											<option value="42">&nbsp;|--业务部</option>
+											<option value="43">&nbsp;|--设计部</option>
+											<option value="44">&nbsp;|--安装部</option>
+											<option value="45">&nbsp;|--外协(东厂)</option>
+											<option value="46">&nbsp;|--财务部</option>
+											<option value="48">&nbsp;|--门市部</option>
+											<option value="49">&nbsp;|--加工车间</option>
+											<option value="37">&nbsp;&nbsp;|--标牌部</option>
+											<option value="38">&nbsp;&nbsp;|--标识部</option>
+											<option value="39">&nbsp;&nbsp;|--型材加工部</option>
+											<option value="40">&nbsp;&nbsp;|--字加工部</option>
+										</select>
+									</td>
+
+									<th>提货要求：</th>
+
+									<td>
+										<input type="text" class="tbInfo2 TextBox " style="width:338px" maxlength="50" onkeyup="goNextInput(&#39;businessBill.address&#39;);" id="businessBill.ladingRequire" name="businessBill.ladingRequire" value="">
+									</td>
+
+									<th>优惠金额：</th>
+
+									<td>
+										<input type="text" class="tbInfo3 TextBox " maxlength="10" name="favCostStr" id="favCostStr" value="0" onchange="doCount();">
+
+										<a href="javascript:doFav();">抹零</a>
+										<a href="javascript:doRound();">四舍五入</a>
+
+										<script language="javascript">
+											setFormErrorMsg('', 12, 'favCostStr');
+										</script>
+									</td>
+
+								</tr>
+								<tr>
+									<th>业务员：</th>
+									<td>
+
+										<input type="text" class="tbInfo1 TextBox readonly" readonly="true" id="businessBill.managerName" name="businessBill.managerName" value="杨海波" title="选择接单员，用于计算该员工的接单产值">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/make-a.gif" class="imgIconButton" onclick="selectStaffer(&#39;businessBill.managerId&#39;,&#39;businessBill.managerName&#39;);" title="选择接单员，用于计算该员工的接单产值">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/icon_del.gif" class="imgIconButton" onclick="doClear(&#39;businessBill.managerId&#39;,&#39;businessBill.managerName&#39;);">
+										<script language="javascript">
+											setFormErrorMsg('', 13);
+										</script>
+
+										<input type="hidden" id="businessBill.managerId" name="businessBill.managerId" value="51">
+
+									</td>
+									<th><span class="MustInput">*</span>交货日期：</th>
+
+									<td>
+										<input type="text" class="tbBillDate TextBox " maxlength="15" onkeyup="goNextInput(&#39;businessBill.address&#39;);" id="deliverDateStr" name="deliverDateStr" value="2017-11-05">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;deliverDateStr&#39;),&#39;yyyy-mm-dd&#39;,this);">
+										<select id="deliverDateHourSelect" class="ddlDateHour" onchange="changeTimeSelect(this,&#39;deliverDateHour&#39;);">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15" selected="">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+										</select>
+										<select id="deliverDateMinuteSelect" class="ddlDateMinute" onchange="changeTimeSelect(this,&#39;deliverDateMinute&#39;);">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10" selected="">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+											<option value="24">24</option>
+											<option value="25">25</option>
+											<option value="26">26</option>
+											<option value="27">27</option>
+											<option value="28">28</option>
+											<option value="29">29</option>
+											<option value="30">30</option>
+											<option value="31">31</option>
+											<option value="32">32</option>
+											<option value="33">33</option>
+											<option value="34">34</option>
+											<option value="35">35</option>
+											<option value="36">36</option>
+											<option value="37">37</option>
+											<option value="38">38</option>
+											<option value="39">39</option>
+											<option value="40">40</option>
+											<option value="41">41</option>
+											<option value="42">42</option>
+											<option value="43">43</option>
+											<option value="44">44</option>
+											<option value="45">45</option>
+											<option value="46">46</option>
+											<option value="47">47</option>
+											<option value="48">48</option>
+											<option value="49">49</option>
+											<option value="50">50</option>
+											<option value="51">51</option>
+											<option value="52">52</option>
+											<option value="53">53</option>
+											<option value="54">54</option>
+											<option value="55">55</option>
+											<option value="56">56</option>
+											<option value="57">57</option>
+											<option value="58">58</option>
+											<option value="59">59</option>
+										</select>
+										<a href="javascript:setDate(&#39;TOMORROW&#39;);">明天</a>
+										<a href="javascript:setDate(&#39;AFTER_TOMO&#39;);">后天</a>
+										<script language="javascript">
+											setFormErrorMsg('', 14, 'deliverDateStr');
+										</script>
+									</td>
+
+									<th>折后金额：</th>
+
+									<td>
+										<input type="text" class="tbInfo3 TextBox readonly" readonly="readonly" maxlength="10" name="businessBill.cost" id="businessBill.cost" value="0">
+										<script language="javascript">
+											setFormErrorMsg('', 15, 'businessBill.cost');
+										</script>
+									</td>
+
+								</tr>
+								<tr>
+									<th>跟单员：</th>
+									<td>
+
+										<input type="text" class="tbInfo1 TextBox readonly" readonly="true" id="businessBill.followerNameStr" name="businessBill.followerNameStr" value="杨海波 1" onmouseover="this.title=this.value">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/make-a.gif" class="imgIconButton" onclick="selectStafferRate(&#39;FOLLOWER&#39;,&#39;businessBill.followerIdStr&#39;,&#39;businessBill.followerNameStr&#39;);" title="选择跟单员，用于计算该员工的跟单产值">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/icon_del.gif" class="imgIconButton" onclick="clearStafferRate(&#39;businessBill.followerIdStr&#39;,&#39;businessBill.followerNameStr&#39;);">
+
+										<input type="hidden" id="businessBill.followerIdStr" name="businessBill.followerIdStr" value=";51:1;">
+
+									</td>
+									<th>送货地址：</th>
+
+									<td>
+										<input type="text" class="tbInfo2 TextBox " style="width:338px" maxlength="250" onkeyup="goNextInput(&#39;businessBill.content&#39;);" id="businessBill.address" name="businessBill.address" value="">
+									</td>
+
+									<th>预付款：</th>
+
+									<td>
+										<input type="text" class="tbInfo3 TextBox " maxlength="10" id="imprestStr" name="imprestStr" value="0">
+									</td>
+
+								</tr>
+								<tr>
+									<td colspan="4">
+										<div class="Divider1280"></div>
+									</td>
+									<th>付款方式：</th>
+
+									<td>
+										<select id="businessBill.payModeId" name="businessBill.payModeId" class="ddlInfo3">
+
+											<option value="1">现结</option>
+
+											<option value="2">月结</option>
+
+											<option value="3">季结</option>
+
+											<option value="4">公户转帐</option>
+
+											<option value="5">支付宝转帐</option>
+
+											<option value="6">银行转帐</option>
+
+											<option value="7">物流代收</option>
+
+											<option value="8">微信转帐</option>
+
+											<option value="9">取货付款</option>
+
+										</select>
+										<script language="javascript">
+											setFormErrorMsg('', 19);
+										</script>
+									</td>
+
+								</tr>
+								<tr>
+									<th>设计类型：</th>
+
+									<td>
+										<select class="ddlInfo1" id="businessBill.designType" name="businessBill.designType">
+											<option value="SELF">公司设计</option>
+											<option value="CLIENT">客户来稿</option>
+										</select>
+									</td>
+
+									<th>摘要：</th>
+
+									<td>
+										<input type="text" class="tbInfo2 TextBox " style="width:338px" maxlength="200" onkeyup="goNextInput(&#39;businessBill.mark&#39;);" id="businessBill.content" name="businessBill.content" value="">
+										<script language="javascript">
+											setFormErrorMsg('', 20, 'businessBill.content');
+										</script>
+									</td>
+
+									<th>收款账户：</th>
+
+									<td>
+										<select id="businessBill.bankAccountId" name="businessBill.bankAccountId" class="ddlInfo3_long">
+
+										</select>
+										<script language="javascript">
+											setFormErrorMsg('', 21);
+										</script>
+									</td>
+
+								</tr>
+								<tr>
+									<th>设计员：</th>
+									<td>
+
+										<input type="text" class="tbInfo1 TextBox readonly" readonly="true" id="businessBill.designerNameStr" name="businessBill.designerNameStr" value="杨海波 1">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/make-a.gif" class="imgIconButton" onclick="selectStafferRate(&#39;DESIGNER&#39;,&#39;businessBill.designerIdStr&#39;,&#39;businessBill.designerNameStr&#39;);" title="允许选择多个设计员，同时设置各个设计员在本单设计的比例，独立完成为1">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/icon_del.gif" class="imgIconButton" onclick="clearStafferRate(&#39;businessBill.designerIdStr&#39;,&#39;businessBill.designerNameStr&#39;);">
+										<script language="javascript">
+											setFormErrorMsg('', 22);
+										</script>
+
+										<input type="hidden" id="businessBill.designerIdStr" name="businessBill.designerIdStr" value=";51:1;">
+
+									</td>
+									<th>备注：</th>
+
+									<td>
+										<input type="text" class="tbInfo2 TextBox " style="width:338px" maxlength="200" id="businessBill.mark" name="businessBill.mark" value="">
+										<script language="javascript">
+											setFormErrorMsg('', 23, 'businessBill.mark');
+										</script>
+									</td>
+
+									<th><span class="MustInput">*</span>结账日期：</th>
+
+									<td>
+										<input type="text" class="tbInfo3 TextBox" maxlength="15" id="checkDateStr" name="checkDateStr" value="2017-11-05">
+										<img src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;checkDateStr&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;checkDateStr&#39;));">
+										<script language="javascript">
+											setFormErrorMsg('', 24, 'checkDateStr');
+										</script>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- 业务单 附件 -->
+					<br>
+					<table class="BillAttachments" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td>
+
+									<iframe name="accessoryFrm" id="accessoryFrm" scrolling="no" border="0" frameborder="0" height="0" width="100%" src="./业务单 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/AccessoryList.html" style="height: 86px;"></iframe>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="BillNotes">
+						<span>开单人：杨海波 2017-11-05 15:10</span>
+						<span>审核人：</span>
+						<span>结清： </span>
+						<span>最后打印：</span>
+						<span>修改人：</span>
+						<span>单据帐套：网络公司</span>
+					</div>
+				</div>
+
+				<!-- 业务单 底栏按钮 -->
+				<div class="Footer">
+					<div>
+						<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存</a>
+						<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+						<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并关闭</a>
+						<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并打印</a>
+						<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取消</a>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>

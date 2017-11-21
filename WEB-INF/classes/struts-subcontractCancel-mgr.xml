@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<!-- 外协  作废  外协单作废  收货单作废 -->
+    <package name="struts-subcontractCancel" extends="struts2"  namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+    	<action name="subcontract_*" class="com.erp.controller.subcontractCancel.action.CooperAction" method="{1}"> 
+    	  <result name="toCooperBillListForCancel">/WEB-INF/view/subcontractCancel/CooperBillListForCancel.jsp</result>
+    	  <result name="cooperBillListForCancel">/WEB-INF/view/subcontractCancel/CooperBillListForCancel.jsp</result>
+    	  <result name="cooperBillCancel">/WEB-INF/view/subcontractCancel/CooperBillListForCancel.jsp</result>
+    	  <result name="toGatherBillListForCancel">/WEB-INF/view/subcontractCancel/GatherBillListForCancel.jsp</result>
+    	  <result name="gatherBillListForCancel">/WEB-INF/view/subcontractCancel/GatherBillListForCancel.jsp</result>
+    	  <result name="gatherBillCancel">/WEB-INF/view/subcontractCancel/GatherBillListForCancel.jsp</result>
+    	</action>
+    	
+    	<action name="cooper_*" class="com.erp.controller.subcontractCancel.action.BusinessBillListForCooCompAction" method="{1}">
+			<result name="toCooperComp">/WEB-INF/view/subcontractCancel/comp/BusinessBillListForCooComp.jsp</result>
+			<result name="toCooperCompLook">/WEB-INF/view/subcontractCancel/comp/BusinessBillForCooComp.jsp</result>
+		</action>
+		<action name="cooperUn_*"
+			class="com.erp.controller.subcontractCancel.action.BusinessBillListForCooUnCompAction" method="{1}">
+			<result name="toCooperUnComp">/WEB-INF/view/subcontractCancel/comp/BusinessBillListForCooUnComp.jsp</result>
+			<result name="toLookInfo">/WEB-INF/view/subcontractCancel/comp/BusinessBillListForCooUnComp.jsp</result>
+		</action>
+    </package>
+</struts>

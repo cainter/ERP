@@ -1,0 +1,139 @@
+<!--统计报表侧边栏-->
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>营业<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">销售日报表</a>
+		</li>
+		<li>
+			<a href="#">项目营业日报表</a>
+		</li>
+		<li>
+			<a href="#">项目营业汇总表</a>
+		</li>
+		<li>
+			<a href="#">员工业绩排行表</a>
+		</li>
+		<li>
+			<a href="#">客户营业汇总表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>利润<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">业务单成本表</a>
+		</li>
+		<li>
+			<a href="#">利润表</a>
+		</li>
+		<li>
+			<a href="#">利润汇总表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>应收<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">客户应收款</a>
+		</li>
+		<li>
+			<a href="#">业务单应收款</a>
+		</li>
+		<li>
+			<a href="#">应收汇总表</a>
+		</li>
+		<li>
+			<a href="#">应收款账龄分布表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>应付<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">采购单应付款</a>
+		</li>
+		<li>
+			<a href="#">应付账款</a>
+		</li>
+		<li>
+			<a href="#">应付汇总表</a>
+		</li>
+		<li>
+			<a href="#">外协单应付款</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>回款<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">销售回款一览表</a>
+		</li>
+		<li>
+			<a href="#">结欠回款明细表</a>
+		</li>
+		<li>
+			<a href="#">客户回款汇总表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>付款<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">采购付款一览表</a>
+		</li>
+		<li>
+			<a href="#">外协付款一览表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>资金<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">现金银行</a>
+		</li>
+		<li>
+			<a href="#">资金借入统计</a>
+		</li>
+		<li>
+			<a href="#">资金借出统计</a>
+		</li>
+	</ul>
+</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

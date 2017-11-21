@@ -1,0 +1,125 @@
+<!--标识汇交易侧边栏-->
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>外协商<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="javascript:showCooperatorDialog();">外协商登记</a>
+		</li>
+		<li>
+			<a href="javascript:showEstMoveDialog('PROVIDER');">外协商移交</a>
+		</li>
+		<li>javascript:showWin(1024,600,"/base/EstablishmentList.ihtm?type=COOPERATOR");
+			<a href="#">全部外协商</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>外协<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>javascript:showWin(1024,600,"/cooper/BusinessBillListForCooper.ihtm");
+			<a href="#">要外协的业务单</a>
+		</li>
+		<li>javascript:showWin(1280,600,"/cooper/CooperBillSearchResult.ihtm");
+			<a href="#">外协单一览表</a>
+		</li>
+		<li>javascript:showCooperBillDialog();
+			<a href="#">外协开单</a>
+		</li>
+		<li>javascript:showWin(1024,600,"/cooper/CooperBillItemSearchResult.ihtm");
+			<a href="#">外协明细一览表</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/CooperBillListForEditPrice.ihtm");
+			<a href="#">外协单改价格</a>
+		</li>
+		<li>javascript:showWin(1024,600,"/base/EstPriceList.ihtm?price_type=STA&est_type=COOPERATOR");
+			<a href="#">外协价格</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/CooperBillListForExamine.ihtm");
+			<a href="#">外协单审核</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/CooperBillListForUnExamine.ihtm");
+			<a href="#">外协单反审核</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>收货<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>javascript:showWin(900,600,"/cooper/CooperBillListForGather.ihtm");
+			<a href="#">外协收货</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/GatherBillListForExamine.ihtm");
+			<a href="#">审核</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/GatherBillListForUnExamine.ihtm");
+			<a href="#">反审核</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/GatherBillSearchResult.ihtm");
+			<a href="#">收货单一览表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>完工<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>javascript:showWin(1024,600,"/cooper/BusinessBillListForCooComp.ihtm");
+			<a href="#">外协完工</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/BusinessBillListForCooUnComp.ihtm");
+			<a href="#">外协反完工</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>结账<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>javascript:showCooAccountDialog();
+			<a href="#">外协对账</a>
+		</li>
+		<li>javascript:showGatAccountDialog();
+			<a href="#">收货对账</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>作废<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>javascript:showWin(900,600,"/cooper/CooperBillListForCancel.ihtm");
+			<a href="#">外协单作废</a>
+		</li>
+		<li>javascript:showWin(900,600,"/cooper/GatherBillListForCancel.ihtm");
+			<a href="#">收货单作废</a>
+		</li>
+	</ul>
+</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

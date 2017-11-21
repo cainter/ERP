@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.ClieUser" table="clie_user">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="userName" type="string">
+			<column name="user_name" length="30" not-null="true" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" length="30" not-null="true" />
+		</property>
+		<property name="clieId" type="long">
+			<column name="clie_id" not-null="true" />
+		</property>
+		<property name="pricType" type="string">
+			<column name="pric_type" length="10" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="ordeType" type="string">
+			<column name="orde_type" length="10" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

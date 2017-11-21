@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://115.28.87.22:8888/base/PriceGuideListForSelect.ihtm?defa_id=1 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>选择价格手册 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script language="javascript">
+	function doSelect(index){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=null;
+		if ( ob_arr.length>=index ){
+			arr = new Array(ob_arr[index-1].value,ob_arr[index-1].getAttribute("guide_name"));
+		}
+		if (arr != null){
+			parent.popRetVal=arr;
+			parent.ClosePop();
+		}
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=null;
+		if ( ob_arr.length>=it.getAttribute("index") ){
+			arr = new Array(ob_arr[it.getAttribute("index")-1].value,ob_arr[it.getAttribute("index")-1].getAttribute("guide_name"));
+		}
+		if(arr==null){
+			return;
+		}
+		parent.popRetVal=arr;
+		parent.ClosePop();
+	}
+	function doInit(){
+		Window_Onload();
+		var defaId="1";
+		if(defaId!=""){
+			var ob_arr = document.getElementsByName("query_checkbox");
+			for(var i=0;i<ob_arr.length;i++){
+				if(ob_arr[i].value==defaId){
+					ob_arr[i].click();
+					break;
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="doInit();" class="sheet">
+<div class="sheet-main" style="width:555px">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>选择价格手册</h2>
+      <p>鼠标双击可以选中价格手册</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+      <div class="table-list">
+        <table width="100%">      
+ 					<tbody><tr>
+					<th width="14"></th>
+					<th width="40%">价格手册名称</th>
+					<th width="40%">对应客户等级</th>
+					<th width="20%">操作</th>
+				</tr>
+				
+					
+					
+					<tr class="query_list_data_trSelected" index="1" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="1" guide_name="标准价格手册"></td>
+						<td>标准价格手册</td>
+						<td></td>
+						<td>
+							<a href="javascript:doSelect(&#39;1&#39;);">选择</a>
+						</td>
+					</tr>
+				
+					
+					
+					<tr class="query_list_data_tr2" index="2" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="radio" name="query_checkbox" value="2" guide_name="大客户价格表"></td>
+						<td>大客户价格表</td>
+						<td>大客户</td>
+						<td>
+							<a href="javascript:doSelect(&#39;2&#39;);">选择</a>
+						</td>
+					</tr>
+				
+			</tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>

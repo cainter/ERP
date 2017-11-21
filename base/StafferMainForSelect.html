@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet">
+		<div class="sheet-main">
+			<div class="sheet-top">
+				<div class="content">
+					<h2>选择员工</h2>
+					<div class="pull-right">
+						<input type="text" class="TextBox" id="search_key" name="search_key" onkeyup="checkSearchKey();" value="" title="以员工姓名、姓名拼音字头进行模糊查询">
+					<input type="checkbox" id="search_all" name="search_all" checked="">在所有部门中查找
+						<a type="button" class="buttom btn btn-default" href="#">查 询</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="sheet-list" id="mainTd" style="height:348px;">
+				<div class="blank24"></div>
+				<div class="nav" id="navDiv" style="float:left;width:160px;height:100%;">
+					<iframe width="100%" height="100%" frameborder="0" id="leftFrame" scrolling="no" src="./DepartmentListForStafferSelect.html"></iframe>
+				</div>
+				<div id="mainDiv" class="main search-business" style="float: left; height: 100%; width: 586px;">
+					<iframe width="100%" height="100%" frameborder="0" id="mainFrame" scrolling="no" src="./StafferListForSelect.html"></iframe>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0077)http://115.28.87.22:8888/base/EstablishmentCommunicateList.html?client_id=757 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>联系记录 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doNew(){
+		var url="../base/EstablishmentCommunicateNew.html?client_id=757";
+		ShowIframe("联系记录",url,980,440,"refreshWin(0)",900,600);
+	}
+	function refreshWin(flag){
+		if(flag==1){
+			if(popRetVal!=null){
+				window.location.reload(true);
+			}
+		}else{
+			window.location.reload(true);
+		}
+	}
+	function showComm(id){
+		var url="../base/EstablishmentCommunicateEdit.html?id="+id;
+		ShowIframe("联系记录",url,980,440,"refreshWin(1)",900,600);
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',340,80,"doDelAct("+id+")");
+	}
+	function doDelAct(id){
+		if(popRetVal!=null){
+			window.location="../base/EstablishmentCommunicateDelete.html?id="+id+"&from_url="+getFromUrl();
+		}
+	}
+	function getFromUrl(){
+		return encodeURIComponent(window.location);
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function doGo(pageIndex){
+		window.location="../base/EstablishmentCommunicateList.html?client_id=757&current_page="+pageIndex;
+	}
+	function doInit(){
+		Window_Onload();
+	}
+	function DoubleClick(){
+		
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="doInit();" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:860px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>联系记录</h2>
+      <p>客户名称：格力电器</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+	    <div class="add_content"> 	
+	    	 <div align="right"><input type="button" class="buttom search-add" value=" 新 增" onclick="doNew();"></div>
+	     </div>
+		 
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	     <div class="table-list">
+	        <table width="100%">
+				<tbody><tr>
+					<th width="20%">主题</th>
+					<th width="15%">日期</th>
+					<th width="43%">内容</th>
+					<th width="10%">执行人</th>
+					<th width="12%">操作</th>
+				</tr>
+				
+			</tbody></table>
+				
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="0" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共0页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+			</div>
+	   </div>  
+  </div>
+<div class="blank12">
+</div>
+
+</div></body></html>

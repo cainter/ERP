@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div>
+			<form name="frm" method="post" enctype="multipart/form-data">
+				<div class="Container">
+					<div class="Contnet Paper">
+						
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>资金借入单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+										<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput(&#39;loanDateStr&#39;);" id="loanBill.billCode" name="loanBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span id="calPosi"></span>
+										<span class="MustInput">*</span>日期：
+										<input type="text" class="tbBillDate_sim TextBox " maxlength="15" onkeyup="goNextInput(&#39;loanBill.rpName&#39;);" id="loanDateStr" name="loanDateStr" value="2017-07-09">
+										<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;loanDateStr&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;calPosi&#39;));">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="blank24"></div>
+
+						<!-- 附加信息 -->
+							<table class="BillElseInfo" cellspacing="0" cellpadding="0" style="position:relative;">
+								<!-- ie6要在这里加position:relative下面的附件div才不会错位 -->
+								<tbody>
+									<tr>
+										<th width="84px"><span class="MustInput">*</span>借款人：</th>
+										<td width="217px">
+
+											<input class="tbInfo_sim TextBox" type="text" maxlength="15" onkeyup="goNextInput(&#39;costStr&#39;);" id="loanBill.rpName" name="loanBill.rpName" value="标识汇">
+
+										</td>
+										<th width="84px"><span class="MustInput">*</span>经办人：</th>
+										<td width="217px">
+
+											<input class="tbInfo_sim TextBox readonly" type="text" id="loanBill.managerName" name="loanBill.managerName" value="标识汇">
+											<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectStaffer();">
+
+										</td>
+										<th width="84px"><span class="MustInput">*</span>部门：</th>
+
+										<td width="218px">
+											<select id="loanBill.departmentId" name="loanBill.departmentId" class="ddlInfo_sim" style="background:#f6f6f6;">
+												<option value="0">==请选择==</option>
+
+												<option value="1">易凯管理员</option>
+												<option value="13">总经办</option>
+												<option value="22">&nbsp;|--财务</option>
+												<option value="14">新异店</option>
+												<option value="15">&nbsp;|--客服</option>
+												<option value="23">&nbsp;|--设计</option>
+												<option value="24">&nbsp;|--业务</option>
+												<option value="16">业务来源</option>
+												<option value="17">标识加工车间</option>
+												<option value="21">合作伙伴</option>
+												<option value="32" selected="">标识汇运营部</option>
+												<option value="33">财务部</option>
+											</select>
+										</td>
+
+									</tr>
+									<tr>
+										<th><span class="MustInput">*</span>收款账户：</th>
+
+										<td>
+											<select id="loanBill.bankAccountId" name="loanBill.bankAccountId" class="ddlInfo_sim">
+
+												<option value="10">建行(秦朝阳)</option>
+
+												<option value="12">黄秀娟(长通物流(6116))</option>
+
+												<option value="9">工行(黄秀娟)</option>
+
+												<option value="8">交行(秦朝阳)</option>
+
+												<option value="13">黄秀娟(创新物流(5165))</option>
+
+												<option value="14">黄秀娟(豫鑫物流（73035）)</option>
+
+												<option value="4">农行(黄秀娟)</option>
+
+												<option value="15">黄秀娟(微信15225099188)</option>
+
+												<option value="11">中行(秦朝阳)</option>
+
+												<option value="7"> 浦发(公司一般户)</option>
+
+												<option value="2">中行(公司基本户)</option>
+
+												<option value="1">现金(会计)</option>
+
+												<option value="5">浦发(POS机刷卡)</option>
+
+												<option value="6">淘宝 黄秀娟(支付宝 15225099188)</option>
+
+												<option value="16">浦发(黄秀娟)</option>
+
+												<option value="17">秦朝阳(微信13608675408)</option>
+
+											</select>
+										</td>
+
+										<th><span class="MustInput">*</span>收款金额：</th>
+
+										<td>
+											<input type="text" class="tbInfo_sim TextBox" maxlength="10" onkeyup="goNextInput(&#39;loanBill.mark&#39;);" name="costStr" id="costStr" value="">
+										</td>
+
+										<th>&nbsp;</th>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<th>摘要：</th>
+
+										<td colspan="5">
+											<textarea class="TextBox" name="loanBill.mark" id="loanBill.mark" style="width:764px;height:40px"></textarea>
+										</td>
+
+									</tr>
+									<tr>
+										<th>上传凭证：</th>
+										<td colspan="5">
+											<div style="position:relative; width:480px; height:28px; overflow:hidden; float:left;">
+												<input type="text" class="TextBox readonly" readonly="readonly" style="width:470px;" name="tmp_att" id="tmp_att">
+											</div>
+											<div style="position:relative;width:40px;height:28px;overflow:hidden;float:left;">
+												<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;">
+													<img class="make-a" src="../images/make-a.gif">
+												</div>
+												<input type="file" name="attach_file" id="attach_file" onchange="document.getElementById(&#39;tmp_att&#39;).value=this.value" style="position:absolute;top:0px;right:0px;cursor:pointer;opacity:0;filter:alpha(opacity:0);z-index:99;">
+											</div>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+						<div class="BillNotes">
+							<span>开单人：标识汇 </span>
+							<span>审核人：</span>
+							<span>单据帐套：新异</span>
+						</div>
+
+					</div>
+
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保 存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并复制</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取 消 </a>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.erp.model.vo">
+    <class name="UserPrivilegeVO" table="user_privilege">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="privilegeCode" type="string">
+			<column name="privilege_code" length="30" not-null="true" />
+		</property>
+		<property name="userId" type="long">
+			<column name="user_id" not-null="true" />
+		</property>
+    </class>
+    <!-- 
+    <query name="selectPrivileges">select up.user_id,up.privilege_code,u.user_name,
+    	p.privilege_name from t_user u,privilege p,
+		user_privilege up where u.id = :myID and up.user_id = u.id
+		and up.privilege_code = p.privilege_code
+    </query>
+     -->
+     <query name="selectPrivileges">SELECT privilegeCode from UserPrivilegeVO WHERE userId=:myID</query>
+
+</hibernate-mapping>

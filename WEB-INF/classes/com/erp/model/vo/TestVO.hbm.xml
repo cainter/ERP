@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.erp.model.vo">
+	<class name="TestVO" table="t_test">
+		<id name="id" column="test_id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="test_name"/>
+		<property name="age" column="test_age"/>
+		<property name="score" column="test_score"/>
+	</class>
+</hibernate-mapping>  

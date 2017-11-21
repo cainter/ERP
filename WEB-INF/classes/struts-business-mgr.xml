@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="struts-business" extends="struts2" namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+    	<action name="BusinessBillVTO_*" class="com.erp.controller.business.action.BusinessBillVTOAction" method="{1}"> 
+    	  <result name="toBusinessBillSearchResult">/WEB-INF/view/business/BusinessBillSearchResult.jsp</result>
+    	  <result name="toBusinessBillListForExamine">/WEB-INF/view/business/BusinessBillListForExamine.jsp</result>
+    	  <result name="toBusinessBillListForUnExamine">/WEB-INF/view/business/BusinessBillListForUnExamine.jsp</result>
+    	</action>
+    	
+    	<action name="Business_*" class="com.erp.controller.business.action.BusinessAction" method="{1}"> 
+    	  <result name="toBusinessList">/WEB-INF/view/business/BusinessList.jsp</result>
+    	  <result name="toBusinessBegian">/WEB-INF/view/business/BesinessBegian.jsp</result>
+    	</action> 
+    </package>
+</struts>

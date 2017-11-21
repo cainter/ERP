@@ -1,0 +1,65 @@
+﻿
+
+
+
+.GlobalMenu {  position:absolute; top:40px; left:196px; width:800px; }
+.GlobalMenu li{ float:left; position:relative; }
+.GlobalMenu li a.MainLink { float:left; position:relative;  z-index:9; text-decoration:none; color:#039; outline:0; cursor:default; }
+/*.GlobalMenu li a.MainLink:hover { color:#0272d2; } */
+
+.GlobalMenu li a.MainLink span { float:left; padding:5px 8px 6px; font: normal normal 11pt/1 "微软雅黑","宋体"; letter-spacing:1px;  }
+.GlobalMenu li a.MainLink p { float:left; text-indent:0; margin:0; padding:0; width:6px; height:26px; }
+.GlobalMenu li a.MainLink b { float:left; width:6px; height:26px; }
+
+.GlobalMenu li a.MainLink:hover span { background: #e9f1fa url(../images/MainMenuTabH_bg.gif) repeat-x; }
+.GlobalMenu li a.MainLink:hover p { background:url(../images/MainMenuTabH_lt.png) no-repeat; }
+.GlobalMenu li a.MainLink:hover b { background:url(../images/MainMenuTabH_rt.png) top right no-repeat; }
+
+.GlobalMenu li a.MainLink.Now { color:#15428b; }
+.GlobalMenu li a.MainLink.Now span { background: #e9f1fa url(../images/MainMenuTab_bg.gif) repeat-x;  }
+.GlobalMenu li a.MainLink.Now p { background:url(../images/MainMenuTab_lt.png) no-repeat; }
+.GlobalMenu li a.MainLink.Now b { background:url(../images/MainMenuTab_rt.png) top right no-repeat; }
+
+.GlobalMenu li .PopMenuBox { border:1px solid #8cb1e3; position:absolute; z-index:8; left:-9999px; top:-9999px; }
+.GlobalMenu li .PopMenuWin { border:1px solid #ebf2ff; overflow:hidden; background:#e6edf7; }  /* width:480px; left:-50px; display:none;  top:25px;*/
+.GlobalMenu li .PopMenuWarp { width:600px; }
+
+.PopMenuCont { color:#666; border-collapse:collapse; margin:0 4px; } 
+.PopMenuCont td { border-bottom:1px solid #ccc; text-align:left; vertical-align:top; padding:4px 0; /*width:1px;*/ }
+.PopMenuCont .NoBorder td { border:0; }
+.PopMenuCont { border:0; }
+
+.PopMenuCont h2 { font: normal normal 12px/1 "微软雅黑","宋体";  color:#888; margin:4px; white-space:nowrap; cursor:default; }
+.PopMenuCont ul { display:block; } 
+.PopMenuCont li { display:block; float:none !important; /*position:relative; top:0; left:0;*/ width:auto; margin-right:24px; }
+
+.PopMenuCont li.Row { width:280px; margin:0; } 
+.PopMenuCont li.Row:hover { background:#f1f5fb;  }
+
+.PopMenuCont li a { display:inline-block; width:100px; padding:3px 6px 5px; margin:0;
+                  text-align:left; font: normal normal 14px/1 "微软雅黑","宋体"; color:#039; }
+.PopMenuCont li a:hover { background-color:#039 !important; color:White !important; text-decoration:none; }
+ 
+.PopMenuCont li a.Primary{ color:#080; } /* f3f6fb 113773 */
+.PopMenuCont li a.Else   { width:auto;  color:#bbb; }
+.PopMenuCont li a.Widen  { width:auto !important; min-width:140px; max-width:260px; }
+.PopMenuCont li a.Weak   { width:88px !important; font: normal normal 12px/1 "微软雅黑","宋体"; color:#555; padding:4px 6px; }
+.PopMenuCont li:hover a.Else { color:#333; }
+.PopMenuCont li a.Primary:hover{ background-color:#080 !important; } 
+.PopMenuCont li a.Weak:hover   { background-color:#555 !important; }
+ 
+.PopMenuCont ul.side { margin-left:4px; }
+.PopMenuCont ul.side li { margin:0; }
+.PopMenuCont ul.side a { width:120px; }
+
+.PopMenuCont .SidePanel { position:relative; }
+.PopMenuCont .SidePanel h2 { position:absolute; top:0px; left:4px; }
+.PopMenuCont .SidePanel ul.side { position:static; margin-left:36px; }
+
+
+.PopMenuCont .ColMerge ul { float:left;}
+.PopMenuCont .ColMerge li { margin:0; }
+.PopMenuCont .ColMerge .SidePanel { float:right; }
+
+
+/**/

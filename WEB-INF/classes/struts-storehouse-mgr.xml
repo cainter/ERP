@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="struts-storehouse" extends="struts2" namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<!-- 入库单 -->
+    	<action name="InBillNew_*" class="com.erp.controller.storehouse.action.InBillNewAction" method="{1}"> 
+    	  <result name="toInBillNew">/WEB-INF/view/storehouse/InBillNew.jsp</result>
+    	</action>
+    	<!-- 出库单 -->
+    	<action name="OutBill_*" class="com.erp.controller.storehouse.action.OutBillNewAction" method="{1}"> 
+    	  <result name="toOutBillNew">/WEB-INF/view/storehouse/OutBillNew.jsp</result>
+    	</action>
+    	<!-- 出库明细一览表 -->    	
+    	<action name="outStorehouse_*" class="com.erp.controller.storehouse.action.OutStorehouseAction" method="{1}">
+    	  <result name="toOutBillList">/WEB-INF/view/storehouse/outdetail/OutBillItemList.jsp</result>
+    	  <!--  <result name="toOutResult">/WEB-INF/view/storehouse/outdetail/OutBillResult.jsp</result>-->
+    	</action>
+    	<!-- 出库单一览表 -->
+    	<action name="outResult_*" class="com.erp.controller.storehouse.action.OutResultAction" method="{1}">
+    	  <result name="toOutResult">/WEB-INF/view/storehouse/outdetail/OutBillResult.jsp</result>
+    	</action>
+    	<!-- 入库单一览表 -->
+    	<action name="inStorehouse_*" class="com.erp.controller.storehouse.action.InStorehouseAction" method="{1}">
+    	  <result name="toInBillResult">/WEB-INF/view/storehouse/indetail/InBillSearchResult.jsp</result>
+    	</action>
+    	<!-- 入库单审核 -->
+    	<action name="inStoreExamine_*" class="com.erp.controller.storehouse.action.InStoreExamineAction" method="{1}">
+    	  <result name="toInStoreExamine">/WEB-INF/view/storehouse/indetail/InBillListForExamine.jsp</result>
+    	</action>
+    	<!-- 入库单反审核 -->
+    	<action name="inStoreUnExamine_*" class="com.erp.controller.storehouse.action.InStoreUnExamineAction" method="{1}">
+    	  <result name="toInStoreUnExamine">/WEB-INF/view/storehouse/indetail/InBillListForUnExamine.jsp</result>
+    	</action>
+    	<!-- 出库单审核 -->
+    	<action name="outStoreExamine_*" class="com.erp.controller.storehouse.action.OutStoreExamineAction" method="{1}">
+    	  <result name="toOutStoreExamine">/WEB-INF/view/storehouse/outdetail/OutBillListForExamine.jsp</result>
+    	</action>
+    	<!-- 出库单反审核 -->
+    	<action name="outStoreUnExamine_*" class="com.erp.controller.storehouse.action.OutStoreUnExamineAction" method="{1}">
+    	  <result name="toOutStoreUnExamine">/WEB-INF/view/storehouse/outdetail/OutBillListForUnExamine.jsp</result>
+    	</action>
+    </package>
+</struts>

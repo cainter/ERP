@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body oncontextmenu="return false" class="sheet" onload="doInit();">
+		<div class="sheet-main">
+			<div class="sheet-top">
+				<div class="content">
+					<h2>用户管理</h2>
+					<div class="pull-right">
+						<div class="layui-input-inline">
+							<input onkeyup="checkSearchKey();" type="text " class="layui-input" id="search_key" name="search_key" value="" placeholder="以员工姓名进行模糊查询">
+						</div>
+						<a type="button" class="layui-btn" href="doSearch();">查 询</a>
+						<a type="button" class="layui-btn" href="javascript:doNew();">新 增</a>
+					</div>
+				</div>
+			</div>
+			<div class="sheet-list">
+				<div class="search-business">
+
+					<div class="blank24"></div>
+
+					<div class="table-list">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<th width="15%">登录帐号</th>
+									<th width="18%">职员姓名</th>
+									<th width="15%">设置有效期</th>
+									<th width="18%">有效期至</th>
+									<th width="10%">状态</th>
+									<th width="24%">操作</th>
+								</tr>
+
+								<tr>
+									<td>user </td>
+									<td>标识汇</td>
+									<td>
+
+										否
+
+									</td>
+									<td>
+
+									</td>
+									<td>
+
+										正常
+
+									</td>
+									<td>
+										<a href="javascript:doEdit();">编辑</a>
+
+										<a href="javascript:doPause(&#39;25&#39;,&#39;N&#39;);">停用</a>
+										<a href="javascript:doPermission(&#39;25&#39;,&#39;标识汇&#39;,&#39;MODEL_PRIVILEGE&#39;);">授权</a>
+										<a href="javascript:doDelete(&#39;25&#39;);">删除</a>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="../layui/layui.all.js"></script>
+		<script>
+			function doEdit() {
+				
+				layui.use('layer', function() {
+					var layer = layui.layer;
+
+					layer.open({
+						type: 2,
+						title: false,
+						content: 'UserEdit.html',
+						area: ['455px', '477px'],
+						shadeClose: true,
+						closeBtn: 0, //关闭按钮
+						resize: false, //是否允许拉伸
+						scrollbar: true, //是否允许浏览器出现滚动条
+						moveOut: true
+					});
+				});
+			}
+//			function doEdit(id){
+//				var url="../system/UserEdit.html?id="+id;
+//				ShowIframeNoScroll("用户",url,400,460,"refreshWin()",600,530);
+//			}
+		</script>
+
+	</body>
+
+</html>

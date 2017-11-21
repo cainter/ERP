@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.erp.model.vo">
+	<class name="UserVO" table="user">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="userName" type="string">
+			<column name="user_name" length="30" not-null="true" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" length="30" not-null="true" />
+		</property>
+		<property name="stafferId" type="long">
+			<column name="staffer_id" not-null="true" />
+		</property>
+		<property name="userType" type="int">
+			<column name="user_type" length="1" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="tryNum" type="int">
+			<column name="try_num" length="4" not-null="true" />
+		</property>
+		<property name="locked" type="string">
+			<column name="locked" length="1" not-null="true" />
+		</property>
+		<property name="lockTime" type="java.sql.Timestamp">
+			<column name="lock_time" />
+		</property>
+		<property name="useValidity" type="string">
+			<column name="use_validity" length="1" not-null="true" />
+		</property>
+		<property name="validity" type="java.sql.Timestamp">
+			<column name="validity" />
+		</property>
+		<property name="dfTsId" type="long">
+			<column name="df_ts_id" not-null="true" />
+		</property>
+		<property name="dfBaId" type="long">
+			<column name="df_ba_id" not-null="true" />
+		</property>
+		<property name="timeLimit" type="string">
+			<column name="time_limit" length="1" not-null="true" />
+		</property>
+		<property name="tlStartHour" type="int">
+			<column name="tl_start_hour" length="2" not-null="true" />
+		</property>
+		<property name="tlStartMinute" type="int">
+			<column name="tl_start_minute" length="2" not-null="true" />
+		</property>
+		<property name="tlEndHour" type="int">
+			<column name="tl_end_hour" length="2" not-null="true" />
+		</property>
+		<property name="tlEndMinute" type="int">
+			<column name="tl_end_minute" length="2" not-null="true" />
+		</property>
+		<property name="allowInternet" type="string">
+			<column name="allow_internet" length="1" not-null="true" />
+		</property>
+		<property name="lastLogin" type="timestamp">
+			<column name="last_login" />
+		</property>
+		<property name="useApp" type="string">
+			<column name="use_app" length="1" not-null="true" />
+		</property> 
+	</class>
+	<query name="selectVOByID">from UserVO where id=:myid</query>
+	<query name="selectIDByLogin">select id from UserVO where userName=:loginName and password=:loginPassword</query>
+	<query name="selectVOByLogin">from UserVO where userName=:loginName and password=:loginPassword</query>
+</hibernate-mapping>

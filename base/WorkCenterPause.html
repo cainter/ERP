@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0061)http://115.28.87.22:8888/base/WorkCenterList.html?show_paus=Y -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>工作中心 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../css/popup_ext.js"></script>
+<script language="javascript">
+	function doNew(){
+		var url="../base/WorkCenterNew.html";
+		ShowIframeNoScroll("工作中心",url,320,280,"refreshWin()");
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location.reload(true);
+		}
+	}
+	function doEdit(id){
+		var url="../base/WorkCenterEdit.html?id="+id;
+		ShowIframeNoScroll("工作中心",url,320,280,"refreshWin()");
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',340,80,"doDelAct("+id+")");
+	}
+	function doDelAct(id){
+		if(popRetVal!=null){
+			window.location="../base/WorkCenterDelete.html?id="+id+"&from_url="+encodeURIComponent(window.location);
+		}
+	}
+	function doCancel(){
+		window.close();
+	}
+	function proList(id){
+		var url="../base/WorkProcessList.html?wc_id="+id;
+		showWin(500,350,url);
+	}
+	function doPercentEdit(id){
+		var url="../base/SetWorkProcessPercentForm.html?wc_id="+id;
+		ShowIframe("工序占比",url,420,300,"refreshWin()");
+	}
+	function doPause(id,flag){
+		window.location="../base/WorkCenterPause.html?id="+id+"&flag="+flag+"&from_url="+encodeURIComponent(window.location);
+	}
+	function doSearch(){
+		var showPaus="";
+		if(document.getElementById("show_paus").checked){
+			showPaus="Y";
+		}
+		window.location="../base/WorkCenterList.html?show_paus="+showPaus;
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:560px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>工作中心管理</h2>
+      <p>工作中心指在工厂内执行工序和作业的场所，每个工作中心可以设置多个工序，同时设置每个工序的产值占比或者计件工资，以便统计制作人员的产值。</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+	    <div class="add_content"> 	
+	    	 <div align="right">
+	    	 	<input type="checkbox" id="show_paus" onclick="doSearch();" checked="">显示已停用工作中心
+	    	 	<input type="button" class="buttom search-add" value=" 新 增" onclick="doNew();">
+	    	 </div>
+	     </div>
+	     
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  		设置成功！
+	  		
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	     <div class="table-list">
+	        <table width="100%">
+	          <tbody><tr>	
+					<th width="18%">名称</th>
+					<th width="18%">仓库</th>
+					<th width="24%">描述</th>
+					<th width="10%">状态</th>
+					<th width="30%">操作</th>
+				</tr>   
+				
+				<tr>
+					<td>默认工作中心</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;1&#39;);">编辑</a>
+						
+						
+						
+						<br>
+						<a href="javascript:proList(&#39;1&#39;);">工序设置</a>
+						<a href="javascript:doPercentEdit(&#39;1&#39;);">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>型材仓库</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;10&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;10&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;10&#39;);">删除</a>
+						<br>
+						<a href="javascript:proList(&#39;10&#39;);">工序设置</a>
+						<a href="javascript:doPercentEdit(&#39;10&#39;);">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>标识部</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;12&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;12&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;12&#39;);">删除</a>
+						<br>
+						<a href="javascript:proList(&#39;12&#39;);">工序设置</a>
+						<a href="javascript:doPercentEdit(&#39;12&#39;);">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>标牌部</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;13&#39;);">编辑</a>
+						<a href="javascript:doPause(&#39;13&#39;,&#39;N&#39;);">停用</a>
+						
+						<a href="javascript:doDelete(&#39;13&#39;);">删除</a>
+						<br>
+						<a href="javascript:proList(&#39;13&#39;);">工序设置</a>
+						<a href="javascript:doPercentEdit(&#39;13&#39;);">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>标识加工工厂</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						
+						<span style="color:red">停用</span>
+					</td>
+					<td>
+						<a href="javascript:doEdit(&#39;9&#39;);">编辑</a>
+						
+						<a href="javascript:doPause(&#39;9&#39;,&#39;Y&#39;);">启用</a>
+						<a href="javascript:doDelete(&#39;9&#39;);">删除</a>
+						<br>
+						<a href="javascript:proList(&#39;9&#39;);">工序设置</a>
+						<a href="javascript:doPercentEdit(&#39;9&#39;);">工序占比设置</a>
+					</td>
+				</tr>
+					
+			</tbody></table>				       	
+	      </div>  
+	   </div>  
+  </div>
+</div>
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://115.28.87.22:8888/base/WorkCenterList.html?show_paus=Y#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://115.28.87.22:8888/base/WorkCenterList.html?show_paus=Y#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://115.28.87.22:8888/base/WorkCenterList.html?show_paus=Y#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./工作中心 _ 管理易-广告加工制作管理软件 企业版 9.28 _ 易凯软件_files/yun6.html" style="border: none; display: none; height: 84px; width: 100%; z-index: 2147483645; background: transparent;"></iframe></body></html>

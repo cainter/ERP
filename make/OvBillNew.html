@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0060)http://115.28.87.22:8888/make/OvBillNew.ihtm?alert_type=SHOW -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>产值单 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function doSave(contFlag){
+		document.getElementById("buttonDiv").style.display="none";
+		document.getElementById("waitDiv").style.display="";
+		document.getElementById("continue_flag").value=contFlag;
+		
+			ShowConfirm('确认框','是否同时审核？',340,80,"doSaveExt('"+contFlag+"')");
+		
+		
+	}
+	function doCancel(){
+		if(window.opener){
+			window.close();
+		}else{
+			parent.ClosePop();
+		}
+	}
+	function doSaveExt(contFlag){
+		if(popRetVal!=null){
+			document.getElementById("examine").value="1";
+		}else{
+			document.getElementById("examine").value="0";
+		}
+		frm.submit();
+	}
+	function selectStaffer(){
+		var url="/base/StafferMainForSelect.ihtm";
+		ShowIframe("选择员工",url,800,500,"selectStafferCallBack()",1024,420);
+	}
+	function selectStafferCallBack(){
+		if(popRetVal!=null){
+			var arr=popRetVal.split(";");
+			document.getElementById("ovBill.stafferId").value=arr[0];
+			document.getElementById("ovBill.stafferName").value=arr[1];
+			var i=0;
+			var depObj=document.getElementById("ovBill.depId");
+			for(i=0;i<depObj.options.length;i++){
+				if(arr[2]==depObj.options[i].value){
+					depObj.options[i].selected=true;
+				}
+			}
+			setFocus("costStr");
+		}
+	}
+	function showMe(){
+		showFormErrorMsg();
+		document.getElementById("costStr").focus();
+	}
+	function changeOutType(){
+		if(document.getElementById("ot1").checked){
+			document.getElementById("ovBill.outType").value="VIR";
+		}else{
+			document.getElementById("ovBill.outType").value="OTH";
+		}
+	}
+	function doPrint(id){
+		showWin(900,600,"/make/OvBillPrint.ihtm?id="+id);
+	}
+</script>
+</head>
+<body scroll="no" onload="showMe();">
+<div class="Wrap">
+	<form name="frm" method="post">
+	<div class="Container">
+		<div class="Contnet Paper">
+			
+			
+
+			
+  			
+			
+      			
+				
+      		
+      		
+			<!-- 是否可以编辑日期 -->
+			
+
+			<!-- 提示信息 -->
+			
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table>
+			
+			<!--单 标题-->
+			<br>
+	        <table class="BillHeading" cellspacing="0" cellpadding="0">
+	        	<tbody><tr>
+		            <td width="301px;" rowspan="2"><div class="CorpLogo"><img src="../images/1_1456975049379login.gif"></div></td>
+		            <td width="301px;" rowspan="2"><h1>产值单</h1></td>
+		            <td width="301px;" class="tr vb codeTd"> 
+		                <span class="MustInput">*</span>编号：
+		                
+				    	<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput(&#39;outDateStr&#39;);" id="ovBill.billCode" name="ovBill.billCode" value="">
+				    	<script language="javascript">
+							setFormErrorMsg('',1,'ovBill.billCode');
+						</script>
+			     		
+		            </td>
+	        	</tr>
+	        	<tr>
+	            	<td class="tr">
+	            		<span id="calPosi"></span>
+		            	<span class="MustInput">*</span>产值日期：
+		            	
+		                    <input type="text" class="tbBillDate_sim TextBox " maxlength="15" onkeyup="goNextInput(&#39;costStr&#39;);" id="outDateStr" name="outDateStr" value="2017-07-09">
+		                    <img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;outDateStr&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;calPosi&#39;));">
+		                    <script language="javascript">
+						    	setFormErrorMsg('',2,'outDateStr');
+						    </script>
+		                
+	            	</td>
+	        	</tr>
+	        </tbody></table>
+
+			<!-- 附加信息 -->
+	        <div class="TopBottom_Border">
+	        	<table class="BillElseInfo" cellspacing="0" cellpadding="0">
+	        		<tbody><tr>
+	            		<th width="84px"><span class="MustInput">*</span>经办人：</th>
+	            		<td width="217px">
+	            			
+							<input class="tbInfo_sim TextBox readonly" type="text" id="ovBill.stafferName" name="ovBill.stafferName" value="标识汇">
+							
+							<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectStaffer();">
+							
+							<input type="hidden" id="ovBill.stafferId" name="ovBill.stafferId" value="65">
+					        <script language="javascript">
+					          	setFormErrorMsg('',4);
+					        </script>
+							
+	            		</td>
+	            		<th width="84px"><span class="MustInput">*</span>部门：</th>
+	            		
+			            
+	            		
+            			<td width="217px">
+            				<select id="ovBill.depId" name="ovBill.depId" class="ddlInfo_sim" style="background:#f6f6f6;">
+                    			<option value="0">==请选择==</option>
+                    			
+<option value="1">易凯管理员</option>
+<option value="13">总经办</option>
+<option value="22">&nbsp;|--财务</option>
+<option value="14">新异店</option>
+<option value="15">&nbsp;|--客服</option>
+<option value="23">&nbsp;|--设计</option>
+<option value="24">&nbsp;|--业务</option>
+<option value="16">业务来源</option>
+<option value="17">标识加工车间</option>
+<option value="21">合作伙伴</option>
+<option value="32" selected="">标识汇运营部</option>
+<option value="33">财务部</option>
+                			</select>
+                			<script language="javascript">
+						    	setFormErrorMsg('',5);
+						    </script>
+            			</td>
+            			
+            			<th width="84px"><span class="MustInput">*</span>产值金额：</th>
+	            		
+        				<td width="218px">
+        					<input type="text" class="tbInfo_sim TextBox" maxlength="10" onkeyup="goNextInput(&#39;ovBill.description&#39;);" name="costStr" id="costStr" value="">
+        					<script language="javascript">
+						    	setFormErrorMsg('',6,'costStr');
+						    </script>
+        				</td>
+        				
+	        		</tr>
+        			<tr>
+        				<th>摘要：</th>
+        				
+        				<td colspan="5">
+        					<textarea class="TextBox" name="ovBill.description" id="ovBill.description" style="width:764px;height:40px"></textarea>
+            				<script language="javascript">
+						    	setFormErrorMsg('',7,'ovBill.description');
+						    </script>
+        				</td>
+        				
+        			</tr>
+        			<tr>
+        				<th>备注：</th>
+        				
+        				<td colspan="5">
+        					<textarea class="TextBox" name="ovBill.mark" id="ovBill.mark" style="width:764px;height:40px"></textarea>
+            				<script language="javascript">
+						    	setFormErrorMsg('',8,'ovBill.mark');
+						    </script>
+        				</td>
+        				
+        			</tr>
+	        	</tbody></table>
+	        </div>
+
+			<div class="BillNotes">
+                <span>开单人：标识汇 </span>
+        		<span>审核人：</span>
+				<span>单据帐套：新异</span>
+				
+					<script language="javascript">
+						setFormErrorMsg('',1);
+					</script>
+				
+			</div>
+	        
+		</div>
+		
+		<!-- 底栏按钮 -->
+		<div class="Footer">
+			<div id="buttonDiv">
+				
+				<input type="button" class="buttom-a" value=" 保 存 " onclick="doSave(&#39;&#39;);">
+				
+					<input type="button" class="buttom-a" value="保存并新增" onclick="doSave(&#39;NEW&#39;);">
+					<input type="button" class="buttom-a" value="保存并复制" onclick="doSave(&#39;COPY&#39;);">
+				
+				<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+				<input type="hidden" name="continue_flag" id="continue_flag" value="">
+				<input type="hidden" id="examine" name="examine" value="0">
+			</div>
+			<div id="waitDiv" style="display:none">
+    			<span>请稍候...</span>
+			</div>
+		</div>
+		
+	</div>
+	</form>
+</div>
+
+
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

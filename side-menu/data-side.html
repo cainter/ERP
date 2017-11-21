@@ -1,0 +1,116 @@
+<!--基础数据侧边栏-->
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>员工<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">部门与员工</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>客户<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">单位类别</a>
+		</li>
+		<li>
+			<a href="#">客户等级</a>
+		</li>
+		<li>
+			<a href="#">地区管理</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>业务<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">项目类型</a>
+		</li>
+		<li>
+			<a href="#">制作要求</a>
+		</li>
+		<li>
+			<a href="#">文件说明</a>
+		</li>
+		<li>
+			<a href="#">工作中心</a>
+		</li>
+		<li>
+			<a href="#">付款方式</a>
+		</li>
+		<li>
+			<a href="#">价格手册</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>材料<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">材料</a>
+		</li>
+		<li>
+			<a href="#">计量单位</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>仓库<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">仓库</a>
+		</li>
+		<li>
+			<a href="#">入库类型</a>
+		</li>
+		<li>
+			<a href="#">出库类型</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>财务<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">银行账户</a>
+		</li>
+		<li>
+			<a href="#">收入类型</a>
+		</li>
+		<li>
+			<a href="#">费用类型</a>
+		</li>
+	</ul>
+</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

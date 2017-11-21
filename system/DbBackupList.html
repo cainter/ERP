@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<script language="javascript">
+		function doNew() {
+			ShowConfirm('确认框', '确定开始备份吗？', 340, 80, "doNewCallBack()");
+		}
+
+		function doNewCallBack() {
+			if(popRetVal != null) {
+				var url = "../system/DbBackupNew.html?show_msg=1";
+				ShowIframe("请稍候 ...", url, 400, 200, "refreshWin()");
+			}
+		}
+
+		function refreshWin() {
+			//if(popRetVal!=null){
+			window.location = window.location;
+			//}
+		}
+
+		function doDelete(id) {
+
+			ShowConfirm('确认框', '确定删除吗？', 340, 80, "doDeleteCallBack('" + id + "')");
+
+		}
+
+		function doDeleteCallBack(id) {
+			if(popRetVal != null) {
+				var fromUrl = getFromUrl();
+				window.location = "../system/DbBackupDelete.html?id_str=" + id + "&from_url=" + fromUrl;
+			}
+		}
+
+		function getFromUrl() {
+			var fromUrl = "../system/DbBackupList.html?current_page=1";
+			return encodeURIComponent(fromUrl);
+		}
+
+		function doGo(pageIndex) {
+			window.location = "../system/DbBackupList.html?current_page=" + pageIndex;
+		}
+
+		function doJump(pageIndex) {
+			if(window.event.keyCode == 13) {
+				doGo(pageIndex);
+			}
+		}
+
+		function doCancel() {
+			window.close();
+		}
+
+		function DoubleClick(it) {}
+
+		function getMultiIds() {
+			var ob_arr = document.getElementsByName("query_checkbox");
+			var str = "";
+			for(i = 0; i < ob_arr.length; i++) {
+				if((ob_arr[i].checked == true)) {
+					if(str != "") {
+						str = str + ";";
+					}
+					str = str + ob_arr[i].value;
+				}
+			}
+			return str;
+		}
+
+		function doMultiDelete() {
+			var ids = getMultiIds();
+			if(ids == "") {
+				ShowAlert('提示框', '请选择要删除的记录', 200, 100);
+			} else {
+				doDelete(ids);
+			}
+		}
+	</script>
+
+	<body oncontextmenu="return false" class="sheet">
+		<div class="sheet-main">
+			<div class="sheet-top">
+				<div class="content">
+					<h2>数据库备份</h2>
+					<div class="pull-right">
+						<div class="layui-form" style=" display: inline-block;">
+							<div class="layui-inline">
+								<label class="layui-form-mid">自动备份时间：18:00 【自动删除2周前的备份】</label>
+								<label class="layui-form-mid"><a href="http://www.ekingcn.com/school/cjwtjjff_1753_253.html" target="_blank">如何设置双重备份到云盘<img src="../images/play_button.gif"></a></label>
+							</div>
+
+							<a type="button " class="layui-btn " id="sSearchButton " name="sSearchButton " href="doSearch(); ">备 份</a>
+							<a type="button " class="layui-btn " id="sDownloadButton " name="sDownloadButton " href="doDownload();" title="只有admin账号才能删除数据库备份文件">删 除</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sheet-list">
+				<div class="search-business">
+					<div class="blank24"></div>
+					<div class="table-list">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<th width="14"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+									<th width="30%">日期</th>
+									<th width="20%">备份人</th>
+									<th width="20%">状态</th>
+									<th width="20%">文件大小</th>
+									<th width="10%">操作</th>
+								</tr>
+
+								<tr class="query_list_data_tr1" style="color:#000000;cursor:pointer;" defaultfontcolor="#000000" index="1" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+									<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="807"></td>
+									<td>2017-07-08 18:40:47</td>
+									<td>黄秀娟</td>
+									<td>
+										备份完成
+
+									</td>
+									<td>10M</td>
+									<td>
+										<a href="javascript:doDelete(&#39;807&#39;);">删除</a>
+									</td>
+								</tr>
+
+								<tr class="query_list_data_tr2" style="color:#000000;cursor:pointer;" defaultfontcolor="#000000" index="2" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+									<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="806"></td>
+									<td>2017-07-08 18:09:03</td>
+									<td>系统自动</td>
+									<td>
+										备份完成
+
+									</td>
+									<td>10M</td>
+									<td>
+										<a href="javascript:doDelete(&#39;806&#39;);">删除</a>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="table-bot clearfix">
+							<div class="pull-right">
+								<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+								<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+								第
+								<div class="layui-input-inline">
+									<input class="layui-input" style="width:30px" placeholder="" type="text" maxlength="15" onkeydown="javascript:doJump(this.value);" id="confirmPassword" name="pageNumber" value="1">
+								</div>
+								<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+								<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../layui/layui.all.js "></script>
+	</body>
+
+</html>

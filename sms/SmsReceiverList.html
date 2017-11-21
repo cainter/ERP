@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0060)http://115.28.87.22:8888/sms/SmsReceiverList.html?alert_id=2 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>消息接收人员 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doNew(){
+		var url="../base/StafferMainForSelect.html";
+		ShowIframe("选择员工",url,800,500,"doNewCallBack()",300,400);
+	}
+	function doNewCallBack(){
+		if(popRetVal!=null){
+			var arr=popRetVal.split(";");
+			window.location="../sms/SmsReceiverAdd.html?alert_id=2&receiver_id="+arr[0];
+		}
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',260,80,"doDeleteCallBack("+id+")");
+	}
+	function doDeleteCallBack(id){
+		if(popRetVal!=null){
+			window.location="../sms/SmsReceiverDel.html?id="+id+"&alert_id=2";
+		}
+	}
+	function doCancel(){
+		window.close();
+	}
+</script>
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
+<body oncontextmenu="return false" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:260px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>消息接收人员</h2>
+      <p>消息内容：每日营业简报</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+	    <div class="add_content"> 	
+	    	 <div align="right"><input type="button" class="buttom search-add" value=" 新 增" onclick="doNew();"></div>
+	     </div>
+		 
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	     <div class="table-list">
+	        <table width="100%">
+	          <tbody><tr>
+					<th width="180">姓名</th>
+					<th>操作</th>
+				</tr>
+				
+			</tbody></table>
+	      </div>  
+	   </div>  
+  </div>
+  <div class="blank12">
+</div>
+
+</div></body></html>

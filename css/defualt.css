@@ -1,0 +1,144 @@
+﻿/*-------------------------- 基础通用的 -----------------------------------------*/
+body { margin:0; padding:0; font:12px/1.5 tahoma,arial,'bitstream vera sans',helvetica,sans-serif; color: #444; }
+form { margin:0; padding:0; }
+/*ul, li,dl, dt, form, span, td, th,p {margin: 0px auto;padding: 0px auto; }*/
+li,ul { list-style-type:none; display:inline; margin:0; padding:0; }
+img { border:none;vertical-align:middle; padding:0px; margin:0px;}
+dl, dt, p, h2, h3, h4, h5, pre { margin:0; padding:0; }
+p { text-indent:2em; }
+input, select, textarea { margin:0; padding:0; }
+input{ padding:0 1px; }
+textarea { resize:none; }
+
+ul.list, ul.list li{ list-style-type: disc; display: block; list-style-position: outside; margin-left: 10px; }
+
+.clr{ clear:both; }
+.fl{ float:left; }
+.fr{ float:right; }
+.tl{ text-align:left; }
+.tr{ text-align:right; }
+table td.tl, table th.tl { text-align:left; }
+table td.tc, table th.tc { text-align:center; }
+table td.tr, table th.tr { text-align:right; }
+table td.vt, table th.vt { vertical-align:top; }
+table td.vm, table th.vm { vertical-align:middle; }
+table td.vb, table th.vb { vertical-align:bottom; }
+
+a:link, a:visited{ color:#0272d2; text-decoration:none; }
+a:hover{ color:#ff7f0d; text-decoration: underline; }
+
+a.detail, a.detail:visited, a.detail:active{ color:#666; text-decoration:none; }
+a.detail:hover{ color:green !important; border-bottom:1px dotted green; text-decoration:none; cursor:help; }
+
+a.boxButton { display:block; padding:2px; border:green 1px solid; color:green; background:#f6f6f6; text-align:center; }
+a.boxButton:hover { color:white; background:green; text-decoration:none; }
+a.boxButton.disabled  { border:#666 1px solid; color:#666; background:#ddd; }
+a.boxButton.disabled:hover { border:#666 1px solid; color:#666; background:#ddd; }
+
+div.watermark { position:relative; display:inline-block; }
+label.watermark { position:absolute; top:3px; left:4px; color:#8B9096; cursor:text;
+        width:90%; height:80%; white-space:nowrap; overflow:hidden; }
+label.watermark.focus { color:#ccc; }
+
+/* 下拉弹窗面版 */
+.PopupPanel { position:absolute; }
+.PopupPanel .FrameBox { background:white; border: 1px solid #02f; }  /* 7f9db9 */
+.PopupPanel .Shadow1 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.3; filter:alpha(opacity=30); line-height:1px; font-size:1px; height:1px; margin:0 1px; }
+.PopupPanel .Shadow2 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.15; filter:alpha(opacity=15); line-height:1px; font-size:1px; height:1px; margin:0 2px; }
+
+/* 标准清理浮动 模版 */
+.ClearFix:after { visibility:hidden;  display:block; font-size:0; content:" "; clear:both; height:0; }    
+.ClearFix { zoom:1; }
+
+/* debug 面版 */
+.DebugOutElem { position:absolute; left:0; bottom:0; width:80px; height:180px; overflow:auto;
+     background:#ff6; border:#331 solid 1px; padding:2px; }
+.DebugOutElem ul {}
+.DebugOutElem li { white-space:nowrap; }
+
+/*
+页面总体 HTML 结构:
+
+<body><div class="Wrap">                .Wrap
+
+<div class="Header">...</div>               .Header
+
+<div class="Container">                     .Container
+    <div class="Heading">...</div>              .Heading
+    <div class="Contnet">                       .Contnet
+        <div class="ContPanel"></div>               .ContPanel [n]
+    </div>
+    <div class="SideBar">                       .SideBar
+        <div class="SidePanel"></div>               .SidePanel [n]
+    </div>
+</div>
+
+<div class="Footer">...</div>               .Footer
+
+<div class="FloatingBar">...</div>          .FloatingBar
+
+<script type="text/javascript"></script>
+
+</div></body>
+
+
+/*-------------------------- 页面布局 主框架 -----------------------------------------*/
+html { width:100%; height:100%;overflow:hidden\9;}
+body, .Wrap { width:100%; height:100%; overflow:hidden; }
+
+.Wrap .Container { }
+
+.Container .Heading { height:68px; background: #c2e1f6 url(../images/header-bg.gif) repeat-x; border-bottom:0px solid white; }
+.Container .heading_logo { height:67px; background: url(../images/logo.gif) no-repeat; border-bottom:1px solid #5299cf; }
+.Container .heading_logo_online { height:67px; background: url(../images/logo_online.jpg) no-repeat; border-bottom:1px solid #5299cf; }
+.Container .heading_right { height:67px; background:url(../images/header-right-bg.gif) top right no-repeat; }
+
+.Container .Content { width:100%; height:100%; border:0; padding:0; margin:0; }
+
+/*
+.header{height:70px; padding-bottom:5px; background:#89b8de url(../images/header-but-bg.gif) bottom repeat-x; position:relative;}
+.header .header-bg{border:1px solid #add4ed; background:#c2e1f6 url(../images/header-bg.gif); height:100%;}
+.header .header-bg .logo{background:url(../images/logo.gif) top left no-repeat; height:100%;}
+.header .header-bg .header-right-bg{background:url(../images/header-right-bg.gif) top right no-repeat; height:100%;}*/
+
+.Heading .company {position:absolute; left:420px; top:10px; width:150px; display:block; float:left;}
+.Heading .company .select{cursor:pointer; font-weight:bold;text-decoration:none; cursor:pointer;color:#003399; }
+.Heading .company .select div{background:url(../images/company-left-bg.gif) no-repeat; padding-left:2px; height:20px;}
+.Heading .company .select p{background:url(../images/company-right-bg.gif) right no-repeat; padding-right:20px; height:20px;}
+.Heading .company .select span{background:url(../images/company--bg.gif); line-height:20px; height:20px; padding-left:8px; display:block;}
+
+.Heading .edit {position:absolute; right:20px; top:10px; }
+.Heading .edit .edit-link{float:left; }
+.Heading .edit .edit-link li{ float:left; padding:2px 10px 0 26px; }
+
+
+
+/**/
+.ico-home{background:url(../images/ico-home.gif) 6px center no-repeat;}
+.ico-out{background:url(../images/ico-out.gif) 6px center no-repeat;}
+.ico-cfg{background:url(../images/ico-cfg.gif) 6px center no-repeat;}
+
+
+.ico-bar{background:url(../images/ico-bar.gif) 6px center no-repeat;}
+.ico-code{background:url(../images/ico-code.gif) 6px center no-repeat;}
+.ico-help{background:url(../images/ico-help.gif) 6px center no-repeat;}
+.ico-client{background:url(../images/ico-client.gif) 8px center no-repeat;}
+.ico-business{background:url(../images/ico-business.gif) 8px center no-repeat;}
+.ico-accept{background:url(../images/ico-accept.gif) 8px center no-repeat;}
+.ico-paid{background:url(../images/ico-paid.gif) 8px center no-repeat;}
+.ico-acc{background:url(../images/ico-acc.gif) 8px center no-repeat;}
+.ico-balance{background:url(../images/ico-balance.gif) 8px center no-repeat;}
+.ico-stock{background:url(../images/ico-stock.gif) 8px center no-repeat;}
+.ico-avail{background:url(../images/ico-avail.gif) 8px center no-repeat;}
+.ico-profit{background:url(../images/ico-profit.gif) 8px center no-repeat;}
+.ico-notice{background:url(../images/ico-notice.gif) 8px center no-repeat;}
+.ico-cal{background:url(../images/ico-cal.gif) 8px center no-repeat;}
+.ico-info{background:url(../images/ico-info.gif) 8px center no-repeat;}
+.ico-price{background:url(../images/ico-price.gif) 8px center no-repeat;}
+.ico-sms{background:url(../images/ico-sms.gif) 6px center no-repeat;}
+.ico-info img{margin:10px 0 10px 6px;} /**/
+
+
+
+
+/**/

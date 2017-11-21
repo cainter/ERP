@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0040)http://115.28.87.22:8888/CutImgForm.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>剪切图片 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/jquery.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	var time;
+	var lastPoint=null;
+	var framSize=120;
+	var canvSize=60;//目标图片的大小,可以与剪切窗不同,自动按比例
+	var html5Ok=false;
+	if(!Uint8Array && HTMLCanvasElement && atob && Blob){
+		html5Ok=true;
+	}
+	
+	$(window).on('load', function() {
+		if(html5Ok){
+			$("#sour_file").change(function(event){
+			    var file=this.files[0];
+			    resize(file);
+			});
+			$("#frames").on('touchstart mousedown',function(event){
+	            getOffset(event);
+	        });
+		  	$("#frames").on('touchmove mousemove',function(event){
+	            if(!lastPoint)return;
+	            var offset=getOffset(event);
+	            moveFrames(offset);
+	        });
+		  	$("#frames").on('touchend mouseup',function(event){
+	            lastPoint=null;
+	        });
+	        /**
+	        window.onresize=function(){
+			    clearTimeout(time)
+			    time=setTimeout(function(){
+			        setFrames();
+			    },1000);
+			};
+			**/
+		}else{
+			$("#resizer").html("<p>您的浏览器不支持HTML5，无法使用此功能！</p><p>请让各人登录手机APP上传自己的头像</p>");
+		}
+	});
+
+	function resize(file){
+        resetPage();
+        setFrameSize(0);
+        
+        $("#frames").offset.top=0;
+		$("#frames").offset.left=0;
+		
+        $("#frames").css({
+            top:0,
+            left:0
+        });
+        var reader=new FileReader();
+        reader.onload=function(){
+        	$("#sour_img").attr("src",reader.result);
+            reader=null;
+            setFrames();
+        };
+        reader.readAsDataURL(file);
+	}
+	function resetPage(){
+        $("#sour_img").attr("src","");
+        //$('#my_canvas').remove();
+	}
+	function setFrames(){
+	    setFrameSize(framSize);
+	}
+	function setFrameSize(size){
+		$("#frames").offset.size=size;
+	  	$("#frames").css({
+		  	width:size+'px',
+		  	height:size+'px'
+	  	});
+	}
+	function getOffset(event){
+	    event=event.originalEvent;
+	    var x,y;
+	    if(event.touches){
+	        var touch=event.touches[0];
+	        x=touch.clientX;
+	        y=touch.clientY;
+	    }else{
+	        x=event.clientX;
+	        y=event.clientY;
+	    }
+	    
+	    if(!lastPoint){
+	        lastPoint={
+	            x:x,
+	            y:y
+	        };
+	    };
+	    
+	    var offset={
+	        x:x-lastPoint.x,
+	        y:y-lastPoint.y
+	    }
+	    lastPoint={
+	        x:x,
+	        y:y
+	    };
+	    return offset;
+	}
+	function moveFrames(offset){
+        var x=offset.x,
+            y=offset.y,
+            top=$("#frames").offset.top,
+            left=$("#frames").offset.left,
+            size=$("#frames").offset.size,
+            width=$("#inner").width(),
+            height=$("#inner").height();
+        
+        if(x+size+left>width){
+            x=width-size;
+        }else{
+            x=x+left;
+        };
+        
+        if(y+size+top>height){
+            y=height-size;
+        }else{
+            y=y+top;
+        };
+        x=x<0?0:x;
+        y=y<0?0:y;
+        $("#frames").css({
+            top:y+'px',
+            left:x+'px'
+        });
+        
+        $("#frames").offset.top=y;
+        $("#frames").offset.left=x;
+        
+    }
+    function clipImage(){
+    	if(!html5Ok){
+    		return;
+    	}
+    	$("#buttonDiv").hide();
+		$("#waitDiv").show();
+		
+		var sourImg=document.getElementById("sour_img");
+		if(sourImg.src==null || sourImg.src==""){
+			ShowAlert('系统提示',"请选择图片",200,100);
+			$("#buttonDiv").show();
+			$("#waitDiv").hide();
+			return;
+		}
+		
+        var nw=sourImg.naturalWidth;//这里不能用$("#sour_img")?
+        
+        var canvas=$('<canvas id="my_canvas" width="'+canvSize+'" height="'+canvSize+'"></canvas>')[0],
+            ctx=canvas.getContext('2d'),
+            scale=nw/$("#inner").width(),
+            x=$("#frames").offset.left*scale,
+            y=$("#frames").offset.top*scale,
+            w=$("#frames").offset.size*scale,
+            h=$("#frames").offset.size*scale;
+        
+		ctx.drawImage(sourImg,x,y,w,h,0,0,canvSize,canvSize);
+
+        var src=canvas.toDataURL();
+        //$("#resizer").append(canvas);
+        
+        src=src.split(',')[1];
+        if(!src)return doneCallback(null);
+        src=window.atob(src);
+        
+        var ia = new Uint8Array(src.length);
+        for (var i = 0; i < src.length; i++) {
+            ia[i] = src.charCodeAt(i);
+        };
+        
+        doneCallback(new Blob([ia], {type:"image/png"}));
+    }
+    function doneCallback(file){
+    	if(file!=null){
+    		var fileName=""+(new Date()).getTime()+".png";
+	    	var fd = new FormData();
+			fd.append("comm_type", "EKING");
+			fd.append("file_name", fileName);
+			fd.append("uplo_file", file);
+			$.ajax({
+	            url: "/app/FileUpload.ihtm",
+	            type: "POST",
+	            data: fd,
+	            async: true,        //异步
+	            processData: false,  //很重要，告诉jquery不要对form进行处理
+	            contentType: false,  //很重要，指定为false才能形成正确的Content-Type
+	            error: function(xhr){
+	            	ShowAlert('系统错误',xhr,200,100);
+	            },
+	            success: function(result,status){
+	            	if(status=="success"){
+	                	var jobj=$.parseJSON(result);
+	                	if(jobj.status=="OK"){
+	                		//ie有时候会报个莫名其妙的错误(jquery.js里),设置个timeout看看有没有效果
+	                		setTimeout(function(){
+			        			parent.popRetVal=jobj.fileUrl;
+		                		parent.ClosePop();
+		    				},500);
+	                		
+	                	}
+	                }
+	            }
+	        });
+	        fd=null;
+    	}
+    	
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+</script>
+</head>
+<body class="sheet modal-dialog" style=" padding-top:15px;">
+<div class="sheet-main" style="width:470px;">
+	  <div class="sheet-list">
+	    <div class="modal-main search-business">
+	    	<div style="width:100%;">
+				
+				
+				
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<h3>剪切图片</h3>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table>
+				
+				<div class="blank12"></div>
+				
+				<table border="0" height="280px" align="center">
+					<tbody><tr>
+						<td align="center">选择图片：<input type="file" id="sour_file" accept="image/*"></td>
+					</tr>
+					<tr>
+						<td align="center" height="260px" valign="top">
+							<br>
+							<div id="resizer" style="overflow: hidden;width:300px;"><p>您的浏览器不支持HTML5，无法使用此功能！</p><p>请让各人登录手机APP上传自己的头像</p></div>
+						
+					</td></tr>
+				</tbody></table>
+				
+			</div>
+	  	</div>
+	  </div>
+
+	<div id="buttonDiv" class="modal-buttom">
+		<input type="button" class="buttom-a" value=" 确 定 " onclick="clipImage();">
+		<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+	</div>
+	<div id="waitDiv" style="display:none;text-align:center;color:white">
+		<span>请稍候...</span>
+	</div>
+</div>			   	
+
+</body></html>

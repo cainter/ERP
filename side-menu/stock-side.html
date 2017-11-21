@@ -1,0 +1,114 @@
+<!--库存管理侧边栏-->
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>入库<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">入库单</a>
+		</li>
+		<li>
+			<a href="#">入库单审核</a>
+		</li>
+		<li>
+			<a href="#">入库单反审核</a>
+		</li>
+		<li>
+			<a href="#">入库单一览表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>出库<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">出库单</a>
+		</li>
+		<li>
+			<a href="#">出库单审核</a>
+		</li>
+		<li>
+			<a href="#">出库单反审核</a>
+		</li>
+		<li>
+			<a href="#">出库单一览表</a>
+		</li>
+		<li>
+			<a href="#">出库明细一览表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>调拨<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">调拨单</a>
+		</li>
+		<li>
+			<a href="#">调拨单审核</a>
+		</li>
+		<li>
+			<a href="#">调拨单反审核</a>
+		</li>
+		<li>
+			<a href="#">调拨单一览表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>库存<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">库存查询</a>
+		</li>
+		<li>
+			<a href="#">收发存明细表</a>
+		</li>
+		<li>
+			<a href="#">收发存汇总表</a>
+		</li>
+	</ul>
+</li>
+<li>
+	<div class="link"><i class="fa fa-paint-brush"></i>作废<i class="fa fa-chevron-down"></i></div>
+	<ul class="submenu">
+		<li>
+			<a href="#">入库单作废</a>
+		</li>
+		<li>
+			<a href="#">出库单作废</a>
+		</li>
+		<li>
+			<a href="#">调拨单作废</a>
+		</li>
+	</ul>
+</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

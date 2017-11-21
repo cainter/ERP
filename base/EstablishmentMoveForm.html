@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet modal-dialog">
+		<div class="sheet-main" id="bodyDiv">
+			<div class="sheet-list">
+				<div class="modal-main search-business">
+					<div style="width:100%;">
+						<h3>客户移交</h3>
+						<div class="blank24"></div>
+						<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a">
+							<tbody>
+								<tr>
+									<th>从：</th>
+									<td>
+										<input class="TextBox readonly" style="width:140px" readonly="true" type="text" name="from_name" id="from_name" value="">
+										<input type="hidden" name="from_id" id="from_id" value="">
+										<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectFromManager();">
+									</td>
+								</tr>
+								<tr>
+									<th>转给：</th>
+									<td>
+										<input class="TextBox readonly" style="width:140px" readonly="true" type="text" name="to_name" id="to_name" value="">
+										<input type="hidden" name="to_id" id="to_id" value="">
+										<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectToManager();">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="modal-buttom">
+				<input type="button" class="buttom-a" value=" 确 定 " onclick="doOk();">
+				<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">
+			</div>
+		</div>
+
+	</body>
+
+</html>

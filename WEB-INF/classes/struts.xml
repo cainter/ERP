@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+ 	 <!-- 是否启用开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- struts配置文件改动后，是否重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- struts i18n文件名 -->
+ 	<constant name="struts.custom.i18n.resources" value="Message" />
+    <!-- struts i18n属性文件改动后，是否重新加载 -->
+ 	<constant name="struts.i18n.reload" value="true" />
+ 	<!--  -->
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+
+
+
+ 	<!-- 设置浏览器是否缓存静态内容 -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!-- 请求参数的编码方式 -->
+    <constant name="struts.i18n.encoding" value="utf-8" />
+    <!-- 文件上传最大值 10M-->
+    <constant name="struts.multipart.maxSize" value="104857600" />
+    <!-- 让struts2支持动态方法调用 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- Action名称中是否还是用斜线 -->
+    <constant name="struts.enable.SlashesInActionNames" value="false" />
+    <!-- 允许标签中使用表达式语法 -->
+    <constant name="struts.tag.altSyntax" value="true" />
+ 	<package name="struts2" extends="struts-default">
+ 	<!--  检查权限拦截器 -->
+ 		 <interceptors>
+ 			<interceptor  name="secutityInterCeptor" class="com.erp.controller.intercepters.SecutityInterCeptor" /> 
+ 		
+ 		<!--定义拦截器栈，如果使用自己的拦截器，则action不会执行默认的18个拦截器，因此要显示调用-->
+ 			<interceptor-stack name="myInterCeptorStack">
+ 				<interceptor-ref name="secutityInterCeptor"/>
+    			<interceptor-ref name="defaultStack"/>
+ 			</interceptor-stack>
+ 		</interceptors>
+
+		<!-- 自定义拦截器栈，会出现每个action的struts配置文件重复调用
+		<interceptor-ref name="myInterCeptorStack"/> ,所以为避免每个
+		action重复调用拦截器栈，可定义成缺省拦截器栈，每个action自动调用
+		自定义的拦截器栈
+		--> 		
+		<default-interceptor-ref name="myInterCeptorStack"/>
+		
+ 	 	<global-results>   
+    		<result name="success">/login_success.jsp</result>
+    		<result name="error">/login_error.jsp</result>
+    		<result name="login">/login.jsp</result>
+    	</global-results>  	
+ 	</package>
+ 	<!-- 
+	 	每个模块有自己的struts-xxx-mgr.xml ,
+	 	用来支持团队开发，引入总的struts.xml文件
+ 	-->
+ 	<include file="struts-login-mgr.xml" />
+ 	<!-- 系统配置 -->
+ 	<include file="struts-system-mgr.xml" />
+ 	<!-- 基础数据 -->
+ 	<include file="struts-basedata-mgr.xml" />
+ 	<!-- 客户业务 -->
+ 	<include file="struts-business-mgr.xml"/>
+ 	<!-- 库存 -->
+ 	<include file="struts-storehouse-mgr.xml"/>
+ 	<!-- 沟通 -->
+ 	<include file="struts-communicate-mgr.xml"/>
+ 	<!-- 账务-->
+ 	<include file="struts-finance-mgr.xml"/>
+ 	<!-- 统计报表 -->
+ 	<include file="struts-report-mgr.xml"/>
+ 	
+ 	<!-- 客户业务 -->
+ 	<include file="struts-customer-business-mgr.xml" />
+	<!-- 外协业务 -->
+ 	<include file="struts-subcontractCancel-mgr.xml" />
+	<!-- 库存业务 -->
+ 	<include file="struts-stock-mgr.xml" />
+	<!-- 通讯录 -->
+ 	<include file="struts-phone-mgr.xml" />
+ 	<!-- 账务 -->
+ 	<include file="struts-accounts-mgr.xml" />
+ 	<!-- 统计报表 -->
+ 	<include file="struts-statistic-mgr.xml" />
+ 	
+ 	<!-- fhk  +  wmc -->
+ 	<include file="struts-byfu.xml" />
+ 	<include file="struts-bymyself.xml"></include>
+ 	
+ 	<!-- 导入通配符标签 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+</struts>

@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0095)http://115.28.87.22:8888/purchase/PurchaseBillItemListForSelect.ihtm?id=0&bill_type=BUY&ts_id=1 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>供应商交易历史 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doSelect(index){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		if (ob_arr.length>=index){
+			var obj=ob_arr[index-1];
+			arr[0]=new Array(obj.getAttribute("p_id"),obj.getAttribute("p_nam"),obj.getAttribute("p_cod"),obj.getAttribute("p_uni"),obj.getAttribute("i_amo"),obj.getAttribute("i_pri"),obj.getAttribute("i_cos"));
+			parent.popRetVal=arr;
+		}
+		parent.ClosePop();
+	}
+	function doGo(pageIndex){
+		var str=getSearchCondition();
+		window.location="./PurchaseBillItemListForSelect.ihtm?"+str+"&current_page="+pageIndex;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		if(ob_arr.length>=it.getAttribute("index")){
+			var obj=ob_arr[it.getAttribute("index")-1];
+			arr[0]=new Array(obj.getAttribute("p_id"),obj.getAttribute("p_nam"),obj.getAttribute("p_cod"),obj.getAttribute("p_uni"),obj.getAttribute("i_amo"),obj.getAttribute("i_pri"),obj.getAttribute("i_cos"));
+			parent.popRetVal=arr;
+		}
+		parent.ClosePop();
+	}
+	function doMutiSelect(){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var arr=new Array();
+		for (i=0;i<ob_arr.length;i++){
+			if ((ob_arr[i].checked == true)){
+				arr.push(new Array(ob_arr[i].getAttribute("p_id"),ob_arr[i].getAttribute("p_nam"),ob_arr[i].getAttribute("p_cod"),ob_arr[i].getAttribute("p_uni"),ob_arr[i].getAttribute("i_amo"),ob_arr[i].getAttribute("i_pri"),ob_arr[i].getAttribute("i_cos")));
+			}
+		}
+		if(arr.length>0){
+			parent.popRetVal=arr;
+			parent.ClosePop();
+		}else{
+			ShowAlert('提示框','请选择交易历史！',200,100);
+			return;
+		}
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function doInit(){
+		//Window_Onload();
+	}
+	function checkInput(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function createPageParaStr(){
+		var str="pro_name="+encodeURIComponent(document.getElementById("pro_name").value);
+		str=str+"&pro_code="+encodeURIComponent(document.getElementById("pro_code").value);
+		str=str+"&pt_id="+document.getElementById("pt_id").value;
+		
+		return str;
+	}
+
+	function createProgramParaStr(){
+		var str="pro_name="+encodeURIComponent(document.getElementById("hid_pro_name").value);
+		str=str+"&pro_code="+encodeURIComponent(document.getElementById("hid_pro_code").value);
+		str=str+"&pt_id=";
+		
+		return str;
+	}
+	function doSearch(){
+		var str="id=0&bill_type=BUY&ts_id=1";
+		if(IsAdvSearch){//高级
+			str=str+"&search_type=1";
+			if(document.getElementById("cb_pro_name").checked){
+				var proName=document.getElementById("pro_name").value.trim();
+				if(proName==null || proName==""){
+					ShowAlert('提示框','请输入品名规格',200,100);
+					return;
+				}
+				str=str+"&cb_pro_name=1";
+			}
+			if(document.getElementById("cb_pro_code").checked){
+				var proCode=document.getElementById("pro_code").value.trim();
+				if(proCode==null || proCode==""){
+					ShowAlert('提示框','请输入材料编号',200,100);
+					return;
+				}
+				str=str+"&cb_pro_code=1";
+			}
+			if(document.getElementById("cb_pt").checked){
+				var ptId=document.getElementById("pt_id").value;
+				if(ptId==null || ptId=="" || ptId=="0"){
+					ShowAlert('提示框','请选择材料类别',200,100);
+					return;
+				}
+				str=str+"&cb_pt=1";
+			}
+		}else{//快速
+			str=str+"&search_type=2";
+		}
+		var paraStr=createPageParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		window.location="./PurchaseBillItemListForSelect.ihtm?"+str;
+	}
+	function getSearchCondition(){
+		var searchType="";
+		var str="id=0&bill_type=BUY&ts_id=1&search_type="+searchType;
+		if(searchType=="1"){//高级
+			
+			
+			
+		}else{//快速
+			
+		}
+		var paraStr=createProgramParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		return str;
+	}
+	function doAutoCheck(objId){
+		if(document.getElementById(objId).style.visibility!="hidden"){
+			document.getElementById(objId).checked=true;
+		}
+	}
+	function doInit(){
+		document.getElementById("pro_name").focus();
+	}
+</script>
+</head>
+<body oncontextmenu="return false" onload="doInit();">
+<div class="Wrap"><!-- 页面主框架 -->
+    
+	<div id="ListContainer" class="Container" style="width: 860px;"><!-- 主体容器 -->
+	    
+	    <!-- 标题栏 -->
+	    <div class="Heading BillIcon">
+	        <div class="HeadingContent">
+	            <h1>供应商交易历史</h1>
+	            <span class="Note">可以选择之前交易的材料价格，直接作为采购单的价格</span>
+	        </div>
+	    </div>
+	
+		<!-- 主内容 -->
+		<div class="Content">
+	        <!-- 筛选控件栏 -->
+	        <div class="FilterBar ClearFix">
+	            <div class="SearchIcon"></div>
+	            <span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_pro_name" id="cb_pro_name" style="visibility:hidden;">
+	            			品名规格
+	            		</th>
+	            		<td class="c1" width="260px">
+	            			<input type="text" class="TextBox" name="pro_name" id="pro_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_pro_name&#39;);" value="">
+							<input type="hidden" id="hid_pro_name" value="">
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+	            <span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+		  			<input type="button" value=" 查 询" onclick="doSearch();" class="buttom search-but" id="sSearchButton" name="sSearchButton">
+		  			<input type="button" value=" 选 择" onclick="doMutiSelect();" id="sSelectButton" name="sSelectButton" class="buttom search-select">
+	            </span>
+				<div id="dvMoreOptionBox" class="MoreOptionBox" style="display:none;">
+					<table class="MoreOption" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<th class="c1" width="80px">
+			        			<input name="" type="checkbox" id="cb_pro_code">
+			        			材料编号
+			        		</th>
+			        		<td class="c1" width="260px">
+			        			<input type="text" class="TextBox" id="pro_code" name="pro_code" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_pro_code&#39;);" value="">
+								<input type="hidden" id="hid_pro_code" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+			    			<th class="c1">
+	                        	<input type="checkbox" name="cb_pt" id="cb_pt">
+	                        	材料类别
+	                        </th>
+	                    	<td class="c1">
+	                        	<select name="pt_id" id="pt_id" onfocus="doAutoCheck(&#39;cb_pt&#39;);">
+						  			<option value="0">==请选择==</option>
+						  			
+<option value="72">01喷绘材料</option>
+<option value="73">02写真材料</option>
+<option value="74">03辅助材料</option>
+<option value="93">06展示器材</option>
+<option value="94">07光电产品</option>
+<option value="42">板材类</option>
+<option value="83">玻璃镜子</option>
+<option value="69">标牌配件</option>
+<option value="88">扁铁圆钢</option>
+<option value="89">不锈钢方管</option>
+<option value="90">不锈钢矩管</option>
+<option value="91">不锈钢圆管</option>
+<option value="64">成品标牌</option>
+<option value="82">磁性板</option>
+<option value="84">镀锌方管</option>
+<option value="85">镀锌矩管</option>
+<option value="86">镀锌圆管</option>
+<option value="45">低值易耗品</option>
+<option value="80">钢板材类</option>
+<option value="92">钢材辅料类</option>
+<option value="70">管材类</option>
+<option value="79">工程用板</option>
+<option value="65">光电产品</option>
+<option value="87">角钢槽钢</option>
+<option value="75">KT板类</option>
+<option value="27">铝型材</option>
+<option value="81">木板类</option>
+<option value="95">每月定时出库材料</option>
+<option value="77">PVC雪弗板</option>
+<option value="78">有机板</option>
+<option value="76">亚克力板</option>
+<option value="44">油漆类</option>
+					  			</select>
+	                    	</td>
+			    		</tr>
+			    	</tbody></table>
+			    	
+			    	<div class="OptionOrderBy">
+	                    <span class="fr"><a href="javascript:;" id="lnkHiddenOption">隐藏查询选项</a></span>
+	                </div>
+				</div>
+			</div>
+			
+			<!-- 提示信息显示栏 -->
+	        <div class="MsgBar">
+	            
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	        </div>
+
+		    <div class="table-list">
+		        <table width="100%">
+					<tbody><tr>
+						<th width="14"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+						<th width="14%">日期</th>
+						<th width="14%">材料编号</th>
+						<th width="20%">品名规格</th>
+						<th width="10%">单位</th>
+						<th width="10%">数量</th>
+						<th width="10%">单价</th>
+						<th width="14%">金额</th>
+						<th width="8%">操作</th>
+					</tr>
+					
+				</tbody></table>
+				
+				
+			</div>
+      		<!-- 底栏 分页、操作等 -->
+	        <div class="BottomToolBar ClearFix">
+			    	
+    <div class="table-bot">
+    	
+			<a style="float:right;padding-right:0px;padding-top:2px"><input type="button" class="buttom search-select" value="选 择" onclick="doMutiSelect();"></a>
+		
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="0" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共0页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+	        </div>
+			
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function ChangeWindowSize( container, maxWidth ){
+	    setTimeout( function(){
+	        var w1 = document.documentElement.clientWidth-40;
+	        if( w1>maxWidth ) w1 = maxWidth;
+	        else if( w1<870 ) w1 = 860;
+	        container.style.width = w1+'px';
+	    }, 300 );
+	}
+	var IsAdvSearch = false;
+	(function(){
+	    var ListContainer = document.getElementById('ListContainer');
+	    ChangeWindowSize( ListContainer, 2020 );    // 超过 1280 的最大 1260 ，不全部铺满
+	
+	    var lnkMoreOption   = document.getElementById('lnkMoreOption');
+	    var lnkHiddenOption = document.getElementById('lnkHiddenOption');
+	    lnkMoreOption.onclick = function(){
+	    	IsAdvSearch = true;
+	        document.getElementById('dvMoreOptionBox').style.display = 'block';
+	        document.getElementById('cb_pro_name').style.visibility = 'visible';
+	        this.style.visibility = 'hidden';
+	    };
+	    lnkHiddenOption.onclick = function(){
+	    	IsAdvSearch = false;
+	        document.getElementById('dvMoreOptionBox').style.display = 'none';
+	        document.getElementById('cb_pro_name').style.visibility = 'hidden';
+	        lnkMoreOption.style.visibility = 'visible';
+	    };
+	})();
+</script>
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

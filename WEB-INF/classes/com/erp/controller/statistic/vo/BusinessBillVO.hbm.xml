@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.statistic.vo.BusinessBillVO" table="business_bill">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="billCode" type="string">
+			<column name="bill_code" length="30" not-null="true" />
+		</property>
+		<property name="clientId" type="long">
+			<column name="client_id" not-null="true" />
+		</property>
+		<property name="linkman" type="string">
+			<column name="linkman" length="30" />
+		</property>
+		<property name="phone" type="string">
+			<column name="phone" length="80" />
+		</property>
+		<property name="address" type="string">
+			<column name="address" length="100" />
+		</property>
+		<property name="orderDate" type="timestamp">
+			<column name="order_date" />
+		</property>
+		<property name="deliverDate" type="timestamp">
+			<column name="deliver_date" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="400" />
+		</property>
+		<property name="amount" type="big_decimal">
+			<column name="amount" length="2" not-null="true" />
+		</property>
+		<property name="cost" type="big_decimal">
+			<column name="cost" length="2" not-null="true" />
+		</property>
+		<property name="square" type="big_decimal">
+			<column name="square" length="3" not-null="true" />
+		</property>
+		<property name="bankAccountId" type="long">
+			<column name="bank_account_id" not-null="true" />
+		</property>
+		<property name="imprest" type="big_decimal">
+			<column name="imprest" length="2" not-null="true" />
+		</property>
+		<property name="managerId" type="long">
+			<column name="manager_id" not-null="true" />
+		</property>
+		<property name="managerName" type="string">
+			<column name="manager_name" length="30" />
+		</property>
+		<property name="departmentId" type="long">
+			<column name="department_id" not-null="true" />
+		</property>
+		<property name="setupRequire" type="string">
+			<column name="setup_require" length="100" />
+		</property>
+		<property name="ladingRequire" type="string">
+			<column name="lading_require" length="100" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="400" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="updateTime" type="timestamp">
+			<column name="update_time" not-null="true" />
+		</property>
+		<property name="contractCode" type="string">
+			<column name="contract_code" length="100" />
+		</property>
+		<property name="lengM" type="big_decimal">
+			<column name="leng_m" length="2" not-null="true" />
+		</property>
+		<property name="lengCm" type="big_decimal">
+			<column name="leng_cm" length="2" not-null="true" />
+		</property>
+		<property name="favCost" type="big_decimal">
+			<column name="fav_cost" length="2" not-null="true" />
+		</property>
+		<property name="tallySetId" type="long">
+			<column name="tally_set_id" not-null="true" />
+		</property>
+		<property name="checkDate" type="date">
+			<column name="check_date" />
+		</property>
+		<property name="payModeId" type="long">
+			<column name="pay_mode_id" not-null="true" />
+		</property>
+		<property name="modifierId" type="long">
+			<column name="modifier_id" not-null="true" />
+		</property>
+		<property name="modifierName" type="string">
+			<column name="modifier_name" length="30" />
+		</property>
+		<property name="modifyTime" type="timestamp">
+			<column name="modify_time" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" />
+		</property>
+		<property name="introducerId" type="long">
+			<column name="introducer_id" not-null="true" />
+		</property>
+		<property name="introducerName" type="string">
+			<column name="introducer_name" length="30" />
+		</property>
+		<property name="designType" type="string">
+			<column name="design_type" length="30" />
+		</property>
+		<property name="designerIdStr" type="string">
+			<column name="designer_id_str" length="100" />
+		</property>
+		<property name="designerNameStr" type="string">
+			<column name="designer_name_str" length="100" />
+		</property>
+		<property name="followerIdStr" type="string">
+			<column name="follower_id_str" length="100" />
+		</property>
+		<property name="followerNameStr" type="string">
+			<column name="follower_name_str" length="100" />
+		</property>
+		<property name="sourType" type="string">
+			<column name="sour_type" length="30" />
+		</property>
+    </class>
+</hibernate-mapping>

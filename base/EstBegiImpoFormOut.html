@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)http://115.28.87.22:8888/base/StafImpoForm.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>导入外协商期初欠款| 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doSave(){
+		var fn=document.getElementById("accessory_file").value.trim();
+		if(fn!=null && fn!=""){
+			var lowerFn=fn.toLowerCase();
+			if(!lowerFn.endWith(".xls")){
+				ShowAlert('提示框','上传的文件必须是excel格式！',200,100);
+				return;
+			}
+		}
+		document.getElementById("tblUpload").style.display="none";
+		document.getElementById("postframe").height="100%";
+		document.getElementById("postframe").style.display="";
+		frm.submit();
+	}
+	function doCancel(){
+		parent.ClosePop();
+	}
+	function showMe(){
+		showFormErrorMsg();
+		
+		if(checkNavigator()[0]!="msie"){
+			if(document.getElementById("accessory_file")!=null){
+				document.getElementById("accessory_file").className="";
+			}
+		}
+	}
+</script>
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
+<body oncontextmenu="return false" scroll="no" onload="showMe();" class="sheet modal-dialog" style="padding-top:10px;">
+<div class="sheet-main" style="width:520px;" id="tblUpload">
+  <form name="frm" method="post" enctype="multipart/form-data" action="http://115.28.87.22:8888/FileUpload.html">
+  <div class="sheet-list" style="width:100%">
+    <div class="modal-main search-business">
+ 		<div style="width:100%;">
+ 			
+			
+<script language="javascript">
+	var formErrorIndex=0;
+	var formErrorMsg="";
+	var formErrorObjId="";
+	function setFormErrorMsg(msg,index,objId){
+		if(formErrorIndex==0 || formErrorIndex>index){
+			if(msg!=null && msg!=""){
+				formErrorIndex=index;
+				formErrorMsg=msg;
+				formErrorObjId=objId;
+			}
+		}
+	}
+	function showFormErrorMsg(){
+		if(formErrorIndex!=0){
+			document.getElementById("errorMsgTr").style.display="";
+			document.getElementById("errorMsgDiv").innerHTML=formErrorMsg;
+			if(formErrorObjId!=null && formErrorObjId!=""){
+				document.getElementById(formErrorObjId).focus();
+			}
+		}
+	}
+	function goNextInput(objId){
+		var obj=null;
+		if(objId!=null && objId!=''){
+			obj=document.getElementById(objId);
+		}
+		if(window.event.keyCode==13){
+			if(obj!=null){
+				obj.focus();
+			}else if(window.doSave){
+				doSave();
+			}
+		}
+	}
+</script>
+<h3>导入外协商期初欠款</h3>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td colspan="2">
+	  	<div class="msg-error" id="errorMsgDiv">
+      	
+      	</div>
+	  </td>
+	</tr>
+</tbody></table>
+			
+			<div class="blank12"></div> 
+			<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a">
+				<tbody><tr>
+			      	<th>文件名称：</th>
+			      	<td>
+						<input type="file" id="accessory_file" name="accessory_file" style="width:220px" class="">
+						<input type="hidden" id="from_url" name="from_url" value="../base/StafImpoForm.html">
+			     	</td>
+				</tr>
+				<tr>
+					<th class="give">导入说明：</th>
+					<td class="give">上传的文件必须是Excel文件
+						&nbsp;&nbsp;&nbsp;
+						<a href="http://115.28.87.22:8888/upload/StafferTemplate.xls">下载模板文件</a>
+					</td>
+				</tr>
+			</tbody></table>
+			
+			</div>
+		</div>
+	</div>
+	<div class="modal-buttom">
+		<input type="button" class="buttom-a" value=" 导 入" onclick="doSave();">
+		<input type="button" class="buttom-a" value=" 取 消 " onclick="doCancel();">		
+	</div>
+	</form>
+</div>
+<iframe name="postframe" height="0" width="100%" frameborder="0" scrolling="no" style="display:none" id="postframe" src="./uploading.html"></iframe>
+
+</body></html>

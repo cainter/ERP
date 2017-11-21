@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.MessageVO" table="message">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="title" type="string">
+			<column name="title" length="200" not-null="true" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="60000" not-null="true" />
+		</property>
+		<property name="senderId" type="long">
+			<column name="sender_id" not-null="true" />
+		</property>
+		<property name="senderName" type="string">
+			<column name="sender_name" length="30" not-null="true" />
+		</property>
+		<property name="sendTime" type="timestamp">
+			<column name="send_time" not-null="true" />
+		</property>
+		<property name="receiverName" type="string">
+			<column name="receiver_name" length="30" not-null="true" />
+		</property>
+		<property name="senderDelete" type="string">
+			<column name="sender_delete" length="1" not-null="true" />
+		</property>
+		<property name="hasAttach" type="string">
+			<column name="has_attach" length="1" not-null="true" />
+		</property>
+		<property name="relationId" type="long">
+			<column name="relation_id" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

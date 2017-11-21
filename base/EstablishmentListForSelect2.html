@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--
+	作者：offline
+	描述：业务对账 选择客户
+-->
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/base.css" rel="stylesheet" />
+		<link href="../css/base-panel-2.css" rel="stylesheet" />
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+			<div class="header">
+				<h2>对账</h2>
+				<div class="pull-right">
+					<select name="">
+						<option value="">全部类别</option>
+						<option value=""></option>
+					</select>
+					<select name="">
+						<option value="">全部等级</option>
+					</select>
+					<select name="">
+						<option value="">全部地区</option>
+					</select>
+					<img style="position: relative;left: 25px;" src="../img/search_in_input.png"/>
+					<input style="padding-left: 25px;height: 30px;" type="text" name="" id="" value="" placeholder="请输入客户名称" />
+					<a class="btn btn-default" href="#" type="button">查询</a>
+					<a id="1234" class="btn btn-default" href="#" type="button">新增</a>
+				</div>
+			</div>
+			<div class="body" style="padding-top: 20px;">
+				<table data-toggle="table" data-click-to-select="true">
+				<thead>
+					<tr>
+						<th>编号</th>
+						<th>名称</th>
+						<th>联系人</th>
+						<th>备注</th>
+						<th>经办人</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="javascript:doSelect();">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>F0674</td>
+						<td>格力电器</td>
+						<td>赵四</td>
+						<td></td>
+						<td>管理员</td>
+						<td>
+							<a href="#">选择</a>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+					    <td colspan="14">
+					    	<div class="pull-right pagination">
+					    		<a href="#"><span class="glyphicon glyphicon-step-backward"></span></a>
+					    		<a href="#"><span class="glyphicon glyphicon-triangle-left"></span></a>
+					    		<span>第</span>
+					    		<input type="text" name="" id="" value="" />
+					    		<span>页</span>
+					    		<span>共1页</span>
+					    		<a href="#"><span class="glyphicon glyphicon-triangle-right"></span></a>
+					    		<a href="#"><span class="glyphicon glyphicon-step-forward"></span></a>
+					    	</div>
+					    </td>
+					</tr>
+				</tfoot>
+			</table>
+			</div>
+			<div class="footer">
+				<a class="btn btn-default" href="#">返回主菜单</a>
+			</div>
+		
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+		
+		<script src="../layer/layer.js"></script>
+		
+		<script>
+			function doSelect(){
+				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+//				parent.layer.close(index); //再执行关闭
+				layer.open({
+					type: 2,
+					'title': '业务对账',
+					content: '../business/BusinessBillListForAccountForm.html',
+					area: ['340px', '394px'],
+					shadeClose: true,
+					closeBtn: 0,
+					resize: false,
+					moveOut: true,
+//					success: function(){
+//						parent.layer.close(index);
+//					}
+				});
+			}
+		</script>
+		
+	</body>
+</html>
+

@@ -1,0 +1,211 @@
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/minierp</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<!-- 注册方言，查看hibernate.core包，发现有通用mysql和mysql5，
+			两个都可以，选择mysql5更合适 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<!--
+		  注册数据源和数据库连接池	:这里的连接池工具是第三方提供的、集成在hibernate中的工具c3p0
+		 数据库连接池的使用 -->
+		<!-- 选择使用C3P0连接池 -->
+		<property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+		<!-- 连接池中最小连接数 -->
+		<property name="hibernate.c3p0.min_size">10</property>
+		<!-- 连接池中最大连接数 -->
+		<property name="hibernate.c3p0.max_size">50</property>
+		<!-- 设定数据库连接超时时间，以秒为单位。如果连接池中某个数据库连接处于空闲状态且超过timeout秒时，就会从连接池中移除-->
+		<property name="hibernate.c3p0.timeout">120</property>
+		<!-- 设置数据库 -->
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+  		<property name="acquireIncrement">5</property>
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+ 		<property name="acquireRetryAttempts">30</property>
+ 		<!--两次连接中间隔时间，单位毫秒。Default: 1000 -->
+ 		<property name="acquireRetryDelay">1000</property>
+ 		<!--连接关闭时默认将所有未提交的操作回滚。Default: false -->
+ 		<property name="autoCommitOnClose">false</property>
+
+		<!--
+		  注册当前session上下文:thread表示，当前thread中，取到的session保证是同一个session
+		-->		
+		<property name="current_session_context_class">thread</property>
+		<!-- 自动建表，无则create,有则update，可选值create/update -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- 显示执行的 SQL语句  -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- 格式化显示执行的 SQL语句  -->
+        <property name="hibernate.format_sql">true</property>
+ 
+ 		<!-- 注册映射文件 -->
+ 		<mapping resource="com/erp/model/vo/UserVO.hbm.xml"/> 		     
+ 		<mapping resource="com/erp/model/vo/TestVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/TallySetVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/UserPrivilegeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/MessageReceiverVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/MessageVO.hbm.xml"/>
+ 		
+ 		<mapping resource="com/erp/model/vo/MakeType.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/WorkCenter.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/MakeRequire.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/AccessoryMark.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BusinessBill.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Establishment.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BusinessBillItem.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Department.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Staffer.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/PayMode.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BusinessBillExt.hbm.xml"/>
+ 		<!-- 库存 -->
+ 		<mapping resource="com/erp/model/vo/InBillItem.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/InBill.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/InType.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Storehouse.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/Product.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/OutBill.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/OutBillItem.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/OutType.hbm.xml"/>
+		
+		<mapping resource="com/erp/model/vo/EstablishmentCommunicate.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/ReceiveBillItem.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/ReceiveBill.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/BankAccount.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/IncomeBill.hbm.xml"/>
+		<mapping resource="com/erp/model/vo/IncomeType.hbm.xml"/>
+		 		
+		<mapping resource="com/erp/model/vo/StafferVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ProductVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ProductType.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/EstablishmentLevel.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/EstablishmentType.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Unit.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/EstablishmentVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/EstablishmentContactVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/AreaVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/StafferVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/EstablishmentTypeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/EstablishmentLevelVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/customerBusiness/vo/PayModeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/subcontractCancel/vo/CooperBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/subcontractCancel/vo/GatherBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/subcontractCancel/vo/CooperBillExtVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/subcontractCancel/vo/TallySetVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/stock/vo/AlloBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/stock/vo/InBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/stock/vo/OutBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/stock/vo/InOutHistoryVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/phone/vo/PhoneBookVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/phone/vo/DepartmentVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/AdjustBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/FeeBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/IncomeBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/LoanBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/PayBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/ReceiveBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/TransferBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/accounts/vo/BankAccountDetailVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/statistic/vo/BusinessBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/statistic/vo/BusinessProfitVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/statistic/vo/BusinessBillExtVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/statistic/vo/PurchaseBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/controller/statistic/vo/BankAccountVO.hbm.xml"/>
+ 		
+ 		
+ 		
+ 		
+ 		<!-- fu+w -->
+ 		<!--wmc财务-->
+ 		<mapping resource="com/erp/model/vo/IncomeTypeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BankAccountVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/FeeTypeVO.hbm.xml"/>
+ 		<!--wmc外协 -->
+ 		<mapping resource="com/erp/model/vo/AreaVO.hbm.xml"/>
+ 		      <!--在财务部分已经有 BankAccountVO.hbm.xml的了	 -->
+ 		<mapping resource="com/erp/model/vo/CooperBillItemVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/CooperBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/EstablishmentVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/MakeTypeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/PayModeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/TallySetVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/DepartmentVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/CooperBillExtVO.hbm.xml"/>
+ 		<!-- estPrice -->
+ 		<mapping resource="com/erp/model/vo/EstPriceVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BusinessBillVO.hbm.xml"/>
+ 		
+ 		
+ 		<!-- 收货对账 -->
+ 		<mapping resource="com/erp/model/vo/GatherBillVO.hbm.xml"/>
+ 		
+ 		<mapping resource="com/erp/model/vo/IncomeTypeVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BusinessBillExtVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BusinessBillItemVO.hbm.xml"/>
+ 		
+ 		<mapping resource="com/erp/model/vo/WorkCenterVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/AccessoryVO.hbm.xml"/>
+ 		
+ 		<mapping resource="com/erp/model/vo/GatherBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/CodeRuleVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/AdjustBillItemVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/EnterpriseInfoVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/AdjustBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ReceiveBillItemVO.hbm.xml"/>
+ 		  <!-- 付款单一览表 -->
+ 	    <mapping resource="com/erp/model/vo/PayBillVO.hbm.xml"/>
+ 	    <mapping resource="com/erp/model/vo/StafferVO.hbm.xml"/>
+ 	    <mapping resource="com/erp/model/vo/PurchaseBillExtVO.hbm.xml"/>
+ 	    <mapping resource="com/erp/model/vo/PurchaseBillVO.hbm.xml"/>
+ 		<!-- 费用单审核 -->
+ 		<mapping resource="com/erp/model/vo/FeeBillVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/FeeBillItemVO.hbm.xml"/>
+ 		<!-- 付款单审核 -->
+ 		<mapping resource="com/erp/model/vo/PayBillItemVO.hbm.xml"/>
+ 		<!-- 要制作的业务单 -->
+ 		<mapping resource="com/erp/model/vo/BusinessBillItemExtVO.hbm.xml"/>
+ 		<!-- 采购单一览表 -->
+ 		<mapping resource="com/erp/model/vo/StorehouseVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/PurchaseBillItemVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ProductVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ProductTypeVO.hbm.xml"/>
+ 		
+ 		<!-- 供应商 -->
+ 		<mapping resource="com/erp/model/vo/EstablishmentContactVO.hbm.xml"/>
+ 		
+ 		<mapping resource="com/erp/model/vo/OutputVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/WorkProcess.hbmVO.xml"/>
+ 		<!-- 基础数据 -->
+ 		<mapping resource="com/erp/model/vo/StafferVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Department.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ProductVO.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/ProductType.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/EstablishmentLevel.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/EstablishmentType.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/Unit.hbm.xml"/>
+ 		<!-- 沟通 -->
+ 		<mapping resource="com/erp/model/vo/ClieUser.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BbsColumn.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/BbsArticle.hbm.xml"/>
+ 		<mapping resource="com/erp/model/vo/SystemLog.hbm.xml"/>
+ 		<!-- 账务 -->
+ 		<mapping resource="com/erp/model/vo/LoanBill.hbm.xml"/>
+ 		
+ 		<mapping resource="com/erp/controller/subcontractCancel/vo/CooperBill.hbm.xml"/>
+
+ 		
+ 		
+	</session-factory>
+</hibernate-configuration>

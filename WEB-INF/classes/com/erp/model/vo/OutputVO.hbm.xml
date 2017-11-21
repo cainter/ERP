@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.OutputVO" table="output">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="bbItemId" type="long">
+			<column name="bb_item_id" not-null="true" />
+		</property>
+		<property name="makeDate" type="date">
+			<column name="make_date" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="100" />
+		</property>
+		<property name="makerId" type="long">
+			<column name="maker_id" not-null="true" />
+		</property>
+		<property name="makerName" type="string">
+			<column name="maker_name" length="30" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" not-null="true" />
+		</property>
+		<property name="percent" type="big_decimal">
+			<column name="percent" length="3" not-null="true" />
+		</property>
+		<property name="processId" type="long">
+			<column name="process_id" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

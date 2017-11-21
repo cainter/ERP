@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.BusinessBillItemExtVO" table="business_bill_item_ext">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="deliAmou" type="big_decimal">
+			<column name="deli_amou" length="4" not-null="true" />
+		</property>
+		<property name="setuAmou" type="big_decimal">
+			<column name="setu_amou" length="4" not-null="true" />
+		</property>
+		<property name="coopComp" type="string">
+			<column name="coop_comp" length="1" not-null="true" />
+		</property>
+		<property name="coopAmou" type="big_decimal">
+			<column name="coop_amou" length="4" not-null="true" />
+		</property>
+		<property name="wcComp" type="string">
+			<column name="wc_comp" length="1" not-null="true" />
+		</property>
+		<property name="operId" type="long">
+			<column name="oper_id" not-null="true" />
+		</property>
+		<property name="operName" type="string">
+			<column name="oper_name" length="30" />
+		</property>
+		<property name="operTime" type="timestamp">
+			<column name="oper_time" />
+		</property>
+		<property name="maked" type="string">
+			<column name="maked" length="1" not-null="true" />
+		</property>
+		<property name="makerId" type="long">
+			<column name="maker_id" not-null="true" />
+		</property>
+		<property name="makerName" type="string">
+			<column name="maker_name" length="30" />
+		</property>
+		<property name="makeTime" type="timestamp">
+			<column name="make_time" />
+		</property>
+		<property name="compStr" type="string">
+			<column name="comp_str" length="200" />
+		</property>
+		<property name="urgentFlag" type="string">
+			<column name="urgent_flag" length="1" not-null="true" />
+		</property>
+		<property name="proId" type="long">
+			<column name="pro_id" not-null="true" />
+		</property>
+		<property name="proFlag" type="string">
+			<column name="pro_flag" length="1" not-null="true" />
+		</property>
+		<property name="lastPrinter" type="string">
+			<column name="last_printer" length="20" />
+		</property>
+		<property name="printNum" type="int">
+			<column name="print_num" length="4" not-null="true" />
+		</property>
+		<property name="printTime" type="timestamp">
+			<column name="print_time" />
+		</property>
+    </class>
+</hibernate-mapping>

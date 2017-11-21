@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet modal-dialog">
+		<div class="sheet-main" id="bodyDiv">
+			<form class="layui-form" name="frm" method="post">
+				<div class="sheet-list">
+					<div class="modal-main search-business">
+						<div style="width:100%;">
+
+							<h3>用户授权</h3>
+							<div class="blank24"></div>
+							<div style="margin: 0 auto; width: 450px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label">第一种方法：</label>
+									<div class="layui-input-inline">
+										<input type="radio" name="set_type" id="set_type0" checked="true" title="个性化授权" onclick="checkType();">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">第二种方法：</label>
+									<div class="layui-input-inline" style="width: 280px;">
+										<input type="radio" name="set_type" id="set_type1" checked="true" title="从已有用户中复制权限，减少授权的工作量" onclick="checkType();">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"></label>
+									<div class="layui-input-inline">
+										<input class="layui-input" readonly placeholder="" type="text" id="template_name" name="template_name" value="">
+									</div>
+											<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectTemplate();">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom">
+					<input type="button" class="buttom-a" value="确定" onclick="doSelect();">
+					<input type="button" class="buttom-a" value="取消" onclick="doCancel();">
+				</div>
+			</form>
+		</div>
+<script src="../layui/layui.all.js"></script>
+	</body>
+
+</html>

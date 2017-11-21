@@ -1,0 +1,80 @@
+.query_list_table
+{
+    FONT-SIZE: 9pt;
+    BACKGROUND-COLOR: white
+}
+.query_list_meta_td
+{
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: white 1px solid;
+    PADDING-LEFT: 0px;
+    FONT-SIZE: 9pt;
+    PADDING-BOTTOM: 0px;
+
+    COLOR: #000000;
+    PADDING-TOP: 0px;
+
+    HEIGHT: 9px;
+    BACKGROUND-COLOR: #C9E8F7;
+}
+.query_list_data_tr1
+{
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: white
+}
+.query_list_data_tr2
+{
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: white
+}
+.query_list_data_td1
+{
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: white 1px solid;
+    FONT-SIZE: 9pt;
+    HEIGHT: 16px;
+    word-wrap:break-word;
+}
+.query_list_data_td2
+{
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: white 1px solid;
+    FONT-SIZE: 9pt;
+    HEIGHT: 16px;
+    word-wrap:break-word;
+}
+.query_list_checkbox
+{
+  /*display:none*/
+}
+.query_list_data_trSelected
+{
+    COLOR: black;
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: #ECF2FC;
+}
+.query_list_data_tdSelected
+{
+    BORDER-RIGHT: black 1px solid;
+    BACKGROUND: #C9E8F7 fixed no-repeat center center
+}
+.query_list_data_trOver
+{
+    COLOR: black;
+    BACKGROUND-COLOR: #eeeeee
+}
+.QueryResult
+{
+    FONT-SIZE: 9pt;
+    BACKGROUND-COLOR: #C9E8F7;
+}
+.List_QueryBg
+{
+  background-color:#E0E9F9;
+}

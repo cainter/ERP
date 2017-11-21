@@ -1,0 +1,284 @@
+﻿/*-------------------------- 基础通用的 -----------------------------------------*/
+body { margin:0; padding:0; font:12px/1.5 tahoma,arial,'bitstream vera sans',helvetica,sans-serif; color: #444; }
+form { margin:0; padding:0; }
+/*ul, li,dl, dt, form, span, td, th,p {margin: 0px auto;padding: 0px auto; }*/
+li,ul { list-style-type:none; display:inline; margin:0; padding:0; }
+img { border:none;vertical-align:middle; padding:0px; margin:0px;}
+dl, dt, p, h2, h3, h4, h5, pre { margin:0; padding:0; }
+p { text-indent:2em; }
+input, select, textarea { margin:0; padding:0; }
+input{ padding:0 1px; }
+textarea { resize:none; }
+
+ul.list, ul.list li{ list-style-type: disc; display: block; list-style-position: outside; margin-left: 10px; }
+
+.clr{ clear:both; }
+.fl{ float:left; }
+.fr{ float:right; }
+.tl{ text-align:left; }
+.tr{ text-align:right; }
+table th { text-align:center; }
+table td { text-align:left; }
+table td.tl, table th.tl { text-align:left !important; }
+table td.tc, table th.tc { text-align:center !important; }
+table td.tr, table th.tr { text-align:right !important; }
+table td.vt, table th.vt { vertical-align:top !important; }
+table td.vm, table th.vm { vertical-align:middle !important; }
+table td.vb, table th.vb { vertical-align:bottom !important; }
+
+a:link, a:visited{ color:#0272d2; text-decoration:none; }
+a:hover{ color:#ff7f0d; text-decoration: underline; }
+
+a.detail, a.detail:visited, a.detail:active{ color:#666; text-decoration:none; }
+a.detail:hover{ color:green !important; border-bottom:1px dotted green; text-decoration:none; cursor:help; }
+
+a.boxButton { display:block; padding:2px; border:green 1px solid; color:green; background:#f6f6f6; text-align:center; }
+a.boxButton:hover { color:white; background:green; text-decoration:none; }
+a.boxButton.disabled  { border:#666 1px solid; color:#666; background:#ddd; }
+a.boxButton.disabled:hover { border:#666 1px solid; color:#666; background:#ddd; }
+
+div.watermark { position:relative; display:inline-block; }
+label.watermark { position:absolute; top:3px; left:4px; color:#8B9096; cursor:text;
+        width:90%; height:80%; white-space:nowrap; overflow:hidden; }
+label.watermark.focus { color:#ccc; }
+
+input.Button { width:80px; height:22px; font-family:"宋体"; }
+.note { color:#aaa; }
+
+/* 下拉弹窗 面版 */
+.PopupPanel { position:absolute; }
+.PopupPanel .FrameBox { background:white; border: 1px solid #02f; }  /* 7f9db9 */
+.PopupPanel .Shadow1 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.3; filter:alpha(opacity=30); line-height:1px; font-size:1px; height:1px; margin:0 1px; }
+.PopupPanel .Shadow2 { border:1px solid #666; border-width:0 1px; background:black; opacity:0.15; filter:alpha(opacity=15); line-height:1px; font-size:1px; height:1px; margin:0 2px; }
+
+/* 调试工具 面版 */
+.DebugOutElem { position:absolute; left:0; bottom:0; width:80px; height:180px; overflow:auto;
+     background:#ff6; border:#331 solid 1px; padding:2px; }
+.DebugOutElem ul {}
+.DebugOutElem li { white-space:nowrap; }
+
+
+.imgIconButton { cursor:pointer; margin-left:3px; }  /* img */
+.PosHook { position:relative; }
+
+/* 标准清理浮动 模版 */
+.ClearFix:after { visibility:hidden;  display:block; font-size:0; content:" "; clear:both; height:0; }    
+.ClearFix { zoom:1; }
+/**
+.ClearFix:after { content: "."; display:block; height:0; clear:both; visibility:hidden; }
+.ClearFix { zoom:1; }
+.ClearFix:before, .ClearFix:after { content:""; display:table; }
+.ClearFix:after { clear:both; }
+.ClearFix { zoom:1; } /**/
+
+
+
+/*-------------------------------------- 页面总体 HTML 结构 ------------------------------------------
+<body><div class="Wrap">                .Wrap   页面主框架
+
+<div class="Header">...</div>               .Header     页眉
+
+<div class="Container">                     .Container  主体容器
+    <div class="Heading">...</div>              .Heading    标题栏
+    <div class="Contnet">                       .Contnet    主内容
+        <div class="FilterBar"></div>               .FilterBar      筛选控件栏
+        <div class="TopToolBar"></div>              .TopToolBar     上栏 分页、操作等
+        <div class="ListPanel"></div>               .ListPanel      主栏 列表显示
+        <div class="BottomToolBar"></div>           .BottomToolBar  底栏 分页、操作等
+    </div>
+    <div class="SideBar">                       .SideBar
+        <div class="SidePanel"></div>               .SidePanel [n]
+    </div>
+</div>
+
+<div class="Footer">...</div>               .Footer     页脚
+
+<div class="FloatingBar">...</div>          .FloatingBar    浮动工具栏
+
+<script type="text/javascript"></script>
+
+</div></body>
+/**/
+
+
+
+/*-------------------------- 页面布局 主框架 -----------------------------------------*/
+body { background:#8cc2e5;  }
+.Wrap { color:#666; }
+.Wrap .Header {}
+.Wrap .Container { width:860px; margin:12px; text-align:left; position:relative; }
+
+.Heading {margin-bottom:8px; border:1px solid #5399d0; background:#d0eafa url(../images/business-top-bg.gif) repeat-x; }
+.HeadingContent { padding:18px 10px 18px 90px; border:1px solid white; background:url(../images/business-001.gif) no-repeat 20px 13px; }
+.Heading.PageIcon { }
+.Heading.BillIcon { }
+.Heading h1 { font: normal normal 14pt/1 "微软雅黑","黑体"; color:Black; margin:0; margin-bottom:4px; padding:0; }
+.Heading .Note { color:#888; }
+
+.Content { border:1px solid #5399d0; }
+.Content .FilterBar { background:url(../images/business-soo-bg.gif) repeat-x white; padding:10px 10px 10px 60px; position:relative; }
+.Content .FilterBar .SearchIcon { background: url(../images/soo.gif) no-repeat; width:28px; height:28px; position:absolute; left:12px; top:8px; }
+.Content .FilterBar .Datetime { width:70px; }
+
+.Content .ListPanel { width:100%; }
+.Content .ListPanel .DataList { width:100%; }
+
+.Content .MsgBar { background:white; }
+.Content .TopToolBar { background:#eafaff; border-top:1px solid #ccc; }
+.Content .BottomToolBar { background:#f0f0f0; padding:4px 10px; /*border-bottom:1px solid #5398d1;*/ }
+.Content .BottomToolBar .PrevPage { width:30px; }
+
+
+table.DataList { border-collapse:collapse; border:1px solid #ccc; border-width:1px 0; }  /* 8d8f8e */
+table.DataList th { color:#666; padding:2px 0px; border:0; background:url(../images/table-list-bg.gif) repeat-x; }
+table.DataList td { color:#333; padding:3px 3px; border:0; border-top:#ccc 1px solid; cursor:default; 
+     height:20px; background:white; }
+
+table.DataList tr:hover td { background-color:#edfafa; }  /* f6fcfc faf2c8 d7e9f5  e1dee7  */
+table.DataList tr.Selected td { background-color:#d8f0f0; }
+table.DataList tr.Selected:hover td { background-color:#c8e6fa; }
+table.DataList tr.QV_Active td,
+table.DataList tr.QV_Active:hover td{ background-color:#faf2c8; }
+
+table.DataList .note { color:#ccc; }
+table.DataList tr:hover .note { color:#666; }
+
+
+table.DataList td.c0,
+table.DataList td.c5,
+table.DataList td.c6 { text-align:center; }
+/*table.DataList td.c3, table.DataList td.c4,*/
+
+.DataList p { text-indent:0; margin:0; padding:0; }
+
+.DataList .OrderTime { float:right; }
+.DataList .DeliverTime { float:right; }/**/
+.DataList tr .OrderTime:hover{ background:#fac8c8; color:#333; }
+.DataList tr .DeliverTime:hover { background:#fac8c8; }
+
+.DataList .LinkMan,
+.DataList .Addr { color:#ccc; }
+.DataList tr:hover .LinkMan,
+.DataList tr:hover .Addr { color:#666; }
+
+.DataList .c1 { text-align:center; }
+.DataList .cop { text-align:center; }
+
+.ListNoteInfo { width:100%; }
+.ListNoteInfo td { padding:5px 8px; }
+
+.MoreOptionBox { float:left; width:100%; }
+table.MoreOption th { padding:3px 4px 3px 0; font-weight:normal; text-align:left; }
+table.MoreOption td { padding:2px 0px; }
+table.MoreOption .c1 .TextBox { width:200px; }
+table.MoreOption .c1 select   { width:206px; }
+table.MoreOption .c2 .TextBox { width:214px; }
+table.MoreOption .c2 select   { width:220px; }
+table.MoreOption .c2 .Money   { width:92px !important; }
+table.MoreOption .c3 .TextBox { width:120px; }
+table.MoreOption .c3 select   { width:126px; }
+
+.TextBox { border:#bbb solid 1px; padding:2px 1px; outline:0; }
+.TextBox.readonly { background:#F7F7F7; color:#000000;}/*只读框*/
+.TextBox.Focus,
+.TextBox:focus,
+.TextBox:active,
+.TextBox.readonly.Focus { border-color:#5399d0 !important; }
+
+.TextBox.disabled { background:#f6f6f6; color:#777; border:#ddd solid 1px; }
+.TextBox.disabled:focus { border-color:#ddd !important; }
+
+select { border:#bbb solid 1px; outline:0; }
+select:focus { border-color:#5399d0 !important; }
+
+.Datetime {width:70px;}
+.Money {width:68px;}
+
+.MoreOptionBox .OptionOrderBy { padding:8px 4px 3px 0; border-top:1px solid #aaa; margin-top:6px; }
+
+.Content .ListPanel { overflow:auto; display:inline-block;/* hack:解决IE9下 hover时，高度奇怪增加的BUG */ }
+
+/* 业务单一览表 专用 */
+.Content .ListPanel .BillAllList { width:1218px; }
+
+.BillAllList .c2 { text-align:left !important; }
+.BillAllList .c3,
+.BillAllList .c4,
+.BillAllList .c5,
+.BillAllList .c6,
+.BillAllList .c7,
+.BillAllList .c8 { text-align:right !important; }
+.BillAllList .c9,
+.BillAllList .c10,
+.BillAllList .c11,
+.BillAllList .c12,
+.BillAllList .c14 { text-align:center !important; }
+
+.BillAllList .UnExamineSta td { color:Black !important; }
+.BillAllList .ExamineSta td { color:Blue !important; }
+.BillAllList .CompleteSta td { color:Red !important; }
+.BillAllList .CloseSta td { color:Green !important; }
+
+/* .BillAllList td span.Sta_Nm { color:#999 !important; } */
+.BillAllList td.c14 { color:#999 !important; }
+
+
+/* 业务明细一览表 专用 */
+.Content .ListPanel .BillItemAllList { width:2018px; }
+
+/*.BillItemAllList .PosHook { position:relative; padding:0;  width:100%; height:100%; vertical-align:top; border:0; }
+.BillItemAllList .ExpandPanel { position:absolute; z-index:99; height:26px; overflow:hidden; width:auto; white-space:nowrap; 
+     padding:3px 5px; border:1px solid transparent; top:-1px;  }
+.BillItemAllList .ExpandPanel:hover { height:auto; background:#e1f0f0; border-color:#8fa6a6;  }
+.BillItemAllList .Title { color:#d3e5e5; }
+.BillItemAllList .ExpandPanel:hover .Title { color:#8fa6a6; }*/
+
+.BillItemAllList .Type { color:#666; }
+
+.BillItemAllList th { font-weight:bold; }
+.BillItemAllList th,
+.BillItemAllList td { border-right:1px solid #ccc !important; }
+
+.BillItemAllList .c2,
+.BillItemAllList .c3 { text-align:left !important; }
+.BillItemAllList .c4,
+.BillItemAllList .c10 { text-align:right !important; padding-right:4px; }
+.BillItemAllList .c1,
+.BillItemAllList .c5,
+.BillItemAllList .c6,
+.BillItemAllList .c7,
+.BillItemAllList .c8,
+.BillItemAllList .c9,
+.BillItemAllList .c11,
+.BillItemAllList .c12,
+.BillItemAllList .c13,
+.BillItemAllList .c14,
+.BillItemAllList .c15,
+.BillItemAllList .c16,
+.BillItemAllList .c17,
+.BillItemAllList .c18,
+.BillItemAllList .c19 { text-align:center !important; }
+
+table{border-collapse:collapse;border-spacing:0;font-size:12px;}
+.msg-error{font-size: 9pt;margin:10px 20px;padding:10px;border:1px solid #dd3c10;background:#ffebe8;_zoom:1;}
+.table-list{color:#000;}
+.table-list table{table-layout:fixed;}
+.table-list th{ background:#eee url(../images/table-list-bg.gif) repeat-x; text-align:center;padding:3px; border:1px solid #ccc; color:#666;word-wrap:break-word;}
+.table-list td{ border:1px solid #ccc;padding:3px; text-align:center;word-wrap:break-word;}
+.table-list .table-bot{ background:#f5f5f5; border:1px solid #ddd; border-top:none; line-height:24px; padding-left:8px;}
+.buttom{border:none; background:url(../images/buttom.gif); width:62px; height:21px; font-size:12px; line-height:21px; cursor:pointer;}
+.buttom-a{border:none; background:url(../images/buttom-a.gif); width:80px; height:21px; font-size:12px; line-height:21px; cursor:pointer;}
+.search-but{ background:url(../images/buttom-search.gif); width:76px; padding-left:6px;}
+.search-out{ background:url(../images/buttom-excel.gif); width:76px; padding-left:6px;}
+.search-add{ background:url(../images/buttom-add.gif); width:76px; padding-left:6px;}
+.search-select{ background:url(../images/buttom-audit.gif); width:76px; padding-left:6px;}
+.search-audit{ background:url(../images/buttom-audit.gif); width:76px; padding-left:6px;}
+.search-adjust{ background:url(../images/buttom-adjust.gif); width:76px; padding-left:6px;}
+.search-close{ background:url(../images/buttom-close.gif); width:76px; padding-left:6px;}
+.search-rec{ background:url(../images/buttom-rec.gif); width:76px; padding-left:6px;}
+.search-pay{ background:url(../images/buttom-pay.gif); width:76px; padding-left:6px;}
+.search-back{ background:url(../images/buttom-back.gif); width:76px; padding-left:6px;}
+.search-print{ background:url(../images/buttom-print.gif); width:76px; padding-left:6px;}
+.search-remo{ background:url(../images/buttom-remo.gif); width:76px; padding-left:6px;}
+.search-corp{ background:url(../images/buttom-corp.gif); width:76px; padding-left:6px;}
+.search-sms{ background:url(../images/buttom-sms.gif); width:76px; padding-left:6px;}

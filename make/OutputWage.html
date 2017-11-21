@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://115.28.87.22:8888/make/OutputWage.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>员工计件产值统计表 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function createPageParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("end_date").value);
+		str=str+"&staf_name="+encodeURIComponent(document.getElementById("staf_name").value);
+		str=str+"&staf_id="+document.getElementById("staf_id").value;
+		str=str+"&ts_id="+document.getElementById("ts_id").value;
+		str=str+"&dep_id="+document.getElementById("dep_id").value;
+		return str;
+	}
+	
+	function createProgramParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("hid_start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("hid_end_date").value);
+		str=str+"&staf_name="+encodeURIComponent(document.getElementById("hid_staf_name").value);
+		str=str+"&staf_id=";
+		str=str+"&ts_id=1";
+		str=str+"&dep_id=";
+		return str;
+	}
+
+	function doSearch(){
+		var str;
+		if(IsAdvSearch){//高级
+			str="search_type=1";
+			if(document.getElementById("cb_make_date").checked){
+				if(!checkDateStr(document.getElementById("start_date").value,"开始日期")){
+					return;
+				}
+				if(!checkDateStr(document.getElementById("end_date").value,"结束日期")){
+					return;
+				}
+				str=str+"&cb_make_date=1";
+			}
+			if(document.getElementById("cb_staf").checked){
+				var stafId=document.getElementById("staf_id").value;
+				if(stafId==null || stafId=="" || stafId=="0"){
+					ShowAlert('提示框','请选择员工',200,100);
+					return;
+				}
+				str=str+"&cb_staf=1";
+			}
+			if(document.getElementById("cb_dep").checked){
+				var depId=document.getElementById("dep_id").value;
+				if(depId==null || depId=="" || depId=="0"){
+					ShowAlert('提示框','请选择部门',200,100);
+					return;
+				}
+				str=str+"&cb_dep=1";
+			}
+			if(document.getElementById("cb_ts").checked){
+				var tsId=document.getElementById("ts_id").value;
+				if(tsId==null || tsId=="" || tsId=="0"){
+					ShowAlert('提示框','请选择帐套',200,100);
+					return;
+				}
+				str=str+"&cb_ts=1";
+			}
+		}else{//快速
+			str="search_type=2";
+			if(!checkDateStr(document.getElementById("start_date").value,"开始日期")){
+				return;
+			}
+			if(!checkDateStr(document.getElementById("end_date").value,"结束日期")){
+				return;
+			}
+		}
+		var paraStr=createPageParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		window.location="/make/OutputWage.ihtm?"+str;
+	}
+	function doGo(pageIndex){
+		var str=getSearchCondition();
+		str=str+"&current_page="+pageIndex;
+		window.location="/make/OutputWage.ihtm?"+str;
+	}
+	function getSearchCondition(){
+		var searchType="1";
+		var str="search_type="+searchType;
+		if(searchType=="1"){//高级
+			str=str+"&cb_make_date=1";
+			
+			str=str+"&cb_ts=1";
+			
+		}else{//快速
+			
+		}
+		
+		var paraStr=createProgramParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		
+		return str;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function DoubleClick(it){
+		
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="/make/OutputWage.ihtm?content_type=EXCEL&"+str;
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		
+	}
+	function checkInput(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doAutoCheck(objId){
+		document.getElementById(objId).checked=true;
+	}
+	function selectStafferName(){
+		var url="/base/StafferMainForSelect.ihtm";
+		var cb="selectStafferNameCallBack()";
+		ShowIframe("选择员工",url,800,500,cb,800,600);
+	}
+	function selectStafferNameCallBack(){
+		if(popRetVal!=null){
+			var arr=popRetVal.split(";");
+			document.getElementById("staf_id").value=arr[0];
+			document.getElementById("staf_name").value=arr[1];
+			doAutoCheck("cb_staf");
+		}
+	}
+	function setDate(type){
+		var d=new Date();
+		var startStr="";
+		var endStr="";
+		if(type=="CURRENT_MONTH"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-01";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="PREVIEW_MONTH"){
+			d=new Date(d.getFullYear(),d.getMonth(),1);
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-1";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="TODAY"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="YESTERDAY"){
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}
+		document.getElementById("start_date").value=startStr;
+		document.getElementById("end_date").value=endStr;
+		doAutoCheck("cb_make_date");
+	}
+	function showDetail(stafId,stafName){
+		var url="/make/OutputSearchResult.ihtm?search_type=1&cb_maker=1&maker_id="+stafId+"&maker_name="+encodeURIComponent(stafName);
+		url=url+"&cb_make_date=1&start_date=2017-07-01&end_date=2017-07-09";
+		url=url+"&cb_ts=1&ts_id=1";
+		
+		showWin(1024,600,url);
+	}
+</script>
+</head>
+
+<body oncontextmenu="return false">
+<div class="Wrap"><!-- 页面主框架 -->
+    
+	<div id="ListContainer" class="Container" style="width: 760px;"><!-- 主体容器 -->
+	    
+	    <!-- 标题栏 -->
+	    <div class="Heading BillIcon">
+	        <div class="HeadingContent">
+	            <h1>员工计件产值统计表</h1>
+	            <span class="Note">统计制作人员的生产计件产值</span>
+	        </div>
+	    </div>
+	
+		<!-- 主内容 -->
+		<div class="Content">
+	        <!-- 筛选控件栏 -->
+	        <div class="FilterBar ClearFix">
+	            <div class="SearchIcon"></div>
+	            <span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_make_date" id="cb_make_date" checked="true" style="visibility:hidden;">
+	            			制作日期
+	            		</th>
+	            		<td width="360px">
+	            			<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_make_date&#39;);" id="start_date" name="start_date" value="2017-07-01">
+							<input type="hidden" id="hid_start_date" value="2017-07-01">
+							<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_make_date\&#39;)&#39;);">
+							至
+							<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_make_date&#39;);" id="end_date" name="end_date" value="2017-07-09">
+							<input type="hidden" id="hid_end_date" value="2017-07-09">
+							<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_make_date\&#39;)&#39;);">
+				            <a href="javascript:setDate(&#39;CURRENT_MONTH&#39;);">本月</a>
+							<a href="javascript:setDate(&#39;TODAY&#39;);">今天</a>
+							<a href="javascript:setDate(&#39;YESTERDAY&#39;);">昨天</a>
+							<a href="javascript:setDate(&#39;PREVIEW_MONTH&#39;);">上月</a>
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+	            <span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+		  			<input type="button" value=" 查 询" onclick="doSearch();" id="sSearchButton" name="sSearchButton" class="buttom search-but">
+		  			<input type="button" value=" 导 出" onclick="doDownload();" class="buttom search-out" id="sDownloadButton" name="sDownloadButton">
+	            </span>
+				<div id="dvMoreOptionBox" class="MoreOptionBox" style="display:none;">
+					<table class="MoreOption" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<th class="c1" width="80px">
+			        			<input type="checkbox" name="cb_staf" id="cb_staf">
+			        			员工
+			        		</th>
+			        		<td class="c1" width="260px">
+			        			<input type="text" class="TextBox readonly" name="staf_name" id="staf_name" readonly="true" onfocus="doAutoCheck(&#39;cb_staf&#39;);" value="">
+								<img class="imgIconButton" src="../images/make-a.gif" onclick="selectStafferName();">
+								<input type="hidden" id="hid_staf_name" value="">
+								<input type="hidden" id="staf_id" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_dep" id="cb_dep">
+			        			部门
+			        		</th>
+			        		<td class="c1">
+			        			<select name="dep_id" id="dep_id" onfocus="doAutoCheck(&#39;cb_dep&#39;);">
+	                            	<option value="0">==请选择==</option>
+	                            	
+<option value="1">易凯管理员</option>
+<option value="13">总经办</option>
+<option value="22">&nbsp;|--财务</option>
+<option value="14">新异店</option>
+<option value="15">&nbsp;|--客服</option>
+<option value="23">&nbsp;|--设计</option>
+<option value="24">&nbsp;|--业务</option>
+<option value="16">业务来源</option>
+<option value="17">标识加工车间</option>
+<option value="21">合作伙伴</option>
+<option value="32">标识汇运营部</option>
+<option value="33">财务部</option>
+	                        	</select>
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_ts" id="cb_ts" checked="true">
+			        			帐套
+			        		</th>
+			        		<td class="c1">
+			        			<select name="ts_id" id="ts_id" onfocus="doAutoCheck(&#39;cb_ts&#39;);">
+							  		<option value="0">==请选择账套==</option>
+							  		
+							  		<option value="1" selected="">新异</option>
+							  		
+							  		<option value="2">网络公司</option>
+							  		
+						  		</select>
+			    			</td>
+			    		</tr>
+			    	</tbody></table>
+			    	
+					<div class="OptionOrderBy">
+	                    <span class="fr"><a href="javascript:;" id="lnkHiddenOption">隐藏查询选项</a></span>
+	                </div>
+				</div>
+			</div>
+			
+			<!-- 提示信息显示栏 -->
+	        <div class="MsgBar">
+	            
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	        </div>
+	        
+	        
+	        <div class="TopToolBar">
+	            <table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+	            	<tbody><tr>
+	                	<td>
+	                		计件产值合计：0
+	                	</td>
+	            	</tr>
+	            </tbody></table>
+			</div>
+			
+			
+		    <div class="table-list">
+		        <table width="100%">
+		          	<tbody><tr>
+						<th width="25%">部门</th>
+						<th width="25%">员工</th>
+						<th width="25%">职位</th>
+						<th width="25%">计件产值</th>
+				  	</tr>
+					
+				</tbody></table>
+			</div>
+			
+			<!-- 底栏 分页、操作等 -->
+	        <div class="BottomToolBar ClearFix">
+			    	
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="0" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共0页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+	        </div>
+			
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function ChangeWindowSize( container, maxWidth ){
+	    setTimeout( function(){
+	        var w1 = document.documentElement.clientWidth-40;
+	        if( w1>maxWidth ) w1 = maxWidth;
+	        else if( w1<770 ) w1 = 760;
+	        container.style.width = w1+'px';
+	    }, 300 );
+	}
+	var IsAdvSearch = false;
+	(function(){
+		doInit();
+	    var ListContainer = document.getElementById('ListContainer');
+	    ChangeWindowSize( ListContainer, 2020 );    // 超过 1280 的最大 1260 ，不全部铺满
+	
+	    var lnkMoreOption   = document.getElementById('lnkMoreOption');
+	    var lnkHiddenOption = document.getElementById('lnkHiddenOption');
+	    lnkMoreOption.onclick = function(){
+	    	IsAdvSearch = true;
+	        document.getElementById('dvMoreOptionBox').style.display = 'block';
+	        document.getElementById('cb_make_date').style.visibility = 'visible';
+	        this.style.visibility = 'hidden';
+	    };
+	    lnkHiddenOption.onclick = function(){
+	    	IsAdvSearch = false;
+	        document.getElementById('dvMoreOptionBox').style.display = 'none';
+	        document.getElementById('cb_make_date').style.visibility = 'hidden';
+	        lnkMoreOption.style.visibility = 'visible';
+	    };
+	})();
+</script>
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

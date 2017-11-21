@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<!--
+	作者：offline
+	时间：2017-10-12
+	描述：业务对账单，详情，可打印的界面
+-->
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div class="header container-fluid">
+			<div class="row">
+				<div class="col-xs-4">
+					<div class="panel-logo pull-left">
+						<img src="../img/BIAO  SHI  HUI.png" />
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<h2>业务对账单</h2>
+				</div>
+				<div class="col-xs-4">
+					
+				</div>
+			</div>
+		</div>
+		<div class="body" style="padding-top: 10px;">
+			<table class="table-c6" border="0" cellspacing="1" cellpadding="1">
+				<tr>
+					<th>订货单位：</th>
+					<td></td>
+					<th>日期：</th>
+					<td></td>
+					<th>合同金额：</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>已收金额：</th>
+					<td></td>
+					<th>调账金额：</th>
+					<td></td>
+					<th>尚欠金额：</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>地址：</th>
+					<td></td>
+					<th>联系人：</th>
+					<td></td>
+					<th>电话：</th>
+					<td></td>
+				</tr>
+			</table>
+			<table class="table-list">
+				<tbody>
+					<tr>
+						<th>序号</th>
+						<th>日期</th>
+						<th>单号</th>
+						<th>项目类型</th>
+						<th>内容</th>
+						<th>材质</th>
+						<th>规格</th>
+						<th>单位</th>
+						<th>数量</th>
+						<th>单价</th>
+						<th>金额</th>
+						<th>制作要求</th>
+						<th>部门/经手人</th>
+					</tr>
+					<tr>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+						<td>11111</td>
+					</tr>
+					<tr>
+						<td colspan="13" style="text-align: right;">合同金额：383164674.17元</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-remark">
+				<span>一式三联，白联财务，红联客户，黄联留存</span>
+				<span>服务电话：0317-1234567</span>
+				<span>营销QQ：123456</span>
+				<span>网址：</span>
+			</div>
+		</div>
+		<div class="footer">
+			<a href="#" type="button">开始打印</a>
+			<a href="#" type="button">导出完整数据</a>
+			<a href="#" type="button">导出打印格式</a>
+			<a href="#" type="button">刷新</a>
+			<a href="#" type="button">重新查询</a>
+			<a href="#" type="button">收款</a>
+			<a href="#" type="button">调账</a>
+			<a href="#" type="button">退出</a>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+	</body>
+</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0182)http://115.28.87.22:8888/business/BusinessBillListForAccount.ihtm?client_id=757&start_date=&end_date=2017-11-05&linkman=&type=JUST_UNCOLLECTED&include_sub=1&order_by=DATE_ASC&ts_id=0 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title></title>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+
+</head>
+<!-- 不显示信息 -->
+<body style="background-color:#FFFFFF">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tbody><tr>
+		<td>
+			<table width="98%" border="0" cellspacing="1" cellpadding="1" align="center">
+				<tbody><tr>
+					<td width="16%"><img src="../images/BIAO  SHI  HUI.png"></td>
+					<td width="68%" height="40px" align="center" class="FontLarge_Bold">业务对账单</td>
+					<td width="16%">&nbsp;</td>
+				</tr>
+		  </tbody></table>			
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000" class="ListTable">
+				<tbody><tr class="ListTrPrint">
+			      	<td class="FontSmall" width="35%">&nbsp;订货单位：格力电器(包括下属单位)</td>
+			      	<td class="FontSmall" width="40%">&nbsp;日期：&nbsp; 至 2017-11-05</td>
+					<td class="FontSmall" width="25%">&nbsp;合同金额：&nbsp;383164674.17</td>
+				</tr>
+				<tr class="ListTrPrint">
+			      	<td class="FontSmall">&nbsp;已收金额：&nbsp;367549048.17</td>
+					<td class="FontSmall">&nbsp;调账金额：&nbsp;5415.00</td>
+			      	<td class="FontSmall">&nbsp;尚欠金额：&nbsp;15621041.00</td>		      	
+				</tr>	
+				<tr class="ListTrPrint">
+			      	<td class="FontSmall">&nbsp;地址：&nbsp;</td>
+					<td class="FontSmall">&nbsp;联系人：&nbsp;赵四</td>
+			      	<td class="FontSmall">&nbsp;电话：&nbsp;15638922732</td>		      	
+				</tr>							  
+		  </tbody></table>			
+		</td>
+	</tr>
+	<tr>
+		<td height="3"></td>
+	</tr>
+	<tr>
+		<td>
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="small_border">
+				<tbody><tr class="ListTrPrint">
+                    <td width="3%" class="FontSmall_Bold"><div align="center">序号</div></td>
+					<td width="8%" class="FontSmall_Bold"><div align="center">日期</div></td>
+					<td width="8%" class="FontSmall_Bold"><div align="center">单号</div></td>
+					<td width="7%" class="FontSmall_Bold"><div align="center">项目类型</div></td>
+					<td width="9%" class="FontSmall_Bold"><div align="center">内容</div></td>
+					<td width="10%" class="FontSmall_Bold"><div align="center">材质</div></td>
+					<td width="14%" class="FontSmall_Bold"><div align="center">规格</div></td>
+					<td width="5%" class="FontSmall_Bold"><div align="center">单位</div></td>
+					<td width="5%" class="FontSmall_Bold"><div align="center">数量</div></td>
+					<td width="6%" class="FontSmall_Bold"><div align="center">单价</div></td>
+					<td width="7%" class="FontSmall_Bold"><div align="center">金额</div></td>
+					<td width="10%" class="FontSmall_Bold"><div align="center">制作要求</div></td>
+					<td width="8%" class="FontSmall_Bold"><div align="center">部门/经手人</div></td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="color:blue">
+					<td class="FontSmall" align="center">1</td>
+					<td class="FontSmall" align="center">
+						2017-08-01
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017080001&#39;);">E(2)2017080001</a>
+					</td>
+					<td class="FontSmall" align="center">期初欠款</td>
+					<td class="FontSmall" align="center"></td>
+					<td class="FontSmall" align="center"></td>
+					<td class="FontSmall" align="center">
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						1
+					</td>
+					<td class="FontSmall" align="center">5252</td>
+					<td class="FontSmall" align="center">5252</td>
+					<td class="FontSmall" align="center"></td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">2</td>
+					<td class="FontSmall" align="center">
+						2017-08-01
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017080002&#39;);">E(2)2017080002</a>
+					</td>
+					<td class="FontSmall" align="center">期初欠款</td>
+					<td class="FontSmall" align="center">8888</td>
+					<td class="FontSmall" align="center">16*16方管</td>
+					<td class="FontSmall" align="center">
+						8768567
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+						条
+					</td>
+					<td class="FontSmall" align="center">
+						
+						88765
+					</td>
+					<td class="FontSmall" align="center">550</td>
+					<td class="FontSmall" align="center">48820750</td>
+					<td class="FontSmall" align="center">华国锋的个的方式发给</td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	赵四1
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">3</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">型材销售</td>
+					<td class="FontSmall" align="center">1111111111</td>
+					<td class="FontSmall" align="center">飞利浦电子镇流器</td>
+					<td class="FontSmall" align="center">
+						10m x 11m高
+						 x 1
+					</td>
+					<td class="FontSmall" align="center">
+						平方米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						110
+						
+					</td>
+					<td class="FontSmall" align="center">8</td>
+					<td class="FontSmall" align="center">880</td>
+					<td class="FontSmall" align="center">11111@@@@@</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">4</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">铝型材配件(塑料)</td>
+					<td class="FontSmall" align="center">1111111111222</td>
+					<td class="FontSmall" align="center">车贴</td>
+					<td class="FontSmall" align="center">
+						210mm x 211mm高
+						 x 29
+					</td>
+					<td class="FontSmall" align="center">
+						平方米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						1.285
+						
+					</td>
+					<td class="FontSmall" align="center">20</td>
+					<td class="FontSmall" align="center">25.7</td>
+					<td class="FontSmall" align="center">11111@@22@@@</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">5</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">铝型材配件(塑料)</td>
+					<td class="FontSmall" align="center">1111111111222333</td>
+					<td class="FontSmall" align="center">2#扁铁</td>
+					<td class="FontSmall" align="center">
+						3210mm x 3211mm高
+						 x 329
+					</td>
+					<td class="FontSmall" align="center">
+						平方米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						3391.105
+						
+					</td>
+					<td class="FontSmall" align="center">33</td>
+					<td class="FontSmall" align="center">111906.47</td>
+					<td class="FontSmall" align="center">11111@@22333@@@</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">6</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">展柜展架</td>
+					<td class="FontSmall" align="center">2222222</td>
+					<td class="FontSmall" align="center">PVC胶片</td>
+					<td class="FontSmall" align="center">
+						40m x 44m
+						 x 434
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+							米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						19096
+						
+					</td>
+					<td class="FontSmall" align="center">990</td>
+					<td class="FontSmall" align="center">18905040</td>
+					<td class="FontSmall" align="center">4444423434</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">7</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">展柜展架</td>
+					<td class="FontSmall" align="center">22222224444</td>
+					<td class="FontSmall" align="center">30*50白板</td>
+					<td class="FontSmall" align="center">
+						405m x 445m
+						 x 4345
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+							米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						1933525
+						
+					</td>
+					<td class="FontSmall" align="center">77</td>
+					<td class="FontSmall" align="center">148881425</td>
+					<td class="FontSmall" align="center">444442343455555</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">8</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">展柜展架</td>
+					<td class="FontSmall" align="center">22222224444</td>
+					<td class="FontSmall" align="center">30*50白板</td>
+					<td class="FontSmall" align="center">
+						405m x 445m
+						 x 4345
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+							米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						1933525
+						
+					</td>
+					<td class="FontSmall" align="center">77</td>
+					<td class="FontSmall" align="center">148881425</td>
+					<td class="FontSmall" align="center">444442343455555</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">9</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">期初欠款</td>
+					<td class="FontSmall" align="center">888833</td>
+					<td class="FontSmall" align="center">车贴</td>
+					<td class="FontSmall" align="center">
+						8768567
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+						块
+					</td>
+					<td class="FontSmall" align="center">
+						
+						765
+					</td>
+					<td class="FontSmall" align="center">3332</td>
+					<td class="FontSmall" align="center">2548980</td>
+					<td class="FontSmall" align="center">234诶我去二无群式发给</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">10</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">标牌</td>
+					<td class="FontSmall" align="center">测试</td>
+					<td class="FontSmall" align="center">刀刮布</td>
+					<td class="FontSmall" align="center">
+						2222
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+						平方米
+					</td>
+					<td class="FontSmall" align="center">
+						
+						2
+					</td>
+					<td class="FontSmall" align="center">50</td>
+					<td class="FontSmall" align="center">100</td>
+					<td class="FontSmall" align="center">1
+<br>按图纸施工、颜色按样品</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">11</td>
+					<td class="FontSmall" align="center">
+						2017-09-03
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017090001&#39;);">E(2)2017090001</a>
+					</td>
+					<td class="FontSmall" align="center">东厂</td>
+					<td class="FontSmall" align="center">迷你字</td>
+					<td class="FontSmall" align="center"></td>
+					<td class="FontSmall" align="center">
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+						套
+					</td>
+					<td class="FontSmall" align="center">
+						
+						1
+					</td>
+					<td class="FontSmall" align="center">800</td>
+					<td class="FontSmall" align="center">800</td>
+					<td class="FontSmall" align="center"></td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	赵四
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">12</td>
+					<td class="FontSmall" align="center">
+						2017-09-06
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017090002&#39;);">E(2)2017090002</a>
+					</td>
+					<td class="FontSmall" align="center">标牌</td>
+					<td class="FontSmall" align="center">测试</td>
+					<td class="FontSmall" align="center">16*16方管</td>
+					<td class="FontSmall" align="center">
+						3.6m
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+						米
+					</td>
+					<td class="FontSmall" align="center">
+						
+						2
+					</td>
+					<td class="FontSmall" align="center">50</td>
+					<td class="FontSmall" align="center">100</td>
+					<td class="FontSmall" align="center">打印 注意颜色</td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	赵四
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">13</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">东厂</td>
+					<td class="FontSmall" align="center">测试</td>
+					<td class="FontSmall" align="center">内打灯布</td>
+					<td class="FontSmall" align="center">
+						1m x 1.5m高
+						 x 1
+					</td>
+					<td class="FontSmall" align="center">
+						平方米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						1.5
+						
+					</td>
+					<td class="FontSmall" align="center">20</td>
+					<td class="FontSmall" align="center">30</td>
+					<td class="FontSmall" align="center">按图纸施工、颜色按样品</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">14</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">
+						
+					</td>
+					<td class="FontSmall" align="center">快展器材</td>
+					<td class="FontSmall" align="center">测试</td>
+					<td class="FontSmall" align="center">单透贴</td>
+					<td class="FontSmall" align="center">
+						0.3m x 0.9m
+						 x 3
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+							米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						2.7
+						
+					</td>
+					<td class="FontSmall" align="center">10</td>
+					<td class="FontSmall" align="center">27</td>
+					<td class="FontSmall" align="center">按图纸施工、颜色按样品</td>
+					<td class="FontSmall" align="center">
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">15</td>
+					<td class="FontSmall" align="center">
+						2017-09-18
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017090012&#39;);">E(2)2017090012</a>
+					</td>
+					<td class="FontSmall" align="center">标牌</td>
+					<td class="FontSmall" align="center">指示牌</td>
+					<td class="FontSmall" align="center">刀刮布</td>
+					<td class="FontSmall" align="center">
+						0.5m x 0.87m
+						 x 2
+					</td>
+					<td class="FontSmall" align="center">
+						
+						
+							米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						1.74
+						
+					</td>
+					<td class="FontSmall" align="center">100</td>
+					<td class="FontSmall" align="center">174</td>
+					<td class="FontSmall" align="center">按图纸施工、颜色按样品</td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	赵四
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">16</td>
+					<td class="FontSmall" align="center">
+						2017-09-22
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017090013&#39;);">E(2)2017090013</a>
+					</td>
+					<td class="FontSmall" align="center">标牌</td>
+					<td class="FontSmall" align="center">标牌标牌</td>
+					<td class="FontSmall" align="center"></td>
+					<td class="FontSmall" align="center">
+						10m x 10m高
+						 x 10
+					</td>
+					<td class="FontSmall" align="center">
+						平方米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						1000
+						
+					</td>
+					<td class="FontSmall" align="center">10</td>
+					<td class="FontSmall" align="center">10000</td>
+					<td class="FontSmall" align="center">制作要求无</td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	赵四
+                        
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				<tr class="ListTrPrint" style="font-weight:bold;color:blue">
+					<td class="FontSmall" align="center">17</td>
+					<td class="FontSmall" align="center">
+						2017-10-05
+					</td>
+					<td class="FontSmall" align="center">
+						<a href="javascript:showRelBill(&#39;E(2)2017100003&#39;);">E(2)2017100003</a>
+					</td>
+					<td class="FontSmall" align="center">标牌</td>
+					<td class="FontSmall" align="center">fuhuifang content</td>
+					<td class="FontSmall" align="center">刀刮布</td>
+					<td class="FontSmall" align="center">
+						15m x 20m高
+						 x 1000
+					</td>
+					<td class="FontSmall" align="center">
+						平方米
+						
+						
+					</td>
+					<td class="FontSmall" align="center">
+						300000
+						
+					</td>
+					<td class="FontSmall" align="center">50</td>
+					<td class="FontSmall" align="center">15000000</td>
+					<td class="FontSmall" align="center">fuhuifang</td>
+					<td class="FontSmall" align="center">
+                        
+                        	
+                        	赵四
+                        
+					</td>
+				</tr>
+				
+				
+				<tr class="ListTrPrint"><td colspan="13" class="FontSmall" align="right">小计金额：383166915.17元&nbsp;扣除优惠金额：2241.00元&nbsp;合同金额：383164674.17元</td></tr>
+			</tbody></table>
+			
+		</td>
+	</tr>
+	<tr>
+		<td height="3"></td>
+	</tr>
+	<tr>
+		<td align="center">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000" class="ListTable">
+				<tbody><tr class="ListTrPrint">
+			      	<td class="FontSmall" align="right" width="86%">客户确认：</td>
+					<td class="FontSmall" width="14%">&nbsp;</td>
+				</tr>
+		  </tbody></table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td height="3"></td>
+	</tr>
+	<tr>
+		<td>
+			<table width="98%" border="0" cellspacing="1" cellpadding="1" align="center">
+				<tbody><tr>
+					<td class="FontSmall">一式三联，白联财务，红联客户，黄联留存    服务电话：0371-66520971 66758900 营销QQ：800071588 网址：http://www.xzy365.com</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	
+</tbody></table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="noPrinSpan">
+	<tbody><tr>
+		<td>
+			<table width="98%" border="0" cellspacing="1" cellpadding="1" align="center">
+				<tbody><tr>
+					<td>
+						<input type="button" id="printButton" class="Button" value="开始打印" onclick="doPrint();">
+						
+							<input type="button" id="printButton" class="Button" value="导出完整数据 " onclick="doDownload(&#39;EXCEL&#39;);">
+							<input type="button" id="printButton" class="Button" value="导出打印格式 " onclick="doDownload(&#39;EXCEL_PRINT&#39;);">
+						
+						<input type="button" id="refreshButton" class="Button" value=" 刷新 " onclick="doRefresh();">
+						<input type="button" id="refreshButton" class="Button" value=" 重新查询 " onclick="doSearch();">
+						
+							<input type="button" id="receiveButton" class="Button" value=" 收款 " onclick="doReceive();">
+						
+						
+							<input type="button" id="receiveButton" class="Button" value=" 调帐 " onclick="doAdjust();" title="开完收款单后，再开调账单调平账">
+						
+						<input type="button" id="cancelButton" class="Button" value=" 退 出 " onclick="doCancel();">
+					</td>
+				</tr>
+				<tr>
+					<td class="FontSmall" style="color:grey">注：红色表示无欠款，加粗蓝色表示已部分收款，蓝色表示无收款</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+
+</body></html>

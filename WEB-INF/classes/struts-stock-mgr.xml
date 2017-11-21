@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<!-- 库存  作废  入库单作废	出库单作废	调拨单作废 -->
+    <package name="struts-stock" extends="struts2"  namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+    	<action name="stock_*" class="com.erp.controller.stock.action.StockAction" method="{1}"> 
+    	  <!-- 作废列表页 -->
+    	  <result name="toAlloBillListForCancel">/WEB-INF/view/stock/AlloBillListForCancel.jsp</result>
+    	  <result name="toInBillListForCancel">/WEB-INF/view/stock/InBillListForCancel.jsp</result>
+    	  <result name="toOutBillListForCancel">/WEB-INF/view/stock/OutBillListForCancel-out.jsp</result>
+    	  <!-- 作废详情页 -->
+    	  <result name="toAlloBillCancel">/WEB-INF/view/stock/AlloBillInfoForCancel.jsp</result>
+    	  <result name="toInBillCancel">/WEB-INF/view/stock/InBillInfoForCancel.jsp</result>
+    	  <result name="toOutBillCancel">/WEB-INF/view/stock/OutBillInfoForCancel.jsp</result>
+    	  <!-- 作废按钮 -->
+    	  <result name="alloBillCancel">/WEB-INF/view/stock/AlloBillListForCancel.jsp</result>
+    	  <result name="inBillCancel">/WEB-INF/view/stock/InBillListForCancel.jsp</result>
+    	  <result name="toOutBillCancel">/WEB-INF/view/stock/OutBillListForCancel.jsp</result>
+    	  <!-- 库存 -->
+    	  <result name="toStockSearch">/WEB-INF/view/stock/StockSearch.jsp</result>
+    	  <result name="toInOutList">/WEB-INF/view/stock/InOutList.jsp</result>
+    	  <result name="toInOutCount">/WEB-INF/view/stock/InOutCount.jsp</result>
+    		
+    	
+    	</action>
+    </package>
+</struts>

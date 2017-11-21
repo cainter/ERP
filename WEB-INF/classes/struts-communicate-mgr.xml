@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="struts-communicate" extends="struts2" namespace="/">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<!-- 我的日程 -->
+    	<action name="MyComm_*" class="com.erp.controller.communicate.action.MyCommunicate" method="{1}"> 
+    	  <result name="toEstabComm">/WEB-INF/view/communicate/EstablishmentCommunicateSearchResult.jsp</result>
+    	  <result name="toNewComm">/WEB-INF/view/communicate/EstablishmentCommunicateNew.jsp</result>
+    	</action>
+    	<!-- 关于管理易 -->
+		<action name="aboutEk_*" class="com.erp.controller.communicate.action.AboutEkingAction" method="{1}">
+		<result name="toAboutEk">/WEB-INF/view/communicate/AboutEKing.jsp</result>
+		</action>
+		<!-- 谁在线 -->
+		<action name="onlineList_*" class="com.erp.controller.communicate.action.OnlineAction" method="{1}">
+		<result name="toOnlineList">/WEB-INF/view/communicate/OnlineList.jsp</result>
+		</action>
+		<!-- 所有公告 -->
+		<action name="main_*" class="com.erp.controller.communicate.action.MainAction" method="{1}">
+		<result name="toMain">/WEB-INF/view/communicate/Main.jsp</result>
+		<result name="toBbsColumnList">/WEB-INF/view/communicate/BbsColumnList.jsp</result>
+		<result name="toBbsTopicList">/WEB-INF/view/communicate/BbsTopicList.jsp</result>
+		</action>
+    </package>
+</struts>

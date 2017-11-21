@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="struts-statistic" extends="struts2">
+		<!-- 统计报表 应收 付款 guo -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<action name="Statistic_*"
+			class="com.erp.controller.statistic.action.StatisticAction" method="{1}">
+			<result name="toBusinessBillListForReceive">/WEB-INF/view/statistic/BusinessBillListForReceive.jsp
+			</result>
+			<result name="toCooPayCostList">/WEB-INF/view/statistic/CooPayCostList.jsp
+			</result>
+			<result name="toPurPayCostList">/WEB-INF/view/statistic/PurPayCostList.jsp
+			</result>
+			<result name="toReceivableAgeList">/WEB-INF/view/statistic/ReceivableAgeList.jsp
+			</result>
+			<result name="toReceivableCount">/WEB-INF/view/statistic/ReceivableCount.jsp
+			</result>
+			<result name="toReceivableList">/WEB-INF/view/statistic/ReceivableList.jsp
+			</result>
+		</action>
+	</package>
+</struts>

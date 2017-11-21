@@ -1,0 +1,76 @@
+BODY {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+scrollbar-face-color:#EBF0FE;
+scrollbar-highlight-color:#3464CC;
+scrollbar-3dlight-color:#EBF0FE;
+scrollbar-darkshadow-color:#EBF0FE;
+scrollbar-shadow-color:#3464CC;
+scrollbar-arrow-color:#3464CC;
+scrollbar-track-color:#EBF0FE;
+; font-family: "黑体", "Verdana", "Arial"
+; color: #040464
+; font-size: 14px
+; background-color: #DEEFF9
+}
+from {
+	margin: 0px;
+	padding: 0px;
+}
+.ListTable {font-size: 9pt; background-color: #9CD0EF; line-height: 15px;border-collapse:collapse;border-spacing:0;}
+.ListTr {background-color: #DEEFF9; line-height: 20px}
+.ListTd_nowrap {white-space: nowrap; vertical-align: middle;}
+.ListTd {vertical-align: middle;}
+.ListTrPrint {background-color: #FFFFFF; line-height: 20px}
+.ListTable td{padding-left:2px;padding-right:2px}
+
+INPUT{BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc}
+TEXTAREA{BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc}
+SELECT{BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc ;HEIGHT: 18px}
+OPTION{FONT-FAMILY:"" ; FONT-SIZE: 9pt}
+
+.BgWhite {  background-color: #FFFFFF}
+.Header { background-color: #9CD0EF ; font-size: 14px; line-height: 20px; font-weight: bold}
+.Button {  background-color: #DEEFF9;; font-family: ""}
+.FontLarge_Bold {  font-size: 18px;font-weight: bold}
+.FontMedium_Bold {  font-size: 12px;font-weight: bold}
+.FontSmall_Bold {  font-size: 10pt;font-weight: bold}
+.FontLarge {  font-size: 18px}
+.FontMedium {  font-size: 12px}
+.FontSmall {  font-size: 10pt}
+.FontMini {  font-size: 8pt}
+.Border { BORDER-RIGHT-COLOR: #3464CC; border: 1px #3464CC solid; padding-top: 1px; padding-right: 1px; padding-bottom: 1px; padding-left: 1px}
+
+a:link {
+	COLOR: #0000cc; TEXT-DECORATION: none
+}
+a:visited {
+	COLOR: #0000cc; TEXT-DECORATION: none
+}
+a:hover {
+	COLOR: #ff3333; TEXT-DECORATION: underline
+}
+
+.Disabled {  background-color: #E1E1E1}
+
+.msg-error{font-size: 9pt;margin:10px 20px;padding:10px;border:1px solid #dd3c10;background:#ffebe8;_zoom:1;}
+
+.STYLE1 {
+	color: #154F8E;
+	font-size: 12px;
+}
+.STYLE2 {font-size: 12px}
+
+.input_disabled{
+	background-color:#cccccc;
+}
+.alert_msg{
+	font-size: 9pt;color:ff0000;
+}
+.small_border,.small_border td{ border:1px solid #000000;}
+.small_border{table-layout:fixed;border-collapse:collapse;border-spacing:0;}
+.small_border td{word-wrap:break-word;padding-left:2px;padding-right:2px}
+.PageNext{page-break-after:always;height:1px;}
+.label_table{border-collapse:collapse;border-spacing:0;line-height: 14px;font-family: "宋体";}

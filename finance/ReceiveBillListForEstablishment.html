@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0076)http://115.28.87.22:8888/finance/ReceiveBillListForEstablishment.html?id=757 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>客户收款记录 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doShow(id){
+		var url="../finance/ReceiveBillEdit.html?id="+id+"&alert_type=NONE";
+		ShowIframe("收款单",url,1024,500,"refreshWin()",900,600);
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location=window.location;
+		}
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function doGo(pageIndex){
+		window.location="../finance/ReceiveBillListForEstablishment.html?id=757&current_page="+pageIndex;
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:860px;text-align:left;margin:auto;">
+	<div class="sheet-top">
+		<div class="content">
+		  <h2>客户收款记录</h2>
+		  <p>客户名称：格力电器</p>
+		</div>
+	</div>
+	  <div class="sheet-list">
+		  <div class="cue-info">
+			<span>收款汇总（不包括预付款）：0元</span>
+	      </div>
+			  <div class="table-list">
+			     <table width="100%" align="center">      
+	 					<tbody><tr>	
+							<th width="20%">收款日期</th>
+							<th width="30%">收款单号</th>
+							<th width="15%">经手人</th>
+							<th width="12%">金额（元）</th>
+							<th width="15%">状态</th>
+							<th width="8%">操作</th>
+						</tr>
+						
+				   </tbody></table>
+				   	
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="0" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共0页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+			  </div>
+			</div>
+</div>						
+
+</body></html>

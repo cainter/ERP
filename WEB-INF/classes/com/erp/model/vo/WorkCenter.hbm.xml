@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.WorkCenter" table="work_center">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="wcCode" type="string">
+			<column name="wc_code" length="30" />
+		</property>
+		<property name="wcName" type="string">
+			<column name="wc_name" length="30" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="100" />
+		</property>
+		<property name="storehouseId" type="long">
+			<column name="storehouse_id" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="sys" type="string">
+			<column name="sys" length="1" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

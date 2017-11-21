@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.ProductVO" table="product">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="productName" type="string">
+			<column name="product_name" length="200" not-null="true" />
+		</property>
+		<property name="pnSpell" type="string">
+			<column name="pn_spell" length="200" />
+		</property>
+		<property name="productCode" type="string">
+			<column name="product_code" length="50" not-null="true" />
+		</property>
+		<property name="productTypeId" type="long">
+			<column name="product_type_id" not-null="true" />
+		</property>
+		<property name="patria" type="string">
+			<column name="patria" length="50" />
+		</property>
+		<property name="unit" type="string">
+			<column name="unit" length="20" />
+		</property>
+		<property name="minorUnit" type="string">
+			<column name="minor_unit" length="20" />
+		</property>
+		<property name="unitConvert" type="string">
+			<column name="minor_convert" length="30" />
+		</property>
+		<property name="barCode" type="string">
+			<column name="bar_code" length="50" />
+		</property>
+		<property name="maxLimit" type="big_decimal">
+			<column name="max_limit" length="2" not-null="true" />
+		</property>
+		<property name="minLimit" type="big_decimal">
+			<column name="min_limit" length="2" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="400" />
+		</property>
+		<property name="saleCost1" type="big_decimal">
+			<column name="sale_cost1" length="2" not-null="true" />
+		</property>
+		<property name="saleCost2" type="big_decimal">
+			<column name="sale_cost2" length="2" not-null="true" />
+		</property>
+		<property name="saleCost3" type="big_decimal">
+			<column name="sale_cost3" length="2" not-null="true" />
+		</property>
+		<property name="saleCost4" type="big_decimal">
+			<column name="sale_cost4" length="2" not-null="true" />
+		</property>
+		<property name="attachFile" type="string">
+			<column name="attach_file" length="200" />
+		</property>
+    </class>
+</hibernate-mapping>

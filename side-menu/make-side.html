@@ -1,0 +1,68 @@
+<!--加工制作侧边栏-->
+	<li>
+		<div class="link"><i class="fa fa-paint-brush"></i>制作<i class="fa fa-chevron-down"></i></div>
+		<ul class="submenu">
+			<li>
+				<a href="javascript:showWin(['1024px', '600px'],'make/BusinessBillListForMake.html');">要制作的业务单</a>
+			</li>
+			<li>
+				<a href="javascript:showWin(['1024px', '600px'],'make/BusinessBillListForTask.html');">生产进度管理</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<div class="link"><i class="fa fa-paint-brush"></i>产量<i class="fa fa-chevron-down"></i></div>
+		<ul class="submenu">
+			<li>
+				<a href="javascript:showWin(['1500px', '500px'],'make/BusinessBillListForOutput.html');">产量登记</a>
+			</li>
+			<li>
+				<a href="javascript:showWin(['1024px', '600px'],'make/OutputSearchResult.html');">产量计件明细表</a>
+			</li>
+			<li>
+				<a href="javascript:showWin(['1024px', '600px'],'make/OutputCount.html');">产量统计表</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<div class="link"><i class="fa fa-paint-brush"></i>完工<i class="fa fa-chevron-down"></i></div>
+		<ul class="submenu">
+			<li>
+				<a href="javascript:showWin(['1400px', '640px'],'business/BusinessBillListForComplete.html');">业务单完工</a>
+			</li>
+			<li>
+				<a href="javascript:showWin(['1024px', '600px'],'business/BusinessBillListForUnComplete.html');">业务单反完工</a>
+			</li>
+		</ul>
+	</li>
+<script>
+	//侧边导航栏
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {
+				el: this.el,
+				multiple: this.multiple
+			}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+			$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if(!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}
+
+		var accordion = new Accordion($('.accordion'), false);
+	});
+</script>

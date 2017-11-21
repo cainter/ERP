@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+    <package name="struts-login" extends="struts2" namespace="/">
+    	<action name="login" class="com.erp.controller.action.LoginAction"> 
+    	<!-- 如果使用自定义拦截器，则不会调用默认的拦截器，所以这里显示调用 -->
+    	<!-- 但是，每个配置文件都要重复显示这些调用拦截器，不如在struts.xml文件中
+    	设置为默认调用拦截器栈，可自定义拦截器栈
+    	
+    	
+      	<interceptor-ref name="secutityInterCeptor"/>
+    	-->
+    	<interceptor-ref name="defaultStack"/>
+    	
+    	
+    	<!-- 
+    		<exception-mapping result="error" exception="com.erp.err.UserNotFoundException" />
+    	 -->
+    	<!-- 全局result已配置，这里不需要重复配置
+    	 <result name="success">/login_success.jsp</result>
+    	 <result name="error">/login_error.jsp</result>
+    	  -->
+    	  <result name="input">/login.jsp</result>
+    	 <!--  <result name="main">/WEB-INF/view/system/Main.jsp</result> -->
+    	  <result name="main" type="chain">message</result>
+    	</action> 
+    	
+    	<action name="message" class="com.erp.controller.action.MessageAction">
+    		<result name="main">/WEB-INF/view/base/Index.jsp</result>
+    	</action>
+    	
+     
+    </package>
+</struts>

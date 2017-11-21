@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.controller.phone.vo.PhoneBookVO" table="phone_book">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="stafferId" type="long">
+			<column name="staffer_id" not-null="true" />
+		</property>
+		<property name="perName" type="string">
+			<column name="per_name" length="30" not-null="true" />
+		</property>
+		<property name="pnSpell" type="string">
+			<column name="pn_spell" length="30" />
+		</property>
+		<property name="mobile" type="string">
+			<column name="mobile" length="50" not-null="true" />
+		</property>
+		<property name="companyName" type="string">
+			<column name="company_name" length="100" />
+		</property>
+		<property name="possie" type="string">
+			<column name="possie" length="30" />
+		</property>
+		<property name="qq" type="string">
+			<column name="qq" length="30" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="100" />
+		</property>
+		<property name="phone" type="string">
+			<column name="phone" length="40" />
+		</property>
+		<property name="fax" type="string">
+			<column name="fax" length="40" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="100" />
+		</property>
+    </class>
+</hibernate-mapping>

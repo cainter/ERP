@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.EstPriceVO" table="est_price">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="estId" type="long">
+			<column name="est_id" not-null="true" />
+		</property>
+		<property name="price" type="big_decimal">
+			<column name="price" length="4" not-null="true" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="200" />
+		</property>
+		<property name="makeTypeId" type="long">
+		    <column name="make_type_id"></column>
+		</property>
+		<property name="makeRequire" type="string">
+		    <column name="make_require" length="10000"></column>
+		</property>
+		<property name="proId" type="long">
+			<column name="pro_id" not-null="true" />
+		</property>
+		<property name="proName" type="string">
+			<column name="pro_name" length="200" /> 
+		</property>
+		<property name="length" type="string">
+			<column name="length" length="10" />
+		</property>
+		<property name="width" type="string">
+			<column name="width" length="10" />
+		</property>
+		<property name="specification" type="string">
+			<column name="specification" length="100" />
+		</property>
+		<property name="unit" type="string">
+			<column name="unit" length="30" />
+		</property>
+		<property name="priceType" type="string">
+			<column name="price_type" length="30" />
+		</property>
+		<property name="estType" type="string">
+			<column name="est_type" length="30" />
+		</property>
+		<property name="attachFile" type="string">
+			<column name="attach_file" length="200" />
+		</property>
+		<property name="proSpell" type="string">
+			<column name="pro_spell" length="200" />
+		</property>
+		<property name="sequenceCode" type="int">
+			<column name="sequence_code" length="4" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

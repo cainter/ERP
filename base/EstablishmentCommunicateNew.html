@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/base.css" rel="stylesheet" type="text/css">
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="sheet">
+		<div class="sheet-main">
+			<form name="frm" method="post" enctype="multipart/form-data">
+				<div class="sheet-list" style="width:100%;">
+					<div class="BillHeading">
+						<table style="width: 100%;">
+							<tbody>
+								<tr>
+									<td width="33%" rowspan="3">
+										<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+									</td>
+									<td width="33%" rowspan="3">
+										<h1>新增日程</h1></td>
+									<td width="33%" class="tr">
+									</td>
+								</tr>
+								<tr>
+									<td class="tr">
+									</td>
+								</tr>
+								<tr>
+									<td class="tr">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="modal-main search-business">
+						<div style="width:100%;">
+							<div class="blank24"></div>
+
+							<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a2">
+								<tbody>
+									<tr>
+										<th><span class="MustInput">*</span>主题：</th>
+
+										<td>
+											<input type="text" maxlength="50" class="TextBox" style="width:160px" onkeyup="goNextInput(&#39;communicate.content&#39;);" id="communicate.title" name="communicate.title" value="">
+										</td>
+
+										<th><span class="MustInput">*</span>日期：</th>
+
+										<td>
+												<input type="text" class="TextBox Datetime" maxlength="15" id="communicateTimeStr" name="communicateTimeStr" value="2017-07-06"><img src="../images/calendar.gif" style="cursor:pointer" onclick="displayCalendar(document.getElementById(&#39;communicateTimeStr&#39;),&#39;yyyy-mm-dd&#39;,this);">
+												<select id="orderDateHourSelect" onchange="changeTimeSelect(this,&#39;communicateTimeHour&#39;);">
+													<option value="00">00</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16" selected="">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+													<option value="21">21</option>
+													<option value="22">22</option>
+													<option value="23">23</option>
+												</select>
+												<select id="orderDateMinuteSelect" onchange="changeTimeSelect(this,&#39;communicateTimeMinute&#39;);">
+													<option value="00">00</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10" selected="">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+													<option value="21">21</option>
+													<option value="22">22</option>
+													<option value="23">23</option>
+													<option value="24">24</option>
+													<option value="25">25</option>
+													<option value="26">26</option>
+													<option value="27">27</option>
+													<option value="28">28</option>
+													<option value="29">29</option>
+													<option value="30">30</option>
+													<option value="31">31</option>
+													<option value="32">32</option>
+													<option value="33">33</option>
+													<option value="34">34</option>
+													<option value="35">35</option>
+													<option value="36">36</option>
+													<option value="37">37</option>
+													<option value="38">38</option>
+													<option value="39">39</option>
+													<option value="40">40</option>
+													<option value="41">41</option>
+													<option value="42">42</option>
+													<option value="43">43</option>
+													<option value="44">44</option>
+													<option value="45">45</option>
+													<option value="46">46</option>
+													<option value="47">47</option>
+													<option value="48">48</option>
+													<option value="49">49</option>
+													<option value="50">50</option>
+													<option value="51">51</option>
+													<option value="52">52</option>
+													<option value="53">53</option>
+													<option value="54">54</option>
+													<option value="55">55</option>
+													<option value="56">56</option>
+													<option value="57">57</option>
+													<option value="58">58</option>
+													<option value="59">59</option>
+												</select>
+										</td>
+										<th>客户：</th>
+										<td>
+											<input type="text" class="TextBox readonly" readonly="true" style="width:150px" id="estName" name="estName" value="格力电器">
+											<img class="make-a" src="../images/make-a.gif" onclick="selectEst();" style="cursor:pointer;">
+										</td>
+									</tr>
+									<tr>
+										<th><span class="MustInput">*</span>内容：</th>
+
+										<td colspan="5">
+											<textarea class="TextBox" style="width:600px;height:120px" id="communicate.content" name="communicate.content"></textarea>
+										</td>
+
+									</tr>
+									<tr>
+										<th>附件：</th>
+										<td colspan="5">
+											<input type="file" class="" style="width:300px" name="attach_file" id="attach_file">
+
+										</td>
+									</tr>
+									<tr>
+										<th><span class="MustInput">*</span>类型：</th>
+										<td colspan="5">
+
+											<span title="记录已发生的活动"><input type="radio" name="commType" id="commType1" onclick="changeCommType();" checked="true">日志</span>
+											<span title="安排下一步的工作"><input type="radio" name="commType" id="commType2" onclick="changeCommType();">任务</span>
+
+											<input type="hidden" name="communicate.commType" id="communicate.commType" value="LOG">
+
+											<a href="javascript:showExt();"><span id="extSpan">展开更多内容</span></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<table border="0" cellspacing="1" cellpadding="1" align="center" class="table-a2">
+								<tbody>
+									<tr>
+										<th style="height:0px"></th>
+										<td></td>
+										<th></th>
+										<td></td>
+										<th></th>
+										<td></td>
+									</tr>
+									<tr>
+										<th>&nbsp;</th>
+										<td colspan="5">
+											<p class="give">
+												<span>注：日志只能当天修改，过期只有系统管理员admin可删除；任务的修改删除不受限制</span>
+											</p>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-buttom" id="buttonDiv">
+					<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存</a>
+					<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+					<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取消</a>
+				</div>
+
+			</form>
+		</div>
+
+	</body>
+
+</html>

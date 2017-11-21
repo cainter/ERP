@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.EstablishmentCommunicate" table="establishment_communicate">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="estId" type="long">
+			<column name="est_id" not-null="true" />
+		</property>
+		<property name="communicateTime" type="timestamp">
+			<column name="communicate_time" not-null="true" />
+		</property>
+		<property name="title" type="string">
+			<column name="title" length="100" not-null="true" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="1000" />
+		</property>
+		<property name="createrId" type="long">
+			<column name="creater_id" not-null="true" />
+		</property>
+		<property name="createrName" type="string">
+			<column name="creater_name" length="30" />
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="create_time" not-null="true" />
+		</property>
+		<property name="commType" type="string">
+			<column name="comm_type" length="30" not-null="true" />
+		</property>
+		<property name="forAll" type="string">
+			<column name="for_all" length="1" not-null="true" />
+		</property>
+		<property name="smsRemind" type="string">
+			<column name="sms_remind" length="1" not-null="true" />
+		</property>
+		<property name="smsRemindDate" type="timestamp">
+			<column name="sms_remind_date" />
+		</property>
+		<property name="sendSms" type="string">
+			<column name="send_sms" length="1" not-null="true" />
+		</property>
+		<property name="completed" type="string">
+			<column name="completed" length="1" not-null="true" />
+		</property>
+		<property name="completeMark" type="string">
+			<column name="complete_mark" length="1000" />
+		</property>
+		<property name="completeDate" type="timestamp">
+			<column name="complete_date" />
+		</property>
+		<property name="attachFile" type="string">
+			<column name="attach_file" length="200" />
+		</property>
+		<property name="parentId" type="long">
+			<column name="parent_id" not-null="true" />
+		</property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!--
+	作者：offline
+	时间：2017-10-12
+	描述：扫条码查进度
+-->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0058)http://115.28.87.22:8888/business/BusinessRelBillList.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>单据跟踪 – 扫条码查进度 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+
+</head>
+<bodyclass="sheet">
+<div class="sheet-main">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>单据跟踪 – 扫条码查进度 </h2>
+    </div>
+  </div>
+  
+  <div class="sheet-list">
+    <div class="search-business">
+    	<div class="content" style="+zoom:1;">
+        <table width="100%">
+          <tbody>
+            <tr>
+				<td align="right">
+	              <input type="text" class="TextBox" id="search_key" name="search_key" onkeyup="checkSearchKey();" style="width:100px" value="">
+	              <input type="button" class="buttom search-but" value=" 查 询" onclick="doSearch();">
+				</td>
+            </tr>    
+           </tbody>
+        </table>
+      	</div>
+    	
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+    	
+	<div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">项目明细（预付款）</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="8%">项目类型</th>
+			   	<th width="10%">内容</th>
+				<th width="10%">材质</th>
+				<th width="10%">规格</th>
+				<th width="6%">单位</th>
+				<th width="6%">数量</th>
+				<th width="12%">完成情况</th>
+				<th width="8%">当前工序</th>
+				<th width="6%">完工状态</th>
+				<th width="6%">送货状态</th>
+				<th width="6%">操作员</th>
+				<th width="12%">操作时间</th>
+			</tr>
+			
+			<tr>
+				<td colspan="12">没有项目明细</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+	 
+	 <div class="table-list">
+        <fieldset class="det_fieldset ">
+     	<legend class="mag10">消息</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="10%">时间</th>
+			   	<th width="30%">主题</th>
+			   	<th width="50%">内容</th>
+				<th width="10%">发送人</th>
+			</tr>
+			
+			<tr>
+				<td colspan="4">没有消息记录</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+	 
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">附件</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="18%">文件</th>
+				<th width="18%">资料路径</th>
+				<th width="20%">文件说明</th>
+				<th width="10%">工作中心</th>
+				<th width="4%">类型</th>
+				<th width="8%">上传人</th>
+				<th width="14%">上传时间</th>
+				<th width="8%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="8">没有附件</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">打印记录</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">打印时间</th>
+				<th width="20%">打印人</th>
+				<th width="20%">类型</th>
+				<th width="40%"><div align="left">金额</div></th>
+			</tr>
+			
+			<tr>
+				<td colspan="4">没有打印记录</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">下载记录</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">下载时间</th>
+				<th width="20%">下载人</th>
+				<th width="60%"><div align="left">下载文件名</div></th>
+			</tr>
+			
+			<tr>
+				<td colspan="3">没有下载记录</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+     
+	 <div class="table-list">
+	 	<fieldset class="det_fieldset ">
+     	<legend class="mag10">改单记录</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">订货日期</th>
+			   	<th width="20%">交货日期</th>
+				<th width="20%">优惠金额</th>
+				<th width="20%">折后金额</th>
+				<th width="10%">改单人</th>
+				<th width="10%">改单时间</th>
+			</tr>
+			
+			<tr>
+				<td colspan="6">没有改单记录</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">送货单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="14%">送货单号</th>
+				<th width="12%">日期</th>
+				<th width="26%">物流公司</th>
+				<th width="18%">物流单号</th>
+				<th width="10%">开单人</th>
+				<th width="8%">审核状态</th>
+				<th width="12%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="7">没有送货单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">安装单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">安装单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有安装单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+	 </div>
+	 <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">收款单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">收款单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有收款单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">调帐单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">调账单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有调账单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">外协单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">外协单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有外协单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">外协收货</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有外协收货</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">出库单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">出库单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有出库单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+     <div class="table-list">
+     	<fieldset class="det_fieldset ">
+     	<legend class="mag10">费用单</legend>
+        <table width="98%" align="center">
+           	<tbody><tr>
+			   	<th width="20%">费用单号</th>
+				<th width="20%">日期</th>
+				<th width="20%">开单人</th>
+				<th width="20%">状态</th>
+				<th width="20%">操作</th>
+			</tr>
+			
+			<tr>
+				<td colspan="5">没有费用单</td>
+			</tr>
+			
+			
+		</tbody></table>
+		</fieldset>
+     </div>
+     <div class="blank12"></div>
+     
+    </div>
+  </div>
+</div>	
+
+</body></html>

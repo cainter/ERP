@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0050)http://115.28.87.22:8888/finance/PayableCount.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>应付汇总表 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doSearch(){
+		var year=document.getElementById("year").value;
+		if(year==null || year==''){
+			ShowAlert('提示框','请选择年份',200,100);
+			return;
+		}
+		var tsId=document.getElementById("ts_id").value;
+		window.location="../finance/PayableCount.html?year="+year+"&ts_id="+tsId;
+	}
+	function getSearchCondition(){
+		var str="year=2017&ts_id=1";
+		return str;
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		Window_Onload();
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="../finance/PayableCount.html?content_type=EXCEL&"+str;
+	}
+	function getEndDate(month){
+		if(month==0){
+			month=12;
+		}
+		var d=new Date(2017,month,1);//下月的1号（month从0开始的）
+		d.setDate(d.getDate()-1);
+		return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+	}
+	function getStartDate(month){
+		if(month==0){
+			return "2017-01-01";
+		}else{
+			return "2017-"+month+"-01";
+		}
+	}
+	function showCooList(month){
+		var startDate=getStartDate(month);
+		var endDate=getEndDate(month);
+		var str="search_type=1&cb_cooper_date=1&start_date="+startDate+"&end_date="+endDate+"&cb_examine=1&examined=Y";
+		var tsId="1";
+		if(tsId!="" && tsId!="0"){
+			str=str+"&cb_ts=1&ts_id="+tsId;
+		}
+		showWin(1280,600,"../cooper/CooperBillSearchResult.html?"+str);
+	}
+	function showPurList(month){
+		var startDate=getStartDate(month);
+		var endDate=getEndDate(month);
+		var str="search_type=1&cb_pur_date=1&start_date="+startDate+"&end_date="+endDate;
+		var tsId="1";
+		if(tsId!="" && tsId!="0"){
+			str=str+"&cb_ts=1&ts_id="+tsId;
+		}
+		showWin(1024,600,"../purchase/PurchaseDetailSearchResult.html?"+str);
+	}
+	function showPayableList(month,type){
+		var startDate=getStartDate(month);
+		var endDate=getEndDate(month);
+		var tsId="1";
+		if(type=='COOPER'){
+			var str="search_type=1&cb_coo_date=1&start_date="+startDate+"&end_date="+endDate;
+			if(tsId!="" && tsId!="0"){
+				str=str+"&cb_ts=1&ts_id="+tsId;
+			}
+			showWin(1024,600,"../cooper/CooperBillListForPay.html?"+str);
+		}else{
+			var str="search_type=1&cb_pur_date=1&start_date="+startDate+"&end_date="+endDate;
+			if(tsId!="" && tsId!="0"){
+				str=str+"&cb_ts=1&ts_id="+tsId;
+			}
+			showWin(1024,600,"../purchase/PurchaseBillListForPay.html?"+str);
+		}
+	}
+</script>
+</head>
+
+
+<body oncontextmenu="return false" onload="doInit();" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:860px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>应付汇总表</h2>
+      <p>统计每月采购外协的已付款、应付款</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+      <div class="content">
+        <table width="100%">
+          <tbody>
+            <tr>
+              <td align="right">
+              	年度：
+              	<select name="year" id="year">
+					
+						<option value="2010">2010</option>
+					
+						<option value="2011">2011</option>
+					
+						<option value="2012">2012</option>
+					
+						<option value="2013">2013</option>
+					
+						<option value="2014">2014</option>
+					
+						<option value="2015">2015</option>
+					
+						<option value="2016">2016</option>
+					
+						<option value="2017" selected="">2017</option>
+					
+				</select>
+				账套：
+				<select name="ts_id" id="ts_id">
+					<option value="0">==请选择账套==</option>
+					
+						<option value="1" selected="">新异</option>
+					
+						<option value="2">网络公司</option>
+					
+				</select>
+				<input type="button" value=" 查 询" onclick="doSearch();" class="buttom search-but">
+				
+					<a href="javascript:showWin(900,600,&#39;../finance/PayableList.html&#39;);">按供应商.外协商查询应付款</a>
+				
+              </td>
+            </tr>    
+            </tbody>      
+        </table>      	 
+      </div>
+      <div class="table-list">
+        <table width="100%">
+          	<tbody><tr>			
+				<th width="10%" rowspan="2">月份</th>
+				<th width="10%" rowspan="2">+采购</th>
+				<th width="10%" rowspan="2">+外协</th>
+				<th width="20%" colspan="2">+调账金额</th>
+				<th width="20%" colspan="2">-已付金款</th>
+				<th width="30%" colspan="3">=当月应付款</th>
+			</tr>
+			<tr>			
+				<th width="10%">采购</th>
+				<th width="10%">外协</th>
+				<th width="10%">采购</th>
+				<th width="10%">外协</th>
+				<th width="10%">采购</th>
+				<th width="10%">外协</th>
+				<th width="10%">小计</th>
+			</tr>
+			
+				
+				
+				<tr class="query_list_data_trSelected" index="1" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="1" style="display:none">
+						1
+					</td>
+					<td><a href="javascript:showPurList(1);">16676.65</a></td>
+					<td><a href="javascript:showCooList(1);">0</a></td>
+					<td>0.35</td>
+					<td>0</td>
+					<td>16677</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(1,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(1,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr2" index="2" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="2" style="display:none">
+						2
+					</td>
+					<td><a href="javascript:showPurList(2);">8292</a></td>
+					<td><a href="javascript:showCooList(2);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>8292</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(2,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(2,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr1" index="3" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="3" style="display:none">
+						3
+					</td>
+					<td><a href="javascript:showPurList(3);">41556.34</a></td>
+					<td><a href="javascript:showCooList(3);">0</a></td>
+					<td>100</td>
+					<td>0</td>
+					<td>41656.34</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(3,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(3,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr2" index="4" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="4" style="display:none">
+						4
+					</td>
+					<td><a href="javascript:showPurList(4);">47649.96</a></td>
+					<td><a href="javascript:showCooList(4);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>137649.96</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(4,&#39;PURCHASE&#39;);">-90000</a></td>
+					<td><a href="javascript:showPayableList(4,&#39;COOPER&#39;);">0</a></td>
+					<td>-90000</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr1" index="5" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="5" style="display:none">
+						5
+					</td>
+					<td><a href="javascript:showPurList(5);">0</a></td>
+					<td><a href="javascript:showCooList(5);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(5,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(5,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr2" index="6" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="6" style="display:none">
+						6
+					</td>
+					<td><a href="javascript:showPurList(6);">0</a></td>
+					<td><a href="javascript:showCooList(6);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(6,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(6,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr1" index="7" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="7" style="display:none">
+						7
+					</td>
+					<td><a href="javascript:showPurList(7);">0</a></td>
+					<td><a href="javascript:showCooList(7);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(7,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(7,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr2" index="8" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="8" style="display:none">
+						8
+					</td>
+					<td><a href="javascript:showPurList(8);">0</a></td>
+					<td><a href="javascript:showCooList(8);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(8,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(8,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr1" index="9" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="9" style="display:none">
+						9
+					</td>
+					<td><a href="javascript:showPurList(9);">0</a></td>
+					<td><a href="javascript:showCooList(9);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(9,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(9,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr2" index="10" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="10" style="display:none">
+						10
+					</td>
+					<td><a href="javascript:showPurList(10);">0</a></td>
+					<td><a href="javascript:showCooList(10);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(10,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(10,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr1" index="11" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="11" style="display:none">
+						11
+					</td>
+					<td><a href="javascript:showPurList(11);">0</a></td>
+					<td><a href="javascript:showCooList(11);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(11,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(11,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+				
+				
+				<tr class="query_list_data_tr2" index="12" style="cursor:pointer;" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+					<td>
+						<input type="radio" name="query_checkbox" value="12" style="display:none">
+						12
+					</td>
+					<td><a href="javascript:showPurList(12);">0</a></td>
+					<td><a href="javascript:showCooList(12);">0</a></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td><a href="javascript:showPayableList(12,&#39;PURCHASE&#39;);">0</a></td>
+					<td><a href="javascript:showPayableList(12,&#39;COOPER&#39;);">0</a></td>
+					<td>0</td>
+				</tr>
+			
+			
+			<tr>
+				<th>合计</th>
+				<th><a href="javascript:showPurList(0);">114174.95</a></th>
+				<th><a href="javascript:showCooList(0);">0</a></th>
+				<th>100.35</th>
+				<th>0</th>
+				<th>204275.3</th>
+				<th>0</th>
+				<th><a href="javascript:showPayableList(0,&#39;PURCHASE&#39;);">-90000</a></th>
+				<th><a href="javascript:showPayableList(0,&#39;COOPER&#39;);">0</a></th>
+				<th>-90000</th>
+			</tr>
+			
+		</tbody></table>
+     </div>
+ </div>
+</div>
+</div>
+
+
+</body></html>

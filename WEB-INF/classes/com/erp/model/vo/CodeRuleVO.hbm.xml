@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.CodeRuleVO" table="code_rule">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="dataCode" type="string">
+			<column name="data_code" length="50" not-null="true" />
+		</property>
+		<property name="dataType" type="int">
+			<column name="data_type" length="1" not-null="true" />
+		</property>
+		<property name="title" type="string">
+			<column name="title" length="30" not-null="true" />
+		</property>
+		<property name="generateRule" type="string">
+			<column name="generate_rule" length="50" not-null="true" />
+		</property>
+		<property name="prefix" type="string">
+			<column name="prefix" length="20" />
+		</property>
+		<property name="separator" type="string">
+			<column name="separat_code" length="1" />
+		</property>
+		<property name="numberLength" type="int">
+			<column name="number_length" length="4" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="tallySetRule" type="string">
+			<column name="tally_set_rule" length="30" />
+		</property>
+		<property name="printFoot" type="string">
+			<column name="print_foot" length="1000" />
+		</property>
+    </class>
+</hibernate-mapping>

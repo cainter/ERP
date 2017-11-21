@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0067)http://115.28.87.22:8888/base/EstablishmentCommunicateCalendar.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>日历 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function doNew(){
+		var url="./EstablishmentCommunicateNew.html";
+		ShowIframe("日程",url,980,440,"refreshWin()",900,600);
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location.reload(true);
+		}
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		if(window.screen.availWidth>900){
+			var w=window.screen.availWidth*0.98;
+			document.getElementById("mainDiv").style.width=(w-60)+"px";
+		}
+	}
+	function DoubleClick(){
+		
+	}
+	function doSearch(){
+		var currentDate=document.getElementById("start_date").value;
+		var stafferId=document.getElementById("staffer_id").value;
+		window.location="./EstablishmentCommunicateCalendar.html?current_date="+currentDate+"&staffer_id="+stafferId;
+	}
+	function goAnthor(action){
+		window.location="./EstablishmentCommunicateCalendar.html?current_date=2017-07-05&staffer_id=65&action="+action;
+	}
+	function showComm(id){
+		var url="./EstablishmentCommunicateEdit.html?id="+id;
+		ShowIframe("日程",url,980,440,"refreshWin()",900,600);
+	}
+	function changeMode(type){
+		window.location="./EstablishmentCommunicateCalendar.html?type="+type;
+	}
+	function showToday(){
+		var stafferId=document.getElementById("staffer_id").value;
+		window.location="./EstablishmentCommunicateCalendar.html?staffer_id=65";
+	}
+	function doDownload(){
+		window.location="./EstablishmentCommunicateCalendar.html?content_type=EXCEL&current_date=2017-07-05&staffer_id=65";
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet modal-dialog" style="text-align:center" onload="doInit();">
+<div class="sheet-main" style="width: 1508px; height: 100%; text-align: left; margin: auto;" id="mainDiv">
+	<div class="sheet-top">
+		<div class="content calendar">
+		  <h2>日历</h2>
+		  <p>管理自己以及下属的任务与日志</p>
+		</div>
+	</div>
+	<div class="sheet-list">
+		<div class="search-business calendar">
+		
+			
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+		
+			<div class="calendar-info">
+				<div class="calendar-search">
+					<input type="text" class="TextBox Datetime readonly" readonly="true" maxlength="15" id="start_date" name="start_date" value="2017-07-05">
+					<img src="../images/calendar.gif" style="cursor:pointer" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;start_date&#39;));">
+					<select name="staffer_id" id="staffer_id">
+						<option value="65">自己</option>
+						
+					</select>
+					<input type="button" class="buttom search-but" value=" 查 询" onclick="doSearch();">
+					<input type="button" class="buttom search-add" value=" 新 增" onclick="doNew();">
+					<input type="button" class="buttom  search-out" value=" 导 出" onclick="doDownload();">
+				</div>
+				<div class="calendar-info-main">
+					<ul id="myTab1" class="calendar-tag" style="float:left">
+						<li class="active" onclick="changeMode(&#39;DATE&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#2B6EAF&#39;">日</li>
+						<li onclick="changeMode(&#39;WEEK&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#2B6EAF&#39;">周</li>
+						<li onclick="changeMode(&#39;MONTH&#39;);" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#2B6EAF&#39;">月</li>
+					</ul>
+					<div id="myTab1_Content0">
+						<div class="today">
+							<a href="javascript:goAnthor(&#39;PREVIEW&#39;);" class="last"><c></c></a><a href="javascript:goAnthor(&#39;NEXT&#39;);" class="next"><c></c></a>
+							<input name="今天" type="button" value="今天" class="buttom buttom-b" onclick="showToday();">
+							<span>2017-07-05 星期三</span>
+						</div>
+						<table style="width:100%" class="offday" id="mainTbl">
+							
+							<tbody><tr>
+								<th>08:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>09:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>10:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>11:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>12:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>13:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>14:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>15:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>16:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>17:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>18:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>19:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>20:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>21:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>22:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>23:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>00:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>01:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>02:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>03:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>04:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>05:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>06:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<th>07:00</th>
+								<td>
+									
+								</td>
+							</tr>
+							
+						</tbody></table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

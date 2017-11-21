@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+    <package name="struts-system" extends="struts2">
+   		<!-- 使用通配符 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+    	<action name="UserRole_*" class="com.erp.controller.system.action.UserRoleAction" method="{1}"> 
+    	  <result name="Demo">/index.jsp</result>
+    	  <result name="toIndex">/WEB-INF/view/base/Index.jsp</result>
+    	  <result name="toMain">/WEB-INF/view/system/Main.jsp</result>
+    	  <result name="toUserRole">/WEB-INF/view/system/UserList.jsp</result>
+    	  <result name="toUserNew">/WEB-INF/view/system/UserNew.jsp</result>
+    	  <result name="toUserEdit">/WEB-INF/view/system/UserEdit.jsp</result>
+    	</action> 
+     
+    </package>
+</struts>

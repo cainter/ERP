@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div class="Wrap">
+			<!-- 页面主框架 -->
+			<div id="ListContainer" class="Container">
+				<!-- 主体容器 -->
+				<!-- 标题栏 -->
+				<div class="Heading BillIcon">
+					<div class="HeadingContent">
+						<h1>我的客户</h1>
+						<div class="pull-right">
+							<span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_sk" id="cb_sk" style="visibility:hidden;">
+	            			客户名称
+	            		</th>
+	            		<td class="c1" width="260px">
+	            			<input type="text" class="TextBox" style="width:200px" id="search_key" name="search_key" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_sk&#39;);" value="" title="以客户名称、客户拼音字头、客户编号进行模糊查询">
+							<input type="hidden" id="hid_search_key" value="">
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+							<span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+						<a type="button" class="buttom btn btn-default" href="#">查询</a>
+						<a type="button" class="buttom btn btn-default" href="#">新增</a>
+						<a type="button" class="buttom btn btn-default" href="#">短信</a>
+						<a type="button" class="buttom btn btn-default" href="#">移交</a>
+	            </span>
+						</div>
+					</div>
+				</div>
+
+				<!-- 主内容 -->
+				<div class="Content">
+					<!-- 上栏 分页、操作等 -->
+					<div class="TopToolBar">
+						<table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+							<tbody>
+								<tr>
+									<td>
+										选择： 上次交易（
+										<a href="javascript:showList(&#39;BUSI&#39;,&#39;1&#39;);">1个月前</a>
+										<a href="javascript:showList(&#39;BUSI&#39;,&#39;3&#39;);">3个月前</a>
+										<a href="javascript:showList(&#39;BUSI&#39;,&#39;6&#39;);">半年前</a>
+										<a href="javascript:showList(&#39;BUSI&#39;,&#39;12&#39;);">一年前</a>
+										）
+
+										<a href="javascript:showList(&#39;TYPE&#39;,1);">广告公司</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,2);">直接客户</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,3);">标识汇</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,4);">零售客户</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,5);">装饰公司</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,6);">市场同行</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,7);">签约客户</a>
+
+										<a href="javascript:showList(&#39;TYPE&#39;,8);">私企</a>
+
+										<a href="javascript:showList(&#39;LEVEL&#39;,1);">大客户</a>
+
+										<a href="javascript:showList(&#39;LEVEL&#39;,2);">老客户</a>
+
+										<a href="javascript:showList(&#39;LEVEL&#39;,3);">新客户</a>
+
+										<a href="javascript:showList(&#39;LEVEL&#39;,4);">零售客户</a>
+
+										<a href="javascript:showList(&#39;LEVEL&#39;,5);">重要客户</a>
+
+										<a href="javascript:showList(&#39;LEVEL&#39;,-1);">未定义</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<table data-toggle="table" data-click-to-select="true">
+						<thead>
+							<tr>
+								<th data-field="state" data-checkbox="true"></th>
+								<th>客户等级</th>
+								<th>客户名称</th>
+								<th>联系人</th>
+								<th>手机</th>
+								<th>电话</th>
+								<th>地址</th>
+								<th>付款方式</th>
+								<th>最近联系</th>
+								<th>最近交易</th>
+								<th>相关记录</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="bs-checkbox "></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="14">
+									<div class="pull-right">
+										<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+										第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 共1页
+										<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+					<!-- 底栏 分页、操作等 -->
+					<div class="BottomToolBar ClearFix">
+						<div class="pull-right">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">返回主菜单</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

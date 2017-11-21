@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://115.28.87.22:8888/business/AccessoryListForClient.html?id=757 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>客户图样记录 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script language="javascript">
+	function doDownload(id,fileName,sourceName){
+		var xmlHttp=createXMLHttpRequest();
+		xmlHttp.open("GET", "/FileDownloadLog.html?id="+id);
+		xmlHttp.onreadystatechange = function(){
+			doDownloadCallback(xmlHttp,fileName,sourceName);
+		};
+		xmlHttp.send(null);
+	}
+	function doDownloadCallback(xmlHttp,fileName,sourceName){
+    	if (xmlHttp.readyState == 4) {
+      		if (xmlHttp.status == 200) {
+      			var resTxt=xmlHttp.responseText;
+      			if(resTxt=="NO_LOGIN"){
+      				ShowAlert('提示框','你还没登录或已经超时，请重新登录。',200,100);
+      			}else if(resTxt=="OK"){
+      				window.location="/FileDownload.html?file_name="+encodeURIComponent(fileName)+"&source_name="+encodeURIComponent(sourceName);
+      			}
+			}
+		}
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function doGo(pageIndex){
+		window.location="../business/AccessoryListForClient.html?id=757&current_page="+pageIndex;
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:860px;text-align:left;margin:auto;">
+	<div class="sheet-top">
+		<div class="content">
+		  <h2>客户图样记录</h2>
+		  <p>客户名称：格力电器</p>
+		</div>
+	</div>
+	  <div class="sheet-list">
+			  <div class="table-list">
+			     <table width="100%" align="center">      
+					 <tbody><tr>			   		
+						<th width="14%">业务单号</th>
+						<th width="22%">文件</th>
+						<th width="24%">资料路径</th>
+						<th width="14%">文件说明</th>
+						<th width="10%">上传人</th>
+						<th width="10%">上传时间</th>
+						<th width="6%">操作</th>
+					</tr>
+					
+				</tbody></table>
+					
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="0" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共0页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+			  </div>
+			</div>
+</div>
+
+</body></html>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.Staffer" table="staffer">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="stafferCode" type="string">
+			<column name="staffer_code" length="30" not-null="true" />
+		</property>
+		<property name="stafferName" type="string">
+			<column name="staffer_name" length="30" not-null="true" />
+		</property>
+		<property name="sex" type="string">
+			<column name="sex" length="10" />
+		</property>
+		<property name="birthday" type="date">
+			<column name="birthday" />
+		</property>
+		<property name="origin" type="string">
+			<column name="origin" length="20" />
+		</property>
+		<property name="household" type="string">
+			<column name="household" length="20" />
+		</property>
+		<property name="mobile" type="string">
+			<column name="mobile" length="30" />
+		</property>
+		<property name="phone" type="string">
+			<column name="phone" length="30" />
+		</property>
+		<property name="address" type="string">
+			<column name="address" length="100" />
+		</property>
+		<property name="departmentId" type="long">
+			<column name="department_id" not-null="true" />
+		</property>
+		<property name="possie" type="string">
+			<column name="possie" length="30" />
+		</property>
+		<property name="superiorId" type="long">
+			<column name="superior_id" not-null="true" />
+		</property>
+		<property name="superiorIdStr" type="string">
+			<column name="superior_id_str" length="200" />
+		</property>
+		<property name="inDate" type="date">
+			<column name="in_date" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" not-null="true" />
+		</property>
+		<property name="accessory" type="string">
+			<column name="accessory" length="100" />
+		</property>
+		<property name="mark" type="string">
+			<column name="mark" length="200" />
+		</property>
+		<property name="nameSpell" type="string">
+			<column name="name_spell" length="30" />
+		</property>
+		<property name="leaveDate" type="date">
+			<column name="leave_date" />
+		</property>
+		<property name="certName" type="string">
+			<column name="cert_name" length="30" />
+		</property>
+		<property name="certCode" type="string">
+			<column name="cert_code" length="100" />
+		</property>
+		<property name="subPhone" type="string">
+			<column name="sub_phone" length="20" />
+		</property>
+		<property name="subMobile" type="string">
+			<column name="sub_mobile" length="30" />
+		</property>
+		<property name="qq" type="string">
+			<column name="qq" length="30" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="100" />
+		</property>
+		<property name="image" type="string">
+			<column name="image" length="200" />
+		</property>
+		<property name="headImage" type="string">
+			<column name="head_image" length="200" />
+		</property>
+    </class>
+</hibernate-mapping>

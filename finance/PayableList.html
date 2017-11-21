@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0049)http://115.28.87.22:8888/finance/PayableList.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>应付账款 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function doDetail(id,estType){
+		var url;
+		if(estType=="COOPERATOR"){
+			url="../finance/FinanceListForCooperator.html?cooperator_id="+id;
+		}else{
+			url="../finance/FinanceListForProvider.html?provider_id="+id;
+		}
+		showWin(900,600,url);
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var str="";
+		var estType="";
+		if(ob_arr.length>=it.getAttribute("index")){
+			str=ob_arr[it.getAttribute("index")-1].value;
+			estType=ob_arr[it.getAttribute("index")-1].getAttribute("estType");
+		}
+		if(str==""){
+			return;
+		}
+		showPayBillDialog(str,estType);
+	}
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		//Window_Onload();
+		document.getElementById("search_key").focus();
+	}
+	function showPayBillDialog(estId,estType){
+		var url;
+		if(estType=="PROVIDER"){
+		   url = "../finance/BusinessBillByDateForReceive.html?bill_type=provider";
+		}else{
+		   url = "../finance/BusinessBillByDateForReceive.html?bill_type=cooperator";
+		}
+		ShowIframeNoScroll("选择日期起止",url,580,300,"showPayBillCallBack("+estId+",'"+estType+"')");
+	}
+	function showPayBillCallBack(estId,estType){
+		if(popRetVal!=null){
+			var url="../finance/PayBillNew.html?data_type="+estType+"&est_id="+estId+"&start_date="+popRetVal[0]+"&end_date="+popRetVal[1];
+			ShowIframe("付款单",url,1024,500,"showBillDialogCallBack('PAY')",900,600);
+		}
+	}
+	function showBillDialogCallBack(type){
+		if(popRetVal!=null){
+			var url="../finance/PayableList.html?"+getSearchCondition()+"&current_page=1";
+			if(popRetVal.indexOf(";")!=-1){
+				var arr=popRetVal.split(";");
+				if(arr[1]!=null && arr[1]=="Y"){
+					url=url+"&print_id="+arr[0]+"&print_bill="+type;
+					if(arr[2]!=null){
+						url=url+"&print_detail="+arr[2];
+					}
+				}
+			}
+			window.location=url;
+		}
+	}
+	function showAdjustBillDialog(estId,estType){
+		var billType;
+		if(estType=="COOPERATOR"){
+			billType="COOPER_BILL";
+		}else{
+			billType="PURCHASE_BILL";
+		}
+		var strFeatures = "dialogWidth:240px;dialogHeight:340px;scroll:no;center:yes;status:no";
+		var url="../finance/AdjustTypeSelect.html?bill_type="+billType;
+		ShowIframeNoScroll("选择调帐类型",url,240,340,"showAdjustBillDialogExt("+estId+")",900,600);
+	}
+	function showAdjustBillDialogExt(estId){
+		if(popRetVal!=null){
+			var url="../finance/AdjustBillNew.html?data_type=EST&adjust_type="+popRetVal+"&est_id="+estId;
+			ShowIframe("调帐单",url,1024,500,"showBillDialogCallBack('ADJ')",900,600);
+		}
+	}
+	function doSms(estIdStr){
+		var url="../sms/SmsSendForm.html?est_id_str="+estIdStr;
+		showWin(900,500,url);
+	}
+	function doMutiSms(){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var idStr="";
+		for (i=0;i<ob_arr.length;i++){
+			if ((ob_arr[i].checked == true)){
+				if(idStr!=""){
+					idStr=idStr+";";
+				}
+				idStr = idStr+ob_arr[i].value;
+			}
+		}
+		if(idStr!=""){
+			doSms(idStr);
+		}else{
+			ShowAlert('提示框','请选择要发短信的欠款单位',200,100);
+		}
+	}
+	function doShow(id,estType){
+		var url="../base/EstablishmentEdit.html?type="+estType+"&id="+id+"&alert_type=NONE";
+		ShowIframe("欠款单位",url,980,500,"refreshWin()",900,600);
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location.reload(true);
+		}
+	}
+	function doAccountList(id,estType){
+		var url;
+		if(estType=="COOPERATOR"){
+			url="../cooper/CooperBillListForAccountForm.html";
+		}else{
+			url="../purchase/PurchaseBillListForAccountForm.html";
+		}
+		ShowIframeNoScroll("对帐",url,340,400,"doAccountListCallBack("+id+",'"+estType+"')");
+	}
+	function doAccountListCallBack(id,estType){
+		if(popRetVal!=null){
+			var startDate=popRetVal[0];
+			var endDate=popRetVal[1];
+			var type=popRetVal[2];
+			var orderBy=popRetVal[3];
+			var tsId=popRetVal[4];
+			if(estType=="COOPERATOR"){
+				showWin(900,620,'../cooper/CooperBillListForAccount.html?cooperator_id='+id+'&start_date='+startDate+'&end_date='+endDate+'&type='+type+'&order_by='+orderBy+'&ts_id='+tsId);
+			}else{
+				showWin(900,620,'../purchase/PurchaseBillListForAccount.html?provider_id='+id+'&start_date='+startDate+'&end_date='+endDate+'&type='+type+'&order_by='+orderBy+'&ts_id='+tsId);
+			}
+		}
+	}
+	function doBackCostList(id,name,estType){
+		//var d=new Date();
+		//var startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-01";
+		//var endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		var url;
+		if(estType=="PROVIDER"){
+			url="../finance/PurPayCostList.html?est_id="+id+"&est_name="+encodeURIComponent(name)+"&cb_est=1&search_type=1";
+		}else{
+			url="../finance/CooPayCostList.html?est_id="+id+"&est_name="+encodeURIComponent(name)+"&cb_est=1&search_type=1";
+		}
+		showWin(1024,600,url);
+	}
+	function createPageParaStr(){
+		var str="search_key="+encodeURIComponent(document.getElementById("search_key").value);
+		var type="A";
+		if(document.getElementById("type1").checked){
+			type="PROVIDER";
+		}else if(document.getElementById("type2").checked){
+			type="COOPERATOR";
+		}
+		str=str+"&type="+type;
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("end_date").value);
+		str=str+"&cost="+document.getElementById("cost").value;
+		str=str+"&ts_id="+document.getElementById("ts_id").value;
+		return str;
+	}
+	
+	function createProgramParaStr(){
+		var str="search_key="+encodeURIComponent(document.getElementById("hid_search_key").value);
+		str=str+"&type=";
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("hid_end_date").value);
+		str=str+"&cost=";
+		str=str+"&ts_id=1";
+		return str;
+	}
+	function doSearch(){
+		var str;
+		if(IsAdvSearch){//高级
+			str="search_type=1";
+			if(document.getElementById("cb_sk").checked){
+				var searchKey=document.getElementById("search_key").value.trim();
+				if(searchKey==null || searchKey==""){
+					ShowAlert('提示框','请输入单位名称',200,100);
+					return;
+				}
+				str=str+"&cb_sk=1";
+			}
+			if(document.getElementById("cb_type").checked){
+				str=str+"&cb_type=1";
+			}
+			if(document.getElementById("cb_bill_date").checked){
+				if(!checkDateStr(document.getElementById("end_date").value,"截止日期")){
+					return;
+				}
+				str=str+"&cb_bill_date=1";
+			}
+			if(document.getElementById("cb_cost").checked){
+				str=str+"&cb_cost=1";
+			}
+			if(document.getElementById("cb_ts").checked){
+				var tsId=document.getElementById("ts_id").value;
+				if(tsId==null || tsId=="" || tsId=="0"){
+					ShowAlert('提示框','请选择帐套',200,100);
+					return;
+				}
+				str=str+"&cb_ts=1";
+			}
+		}else{//快速
+			str="search_type=2";
+		}
+		var paraStr=createPageParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		window.location="../finance/PayableList.html?"+str;
+	}
+	function getSearchCondition(){
+		var searchType="1";
+		var str="search_type="+searchType;
+		if(searchType=="1"){//高级
+			
+			
+			
+			
+			str=str+"&cb_ts=1";
+		}else{//快速
+			
+		}
+		var paraStr=createProgramParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		return str;
+	}
+	function doAutoCheck(objId){
+		if(document.getElementById(objId).style.visibility!="hidden"){
+			document.getElementById(objId).checked=true;
+		}
+	}
+	function doGo(pageIndex){
+		var str=getSearchCondition();
+		window.location="../finance/PayableList.html?"+str+"&current_page="+pageIndex;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="../finance/PayableList.html?content_type=EXCEL&"+str;
+	}
+	function checkInput(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doPrintCallBack(){
+		var printId="";
+		var printBill="";
+		var printDetail="";
+		if(printId!=null && printId!=""){
+			if(printBill=="PAY"){
+				showWin(900,600,"../finance/PayBillPrint.html?id="+printId+"&print_detail="+printDetail);
+			}else if(printBill=="ADJ"){
+				showWin(900,600,"../finance/AdjustBillPrint.html?id="+printId);
+			}
+		}
+	}
+</script>
+</head>
+
+
+<body oncontextmenu="return false">
+<div class="Wrap"><!-- 页面主框架 -->
+    
+	<div id="ListContainer" class="Container" style="width: 860px;"><!-- 主体容器 -->
+	    
+	    <!-- 标题栏 -->
+	    <div class="Heading BillIcon">
+	        <div class="HeadingContent">
+	            <h1>应付账款</h1>
+	            <span class="Note">管理所有欠款外协商与供应商，可以进行付款、调账以及对账等操作</span>
+	        </div>
+	    </div>
+	
+		<!-- 主内容 -->
+		<div class="Content">
+	        <!-- 筛选控件栏 -->
+	        <div class="FilterBar ClearFix">
+	            <div class="SearchIcon"></div>
+	            <span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_sk" id="cb_sk" style="visibility:hidden;">
+	            			单位名称
+	            		</th>
+	            		<td class="c3" width="260px">
+	            			<input type="text" class="TextBox" id="search_key" name="search_key" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_sk&#39;);" value="" title="以单位名称、单位拼音字头进行模糊查询">
+							<input type="hidden" id="hid_search_key" value="">
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+	            <span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+		  			<input type="button" value=" 查 询" onclick="doSearch();" id="sSearchButton" name="sSearchButton" class="buttom search-but" title="以单位名称、单位拼音字头进行模糊查询">
+				  	<input type="button" value=" 导 出" onclick="doDownload();" id="sDownButton" name="sDownButton" class="buttom  search-out">
+				  	<input type="button" value=" 短 信" onclick="doMutiSms();" id="sSmsButton" name="sSmsButton" class="buttom search-sms">
+	            </span>
+				<div id="dvMoreOptionBox" class="MoreOptionBox" style="display:none;">
+					<table class="MoreOption" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<th class="c1" width="80px">
+			        			<input type="checkbox" name="cb_type" id="cb_type">
+			        			类型
+			        		</th>
+			        		<td class="c3" width="260px">
+			        			<input type="radio" name="est_type" id="type1" onclick="doAutoCheck(&#39;cb_type&#39;);" checked="true">供应商
+								<input type="radio" name="est_type" id="type2" onclick="doAutoCheck(&#39;cb_type&#39;);">外协商
+								<input type="radio" name="est_type" id="type3" onclick="doAutoCheck(&#39;cb_type&#39;);">全部
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input name="" type="checkbox" id="cb_bill_date">
+			        			截止日期
+			        		</th>
+			        		<td>
+			        			<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_bill_date&#39;);" id="end_date" name="end_date" value="2017-07-09">
+								<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_bill_date\&#39;)&#39;);">
+								<input type="hidden" id="hid_end_date" value="2017-07-09">
+			    			</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_cost" id="cb_cost">
+			        			欠款金额
+			        		</th>
+			    			<td class="c3">
+			        			<select name="cost" id="cost" onfocus="doAutoCheck(&#39;cb_cost&#39;);">
+							  		<option value="NOT_ZERO">不为0</option>
+							  		<option value="ZERO">等于0</option>
+						  		</select>
+			        		</td>
+			    		</tr>
+			    		<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_ts" id="cb_ts" checked="true">
+	                        	账套
+			        		</th>
+			    			<td class="c3">
+			        			<select name="ts_id" id="ts_id" onfocus="doAutoCheck(&#39;cb_ts&#39;);">
+				    				<option value="0">==请选择账套==</option>
+				    				
+									<option value="1" selected="">新异</option>
+									<option value="2">网络公司</option>
+								</select>
+			        		</td>
+			    		</tr>
+			    	</tbody></table>
+			    	
+			    	<div class="OptionOrderBy">
+	                    <span class="fr"><a href="javascript:;" id="lnkHiddenOption">隐藏查询选项</a></span>
+	                </div>
+				</div>
+			</div>
+			
+			<!-- 提示信息显示栏 -->
+	        <div class="MsgBar">
+	            
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	        </div>
+	        
+	        <!-- 上栏 分页、操作等 -->
+			
+	        <div class="TopToolBar">
+	            <table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+	            	<tbody><tr>
+	                	<td>欠款合计：-86933.90元</td>
+	            	</tr>
+	            </tbody></table>
+			</div>
+			
+
+      		<div class="table-list">
+        		<table width="100%">
+					<tbody><tr>
+						<th width="14"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+						<th width="8%">单位编号</th>
+						<th width="14%">单位名称</th>
+						<th width="10%">总金额</th>
+						<th width="10%">已付金额</th>
+						<th width="10%">调账金额</th>
+						<th width="10%">尚欠金额</th>
+						<th width="10%">最近交易</th>
+						<th width="13%">备注</th>
+						<th width="15%">操作</th>
+					</tr>
+					
+					
+					
+					
+					
+					<tr class="query_list_data_tr1" index="1" style="color:#000000;cursor:pointer;" defaultfontcolor="#000000" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="498" esttype="PROVIDER"></td>	
+						<td>G0018</td>
+						<td>郑州市东建材永利不锈钢</td>
+						<td>104928.00</td>
+						<td>102488.00</td>
+						<td>0.00</td>
+						<td>2440.00</td>
+						<td>2017-01-11</td>
+						<td></td>
+						<td style="text-align:left">
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showPayBillDialog(&#39;498&#39;,&#39;PROVIDER&#39;);">付款</a>
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showAdjustBillDialog(&#39;498&#39;,&#39;PROVIDER&#39;);">调账</a>
+							<!--<a href="javascript:doDetail('498','item[3]');">查明细</a>-->
+							<a href="javascript:doSms(&#39;498&#39;,&#39;PROVIDER&#39;);">发短信</a>
+							<br>
+							<a href="javascript:doShow(&#39;498&#39;,&#39;PROVIDER&#39;);">查看</a>
+							<a href="javascript:doAccountList(&#39;498&#39;,&#39;PROVIDER&#39;);">对帐</a>
+							<a href="javascript:doBackCostList(&#39;498&#39;,&#39;郑州市东建材永利不锈钢&#39;,&#39;PROVIDER&#39;);">付款记录</a>
+						</td>
+					</tr>
+					
+					
+					
+					
+					
+					<tr class="query_list_data_tr2" index="2" style="color:#000000;cursor:pointer;" defaultfontcolor="#000000" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="541" esttype="COOPERATOR"></td>	
+						<td>T0001</td>
+						<td>河南金兰普不绣纲有限公司</td>
+						<td>358.50</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>358.50</td>
+						<td>2016-12-28</td>
+						<td></td>
+						<td style="text-align:left">
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showPayBillDialog(&#39;541&#39;,&#39;COOPERATOR&#39;);">付款</a>
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showAdjustBillDialog(&#39;541&#39;,&#39;COOPERATOR&#39;);">调账</a>
+							<!--<a href="javascript:doDetail('541','item[3]');">查明细</a>-->
+							<a href="javascript:doSms(&#39;541&#39;,&#39;COOPERATOR&#39;);">发短信</a>
+							<br>
+							<a href="javascript:doShow(&#39;541&#39;,&#39;COOPERATOR&#39;);">查看</a>
+							<a href="javascript:doAccountList(&#39;541&#39;,&#39;COOPERATOR&#39;);">对帐</a>
+							<a href="javascript:doBackCostList(&#39;541&#39;,&#39;河南金兰普不绣纲有限公司&#39;,&#39;COOPERATOR&#39;);">付款记录</a>
+						</td>
+					</tr>
+					
+					
+					
+					
+					
+					<tr class="query_list_data_tr1" index="3" style="color:#000000;cursor:pointer;" defaultfontcolor="#000000" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="497" esttype="PROVIDER"></td>	
+						<td>G0017</td>
+						<td>郑州北方显示（强力巨彩河南省经销商）</td>
+						<td>5867.60</td>
+						<td>5600.00</td>
+						<td>0.00</td>
+						<td>267.60</td>
+						<td>2016-12-02</td>
+						<td></td>
+						<td style="text-align:left">
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showPayBillDialog(&#39;497&#39;,&#39;PROVIDER&#39;);">付款</a>
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showAdjustBillDialog(&#39;497&#39;,&#39;PROVIDER&#39;);">调账</a>
+							<!--<a href="javascript:doDetail('497','item[3]');">查明细</a>-->
+							<a href="javascript:doSms(&#39;497&#39;,&#39;PROVIDER&#39;);">发短信</a>
+							<br>
+							<a href="javascript:doShow(&#39;497&#39;,&#39;PROVIDER&#39;);">查看</a>
+							<a href="javascript:doAccountList(&#39;497&#39;,&#39;PROVIDER&#39;);">对帐</a>
+							<a href="javascript:doBackCostList(&#39;497&#39;,&#39;郑州北方显示（强力巨彩河南省经销商）&#39;,&#39;PROVIDER&#39;);">付款记录</a>
+						</td>
+					</tr>
+					
+					
+					
+					
+					
+					<tr class="query_list_data_tr2" index="4" style="color:#000000;cursor:pointer;" defaultfontcolor="#000000" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="499" esttype="PROVIDER"></td>	
+						<td>G0019</td>
+						<td>郑州合谦商贸有限公司</td>
+						<td>101991.00</td>
+						<td>191990.08</td>
+						<td>-0.92</td>
+						<td>-90000.00</td>
+						<td>2017-04-29</td>
+						<td></td>
+						<td style="text-align:left">
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showPayBillDialog(&#39;499&#39;,&#39;PROVIDER&#39;);">付款</a>
+							<a href="http://115.28.87.22:8888/finance/PayableList.html#" onclick="showAdjustBillDialog(&#39;499&#39;,&#39;PROVIDER&#39;);">调账</a>
+							<!--<a href="javascript:doDetail('499','item[3]');">查明细</a>-->
+							<a href="javascript:doSms(&#39;499&#39;,&#39;PROVIDER&#39;);">发短信</a>
+							<br>
+							<a href="javascript:doShow(&#39;499&#39;,&#39;PROVIDER&#39;);">查看</a>
+							<a href="javascript:doAccountList(&#39;499&#39;,&#39;PROVIDER&#39;);">对帐</a>
+							<a href="javascript:doBackCostList(&#39;499&#39;,&#39;郑州合谦商贸有限公司&#39;,&#39;PROVIDER&#39;);">付款记录</a>
+						</td>
+					</tr>
+					
+				</tbody></table>
+			</div>
+      		<!-- 底栏 分页、操作等 -->
+	        <div class="BottomToolBar ClearFix">
+			    	
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共1页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+	        </div>
+			
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function ChangeWindowSize( container, maxWidth ){
+	    setTimeout( function(){
+	        var w1 = document.documentElement.clientWidth-40;
+	        if( w1>maxWidth ) w1 = maxWidth;
+	        else if( w1<870 ) w1 = 860;
+	        container.style.width = w1+'px';
+	    }, 300 );
+	}
+	var IsAdvSearch = false;
+	(function(){
+		doInit();
+		doPrintCallBack();
+	    var ListContainer = document.getElementById('ListContainer');
+	    ChangeWindowSize( ListContainer, 2020 );    // 超过 1280 的最大 1260 ，不全部铺满
+	
+	    var lnkMoreOption   = document.getElementById('lnkMoreOption');
+	    var lnkHiddenOption = document.getElementById('lnkHiddenOption');
+	    lnkMoreOption.onclick = function(){
+	    	IsAdvSearch = true;
+	        document.getElementById('dvMoreOptionBox').style.display = 'block';
+	        document.getElementById('cb_sk').style.visibility = 'visible';
+	        this.style.visibility = 'hidden';
+	    };
+	    lnkHiddenOption.onclick = function(){
+	    	IsAdvSearch = false;
+	        document.getElementById('dvMoreOptionBox').style.display = 'none';
+	        document.getElementById('cb_sk').style.visibility = 'hidden';
+	        lnkMoreOption.style.visibility = 'visible';
+	    };
+	})();
+</script>
+</body></html>

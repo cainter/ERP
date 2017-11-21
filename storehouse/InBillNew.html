@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div>
+			<form name="frm" method="post">
+				<div class="Container">
+					<div class="Contnet Paper">
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>新增入库单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+											<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput(&#39;inDateStr&#39;);" id="inBill.billCode" name="inBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span id="calPosi"></span>
+											<span class="MustInput">*</span>入库日期：
+											<input type="text" class="tbBillDate_sim TextBox " maxlength="15" id="inDateStr" name="inDateStr" value="2017-07-09">
+											<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;inDateStr&#39;),&#39;yyyy-mm-dd&#39;,document.getElementById(&#39;calPosi&#39;));">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- 单 头信息 -->
+						<table class="BillHeadInfo" style="width: 90%;">
+							<tbody>
+								<tr>
+									<td width="25%">
+										<span class="MustInput">*</span>仓库：
+
+										<select style="width:174px" id="inBill.storehouseId" name="inBill.storehouseId">
+											<option value="0">==请选择==</option>
+
+											<option value="1">标识加工仓库</option>
+
+											<option value="2">中力门店仓库</option>
+
+											<option value="3">车间型材仓库</option>
+
+											<option value="4">车间耗材仓库</option>
+
+											<option value="5">车间工具仓库</option>
+
+										</select>
+									</td>
+									<td width="25%" class="tc">
+										供方类型：
+										<select style="width:100px" id="inBill.offererType" name="inBill.offererType" onchange="doOffererTypeChange();">
+											<option value="">==请选择==</option>
+											<option value="WORK_CENTER">工作中心</option>
+											<option value="PROVIDER">供应商</option>
+											<option value="COOPERATOR">外协商</option>
+											<option value="DEPARTMENT">部门</option>
+											<option value="STOREHOUSE">仓库</option>
+											<option value="CLIENT">客户</option>
+										</select>
+
+									</td>
+									<td width="25%" class="tc">
+										供方：
+										<input type="text" class="TextBox readonly" readonly="readonly" style="width:104px" id="offererName" name="offererName" value="">
+										<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectOfferer();">
+
+									</td>
+									<td width="25%" class="tr">
+										<span class="MustInput">*</span>入库类型：
+										<select style="width:110px" id="inBill.inTypeId" name="inBill.inTypeId">
+											<option value="0">==请选择==</option>
+
+											<option value="1">采购入库</option>
+
+											<option value="2">内部调拨</option>
+
+											<option value="3">盘点入库</option>
+
+										</select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="BillDetails" style="width: 90%;">
+							<table data-toggle="table" data-click-to-select="true">
+								<thead>
+									<tr>
+										<th data-field="state" data-checkbox="true"></th>
+										<th>材料编号</th>
+										<th>品名规格</th>
+										<th>单位</th>
+										<th>数量</th>
+										<th>单价(元)</th>
+										<th>金额(元)</th>
+										<th>备注</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="bs-checkbox "></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="table-bot" style="margin:15px auto;width: 90%;">
+							<span style="float:right;PADDING-RIGHT:10px;color:#aaa">
+					数量小计：<span id="amountSpan">0</span>&nbsp; 金额小计：
+
+							<span id="costSpan">0</span>元
+
+							</span>
+
+							请输入条形码：
+							<input type="text" class="TextBox" style="width:120px" id="pro_code" name="pro_code" onkeyup="checkProCode();" title="材料编号作为材料的条形码，可以在这里直接扫描出入库">
+							<input type="button" style="font-size:12px;" value="加入" onclick="addProCode();">
+							<a href="javascript:doMultiSelect();">增加入库明细</a>
+							<span style="color:#aaa">（点击这里添加入库的材料）</span>
+							<a id="uplo_link" href="javascript:doUpload();">从Excel导入</a>
+
+						</div>
+
+						<!-- 附加信息 -->
+						<div class="TopBottom_Border">
+							<table class="BillElseInfo" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th width="84px"><span class="MustInput">*</span>经办人：</th>
+										<td width="200px">
+
+											<input type="text" class="tbInfo1 TextBox readonly" readonly="readonly" id="inBill.managerName" name="inBill.managerName" value="标识汇">
+											<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectManager();">
+
+											<input type="hidden" id="inBill.managerId" name="inBill.managerId" value="65">
+
+										</td>
+										<th width="84px">备注：</th>
+
+										<td width="273px">
+											<input type="text" class="tbInfo2 TextBox" maxlength="50" id="inBill.mark" name="inBill.mark" value="">
+										</td>
+
+										<th width="84px">&nbsp;</th>
+										<td width="179px">&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="BillNotes">
+							<span>开单人：标识汇 </span>
+							<span>审核人：</span>
+							<span>单据帐套：新异</span>
+						</div>
+					</div>
+
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保 存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并复制</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取 消</a>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>工作中心 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<script src="../js/popup_ext.js"></script>
+<script language="javascript">
+	function doNew(){
+		var url="../base/WorkCenterNew.html";
+		ShowIframeNoScroll("工作中心",url,320,280,"refreshWin()");
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location.reload(true);
+		}
+	}
+	function doEdit(id){
+		var url="../base/WorkCenterEdit.html?id="+id;
+		ShowIframeNoScroll("工作中心",url,320,280,"refreshWin()");
+	}
+	function doDelete(id){
+		ShowConfirm('确认框','确定删除吗？',340,80,"doDelAct("+id+")");
+	}
+	function doDelAct(id){
+		if(popRetVal!=null){
+			window.location="../base/WorkCenterDelete.html?id="+id+"&from_url="+encodeURIComponent(window.location);
+		}
+	}
+	function doCancel(){
+		window.close();
+	}
+	function proList(id){
+		var url="../base/WorkProcessList.html?wc_id="+id;
+		showWin(500,350,url);
+	}
+	function doPercentEdit(id){
+		var url="../base/SetWorkProcessPercentForm.html?wc_id="+id;
+		ShowIframe("工序占比",url,420,300,"refreshWin()");
+	}
+	function doPause(id,flag){
+		window.location="../base/WorkCenterPause.html?id="+id+"&flag="+flag+"&from_url="+encodeURIComponent(window.location);
+	}
+	function doSearch(){
+		var showPaus="";
+		if(document.getElementById("show_paus").checked){
+			showPaus="Y";
+		}
+		window.location="../base/WorkCenterList.html?show_paus="+showPaus;
+	}
+</script>
+</head>
+<body oncontextmenu="return false" class="sheet" style="text-align:center;">
+<div class="sheet-main" style="width:560px;text-align:left;margin:auto;">
+  <div class="sheet-top">
+    <div class="content">
+      <h2>工作中心管理</h2>
+      <p>工作中心指在工厂内执行工序和作业的场所，每个工作中心可以设置多个工序，同时设置每个工序的产值占比或者计件工资，以便统计制作人员的产值。</p>
+    </div>
+  </div>
+  <div class="sheet-list">
+    <div class="search-business">
+	    <div class="add_content"> 	
+	    	 <div align="right">
+	    	 	<input id="show_paus" onclick="doSearch();" type="checkbox">显示已停用工作中心
+	    	 	<input class="buttom search-add" value=" 新 增" onclick="doNew();" type="button">
+	    	 </div>
+	     </div>
+	     
+<table width="98%" cellspacing="0" cellpadding="0" border="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	     <div class="table-list">
+	        <table width="100%">
+	          <tbody><tr>	
+					<th width="18%">名称</th>
+					<th width="18%">仓库</th>
+					<th width="24%">描述</th>
+					<th width="10%">状态</th>
+					<th width="30%">操作</th>
+				</tr>   
+				
+				<tr>
+					<td>默认工作中心</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit('1');">编辑</a>
+						
+						
+						
+						<br>
+						<a href="javascript:proList('1');">工序设置</a>
+						<a href="javascript:doPercentEdit('1');">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>型材仓库</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit('10');">编辑</a>
+						<a href="javascript:doPause('10','N');">停用</a>
+						
+						<a href="javascript:doDelete('10');">删除</a>
+						<br>
+						<a href="javascript:proList('10');">工序设置</a>
+						<a href="javascript:doPercentEdit('10');">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>标识部</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit('12');">编辑</a>
+						<a href="javascript:doPause('12','N');">停用</a>
+						
+						<a href="javascript:doDelete('12');">删除</a>
+						<br>
+						<a href="javascript:proList('12');">工序设置</a>
+						<a href="javascript:doPercentEdit('12');">工序占比设置</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>标牌部</td>
+					<td>标识加工仓库</td>
+					<td></td>
+					<td>
+						正常
+						
+					</td>
+					<td>
+						<a href="javascript:doEdit('13');">编辑</a>
+						<a href="javascript:doPause('13','N');">停用</a>
+						
+						<a href="javascript:doDelete('13');">删除</a>
+						<br>
+						<a href="javascript:proList('13');">工序设置</a>
+						<a href="javascript:doPercentEdit('13');">工序占比设置</a>
+					</td>
+				</tr>
+					
+			</tbody></table>				       	
+	      </div>  
+	   </div>  
+  </div>
+</div>
+
+
+</body></html>

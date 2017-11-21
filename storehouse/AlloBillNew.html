@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	
+	<body>
+		<div>
+			<form name="frm" method="post">
+				<div class="Container">
+					<div class="Contnet Paper">
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>新增调拨单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+											<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput('adjustDateStr');" id="adjustBill.billCode" name="adjustBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span id="calPosi"></span>
+											<span class="MustInput">*</span>调拨日期：
+											<input type="text" class="tbBillDate_sim TextBox " maxlength="15" id="adjustDateStr" name="adjustDateStr" value="2017-11-05">
+											<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById('adjustDateStr'),'yyyy-mm-dd',document.getElementById('calPosi'));">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- 单 头信息 -->
+						<table class="BillHeadInfo" style="width: 80%;">
+							<tbody>
+								<tr>
+									<td width="33%">
+										<span class="MustInput">*</span>调出仓库：
+<select id="alloBill.fromStoId" name="alloBill.fromStoId" style="width:140px">
+												<option value="0">==请选择==</option>
+
+												<option value="1">标识加工仓库</option>
+
+												<option value="2">中力门店仓库</option>
+
+												<option value="3">车间型材仓库</option>
+
+												<option value="4">车间耗材仓库</option>
+
+												<option value="5">车间工具仓库</option>
+
+											</select>
+									</td>
+									<td width="33%" class="tc">
+										<span class="MustInput">*</span>调入仓库：
+										<select id="alloBill.toStoId" name="alloBill.toStoId" style="width:140px">
+												<option value="0">==请选择==</option>
+
+												<option value="1">标识加工仓库</option>
+
+												<option value="2">中力门店仓库</option>
+
+												<option value="3">车间型材仓库</option>
+
+												<option value="4">车间耗材仓库</option>
+
+												<option value="5">车间工具仓库</option>
+
+												<option value="6">你好，仓库</option>
+
+											</select>
+									</td>
+									<td width="33%" class="tr">
+										<span class="MustInput">*</span>经办人：
+										<input type="text" class="tbInfo1 TextBox readonly" readonly="readonly" id="alloBill.managerName" name="alloBill.managerName" value="标识汇">
+											<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectManager();">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<!-- 明细 -->
+						<div class="BillDetails" style="width: 90%;">
+							<table data-toggle="table" data-click-to-select="true">
+								<thead>
+									<tr>
+										<th>材料编号</th>
+										<th>品名规格</th>
+										<th>单位</th>
+										<th>数量</th>
+										<th>单价(元)</th>
+										<th>金额(元)</th>
+										<th>备注</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>K(1)2017060010</td>
+										<td>2017-06-27</td>
+										<td>郑州建美标识</td>
+										<td>标牌 门店自提</td>
+										<td>2017-07-09</td>
+										<td>张永灿</td>
+										<td>张永灿</td>
+										<td>张永灿</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="table-bot" style="margin:5px auto 10px auto;width: 90%;">
+							<span style="float:right;PADDING-RIGHT:10px;color:#aaa">
+					数量小计：<span id="amountSpan">0</span>&nbsp; 金额小计：
+
+							<span id="costSpan">0</span>元
+
+							</span>
+
+							<a href="javascript:doMultiSelect();">新增调拨明细</a>
+
+						</div>
+
+						<!-- 附加信息 -->
+						<div class="TopBottom_Border">
+							<table class="BillElseInfo" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th width="84px">摘要：</th>
+										<td width="820px">
+
+											<textarea id="alloBill.description" name="alloBill.description" class="TextBox" style="width:680px;height:40px"></textarea>
+
+										</td>
+									</tr>
+									<tr>
+										<th width="84px">备注：</th>
+										<td width="820px">
+
+											<textarea id="alloBill.mark" name="alloBill.mark" class="TextBox" style="width:680px;height:40px"></textarea>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="BillNotes">
+							<span>开单人：标识汇 2017-07-09 17:20</span>
+							<span>审核人：</span>
+							<span>单据帐套：新异</span>
+						</div>
+					</div>
+
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取消</a>
+
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+
+	</body>
+
+</html>

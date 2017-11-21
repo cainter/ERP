@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.erp.model.vo.BusinessBillExt" table="business_bill_ext">
+		<id name="id" type="long" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="examinerId" type="long">
+			<column name="examiner_id" not-null="true" />
+		</property>
+		<property name="examinerName" type="string">
+			<column name="examiner_name" length="30" />
+		</property>
+		<property name="examined" type="string">
+			<column name="examined" length="1" />
+		</property>
+		<property name="completed" type="string">
+			<column name="completed" length="1" />
+		</property>
+		<property name="makerName" type="string">
+			<column name="maker_name" length="100" />
+		</property>
+		<property name="collected" type="string">
+			<column name="collected" length="1" />
+		</property>
+		<property name="maked" type="string">
+			<column name="maked" length="1" />
+		</property>
+		<property name="delivered" type="string">
+			<column name="delivered" length="1" />
+		</property>
+		<property name="setuped" type="string">
+			<column name="setuped" length="1" />
+		</property>
+		<property name="collectedCost" type="big_decimal">
+			<column name="collected_cost" length="2" not-null="true" />
+		</property>
+		<property name="receiveCost" type="big_decimal">
+			<column name="receive_cost" length="2" not-null="true" />
+		</property>
+		<property name="adjustCost" type="big_decimal">
+			<column name="adjust_cost" length="2" not-null="true" />
+		</property>
+		<property name="enabled" type="string">
+			<column name="enabled" length="1" />
+		</property>
+		<property name="disableManId" type="long">
+			<column name="disable_man_id" not-null="true" />
+		</property>
+		<property name="lastPrinter" type="string">
+			<column name="last_printer" length="20" />
+		</property>
+		<property name="printNum" type="int">
+			<column name="print_num" length="4" not-null="true" />
+		</property>
+		<property name="hasReceive" type="string">
+			<column name="has_receive" length="1" />
+		</property>
+		<property name="hasAdjust" type="string">
+			<column name="has_adjust" length="1" />
+		</property>
+		<property name="hasDeliver" type="string">
+			<column name="has_deliver" length="1" />
+		</property>
+		<property name="hasSetu" type="string">
+			<column name="has_setu" length="1" />
+		</property>
+		<property name="closed" type="string">
+			<column name="closed" length="1" />
+		</property>
+		<property name="closerId" type="long">
+			<column name="closer_id" not-null="true" />
+		</property>
+		<property name="closerName" type="string">
+			<column name="closer_name" length="30" />
+		</property>
+		<property name="closeTime" type="timestamp">
+			<column name="close_time" />
+		</property>
+		<property name="examSms" type="string">
+			<column name="exam_sms" length="1" />
+		</property>
+		<property name="examineTime" type="timestamp">
+			<column name="examine_time" />
+		</property>
+		<property name="makeSms" type="string">
+			<column name="make_sms" length="1" />
+		</property>
+		<property name="completeTime" type="timestamp">
+			<column name="complete_time" />
+		</property>
+		<property name="receTime" type="timestamp">
+			<column name="rece_time" />
+		</property>
+    </class>
+</hibernate-mapping>

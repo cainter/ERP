@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--
+	作者：wanglinhao
+	描述：业务单完工
+-->
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>业务单完工 | 管理易-广告加工制作管理软件 企业版 9.28 | 易凯软件</title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/Query.css" rel="stylesheet" type="text/css">
+		<link href="/calendar/dhtmlgoodies_calendar/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillList.css" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+<body>
+	<div class="Wrap">
+		<!-- 页面主框架 -->
+
+		<div id="ListContainer" class="Container">
+			<!-- 主体容器 -->
+
+			<!-- 标题栏 -->
+			<div class="Heading">
+				<div class="HeadingContent">
+					<h1>业务单完工</h1>
+					<div class="pull-right">
+						<span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<th class="c1" width="80px">
+	            			<input name="" type="checkbox" name="cb_bill_code" id="cb_bill_code"  style="visibility:hidden" />
+	            			业务单号
+	            		</th>
+	            		<td class="c1" width="260px">
+	            			<input type="text" class="TextBox" style="width:200px;" maxlength="50" name="bill_code" id="bill_code" onKeyUp="checkInput();" onFocus="doAutoCheck('cb_bill_code');" value="" >
+							<input type="hidden" id="hid_bill_code" value="">
+	            		</td>
+	            	</table>
+	            </span>
+						<span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+	            	
+						<a type="button" class="buttom btn btn-default" href="#">查询</a>
+						<a type="button" class="buttom btn btn-default" href="#">打印</a>
+						<a type="button" class="buttom btn btn-default" href="#">完工</a>
+	            </span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 主内容 -->
+			<div class="Content">
+
+				<!-- 上栏 分页、操作等 -->
+				<div class="TopToolBar">
+					<table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								选择：
+								<a href="javascript:showList('ORDE_DATE_DESC');">按订货日期降序</a>
+								<a href="javascript:showList('ORDE_DATE_ASC');">按订货日期升序</a>
+								<a href="javascript:showList('UN_MAKE');">未开工</a>
+								<a href="javascript:showList('MAKE');">已开工</a>
+
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<table data-toggle="table" data-click-to-select="true">
+					<thead>
+						<tr>
+							<th data-field="state" data-checkbox="true"></th>
+							<th>单号</th>
+							<th>订货日期</th>
+							<th>订货单位</th>
+							<th>摘要</th>
+							<th>交货日期</th>
+							<th>跟单员</th>
+							<th>开工状态</th>
+							<th>工作中心</th>
+							<th width="20%">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="bs-checkbox "></td>
+							<td>老客户</td>
+							<td>郑州中力国标标识</td>
+							<td>国际标识</td>
+							<td>2017-09-12</td>
+							<td>8774566</td>
+							<td>河南省郑州市</td>
+							<td>付款方式</td>
+							<td>默认工作中心</td>
+							<td>
+								<a href="#">查看</a>
+								<a href="#">完工</a>
+								<a href="#">用料登记</a>
+								<a href="#">费用登记</a>
+								<br />
+								<a href="#">打印标签</a>
+								<a href="#">打印制作单</a>
+								<a href="#">查用料</a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="14">
+								<div class="pull-right">
+										<a style="cursor:pointer" onclick=""><img src="../images/but001.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but002.gif"></a>
+										第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 共1页
+										<a style="cursor:pointer" onclick=""><img src="../images/but003.gif"></a>
+										<a style="cursor:pointer" onclick=""><img src="../images/but004.gif"></a>
+									</div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<!-- 底栏 分页、操作等 -->
+				<div class="BottomToolBar ClearFix">
+					<div class="pull-right">
+						<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">返回主菜单</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+</body>
+
+</html>

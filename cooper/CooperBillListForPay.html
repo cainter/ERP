@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0057)http://115.28.87.22:8888/cooper/CooperBillListForPay.ihtm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>外协单应付款 | 管理易-广告加工制作管理软件  企业版 9.28  | 易凯软件</title>
+<script src="../js/minierp.js"></script>
+
+<link href="../css/Query.css" rel="stylesheet" type="text/css">
+<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/BillList.css">
+<script src="../js/QueryList.js"></script>
+<script src="../js/popup_ext.js"></script>
+<script src="../js/dhtmlgoodies_calendar.js"></script>
+<script language="javascript">
+	function doPay(id,tsId){
+		var dfTsId="1";
+		if(tsId!=null && dfTsId!=tsId){//tsId==null是从doMutiPay()过来的
+			ShowAlert('提示框','外协单的帐套与当前开单帐套不一致，不能操作',200,100);
+			return;
+		}
+		var url="/finance/PayBillNew.ihtm?data_type=COOPER&bill_id_str="+id;
+		ShowIframe("付款",url,1024,500,"doPayCallBack()",1024,600);
+	}
+	function doPayCallBack(){
+		if(popRetVal!=null){
+			var url="/cooper/CooperBillListForPay.ihtm?"+getSearchCondition()+"&current_page=1";
+			if(popRetVal.indexOf(";")!=-1){
+				var arr=popRetVal.split(";");
+				if(arr[1]!=null && arr[1]=="Y"){
+					url=url+"&print_id="+arr[0]+"&print_bill=PAY";
+					if(arr[2]!=null){
+						url=url+"&print_detail="+arr[2];
+					}
+				}
+			}
+			window.location=url;
+		}
+	}
+	function doMutiPay(){
+		var arr=getMultiSelectValue();
+		if(arr[0]!=""){
+			ShowAlert('提示框',arr[0],200,100);
+		}else{
+			if(arr[1]!=""){
+				doPay(arr[1]);
+			}else{
+				ShowAlert('提示框','请选择要付款的外协单',200,100);
+			}
+		}
+	}
+	function doAdjust(id,tsId){
+		var dfTsId="1";
+		if(tsId!=null && dfTsId!=tsId){
+			ShowAlert('提示框','外协单的帐套与当前开单帐套不一致，不能操作',200,100);
+			return;
+		}
+		var url="/finance/AdjustTypeSelect.ihtm?bill_type=COOPER_BILL";
+		ShowIframeNoScroll("选择调帐类型",url,240,230,"doAdjustExt('"+id+"')");
+	}
+	function doAdjustExt(id){
+		if(popRetVal!=null){
+			var url="/finance/AdjustBillNew.ihtm?data_type=BILL&adjust_type="+popRetVal+"&bill_id_str="+id;
+			ShowIframe("调帐",url,1024,500,"doAdjCallBack()",1024,600);
+		}
+	}
+	function doAdjCallBack(){
+		if(popRetVal!=null){
+			var url="/cooper/CooperBillListForPay.ihtm?"+getSearchCondition()+"&current_page=1";
+			if(popRetVal.indexOf(";")!=-1){
+				var arr=popRetVal.split(";");
+				if(arr[1]!=null && arr[1]=="Y"){
+					url=url+"&print_id="+arr[0]+"&print_bill=ADJ";
+				}
+			}
+			window.location=url;
+		}
+	}
+	function getMultiSelectValue(){
+		var r=new Array();
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var str="";
+		var clientId="";
+		var dfTsId="1";
+		
+		for (i=0;i<ob_arr.length;i++){
+			if (ob_arr[i].checked == true){
+				if(clientId==""){
+					clientId=ob_arr[i].getAttribute("clientId");
+				}else{
+					if(clientId!=ob_arr[i].getAttribute("clientId")){
+						r[0]="不同外协商的外协单不能一起操作";
+						r[1]="";
+						return r;
+					}
+				}
+				if(dfTsId!=ob_arr[i].getAttribute("tsId")){
+					r[0]="外协单"+ob_arr[i].getAttribute("billCode")+"的帐套与当前开单帐套不一致，不能操作";
+					r[1]="";
+					return r;
+				}
+				if(str!=""){
+					str=str+";";
+				}
+				str = str+ob_arr[i].value;
+			}
+		}
+		
+		r[0]="";
+		r[1]=str;
+		return r;
+	}
+	function createPageParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("end_date").value);
+		str=str+"&est_name="+encodeURIComponent(document.getElementById("est_name").value);
+		str=str+"&bill_code="+encodeURIComponent(document.getElementById("bill_code").value);
+		str=str+"&content="+encodeURIComponent(document.getElementById("content").value);
+		str=str+"&min_cost="+encodeURIComponent(document.getElementById("min_cost").value.trim());
+		str=str+"&max_cost="+encodeURIComponent(document.getElementById("max_cost").value.trim());
+		str=str+"&ts_id="+document.getElementById("ts_id").value;
+		str=str+"&pm="+document.getElementById("pm").value;
+		
+		return str;
+	}
+
+	function createProgramParaStr(){
+		var str="start_date="+encodeURIComponent(document.getElementById("hid_start_date").value);
+		str=str+"&end_date="+encodeURIComponent(document.getElementById("hid_end_date").value);
+		str=str+"&est_name="+encodeURIComponent(document.getElementById("hid_est_name").value);
+		str=str+"&bill_code="+encodeURIComponent(document.getElementById("hid_bill_code").value);
+		str=str+"&content="+encodeURIComponent(document.getElementById("hid_content").value);
+		str=str+"&min_cost="+encodeURIComponent(document.getElementById("hid_min_cost").value);
+		str=str+"&max_cost="+encodeURIComponent(document.getElementById("hid_max_cost").value);
+		str=str+"&ts_id=1";
+		str=str+"&pm=";
+		
+		return str;
+	}
+	function doSearch(){
+		var str;
+		if(IsAdvSearch){//高级
+			str="search_type=1";
+			if(document.getElementById("cb_coo_date").checked){
+				if(!checkDateStr(document.getElementById("start_date").value,"开始日期")){
+					return;
+				}
+				if(!checkDateStr(document.getElementById("end_date").value,"结束日期")){
+					return;
+				}
+				str=str+"&cb_coo_date=1";
+			}
+			
+			if(document.getElementById("cb_est").checked){
+				var estName=document.getElementById("est_name").value.trim();
+				if(estName==null || estName==""){
+					ShowAlert('提示框','请输入外协商名称',200,100);
+					return;
+				}
+				str=str+"&cb_est=1";
+			}
+			if(document.getElementById("cb_bill_code").checked){
+				var billCode=document.getElementById("bill_code").value.trim();
+				if(billCode==null || billCode==""){
+					ShowAlert('提示框','请输入外协单号',200,100);
+					return;
+				}
+				str=str+"&cb_bill_code=1";
+			}
+			if(document.getElementById("cb_content").checked){
+				var content=document.getElementById("content").value.trim();
+				if(content==null || content==""){
+					ShowAlert('提示框','请输入摘要',200,100);
+					return;
+				}
+				str=str+"&cb_content=1";
+			}
+			if(document.getElementById("cb_cost").checked){
+				var minCost=document.getElementById("min_cost").value.trim();
+				if(minCost==null || minCost==""){
+					ShowAlert('提示框','请输入最小金额',200,100);
+					return;
+				}else if(isNaN(minCost)){
+					ShowAlert('提示框','最小金额只能是数字',200,100);
+					return;
+				}
+				var maxCost=document.getElementById("max_cost").value.trim();
+				if(maxCost==null || maxCost==""){
+					ShowAlert('提示框','请输入最大金额',200,100);
+					return;
+				}else if(isNaN(maxCost)){
+					ShowAlert('提示框','最大金额只能是数字',200,100);
+					return;
+				}
+				str=str+"&cb_cost=1";
+			}
+			if(document.getElementById("cb_pm").checked){
+				var pm=document.getElementById("pm").value;
+				if(pm==null || pm=="" || pm=="0"){
+					ShowAlert('提示框','请选择付款方式',200,100);
+					return;
+				}
+				str=str+"&cb_pm=1";
+			}
+			if(document.getElementById("cb_ts").checked){
+				var tsId=document.getElementById("ts_id").value;
+				if(tsId==null || tsId=="" || tsId=="0"){
+					ShowAlert('提示框','请选择帐套',200,100);
+					return;
+				}
+				str=str+"&cb_ts=1";
+			}
+		}else{//快速
+			str="search_type=2";
+			if(!checkDateStr(document.getElementById("start_date").value,"开始日期")){
+				return;
+			}
+			if(!checkDateStr(document.getElementById("end_date").value,"结束日期")){
+				return;
+			}
+		}
+		var paraStr=createPageParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		window.location="/cooper/CooperBillListForPay.ihtm?"+str;
+	}
+	function doGo(pageIndex){
+		var str=getSearchCondition();
+		str=str+"&current_page="+pageIndex;
+		window.location="/cooper/CooperBillListForPay.ihtm?"+str;
+	}
+	function getSearchCondition(){
+		var searchType="1";
+		var str="search_type="+searchType;
+		if(searchType=="1"){//高级
+			
+			
+			
+			
+			
+			
+			str=str+"&cb_ts=1";
+		}else{//快速
+			
+		}
+		var paraStr=createProgramParaStr();
+		if(paraStr!=""){
+			str=str+"&"+paraStr;
+		}
+		return str;
+	}
+	function doJump(pageIndex){
+		if(window.event.keyCode==13){
+			doGo(pageIndex);
+		}
+	}
+	function DoubleClick(it){
+		var ob_arr = document.getElementsByName("query_checkbox");
+		var str="";
+		if(ob_arr.length>=it.getAttribute("index")){
+			str=ob_arr[it.getAttribute("index")-1].value;
+		}
+		if(str==""){
+			return;
+		}
+		doShow(str);
+	}
+	function doDownload(){
+		var str=getSearchCondition();
+		window.location="/cooper/CooperBillListForPay.ihtm?content_type=EXCEL&"+str;
+	}
+	
+	function doCancel(){
+		window.close();
+	}
+	function doInit(){
+		//Window_Onload();
+	}
+	function doShow(id){
+		var url="/cooper/CooperBillEdit.ihtm?id="+id+"&alert_type=NONE";
+		ShowIframe("外协单",url,1280,600,"refreshWin()",1024,600);
+	}
+	function refreshWin(){
+		if(popRetVal!=null){
+			window.location="/cooper/CooperBillListForPay.ihtm?"+getSearchCondition()+"&current_page=1";
+		}
+	}
+	function checkInput(){
+		if(window.event.keyCode==13){
+			doSearch();
+		}
+	}
+	function doAutoCheck(objId){
+		document.getElementById(objId).checked=true;
+	}
+	function doPrintCallBack(){
+		var printId="";
+		var printBill="";
+		var printDetail="";
+		if(printId!=null && printId!=""){
+			if(printBill=="PAY"){
+				showWin(900,600,"/finance/PayBillPrint.ihtm?id="+printId+"&print_detail="+printDetail);
+			}else if(printBill=="ADJ"){
+				showWin(900,600,"/finance/AdjustBillPrint.ihtm?id="+printId);
+			}
+		}
+	}
+	function setDate(type){
+		var d=new Date();
+		var startStr="";
+		var endStr="";
+		if(type=="CURRENT_MONTH"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-01";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="PREVIEW_MONTH"){
+			d=new Date(d.getFullYear(),d.getMonth(),1);
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-1";
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="TODAY"){
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}else if(type=="YESTERDAY"){
+			d.setDate(d.getDate()-1);
+			startStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			endStr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+		}
+		document.getElementById("start_date").value=startStr;
+		document.getElementById("end_date").value=endStr;
+		doAutoCheck("cb_coo_date");
+	}
+	function selectEstName(){
+		var url="/base/EstablishmentListForSelect.ihtm?type=COOPERATOR";
+		ShowIframe("选择外协商",url,900,500,"selectEstNameCallBack()");
+	}
+	function selectEstNameCallBack(){
+		if(popRetVal!=null){
+			document.getElementById("est_name").value=popRetVal[1];
+			doAutoCheck("cb_est");
+		}
+	}
+</script>
+</head>
+<body oncontextmenu="return false">
+<div class="Wrap"><!-- 页面主框架 -->
+    
+	<div id="ListContainer" class="Container" style="width: 988px;"><!-- 主体容器 -->
+	    
+	    <!-- 标题栏 -->
+	    <div class="Heading BillIcon">
+	        <div class="HeadingContent">
+	            <h1>外协单应付款</h1>
+	            <span class="Note">查询到所有未付完款的外协单，进行付款与调账操作</span>
+	        </div>
+	    </div>
+	
+		<!-- 主内容 -->
+		<div class="Content">
+	        <!-- 筛选控件栏 -->
+	        <div class="FilterBar ClearFix">
+	            <div class="SearchIcon"></div>
+	            <span class="fl">
+	            	<table class="MoreOption" cellpadding="0" cellspacing="0">
+	            		<tbody><tr><th class="c1" width="80px">
+	            			<input type="checkbox" name="cb_coo_date" id="cb_coo_date" style="visibility:hidden;">
+	            			日期
+	            		</th>
+	            		<td width="360px">
+	            			<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_coo_date&#39;);" id="start_date" name="start_date" value="">
+			            	<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;start_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_coo_date\&#39;)&#39;);">
+			            	<input type="hidden" id="hid_start_date" value="">
+			            	至
+			            	<input type="text" class="TextBox Datetime" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_coo_date&#39;);" id="end_date" name="end_date" value="">
+			            	<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById(&#39;end_date&#39;),&#39;yyyy-mm-dd&#39;,this,false,&#39;doAutoCheck(\&#39;cb_coo_date\&#39;)&#39;);">
+			            	<input type="hidden" id="hid_end_date" value="">
+			            	<a href="javascript:setDate(&#39;CURRENT_MONTH&#39;);">本月</a>
+							<a href="javascript:setDate(&#39;TODAY&#39;);">今天</a>
+							<a href="javascript:setDate(&#39;YESTERDAY&#39;);">昨天</a>
+							<a href="javascript:setDate(&#39;PREVIEW_MONTH&#39;);">上月</a>
+	            		</td>
+	            	</tr></tbody></table>
+	            </span>
+				<span class="fr">
+	            	<a href="javascript:;" id="lnkMoreOption">更多查询选项</a>
+		  			<input type="button" value=" 查 询" onclick="doSearch();" class="buttom search-but" id="sSearchButton" name="sSearchButton">
+		  			
+						<input type="Button" class="buttom  search-pay" id="sPayButton" name="sPayButton" value=" 付 款" onclick="doMutiPay();">
+					
+					<input type="button" class="buttom search-out" id="sDownloadButton" name="sDownloadButton" value=" 导 出" onclick="doDownload();">
+	            </span>
+				<div id="dvMoreOptionBox" class="MoreOptionBox" style="display:none;">
+					<table class="MoreOption" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<th class="c1" width="80px">
+			        			<input type="checkbox" name="cb_est" id="cb_est">
+			        			外协商
+			        		</th>
+			    			<td class="c1" width="260px">
+			        			<input type="text" class="TextBox" maxlength="50" name="est_name" id="est_name" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_est&#39;);" value="">
+								<img class="imgIconButton" src="../images/make-a.gif" onclick="selectEstName();">
+								<input type="hidden" id="hid_est_name" value="">
+			    			</td>
+			    		</tr>
+			    		<tr>
+			    			<th class="c1">
+			        			<input type="checkbox" name="cb_bill_code" id="cb_bill_code">
+			        			外协单号
+			        		</th>
+			        		<td class="c1">
+			        			<input type="text" class="TextBox" maxlength="50" name="bill_code" id="bill_code" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_bill_code&#39;);" value="">
+								<input type="hidden" id="hid_bill_code" value="">
+			    			</td>
+						</tr>
+						<tr>
+			    			<th class="c1">
+			        			<input type="checkbox" name="cb_content" id="cb_content">
+			        			摘要
+			        		</th>
+			        		<td class="c1">
+			        			<input type="text" class="TextBox" maxlength="50" name="content" id="content" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_content&#39;);" value="">
+								<input type="hidden" id="hid_content" value="">
+			    			</td>
+						</tr>
+						<tr>
+			    			<th class="c1">
+			        			<input type="checkbox" name="cb_cost" id="cb_cost">
+			        			欠款金额
+			        		</th>
+			        		<td>
+			        			<input type="text" class="TextBox Money" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_cost&#39;);" id="min_cost" name="min_cost" value="">
+								至
+								<input type="text" class="TextBox Money" maxlength="15" onkeyup="checkInput();" onfocus="doAutoCheck(&#39;cb_cost&#39;);" id="max_cost" name="max_cost" value="">
+								<input type="hidden" id="hid_min_cost" value="">
+								<input type="hidden" id="hid_max_cost" value="">
+			    			</td>
+						</tr>
+						<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_pm" id="cb_pm">
+	                        	付款方式
+			        		</th>
+			    			<td class="c1">
+			        			<select name="pm" id="pm" onfocus="doAutoCheck(&#39;cb_pm&#39;);">
+					  				<option value="0">==请选择==</option>
+					  				
+					  				<option value="1">现结</option>
+					  				
+					  				<option value="2">月结</option>
+					  				
+					  				<option value="3">季结</option>
+					  				
+					  				<option value="4">公户转帐</option>
+					  				
+					  				<option value="5">支付宝转帐</option>
+					  				
+					  				<option value="6">银行转帐</option>
+					  				
+					  				<option value="7">物流代收</option>
+					  				
+					  				<option value="8">微信转帐</option>
+					  				
+					  				<option value="9">取货付款</option>
+					  				
+				  				</select>
+			        		</td>
+						</tr>
+						<tr>
+							<th class="c1">
+			        			<input type="checkbox" name="cb_ts" id="cb_ts" checked="true">
+	                        	账套
+			        		</th>
+			    			<td class="c1">
+			        			<select name="ts_id" id="ts_id" onfocus="doAutoCheck(&#39;cb_ts&#39;);">
+				    				<option value="0">==请选择账套==</option>
+				    				
+									<option value="1" selected="">新异</option>
+									<option value="2">网络公司</option>
+								</select>
+			        		</td>
+						</tr>
+					</tbody></table>
+					
+					<div class="OptionOrderBy">
+						<span class="fr"><a href="javascript:;" id="lnkHiddenOption">隐藏查询选项</a></span>
+	                </div>
+				</div>
+			</div>
+			
+			<!-- 提示信息显示栏 -->
+	        <div class="MsgBar">
+	            
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr id="errorMsgTr" style="display:none">
+	  <td>
+	  	<div class="msg-error" id="errorMsgTd">
+	  	
+	  	</div>
+	  </td>
+	</tr>
+</tbody></table>
+	        </div>
+	        
+	        <!-- 上栏 分页、操作等 -->
+			
+	        <div class="TopToolBar">
+	            <table class="ListNoteInfo" cellpadding="0" cellspacing="0">
+	            	<tbody><tr>
+	                	<td>
+	            			<span>欠款合计：358.50元</span>
+							<span>外协单数：1笔</span>
+	                	</td>
+	            	</tr>
+	            </tbody></table>
+			</div>
+			
+         		              		
+		    <div class="table-list">
+		        <table width="100%">
+		          	<tbody><tr>  
+						<th width="14"><input type="checkbox" onclick="javascript:checkall(this);"></th>
+						<th width="12%">单号</th>
+						<th width="8%">日期</th>
+						<th width="12%">外协商</th>
+						<th width="12%">摘要</th>
+						<th width="7%">付款方式</th>
+						<th width="8%">总额</th>
+						<th width="8%">已付</th>
+						<th width="7%">调账</th>
+						<th width="8%">欠款</th>
+						<th width="7%">经办人</th>
+						<th width="12%">操作</th>
+					</tr>
+					
+					
+					
+					<tr class="query_list_data_tr1" index="1" style="cursor:pointer;" ondblclick="javascript:DoubleClick(this)" onclick="javascript:ClickCheck(this,true)" onmouseout="javascript:mouseout(this)" onmouseover="javascript:mouseover(this)">
+						<td><input type="checkbox" onclick="javascript:ClickCheck(this,true);" name="query_checkbox" value="1" clientid="541" tsid="1" billcode="U(1)2016120001"></td>
+						<td>U(1)2016120001</td>
+						<td>2016-12-28</td>
+						<td>河南金兰普不绣纲有限公司</td>
+						<td></td>
+						<td>现结</td>
+						<td align="right">358.50</td>
+						<td align="right">0.00</td>
+						<td align="right">0.00</td>
+						<td align="right">358.50</td>
+						<td align="right">黄冬英</td>
+						<td>
+							
+								<a href="http://115.28.87.22:8888/cooper/CooperBillListForPay.ihtm#" onclick="doPay(&#39;1&#39;,&#39;1&#39;);">付款</a>
+							
+							
+								<a href="http://115.28.87.22:8888/cooper/CooperBillListForPay.ihtm#" onclick="doAdjust(&#39;1&#39;,&#39;1&#39;);">调账</a>
+							
+							<a href="javascript:doShow(&#39;1&#39;);">查看</a>
+						</td>
+					</tr>
+					
+				</tbody></table>
+			</div>
+
+			<!-- 底栏 分页、操作等 -->
+	        <div class="BottomToolBar ClearFix">
+			    	
+    <div class="table-bot">
+    	
+    	
+    	 
+    	  <img src="../images/but001.gif">
+    	  <img src="../images/but002.gif">
+    	    	
+    	第 <input type="text" name="pageNumber" style="width:30px" value="1" onkeydown="javascript:doJump(this.value);" class="TextBox"> 页 
+    	共1页
+		
+		
+        <img src="../images/but003.gif">
+        <img src="../images/but004.gif">
+		
+    </div>
+	        </div>
+			
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function ChangeWindowSize( container, maxWidth ){
+	    setTimeout( function(){
+	        var w1 = document.documentElement.clientWidth-40;
+	        if( w1>maxWidth ) w1 = maxWidth;
+	        else if( w1<970 ) w1 = 960;
+	        container.style.width = w1+'px';
+	    }, 300 );
+	}
+	var IsAdvSearch = false;
+	(function(){
+		doInit();
+		doPrintCallBack();
+	    var ListContainer = document.getElementById('ListContainer');
+	    ChangeWindowSize( ListContainer, 2020 );    // 超过 1280 的最大 1260 ，不全部铺满
+	
+	    var lnkMoreOption   = document.getElementById('lnkMoreOption');
+	    var lnkHiddenOption = document.getElementById('lnkHiddenOption');
+	    lnkMoreOption.onclick = function(){
+	    	IsAdvSearch = true;
+	        document.getElementById('dvMoreOptionBox').style.display = 'block';
+	        document.getElementById('cb_coo_date').style.visibility = 'visible';
+	        this.style.visibility = 'hidden';
+	    };
+	    lnkHiddenOption.onclick = function(){
+	    	IsAdvSearch = false;
+	        document.getElementById('dvMoreOptionBox').style.display = 'none';
+	        document.getElementById('cb_coo_date').style.visibility = 'hidden';
+	        lnkMoreOption.style.visibility = 'visible';
+	    };
+	})();
+</script>
+</body></html>

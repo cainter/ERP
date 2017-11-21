@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-table.css" rel="stylesheet" />
+		<link href="../css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/BillEdit.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div>
+			<form name="frm" method="post">
+				<div class="Container">
+					<div class="Contnet Paper">
+						<!-- 提示信息 -->
+						<div class="BillHeading">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="33%" rowspan="3">
+											<div class="CorpLogo"><img src="../images/BIAO  SHI  HUI.png"></div>
+										</td>
+										<td width="33%" rowspan="3">
+											<h1>新增出库单</h1></td>
+										<td width="33%" class="tr">
+											<button type="button" class="close" aria-label="Close"><span style="font-size: 30px;" aria-hidden="true">&times;</span></button>
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span class="MustInput">*</span>编号：
+											<input type="text" class="tbBillCode TextBox disabled" readonly="readonly" maxlength="30" onkeyup="goNextInput('adjustDateStr');" id="adjustBill.billCode" name="adjustBill.billCode" value="">
+										</td>
+									</tr>
+									<tr>
+										<td class="tr">
+											<span id="calPosi"></span>
+											<span class="MustInput">*</span>出库日期：
+											<input type="text" class="tbBillDate_sim TextBox " maxlength="15" id="adjustDateStr" name="adjustDateStr" value="2017-11-05">
+											<img src="../images/calendar.gif" class="imgIconButton" onclick="displayCalendar(document.getElementById('adjustDateStr'),'yyyy-mm-dd',document.getElementById('calPosi'));">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- 单 头信息 -->
+						<table class="BillHeadInfo" style="width: 100%;">
+							<tbody>
+								<tr>
+									<td width="25%">
+										仓库：
+
+										<select style="width:174px" id="outBill.storehouseId" name="outBill.storehouseId">
+											<option value="0">==请选择==</option>
+
+											<option value="1">标识加工仓库</option>
+
+											<option value="2">中力门店仓库</option>
+
+											<option value="3">车间型材仓库</option>
+
+											<option value="4">车间耗材仓库</option>
+
+											<option value="5">车间工具仓库</option>
+
+										</select>
+									</td>
+									<td width="25%" class="tc">
+										需方类型：
+										<select style="width:100px" id="outBill.requirerType" name="outBill.requirerType" onchange="doRequirerTypeChange();">
+											<option value="">==请选择==</option>
+											<option value="WORK_CENTER" selected="">工作中心</option>
+											<option value="DEPARTMENT">部门</option>
+											<option value="CLIENT">客户</option>
+											<option value="STOREHOUSE">仓库</option>
+											<option value="PROVIDER">供应商</option>
+											<option value="COOPERATOR">外协商</option>
+										</select>
+									</td>
+									<td width="25%" class="tc">
+										需方：
+										<input type="text" class="TextBox readonly" style="width:104px" readonly="readonly" id="requirerName" name="requirerName" value="">
+										<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectRequirer();">
+									</td>
+									<td width="25%" class="tr">
+										出库类型：
+
+										<select style="width:110px" id="outBill.outTypeId" name="outBill.outTypeId">
+											<option value="0">==请选择==</option>
+
+											<option value="1">销售出库</option>
+
+											<option value="2">内部调拨</option>
+
+											<option value="3">盘亏出库</option>
+
+											<option value="4">加工制作</option>
+
+											<option value="5">低值易耗品</option>
+
+										</select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="BillDetails" style="width: 90%;">
+							<table data-toggle="table" data-click-to-select="true">
+								<thead>
+									<tr>
+										<th>材料编号</th>
+										<th>品名规格</th>
+										<th>单位</th>
+										<th>数量</th>
+										<th>单价（元）</th>
+										<th>金额（元）</th>
+										<th>备注</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2017-10-05 19:17</td>
+										<td>杨海波</td>
+										<td>1504692010761.jpg</td>
+										<td></td>
+										<td></td>
+										<td>标识部</td>
+										<td>E(2)2017100007</td>
+										<td>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+						<div class="table-bot" style="margin:15px auto;width: 90%;">
+							<span style="float:right;PADDING-RIGHT:10px;color:#aaa">
+					数量小计：<span id="amountSpan">0</span>&nbsp; 金额小计：
+
+							<span id="costSpan">0</span>元
+
+							</span>
+
+							请输入条形码：
+							<input type="text" class="TextBox" style="width:120px" id="pro_code" name="pro_code" onkeyup="checkProCode();" title="材料编号作为材料的条形码，可以在这里直接扫描出入库">
+							<input type="button" style="font-size:12px;" value="加入" onclick="addProCode();">
+							<a href="javascript:doMultiSelect();">增加出库明细</a>
+							<span style="color:#aaa">(审核后单价显示为库存单价)</span>
+							<a id="uplo_link" href="javascript:doUpload();">从Excel导入</a>
+
+						</div>
+
+						<!-- 附加信息 -->
+						<div class="TopBottom_Border">
+							<table class="BillElseInfo" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th width="80px"><span class="MustInput">*</span>经办人：</th>
+										<td width="200px">
+
+											<input type="text" class="tbInfo1 TextBox readonly" readonly="readonly" id="outBill.managerName" name="outBill.managerName" value="标识汇">
+											<img class="make-a" src="../images/make-a.gif" style="cursor:pointer;" onclick="selectManager();">
+										</td>
+										<th width="80px">备注：</th>
+
+										<td width="263px">
+											<input type="text" class="tbInfo2 TextBox" maxlength="50" id="outBill.mark" name="outBill.mark" value="">
+										</td>
+
+										<th width="80px">业务单号：</th>
+
+										<td width="201px">
+											<input type="text" class="tbInfo1 TextBox" maxlength="30" id="outBill.businessBillCode" name="outBill.businessBillCode" value="" onchange="checkBbCode();">
+											<img src="../images/make-a.gif" class="imgIconButton" onclick="selectBusinessBill();">
+											<img src="../images/icon_del.gif" class="imgIconButton" onclick="clearBusinessBill();">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="BillNotes">
+							<span>开单人：标识汇 2017-07-09 17:20</span>
+							<span>审核人：</span>
+							<span>单据帐套：新异</span>
+						</div>
+					</div>
+
+					<!-- 底栏按钮 -->
+					<div class="Footer">
+						<div id="buttonDiv">
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并新增</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">保存并复制</a>
+							<a type="button" class="buttom btn btn-default" style="width: 100px;" href="#">取消</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap-table.js"></script>
+		<script src="../js/bootstrap-table-zh-CN.min.js"></script>
+	</body>
+	<style type="text/css">
+		#yddContainer {
+			display: block;
+			font-family: Microsoft YaHei;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			top: -4px;
+			left: -4px;
+			font-size: 12px;
+			border: 1px solid
+		}
+		
+		#yddTop {
+			display: block;
+			height: 22px
+		}
+		
+		#yddTopBorderlr {
+			display: block;
+			position: static;
+			height: 17px;
+			padding: 2px 28px;
+			line-height: 17px;
+			font-size: 12px;
+			color: #5079bb;
+			font-weight: bold;
+			border-style: none solid;
+			border-width: 1px
+		}
+		
+		#yddTopBorderlr .ydd-sp {
+			position: absolute;
+			top: 2px;
+			height: 0;
+			overflow: hidden
+		}
+		
+		.ydd-icon {
+			left: 5px;
+			width: 17px;
+			padding: 0px 0px 0px 0px;
+			padding-top: 17px;
+			background-position: -16px -44px
+		}
+		
+		.ydd-close {
+			right: 5px;
+			width: 16px;
+			padding-top: 16px;
+			background-position: left -44px
+		}
+		
+		#yddKeyTitle {
+			float: left;
+			text-decoration: none
+		}
+		
+		#yddMiddle {
+			display: block;
+			margin-bottom: 10px
+		}
+		
+		.ydd-tabs {
+			display: block;
+			margin: 5px 0;
+			padding: 0 5px;
+			height: 18px;
+			border-bottom: 1px solid
+		}
+		
+		.ydd-tab {
+			display: block;
+			float: left;
+			height: 18px;
+			margin: 0 5px -1px 0;
+			padding: 0 4px;
+			line-height: 18px;
+			border: 1px solid;
+			border-bottom: none
+		}
+		
+		.ydd-trans-container {
+			display: block;
+			line-height: 160%
+		}
+		
+		.ydd-trans-container a {
+			text-decoration: none;
+		}
+		
+		#yddBottom {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 22px;
+			line-height: 22px;
+			overflow: hidden;
+			background-position: left -22px
+		}
+		
+		.ydd-padding010 {
+			padding: 0 10px
+		}
+		
+		#yddWrapper {
+			color: #252525;
+			z-index: 10001;
+			background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+		}
+		
+		#yddContainer {
+			background: #fff;
+			border-color: #4b7598
+		}
+		
+		#yddTopBorderlr {
+			border-color: #f0f8fc
+		}
+		
+		#yddWrapper .ydd-sp {
+			background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+		}
+		
+		#yddWrapper a,
+		#yddWrapper a:hover,
+		#yddWrapper a:visited {
+			color: #50799b
+		}
+		
+		#yddWrapper .ydd-tabs {
+			color: #959595
+		}
+		
+		.ydd-tabs,
+		.ydd-tab {
+			background: #fff;
+			border-color: #d5e7f3
+		}
+		
+		#yddBottom {
+			color: #363636
+		}
+		
+		#yddWrapper {
+			min-width: 250px;
+			max-width: 400px;
+		}
+	</style>
+
+</html>
